@@ -496,7 +496,7 @@ a.brand span {
 .navbar .nav li.dropdown.active > .dropdown-toggle,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle {
   	color: #555555;
-  	background-color: #000;
+  	background-color: #0099ff;
   	outline: 0;
 	-webkit-box-shadow: none;
        -moz-box-shadow: none;
@@ -599,7 +599,7 @@ a.brand span {
 }
 
 .dropdown-menu-title {
-	background: #222;
+	background: #0099ff;
 	color: #fff;
 	padding: 8px 0px;
 	position: relative;
@@ -874,6 +874,13 @@ ul.messages li .message {
 
 .box-header .box-icon a {
 	margin: 0px 5px;
+	color: #000;
+}
+
+.box-header .box-icon a:hover{
+	color: #ff0000;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 .box-content {
@@ -1518,7 +1525,7 @@ ul.chat.metro li.right .message .arrow {
 
 .btn {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 2px 4px;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 500;
@@ -1862,6 +1869,7 @@ fieldset[disabled] .btn-link:focus {
   -webkit-border-radius: 0px !important;
 	 -moz-border-radius: 0px !important;
           border-radius: 0px !important;
+
 }
 
 .table-bordered thead:first-child tr:first-child > th:last-child,
@@ -2483,7 +2491,8 @@ footer a:link, footer a:active, footer a:visited{
 }
 
 footer a:hover{
-	color: #ff0000;
+	color: #0000ff;
+	text-decoration: none;
 }
 
 /* Sparkline stats
