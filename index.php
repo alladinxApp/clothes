@@ -47,7 +47,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-
+					<? require_once("views/default.php"); ?>
 				<!-- end: Content -->
 				</div><!--/#content.span10-->
 			</div><!--/fluid-row-->
