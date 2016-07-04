@@ -1,3 +1,7 @@
+<? 
+	require_once("inc/global.php");
+	require_once(CONTROLLER_PATH . CONTROLNOCONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	

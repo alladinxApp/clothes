@@ -2,12 +2,12 @@
 	class DBConfig Extends Database{
 		function __construct(){}
 		
-		// WEB PORTAL DB
+		// CLOTHES DB
 		public function setClothesDB(){
-			$this->DBHost = 'RPC\MEILENE2X';
+			$this->DBHost = '(local)';
 			$this->DBUser = 'sa';
 			$this->DBPass = 'efastsa';
-			$this->DBName = 'clothes';
+			$this->DBName = 'CLOTHESDB';
 			$this->sqltype = 'mssql';
 			
 			$db = new Database;
@@ -24,16 +24,7 @@
 			return $this->sqltype;
 		}
 		public function DBClose(){
-			switch($this->sqltype){
-				case 'mysql':
-					mysql_close();
-					break;
-				case 'mssql':
-					mssql_close();
-					break;
-				default:
-					break;
-			}
+			mssql_close();
 			$this->cn = null;
 		}
 	}

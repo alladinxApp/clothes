@@ -1,4 +1,5 @@
 <?
+	session_start();
 	define(BASE_URL, "http://localhost:81/clothes/");
 	
 	// define(INCLUDE_PATH, "include/");
@@ -29,4 +30,6 @@
 	$today = date("Y-m-d h:i:s");
 	$data_animate_time = 100;
 	$data_animate_type = 'fadeIn';
+	// $userid = $_SESSION['userid'];
+	$userid = "alladinx";
 ?>

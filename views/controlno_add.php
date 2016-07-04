@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="POST">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="txtDescription">Description</label>
@@ -33,11 +33,18 @@
 							<input class="input-xlarge" name="txtNoOfDigit" id="txtNoOfDigit" type="text" placeholder="No. Of Digit Here..." />
 						</div>
 					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtRemarks">Remarks</label>
+						<div class="controls">
+							<textarea name="txtRemarks" id="txtRemarks" style="resize: none; width: 270px;"></textarea>
+						</div>
+					</div>
 					<div class="form-actions">
 						<button type="submit" class="btn btn-primary">Save changes</button>
 						<button class="btn">Cancel</button>
 					</div>
 				</fieldset>
+				<input type="hidden" name="save" id="save" value="1" />
 			</form>
 		</div>
 

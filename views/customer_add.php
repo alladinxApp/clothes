@@ -58,9 +58,9 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="txtVAT">VAT</label>
+						<label class="control-label" for="txtIsVAT">VAT</label>
 						<div class="controls">
-							<select id="txtVAT" name="txtVAT">
+							<select id="txtIsVAT" name="txtIsVAT">
 								<option value="0">NO</option>
 								<option value="1">YES</option>
 							</select>
