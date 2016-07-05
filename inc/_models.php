@@ -7,5 +7,6 @@
 	define(JOBTYPEMODEL, "jobTypeModel.php");
 	define(MATERIALMODEL, "materialModel.php");
 	define(MENUMODEL, "menuModel.php");
+	define(SIZINGMODEL, "sizingModel.php");
 	// -- END MODELS --
 ?>

@@ -6,5 +6,6 @@
 	define(JOBTYPECONTROLLER, "jobTypeController.php");
 	define(MATERIALCONTROLLER, "materialController.php");
 	define(MENUCONTROLLER, "menuController.php");
+	define(SIZINGCONTROLLER,"sizingController.php");
 	// -- END CONTROLLERS --
 ?>

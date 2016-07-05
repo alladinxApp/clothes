@@ -67,7 +67,6 @@
 			}
 		}
 	</script>
-
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>
