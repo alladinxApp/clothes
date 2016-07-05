@@ -57,7 +57,16 @@
 
 			</div><!--/fluid-row-->
 		</div>
-		
+
+	<script type="text/javascript">
+		function deleteCtrlNo(ctrlno){
+			if(confirm("Are you sure you want to delete this control no?")){
+				window.location="controlnos.php?delete=1&id="+ctrlno;
+			}else{
+				return false;
+			}
+		}
+	</script>
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

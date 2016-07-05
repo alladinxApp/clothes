@@ -45,7 +45,7 @@
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
 
-		// INSERT NEW CONTROL NO
+		// UPDATE CONTROL NO
 		$ctrlno = new Table();
 		$ctrlno->setSQLType($csdb->getSQLType());
 		$ctrlno->setInstance($csdb->getInstance());
@@ -59,7 +59,7 @@
 		
 		$alert = new MessageAlert();
 		$alert->setMessage("Control No successfully updated.");
-		$alert->setURL(BASE_URL . "controlnos.php");
+		$alert->setURL(BASE_URL . "controlno_edit.php?edit=1&id=".$id);
 		$alert->Alert();
 	}
 	// END UPDATE CONTROL NO
@@ -71,7 +71,7 @@
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
 
-		// INSERT NEW CONTROL NO
+		// DELETE NEW CONTROL NO
 		$ctrlno = new Table();
 		$ctrlno->setSQLType($csdb->getSQLType());
 		$ctrlno->setInstance($csdb->getInstance());
@@ -96,7 +96,7 @@
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
 
-		// INSERT NEW CONTROL NO
+		// SET CONTROL NO
 		$ctrlno = new Table();
 		$ctrlno->setSQLType($csdb->getSQLType());
 		$ctrlno->setInstance($csdb->getInstance());

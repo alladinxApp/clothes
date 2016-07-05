@@ -42,7 +42,7 @@
 						<a class="btn btn-info" href="controlno_edit.php?edit=1&id=<?=$row_ctrlno[$i]['id'];?>" title="Edit <?=$row_ctrlno[$i]['description'];?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
-						<a class="btn btn-danger" href="controlnos.php?delete=1&id=<?=$row_ctrlno[$i]['id'];?>" title="Delete <?=$row_ctrlno[$i]['description'];?>">
+						<a class="btn btn-danger" href="#" onClick="deleteCtrlNo(<?=$row_ctrlno[$i]['id'];?>);" title="Delete <?=$row_ctrlno[$i]['description'];?>">
 							<i class="halflings-icon white trash"></i> 
 						</a>
 					</td>

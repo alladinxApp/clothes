@@ -27,7 +27,7 @@
 	define(PHPMAILER, "class.phpmailer.php");
 	define(SMTP, "class.smtp.php");
 
-	$title = "CLOTHES DESIGN INC."
+	$title = "CLOTHES DESIGN INC.";
 	$today = date("Y-m-d h:i:s");
 	$data_animate_time = 100;
 	$data_animate_type = 'fadeIn';

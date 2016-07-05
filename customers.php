@@ -57,7 +57,17 @@
 
 			</div><!--/fluid-row-->
 		</div>
-		
+	
+	<script type="text/javascript">
+		function deleteCustomer(custno){
+			if(confirm("Are you sure you want to delete this Customer?")){
+				window.location="customers.php?delete=1&id="+custno;
+			}else{
+				return false;
+			}
+		}
+	</script>
+
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

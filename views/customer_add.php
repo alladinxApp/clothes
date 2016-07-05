@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="POST">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="txtCustomerCode">Customer Code</label>
@@ -19,6 +19,12 @@
 						<label class="control-label" for="txtName">Name</label>
 						<div class="controls">
 							<input class="input-xlarge" name="txtName" id="txtName" type="text" placeholder="Customer Name Here..." />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtBirthDate">Birth Date</label>
+						<div class="controls">
+							<input class="input-xlarge datepicker" name="txtBirthDate" id="txtBirthDate" type="text" placeholder="MM/DD/YYYY" />
 						</div>
 					</div>
 					<div class="control-group">
@@ -67,10 +73,11 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Save changes</button>
-						<button class="btn">Cancel</button>
+						<input type="submit" class="btn btn-primary" value="Save changes" />
+						<a href="customer_add.php" class="btn">Cancel</a>
 					</div>
 				</fieldset>
+				<input type="hidden" name="save" id="save" value="1" />
 			</form>
 		</div>
 

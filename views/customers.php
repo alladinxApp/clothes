@@ -42,13 +42,13 @@
 					<td align="left" style="<?=$style;?>"><?=$row_customer[$i]['emailAddress'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_customer[$i]['mobileNo'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_customer[$i]['telephoneNo'];?></td>
-					<td align="left" style="<?=$style;?>"><?=$row_customer[$i]['birthDate'];?></td>
+					<td align="center" style="<?=$style;?>"><?=dateFormat($row_customer[$i]['birthDate'],"M d, Y");?></td>
 					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_customer[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
 						<a class="btn btn-info" href="customer_edit.php?edit=1&id=<?=$row_customer[$i]['id'];?>" title="Edit <?=$row_customer[$i]['customerName'];?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
-						<a class="btn btn-danger" href="customers.php?delete=1&id=<?=$row_customer[$i]['id'];?>" title="Delete <?=$row_customer[$i]['customerName'];?>">
+						<a class="btn btn-danger" href="#" onClick="deleteCustomer(<?=$row_customer[$i]['id'];?>);" title="Delete <?=$row_customer[$i]['customerName'];?>">
 							<i class="halflings-icon white trash"></i> 
 						</a>
 					</td>

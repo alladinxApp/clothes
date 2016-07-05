@@ -1,6 +1,7 @@
-<? 
+<?
 	require_once("inc/global.php");
-	require_once(CONTROLLER_PATH . CONTROLNOCONTROLLER);
+	require_once(MODEL_PATH . CUSTOMERMODEL);
+	require_once(CONTROLLER_PATH . CUSTOMERCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -50,17 +51,13 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/controlno_add.php");?>
+					<? require_once("views/customer_edit.php");?>
 				</div>
 				<!-- end: Content -->
 
 			</div><!--/fluid-row-->
 		</div>
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			
-		});
-	</script>
+		
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

@@ -45,7 +45,7 @@
 		return $digit.$pano;
 	}
 	function getNewCtrlNo($type){
-		// SET FMS DB
+		// OPEN DB
 		$cs_db = new DBConfig;
 		$cs_db->setClothesDB();
 
@@ -53,23 +53,23 @@
 		$ctrlno = new Table;
 		$ctrlno->setSQLType($cs_db->getSQLType());
 		$ctrlno->setInstance($cs_db->getInstance());
-		$ctrlno->setView("controlnomaster");
-		$ctrlno->setParam("WHERE type = '$type' ORDER BY id");
+		$ctrlno->setView("controlNo");
+		$ctrlno->setParam("WHERE controlType = '$type' ORDER BY id");
 		$ctrlno->doQuery("query");
 		$row_ctrlno = $ctrlno->getLists();
 		
-		// CLOSING FMS DB
+		// CLOSING DB
 		$cs_db->DBClose();
 
 		$noOfDigit = $row_ctrlno[0]['noOfDigit'];
-		$ctrlCode = $row_ctrlno[0]['code'];
+		$ctrlCode = $row_ctrlno[0]['controlCode'];
 		$lastseqno = $row_ctrlno[0]['lastDigit'] + 1;
 
 		$newnum = formatNum($lastseqno,$noOfDigit);
 		return $ctrlCode.$newnum;
 	}
 	function UpdateCtrlNo($type){
-		// SET FMS DB
+		// OPEN DB
 		$cs_db = new DBConfig;
 		$cs_db->setClothesDB();
 
@@ -77,12 +77,12 @@
 		$upd_ctrlno = new Table;
 		$upd_ctrlno->setSQLType($cs_db->getSQLType());
 		$upd_ctrlno->setInstance($cs_db->getInstance());
-		$upd_ctrlno->setTable("controlnomaster");
+		$upd_ctrlno->setTable("controlNo");
 		$upd_ctrlno->setValues("lastDigit = (lastDigit + 1)");
-		$upd_ctrlno->setParam("WHERE type = '$type'");
+		$upd_ctrlno->setParam("WHERE controlType = '$type'");
 		$upd_ctrlno->doQuery("update");
 		
-		// CLOSING FMS DB
+		// CLOSING DB
 		$cs_db->DBClose();
 	}
 ?>
