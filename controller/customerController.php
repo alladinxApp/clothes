@@ -16,6 +16,7 @@
 	// END SAVE CUSTOMER
 	// UPDATE CUSTOMER
 	if(isset($_POST['update']) && !empty($_POST['update']) && $_POST['update'] == 1){
+		$id = $_GET['id'];
 		$custCode = $_POST['txtCustomerCode'];
 		$custname = $_POST['txtName'];
 		$custAddress = $_POST['txtAddress'];
@@ -25,17 +26,17 @@
 		$faxNo = $_POST['txtFax'];
 		$TIN = $_POST['txtTIN'];
 		$isVat = $_POST['txtIsVAT'];
-		$status = $_POST['txtStatus']
+		$status = $_POST['txtStatus'];
 	}
 	// END UPDATE CUSTOMER
 	// DELETE CUSTOMER
-	if(isset($_POST['delete']) && !empty($_POST['delete']) && $_POST['delete'] == 1){
-		
+	if(isset($_GET['delete']) && !empty($_GET['delete']) && $_GET['delete'] == 1){
+		$id = $_GET['id'];
 	}
 	// END DELETE CUSTOMER
 	// EDIT CUSTOMER
-	if(isset($_POST['edit']) && !empty($_POST['edit']) && $_POST['edit'] == 1){
-		
+	if(isset($_GET['edit']) && !empty($_GET['edit']) && $_GET['edit'] == 1){
+		$id = $_GET['id'];
 	}
 	// END EDIT CUSTOMER
 ?>

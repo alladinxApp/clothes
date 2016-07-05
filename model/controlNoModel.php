@@ -3,7 +3,7 @@
 	$csdb = new DBConfig();
 	$csdb->setClothesDB();
 
-	// INSERT NEW CONTROL NO
+	// SET CONTROL NO
 	$ctrlno = new Table();
 	$ctrlno->setSQLType($csdb->getSQLType());
 	$ctrlno->setInstance($csdb->getInstance());
