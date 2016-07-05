@@ -40,8 +40,8 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Save changes</button>
-						<button class="btn">Cancel</button>
+						<input type="submit" class="btn btn-primary" value="Save changes" />
+						<a href="controlno_add.php" class="btn">Cancel</a>
 					</div>
 				</fieldset>
 				<input type="hidden" name="save" id="save" value="1" />

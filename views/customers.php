@@ -38,6 +38,42 @@
 						</a>
 					</td>
 				</tr>
+				<tr>
+					<td>1</td>
+					<td>Juan Tamad</td>
+					<td>addres 1</td>
+					<td class="center">1234567890</td>
+					<td class="center">1234567890</td>
+					<td class="center">a@a.com</td>
+					<td class="center">01/01/0001</td>
+					<td class="center"><span class="label label-success">Active</span></td>                                       
+					<td class="center">
+						<a class="btn btn-info" href="#" title="Edit Juan Tamad">
+							<i class="halflings-icon white edit"></i>  
+						</a>
+						<a class="btn btn-danger" href="#" title="Delete Juan Tamad">
+							<i class="halflings-icon white trash"></i> 
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Juan Tamad</td>
+					<td>addres 1</td>
+					<td class="center">1234567890</td>
+					<td class="center">1234567890</td>
+					<td class="center">a@a.com</td>
+					<td class="center">01/01/0001</td>
+					<td class="center"><span class="label label-success">Active</span></td>                                       
+					<td class="center">
+						<a class="btn btn-info" href="#" title="Edit Juan Tamad">
+							<i class="halflings-icon white edit"></i>  
+						</a>
+						<a class="btn btn-danger" href="#" title="Delete Juan Tamad">
+							<i class="halflings-icon white trash"></i> 
+						</a>
+					</td>
+				</tr>
 			 </table>  
 		</div>
 	</div>

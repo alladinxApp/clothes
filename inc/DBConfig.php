@@ -4,7 +4,7 @@
 		
 		// CLOTHES DB
 		public function setClothesDB(){
-			$this->DBHost = '(local)';
+			$this->DBHost = 'RPC\MEILENE2X';
 			$this->DBUser = 'sa';
 			$this->DBPass = 'efastsa';
 			$this->DBName = 'CLOTHESDB';

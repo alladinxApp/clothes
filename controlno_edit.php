@@ -1,6 +1,5 @@
-<?
+<? 
 	require_once("inc/global.php");
-	require_once(MODEL_PATH . CONTROLNOMODEL);
 	require_once(CONTROLLER_PATH . CONTROLNOCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
@@ -51,7 +50,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/controlnos.php");?>
+					<? require_once("views/controlno_edit.php");?>
 				</div>
 				<!-- end: Content -->
 

@@ -101,6 +101,9 @@
 				case "mysql":
 						$this->query = mysql_query($sql,$this->ins);
 					break;
+				case "mssql":
+						$this->query = mssql_query($sql,$this->ins);
+					break;
 				default:
 					break;
 			}
