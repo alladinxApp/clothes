@@ -7,5 +7,6 @@
 	define(MATERIALCONTROLLER, "materialController.php");
 	define(MENUCONTROLLER, "menuController.php");
 	define(SIZINGCONTROLLER,"sizingController.php");
+	define(UOMCONTROLLER, "uomController.php");
 	// -- END CONTROLLERS --
 ?>

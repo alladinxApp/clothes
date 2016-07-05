@@ -1,3 +1,8 @@
+<?
+	require_once("inc/global.php");
+	require_once(MODEL_PATH . UOMMODEL);
+	require_once(CONTROLLER_PATH . UOMCONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	

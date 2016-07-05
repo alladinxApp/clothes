@@ -8,5 +8,6 @@
 	define(MATERIALMODEL, "materialModel.php");
 	define(MENUMODEL, "menuModel.php");
 	define(SIZINGMODEL, "sizingModel.php");
+	define(UOMMODEL, "uomModel.php");
 	// -- END MODELS --
 ?>

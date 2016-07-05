@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="POST">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="txtUOMCode">UOM Code</label>
@@ -22,10 +22,11 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Save changes</button>
-						<button class="btn">Cancel</button>
+						<input type="submit" class="btn btn-primary" value="Save changes" />
+						<a href="uom_add.php" class="btn">Cancel</a>
 					</div>
 				</fieldset>
+				<input type="hidden" name="save" id="save" value="1" />
 			</form>
 		</div>
 	</div>
