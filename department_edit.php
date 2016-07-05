@@ -51,7 +51,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/department_add.php");?>
+					<? require_once("views/department_edit.php");?>
 				</div>
 				<!-- end: Content -->
 

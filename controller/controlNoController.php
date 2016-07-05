@@ -107,8 +107,6 @@
 
 		// CLOSE DB
 		$csdb->DBClose();
-
-		$ctrlNoDesc = $row_ctrlno[0]['description'];
 	}
 	// END EDIT CONTROL NO
 ?>

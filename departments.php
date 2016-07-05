@@ -1,3 +1,8 @@
+<?
+	require_once("inc/global.php");
+	require_once(MODEL_PATH . DEPARTMENTMODEL);
+	require_once(CONTROLLER_PATH . DEPARTMENTCONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	
@@ -52,7 +57,16 @@
 
 			</div><!--/fluid-row-->
 		</div>
-		
+	
+	<script type="text/javascript">
+		function deleteDepartment(deptno){
+			if(confirm("Are you sure you want to delete this Department?")){
+				window.location="departments.php?delete=1&id="+deptno;
+			}else{
+				return false;
+			}
+		}
+	</script>
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

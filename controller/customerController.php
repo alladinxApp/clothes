@@ -70,7 +70,7 @@
 		
 		$alert = new MessageAlert();
 		$alert->setMessage("Customer successfully updated.");
-		$alert->setURL(BASE_URL . "customer_edi.php?edit=1&id=".$id);
+		$alert->setURL(BASE_URL . "customer_edit.php?edit=1&id=".$id);
 		$alert->Alert();
 	}
 	// END UPDATE CUSTOMER

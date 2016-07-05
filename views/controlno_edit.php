@@ -1,7 +1,7 @@
 <div class="row-fluid">		
 	<div class="box span12">
 		<div class="box-header" data-original-title>
-			<h2><i class="halflings-icon cog"></i><span class="break"></span><b>Edit <?=$ctrlNoDesc;?></b></h2>
+			<h2><i class="halflings-icon cog"></i><span class="break"></span><b>Edit <?=$row_ctrlno[0]['description'];?></b></h2>
 			<div class="box-icon">
 				<a href="controlnos.php"><i class="halflings-icon backward"></i> Back to List</a>
 			</div>
@@ -56,7 +56,7 @@
 					</div>
 					<div class="form-actions">
 						<button type="submit" class="btn btn-primary">Update changes</button>
-						<button class="btn">Cancel</button>
+						<a href="controlnos.php" class="btn">Cancel</a>
 					</div>
 				</fieldset>
 				<input type="hidden" name="update" id="update" value="1" />
