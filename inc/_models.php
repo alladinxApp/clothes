@@ -5,5 +5,7 @@
 	define(CUSTOMERMODEL, "customerModel.php");
 	define(DEPARTMENTMODEL, "departmentModel.php");
 	define(JOBTYPEMODEL, "jobTypeModel.php");
+	define(MATERIALMODEL, "materialModel.php");
+	define(MENUMODEL, "menuModel.php");
 	// -- END MODELS --
 ?>

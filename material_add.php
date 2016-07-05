@@ -1,3 +1,8 @@
+<?
+	require_once("inc/global.php");
+	require_once(MODEL_PATH . MATERIALMODEL);
+	require_once(CONTROLLER_PATH . MATERIALCONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	

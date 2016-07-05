@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="box-content">
-			<table class="table table-bordered table-striped table-condensed">
+			<table class="table table-bordered table-condensed">
 				<tr>
 				  <th>#</th>
 				  <th>Description</th>

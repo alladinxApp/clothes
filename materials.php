@@ -1,3 +1,8 @@
+<?
+	require_once("inc/global.php");
+	require_once(MODEL_PATH . MATERIALMODEL);
+	require_once(CONTROLLER_PATH . MATERIALCONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	
@@ -52,7 +57,16 @@
 
 			</div><!--/fluid-row-->
 		</div>
-		
+	
+	<script type="text/javascript">
+		function deleteMaterial(matno){
+			if(confirm("Are you sure you want to delete this Material?")){
+				window.location="materials.php?delete=1&id="+matno;
+			}else{
+				return false;
+			}
+		}
+	</script>
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

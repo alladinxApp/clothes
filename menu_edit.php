@@ -51,23 +51,13 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/menus.php");?>
+					<? require_once("views/menu_edit.php");?>
 				</div>
 				<!-- end: Content -->
 
 			</div><!--/fluid-row-->
 		</div>
-	
-	<script type="text/javascript">
-		function deleteMenu(menuno){
-			if(confirm("Are you sure you want to delete this Menu?")){
-				window.location="Menus.php?delete=1&id="+menuno;
-			}else{
-				return false;
-			}
-		}
-	</script>
-
+		
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>
