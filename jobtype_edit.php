@@ -51,22 +51,13 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/jobtypes.php");?>
+					<? require_once("views/jobtype_edit.php");?>
 				</div>
 				<!-- end: Content -->
 
 			</div><!--/fluid-row-->
 		</div>
-	
-	<script type="text/javascript">
-		function deleteJobType(jtno){
-			if(confirm("Are you sure you want to delete this Job Type?")){
-				window.location="jobtypes.php?delete=1&id="+jtno;
-			}else{
-				return false;
-			}
-		}
-	</script>
+		
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

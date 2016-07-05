@@ -85,7 +85,23 @@
 	// END DELETE DEPARTMENT
 	// EDIT DEPARTMENT
 	if(isset($_GET['edit']) && !empty($_GET['edit']) && $_GET['edit'] == 1){
+		$id = $_GET['id'];
 		
+		// OPEN DB
+		$csdb = new DBConfig();
+		$csdb->setClothesDB();
+
+		// SET DEPARTMENT
+		$department = new Table();
+		$department->setSQLType($csdb->getSQLType());
+		$department->setInstance($csdb->getInstance());
+		$department->setView("departmentMaster_V");
+		$department->setParam("WHERE id = '$id'");
+		$department->doQuery("query");
+		$row_department = $department->getLists();
+
+		// CLOSE DB
+		$csdb->DBClose();
 	}
 	// END EDIT DEPARTMENT
 ?>

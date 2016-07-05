@@ -1,3 +1,8 @@
+<?
+	require_once("inc/global.php");
+	require_once(MODEL_PATH . JOBTYPEMODEL);
+	require_once(CONTROLLER_PATH . JOBTYPECONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	
