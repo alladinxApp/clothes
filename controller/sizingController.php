@@ -14,7 +14,7 @@
 		$sizing = new Table();
 		$sizing->setSQLType($csdb->getSQLType());
 		$sizing->setInstance($csdb->getInstance());
-		$sizing->setTable("sizingMaster");
+		$sizing->setTable("sizingmaster");
 		$sizing->setField("sizingCode,description,createdDate,createdBy");
 		$sizing->setValues("'$newNum','$description','$today','$userid'");
 		$sizing->doQuery("save");
@@ -45,7 +45,7 @@
 		$sizing = new Table();
 		$sizing->setSQLType($csdb->getSQLType());
 		$sizing->setInstance($csdb->getInstance());
-		$sizing->setTable("sizingMaster");
+		$sizing->setTable("sizingmaster");
 		$sizing->setValues("description = '$description', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$sizing->setParam("WHERE id = '$id'");
 		$sizing->doQuery("update");
@@ -71,7 +71,7 @@
 		$sizing = new Table();
 		$sizing->setSQLType($csdb->getSQLType());
 		$sizing->setInstance($csdb->getInstance());
-		$sizing->setTable("sizingMaster");
+		$sizing->setTable("sizingmaster");
 		$sizing->setParam("WHERE id = '$id'");
 		$sizing->doQuery("delete");
 
@@ -94,7 +94,7 @@
 		$sizing = new Table();
 		$sizing->setSQLType($csdb->getSQLType());
 		$sizing->setInstance($csdb->getInstance());
-		$sizing->setView("sizingMaster_V");
+		$sizing->setView("sizingmaster_v");
 		$sizing->setParam("WHERE id = '$id'");
 		$sizing->doQuery("query");
 		$row_sizing = $sizing->getLists();

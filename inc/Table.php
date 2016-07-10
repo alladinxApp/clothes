@@ -165,28 +165,6 @@
 		}
 		private function setLists(){
 			$this->setListMulti();
-			/*
-			$this->data = array();
-			$this->lists = null;
-			$this->b = 0;
-			switch($this->sqltype){
-				case "mysql":
-					while($this->row = mysql_fetch_array($this->result)){
-						for($this->a=0; $this->a < $this->numfields; $this->a++){
-							$this->fld = mysql_field_name($this->result,$this->a);
-							$this->data[$this->b][$this->fld] = $this->row[$this->fld];
-						}$this->b++;
-					}
-					break;
-				case "mssql":
-					while($this->row = mssql_fetch_array($this->result)){
-						for($this->a=0; $this->a < $this->numfields; $this->a++){
-							$this->fld = mssql_field_name($this->result,$this->a);
-							$this->data[$this->b][$this->fld] = $this->row[$this->fld];
-						}$this->b++;	
-					}
-					break;
-			}*/
 		}
 		private function setListMulti(){ //return multi
 			$this->data = array();

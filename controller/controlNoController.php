@@ -15,7 +15,7 @@
 		$ctrlno = new Table();
 		$ctrlno->setSQLType($csdb->getSQLType());
 		$ctrlno->setInstance($csdb->getInstance());
-		$ctrlno->setTable("controlNo");
+		$ctrlno->setTable("controlno");
 		$ctrlno->setField("description,controlType,controlCode,noOfDigit,remarks,createdDate,createdBy");
 		$ctrlno->setValues("'$description','$type','$code','$noofdigit','$remarks','$today','$userid'");
 		$ctrlno->doQuery("save");
@@ -49,7 +49,7 @@
 		$ctrlno = new Table();
 		$ctrlno->setSQLType($csdb->getSQLType());
 		$ctrlno->setInstance($csdb->getInstance());
-		$ctrlno->setTable("controlNo");
+		$ctrlno->setTable("controlno");
 		$ctrlno->setValues("description = '$description', controlType = '$type', controlCode = '$code', lastDigit = '$lastDigit', noOfDigit = '$noofdigit', remarks = '$remarks', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$ctrlno->setParam("WHERE id = '$id'");
 		$ctrlno->doQuery("update");
@@ -75,7 +75,7 @@
 		$ctrlno = new Table();
 		$ctrlno->setSQLType($csdb->getSQLType());
 		$ctrlno->setInstance($csdb->getInstance());
-		$ctrlno->setTable("controlNo");
+		$ctrlno->setTable("controlno");
 		$ctrlno->setParam("WHERE id = '$id'");
 		$ctrlno->doQuery("delete");
 
@@ -100,7 +100,7 @@
 		$ctrlno = new Table();
 		$ctrlno->setSQLType($csdb->getSQLType());
 		$ctrlno->setInstance($csdb->getInstance());
-		$ctrlno->setView("controlNo_V");
+		$ctrlno->setView("controlno_v");
 		$ctrlno->setParam("WHERE id = '$id'");
 		$ctrlno->doQuery("query");
 		$row_ctrlno = $ctrlno->getLists();

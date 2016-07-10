@@ -14,7 +14,7 @@
 		$material = new Table();
 		$material->setSQLType($csdb->getSQLType());
 		$material->setInstance($csdb->getInstance());
-		$material->setTable("materialMaster");
+		$material->setTable("materialmaster");
 		$material->setField("materialCode,description,createdDate,createdBy");
 		$material->setValues("'$newNum','$description','$today','$userid'");
 		$material->doQuery("save");
@@ -45,7 +45,7 @@
 		$material = new Table();
 		$material->setSQLType($csdb->getSQLType());
 		$material->setInstance($csdb->getInstance());
-		$material->setTable("materialMaster");
+		$material->setTable("materialmaster");
 		$material->setValues("description = '$description', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$material->setParam("WHERE id = '$id'");
 		$material->doQuery("update");
@@ -71,7 +71,7 @@
 		$material = new Table();
 		$material->setSQLType($csdb->getSQLType());
 		$material->setInstance($csdb->getInstance());
-		$material->setTable("materialMaster");
+		$material->setTable("materialmaster");
 		$material->setParam("WHERE id = '$id'");
 		$material->doQuery("delete");
 
@@ -94,7 +94,7 @@
 		$material = new Table();
 		$material->setSQLType($csdb->getSQLType());
 		$material->setInstance($csdb->getInstance());
-		$material->setView("materialMaster_V");
+		$material->setView("materialmaster_v");
 		$material->setParam("WHERE id = '$id'");
 		$material->doQuery("query");
 		$row_material = $material->getLists();

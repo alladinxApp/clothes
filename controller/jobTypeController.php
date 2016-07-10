@@ -15,7 +15,7 @@
 		$jobtype = new Table();
 		$jobtype->setSQLType($csdb->getSQLType());
 		$jobtype->setInstance($csdb->getInstance());
-		$jobtype->setTable("jobTypeMaster");
+		$jobtype->setTable("jobtypemaster");
 		$jobtype->setField("jobTypeCode,description,leadTime,notificationDay,createdDate,createdBy");
 		$jobtype->setValues("'$newNum','$description','$leadtime','$notificationday','$today','$userid'");
 		$jobtype->doQuery("save");
@@ -48,7 +48,7 @@
 		$jobtype = new Table();
 		$jobtype->setSQLType($csdb->getSQLType());
 		$jobtype->setInstance($csdb->getInstance());
-		$jobtype->setTable("jobTypeMaster");
+		$jobtype->setTable("jobtypemaster");
 		$jobtype->setValues("description = '$description', leadTime = '$leadtime', notificationDay = '$notificationday', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$jobtype->setParam("WHERE id = '$id'");
 		$jobtype->doQuery("update");
@@ -74,7 +74,7 @@
 		$jobtype = new Table();
 		$jobtype->setSQLType($csdb->getSQLType());
 		$jobtype->setInstance($csdb->getInstance());
-		$jobtype->setTable("jobTypeMaster");
+		$jobtype->setTable("jobtypemaster");
 		$jobtype->setParam("WHERE id = '$id'");
 		$jobtype->doQuery("delete");
 
@@ -99,7 +99,7 @@
 		$jobtype = new Table();
 		$jobtype->setSQLType($csdb->getSQLType());
 		$jobtype->setInstance($csdb->getInstance());
-		$jobtype->setView("jobTypeMaster_V");
+		$jobtype->setView("jobtypemaster_v");
 		$jobtype->setParam("WHERE id = '$id'");
 		$jobtype->doQuery("query");
 		$row_jobtype = $jobtype->getLists();

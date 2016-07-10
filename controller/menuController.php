@@ -18,7 +18,7 @@
 		$menu = new Table();
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
-		$menu->setTable("menuMaster");
+		$menu->setTable("menumaster");
 		$menu->setField("menuCode,description,link,isMaintenance,isTransactions,isReports,createdDate,createdBy");
 		$menu->setValues("'$newNum','$description','$link','$isMaintenance','$isTransactions','$isReports','$today','$userid'");
 		$menu->doQuery("save");
@@ -53,7 +53,7 @@
 		$menu = new Table();
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
-		$menu->setTable("menuMaster");
+		$menu->setTable("menumaster");
 		$menu->setValues("description = '$description', link = '$link', isMaintenance = '$isMaintenance', isTransactions = '$isTransactions', isReports = '$isReports', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$menu->setParam("WHERE id = '$id'");
 		$menu->doQuery("update");
@@ -79,7 +79,7 @@
 		$menu = new Table();
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
-		$menu->setTable("menuMaster");
+		$menu->setTable("menumaster");
 		$menu->setParam("WHERE id = '$id'");
 		$menu->doQuery("delete");
 
@@ -104,7 +104,7 @@
 		$menu = new Table();
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
-		$menu->setView("menuMaster_V");
+		$menu->setView("menumaster_v");
 		$menu->setParam("WHERE id = '$id'");
 		$menu->doQuery("query");
 		$row_menu = $menu->getLists();

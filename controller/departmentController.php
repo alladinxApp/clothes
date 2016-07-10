@@ -13,7 +13,7 @@
 		$department = new Table();
 		$department->setSQLType($csdb->getSQLType());
 		$department->setInstance($csdb->getInstance());
-		$department->setTable("departmentMaster");
+		$department->setTable("departmentmaster");
 		$department->setField("departmentCode,description,createdDate,createdBy");
 		$department->setValues("'$newNum','$description','$today','$userid'");
 		$department->doQuery("save");
@@ -44,7 +44,7 @@
 		$department = new Table();
 		$department->setSQLType($csdb->getSQLType());
 		$department->setInstance($csdb->getInstance());
-		$department->setTable("departmentMaster");
+		$department->setTable("departmentmaster");
 		$department->setValues("description = '$desc', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$department->setParam("WHERE id = '$id'");
 		$department->doQuery("update");
@@ -70,7 +70,7 @@
 		$department = new Table();
 		$department->setSQLType($csdb->getSQLType());
 		$department->setInstance($csdb->getInstance());
-		$department->setTable("departmentMaster");
+		$department->setTable("departmentmaster");
 		$department->setParam("WHERE id = '$id'");
 		$department->doQuery("delete");
 
@@ -95,7 +95,7 @@
 		$department = new Table();
 		$department->setSQLType($csdb->getSQLType());
 		$department->setInstance($csdb->getInstance());
-		$department->setView("departmentMaster_V");
+		$department->setView("departmentmaster_v");
 		$department->setParam("WHERE id = '$id'");
 		$department->doQuery("query");
 		$row_department = $department->getLists();

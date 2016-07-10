@@ -9,7 +9,7 @@
 		$faxNo = $_POST['txtFax'];
 		$TIN = $_POST['txtTIN'];
 		$isVat = $_POST['txtIsVAT'];
-		$bdate = $_POST['txtBirthDate'];
+		$bdate = dateFormat($_POST['txtBirthDate'],"Y-m-d");
 		// GET NEW CONTROL NO
 		$newNum = getNewCtrlNo('CUSTOMER');
 
@@ -21,7 +21,7 @@
 		$customer = new Table();
 		$customer->setSQLType($csdb->getSQLType());
 		$customer->setInstance($csdb->getInstance());
-		$customer->setTable("customerMaster");
+		$customer->setTable("customersmaster");
 		$customer->setField("customerCode,customerName,birthDate,address,emailAddress,mobileNo,telephoneNo,faxNo,TIN,isVat,createdDate,createdBy");
 		$customer->setValues("'$newNum','$custname','$bdate','$custAddress','$emailAddress','$mobileNo','$telephoneNo','$faxNo','$TIN','$isVat','$today','$userid'");
 		$customer->doQuery("save");
@@ -60,7 +60,7 @@
 		$customer = new Table();
 		$customer->setSQLType($csdb->getSQLType());
 		$customer->setInstance($csdb->getInstance());
-		$customer->setTable("customerMaster");
+		$customer->setTable("customersmaster");
 		$customer->setValues("customerName = '$custname', birthDate = '$bdate', address = '$custAddress', mobileNo = '$mobileNo', telephoneNo = '$telephoneNo', faxNo = '$faxNo', emailAddress = '$emailAddress', TIN = '$TIN', isVat = '$isVat' , modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$customer->setParam("WHERE id = '$id'");
 		$customer->doQuery("update");
@@ -86,7 +86,7 @@
 		$customer = new Table();
 		$customer->setSQLType($csdb->getSQLType());
 		$customer->setInstance($csdb->getInstance());
-		$customer->setTable("customerMaster");
+		$customer->setTable("customersmaster");
 		$customer->setParam("WHERE id = '$id'");
 		$customer->doQuery("delete");
 
@@ -111,7 +111,7 @@
 		$customer = new Table();
 		$customer->setSQLType($csdb->getSQLType());
 		$customer->setInstance($csdb->getInstance());
-		$customer->setView("customerMaster_V");
+		$customer->setView("customersmaster_v");
 		$customer->setParam("WHERE id = '$id'");
 		$customer->doQuery("query");
 		$row_customer = $customer->getLists();

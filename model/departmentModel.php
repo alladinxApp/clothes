@@ -7,7 +7,7 @@
 	$department = new Table();
 	$department->setSQLType($csdb->getSQLType());
 	$department->setInstance($csdb->getInstance());
-	$department->setView("departmentMaster_V");
+	$department->setView("departmentmaster_v");
 	$department->setParam("ORDER BY description");
 	$department->doQuery("query");
 	$row_department = $department->getLists();

@@ -14,7 +14,7 @@
 		$uom = new Table();
 		$uom->setSQLType($csdb->getSQLType());
 		$uom->setInstance($csdb->getInstance());
-		$uom->setTable("uomMaster");
+		$uom->setTable("uommaster");
 		$uom->setField("UOMCode,description,createdDate,createdBy");
 		$uom->setValues("'$newNum','$description','$today','$userid'");
 		$uom->doQuery("save");
@@ -45,7 +45,7 @@
 		$uom = new Table();
 		$uom->setSQLType($csdb->getSQLType());
 		$uom->setInstance($csdb->getInstance());
-		$uom->setTable("uomMaster");
+		$uom->setTable("uommaster");
 		$uom->setValues("description = '$description', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$uom->setParam("WHERE id = '$id'");
 		$uom->doQuery("update");
@@ -71,7 +71,7 @@
 		$uom = new Table();
 		$uom->setSQLType($csdb->getSQLType());
 		$uom->setInstance($csdb->getInstance());
-		$uom->setTable("uomMaster");
+		$uom->setTable("uommaster");
 		$uom->setParam("WHERE id = '$id'");
 		$uom->doQuery("delete");
 
@@ -96,7 +96,7 @@
 		$uom = new Table();
 		$uom->setSQLType($csdb->getSQLType());
 		$uom->setInstance($csdb->getInstance());
-		$uom->setView("uomMaster_V");
+		$uom->setView("uommaster_v");
 		$uom->setParam("WHERE id = '$id'");
 		$uom->doQuery("query");
 		$row_uom = $uom->getLists();

@@ -4,11 +4,11 @@
 		
 		// CLOTHES DB
 		public function setClothesDB(){
-			$this->DBHost = 'RPC\MEILENE2X';
-			$this->DBUser = 'sa';
-			$this->DBPass = 'efastsa';
-			$this->DBName = 'CLOTHESDB';
-			$this->sqltype = 'mssql';
+			$this->DBHost = 'localhost';
+			$this->DBUser = 'root';
+			$this->DBPass = '';
+			$this->DBName = 'clothes';
+			$this->sqltype = 'mysql';
 			
 			$db = new Database;
 			$db->setCon($this->DBHost,$this->DBUser,$this->DBPass,$this->DBName);
@@ -24,7 +24,7 @@
 			return $this->sqltype;
 		}
 		public function DBClose(){
-			mssql_close();
+			mysql_close();
 			$this->cn = null;
 		}
 	}
