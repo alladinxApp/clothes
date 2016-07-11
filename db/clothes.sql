@@ -127,13 +127,8 @@ CREATE TABLE `estimatemaster` (
   `transactionDate` datetime DEFAULT NULL,
   `customerCode` varchar(20) DEFAULT NULL,
   `jobType` varchar(20) DEFAULT NULL,
-  `assignTo` varchar(100) DEFAULT NULL,
-  `startDate` date DEFAULT NULL,
-  `endDate` date DEFAULT NULL,
-  `subTotal` decimal(12,2) DEFAULT NULL,
-  `vat` decimal(12,2) DEFAULT NULL,
-  `discount` decimal(12,2) DEFAULT NULL,
-  `totalAmount` decimal(12,2) DEFAULT NULL,
+  `acknowledgeBy` varchar(20) DEFAULT NULL,
+  `acknowledgeDate` datetime DEFAULT NULL,
   `createdBy` varchar(20) DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
   `modifiedBy` varchar(20) DEFAULT NULL,
@@ -142,6 +137,31 @@ CREATE TABLE `estimatemaster` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `estimatemaster` */
+
+/*Table structure for table `jobordermaster` */
+
+DROP TABLE IF EXISTS `jobordermaster`;
+
+CREATE TABLE `jobordermaster` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jobOrderReferenceNo` varchar(20) DEFAULT NULL,
+  `estimateReferenceNo` varchar(20) DEFAULT NULL,
+  `assignTo` varchar(20) DEFAULT NULL,
+  `startDate` date DEFAULT NULL,
+  `endDate` date DEFAULT NULL,
+  `vat` decimal(12,2) DEFAULT NULL,
+  `discount` decimal(12,2) DEFAULT NULL,
+  `subTotal` decimal(12,2) DEFAULT NULL,
+  `totalAmount` decimal(12,2) DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
+  `createdBy` varchar(20) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(20) DEFAULT NULL,
+  `status` int(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `jobordermaster` */
 
 /*Table structure for table `jobtypemaster` */
 
