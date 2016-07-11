@@ -1,8 +1,9 @@
 <?
 	require_once("inc/global.php");
+	// require_once(MODEL_PATH . CONTROLNOMODEL);
+	// require_once(CONTROLLER_PATH . CONTROLNOCONTROLLER);
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 	
 	<!-- start: Meta -->
@@ -50,9 +51,10 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/default.php"); ?>
+					<? require_once("views/estimates.php");?>
+				</div>
 				<!-- end: Content -->
-				</div><!--/#content.span10-->
+
 			</div><!--/fluid-row-->
 		</div>
 		

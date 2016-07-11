@@ -1,8 +1,11 @@
-<?
+<? 
 	require_once("inc/global.php");
+	require_once(MODEL_PATH . SIZINGMODEL);
+	require_once(MODEL_PATH . MATERIALMODEL);
+	require_once(MODEL_PATH . JOBTYPEMODEL);
+	// require_once(CONTROLLER_PATH . CONTROLNOCONTROLLER);
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 	
 	<!-- start: Meta -->
@@ -50,12 +53,17 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/default.php"); ?>
+					<? require_once("views/estimate_add.php");?>
+				</div>
 				<!-- end: Content -->
-				</div><!--/#content.span10-->
+
 			</div><!--/fluid-row-->
 		</div>
-		
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			
+		});
+	</script>
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>
