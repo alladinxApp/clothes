@@ -93,6 +93,12 @@
 						<input class="input-xlarge" name="txtColor" id="txtColor" type="text" placeholder="Color here..." />
 					</div>
 				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtMaterials">Materials</label>
+					<div class="controls">
+						<input class="input-xlarge" name="txtMaterials" id="txtMaterials" type="text" placeholder="Materials here..." />
+					</div>
+				</div>
 				<!-- <div class="control-group">
 					<label class="control-label" for="txtMaterials">Materials</label>
 					<div class="controls">
