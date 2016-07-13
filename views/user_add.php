@@ -7,18 +7,30 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="Post">
 				<fieldset>
 					<div class="control-group">
-						<label class="control-label" for="txtUserCode">User Code</label>
+						<label class="control-label" for="txtUsername">Username</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtUserCode" id="txtUserCode" disabled type="text" value="[SYSTEM GENERATED]" />
+							<input class="input-xlarge" name="txtUsername" id="txtUsername" type="text" placeholder="Username Here..." />
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="txtName">Name</label>
+						<label class="control-label" for="txtPassword">Password</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtName" id="txtName" type="text" placeholder="Description Here..." />
+							<input class="input-xlarge" name="txtPassword" id="txtPassword" type="password" placeholder="**********" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtConfirmPassword">Confirm Password</label>
+						<div class="controls">
+							<input class="input-xlarge" name="txtConfirmPassword" id="txttxtConfirmPasswordsername" type="password" placeholder="**********" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtFullName">Full Name</label>
+						<div class="controls">
+							<input class="input-xlarge" name="txtFullName" id="txtFullName" type="text" placeholder="Full Name Here..." />
 						</div>
 					</div>
 					<div class="control-group">
@@ -31,10 +43,11 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Save changes</button>
-						<button class="btn">Cancel</button>
+						<input type="submit" class="btn btn-primary" value="Save changes" />
+						<a href="user_add.php" class="btn">Cancel</a>
 					</div>
 				</fieldset>
+				<input type="hidden" name="save" id="save" value="1" />
 			</form>
 		</div>
 	</div>

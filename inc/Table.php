@@ -54,44 +54,48 @@
 			switch($task){				
 			
 				case "query":
-					$this->sql = "SELECT " . $this->col . " FROM " . $this->view . " " . $this->param;
-					$this->setSQL($this->sql);
-					$this->qry = $this->Query($this->sql);
-					$this->setResult($this->qry);
-					$this->setNumRows();
-					$this->setNumFields();
-					$this->setLists();
+						$this->sql = "SELECT " . $this->col . " FROM " . $this->view . " " . $this->param;
+						$this->setSQL($this->sql);
+						$this->qry = $this->Query($this->sql);
+						$this->setResult($this->qry);
+						$this->setNumRows();
+						$this->setNumFields();
+						$this->setLists();
 					break;
 					
 				case "save":
-					$this->sql = "INSERT INTO " . $this->table . " (" . $this->fields . ") VALUES(" . $this->values . ") " . $this->param;
-					$this->setSQL($this->sql);
-					$this->qry = $this->Query($this->sql);
+						$this->sql = "INSERT INTO " . $this->table . " (" . $this->fields . ") VALUES(" . $this->values . ") " . $this->param;
+						$this->setSQL($this->sql);
+						$this->qry = $this->Query($this->sql);
 					break;
 					
 				case "update":
-					$this->sql = "UPDATE " . $this->table . " SET " . $this->values . " " . $this->param;
-					$this->setSQL($this->sql);
-					$this->qry = $this->Query($this->sql);
-					$this->setResult($this->qry);
+						$this->sql = "UPDATE " . $this->table . " SET " . $this->values . " " . $this->param;
+						$this->setSQL($this->sql);
+						$this->qry = $this->Query($this->sql);
+						$this->setResult($this->qry);
 					break;
 					
 				case "delete":
-					$this->sql = "DELETE FROM " . $this->table . " " . $this->param;
-					$this->setSQL($this->sql);
-					$this->qry = $this->Query($this->sql);
+						$this->sql = "DELETE FROM " . $this->table . " " . $this->param;
+						$this->setSQL($this->sql);
+						$this->qry = $this->Query($this->sql);
 					break;
 					
 				case "union":
-					$this->qry = $this->Query($this->getSQL());
-					$this->setResult($this->qry);
-					$this->setNumRows();
-					$this->setNumFields();
-					$this->setLists();
+						$this->qry = $this->Query($this->getSQL());
+						$this->setResult($this->qry);
+						$this->setNumRows();
+						$this->setNumFields();
+						$this->setLists();
+					break;
+
+				case "batch_save":
+						$this->qry = $this->Query($this->sql);
+						$this->setResult($this->qry);
 					break;
 					
-				default:
-					break;
+				default: break;
 			}
 		}
 		private function Query($sql){

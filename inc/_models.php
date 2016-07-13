@@ -9,5 +9,8 @@
 	define(MENUMODEL, "menuModel.php");
 	define(SIZINGMODEL, "sizingModel.php");
 	define(UOMMODEL, "uomModel.php");
+	define(USERMODEL, "userModel.php");
+	define(USERMENUMODEL, "usermenuModel.php");
+	define(MENUACCESSMODEL, "menuaccessModel.php");
 	// -- END MODELS --
 ?>

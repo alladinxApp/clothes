@@ -12,7 +12,7 @@
 					<div class="control-group">
 						<label class="control-label" for="txtUOMCode">UOM Code</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtUOMCode" id="txtUOMCode" disabled type="text" value="[SYSTEM GENERATED]" />
+							<input class="input-xlarge" value="<?=$row_uom[0]['UOMCode'];?>" name="txtUOMCode" id="txtUOMCode" disabled type="text" placeholder="[SYSTEM GENERATED]" />
 						</div>
 					</div>
 					<div class="control-group">

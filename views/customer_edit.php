@@ -12,7 +12,7 @@
 					<div class="control-group">
 						<label class="control-label" for="txtCustomerCode">Customer Code</label>
 						<div class="controls">
-							<input class="input-xlarge" value="<?=$row_customer[0]['customerCode'];?>" name="txtCustomerCode" id="txtCustomerCode" disabled type="text" value="[SYSTEM GENERATED]" />
+							<input class="input-xlarge" value="<?=$row_customer[0]['customerCode'];?>" name="txtCustomerCode" id="txtCustomerCode" disabled type="text" placeholder="[SYSTEM GENERATED]" />
 						</div>
 					</div>
 					<div class="control-group">

@@ -15,7 +15,7 @@
 					<!-- start: User Dropdown -->
 					<li class="dropdown">
 						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="halflings-icon white user"></i> Noel Rodriguez
+							<i class="halflings-icon white user"></i> <?=$_SESSION['userFullName'];?>
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
@@ -23,7 +23,7 @@
 									<span>Account Settings</span>
 							</li>
 							<li><a href="profile.php"><i class="halflings-icon user"></i> Profile</a></li>
-							<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
+							<li><a href="logout.php"><i class="halflings-icon off"></i> Logout</a></li>
 						</ul>
 					</li>
 					<!-- end: User Dropdown -->

@@ -1,3 +1,9 @@
+<?
+	require_once("inc/global.php");
+	require_once("inc/validateuser.php");
+	require_once(MODEL_PATH . USERMODEL);
+	require_once(CONTROLLER_PATH . USERCONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	

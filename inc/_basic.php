@@ -31,6 +31,6 @@
 	$today = date("Y-m-d h:i:s");
 	$data_animate_time = 100;
 	$data_animate_type = 'fadeIn';
-	// $userid = $_SESSION['userid'];
-	$userid = "alladinx";
+	$userid = $_SESSION['userid'];
+	// $userid = "alladinx";
 ?>

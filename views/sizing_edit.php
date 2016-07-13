@@ -12,7 +12,7 @@
 					<div class="control-group">
 						<label class="control-label" for="txtSizingCode">Sizing Code</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtSizingCode" id="txtSizingCode" disabled type="text" value="[SYSTEM GENERATED]" />
+							<input class="input-xlarge" value="<?=$row_sizing[0]['sizingCode'];?>" name="txtSizingCode" id="txtSizingCode" disabled type="text" placeholder="[SYSTEM GENERATED]" />
 						</div>
 					</div>
 					<div class="control-group">

@@ -1,5 +1,6 @@
 <?
 	require_once("inc/global.php");
+	require_once("inc/validateuser.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -28,6 +28,13 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="txtMenuIcon">Menu Icon</label>
+						<div class="controls">
+							<input class="input-xlarge" name="txtMenuIcon" id="txtMenuIcon" type="text" placeholder="Icon Here..." />
+							<a href="icons.php" target="_blank">Reference Here</a>
+						</div>
+					</div>
+					<div class="control-group">
 						<label class="control-label" for="txtIsMaintenance">is Maintenance?</label>
 						<div class="controls">
 							<select name="txtIsMaintenance" id="txtIsMaintenance">

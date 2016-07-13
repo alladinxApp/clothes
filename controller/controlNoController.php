@@ -27,7 +27,6 @@
 		$alert->setMessage("New control no successfully saved.");
 		$alert->setURL(BASE_URL . "controlnos.php");
 		$alert->Alert();
-
 	}
 	// END SAVE CONTROL NO
 	// UPDATE CONTROL NO

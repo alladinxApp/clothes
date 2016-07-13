@@ -1,5 +1,6 @@
 <?
 	require_once("inc/global.php");
+	require_once("inc/validateuser.php");
 	require_once(MODEL_PATH . SIZINGMODEL);
 	require_once(CONTROLLER_PATH . SIZINGCONTROLLER);
 ?>

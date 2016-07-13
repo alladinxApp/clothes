@@ -1,3 +1,9 @@
+<?
+	require_once("inc/global.php");
+	require_once("inc/validateuser.php");
+	require_once(MODEL_PATH . USERMODEL);
+	require_once(CONTROLLER_PATH . USERCONTROLLER);
+?>
 <!DOCTYPE html><html lang="en">
 <head>
 	
@@ -52,7 +58,15 @@
 
 			</div><!--/fluid-row-->
 		</div>
-		
+	<script type="text/javascript">
+		function deleteUser(userno){
+			if(confirm("Are you sure you want to delete this User?")){
+				window.location="users.php?delete=1&id="+userno;
+			}else{
+				return false;
+			}
+		}
+	</script>
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

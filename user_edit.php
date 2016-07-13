@@ -1,8 +1,8 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . CUSTOMERMODEL);
-	require_once(CONTROLLER_PATH . CUSTOMERCONTROLLER);
+	require_once(MODEL_PATH . USERMODEL);
+	require_once(CONTROLLER_PATH . USERCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -52,7 +52,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/customer_add.php");?>
+					<? require_once("views/user_edit.php");?>
 				</div>
 				<!-- end: Content -->
 

@@ -1,8 +1,6 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . CUSTOMERMODEL);
-	require_once(CONTROLLER_PATH . CUSTOMERCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -43,22 +41,15 @@
 		
 </head>
 <body>
-	<? require_once("inc-box/header.php"); ?>
 	
-		<div class="container-fluid-full">
-			<div class="row-fluid">
-					
-				<? require_once("inc-box/leftnav-menu.php"); ?>
-				
-				<!-- start: Content -->
-				<div id="content" class="span10">
-					<? require_once("views/customer_add.php");?>
-				</div>
-				<!-- end: Content -->
+	<div class="container-fluid-full">
+		<div class="row-fluid">
+			
+			<? require_once("views/icons.php");?>
 
-			</div><!--/fluid-row-->
-		</div>
-		
+		</div><!--/fluid-row-->
+	</div>
+
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

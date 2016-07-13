@@ -1,5 +1,6 @@
 <?
 	// -- START CONTROLLERS --
+	define(LOGINCONTROLLER, "loginController.php");
 	define(CONTROLNOCONTROLLER, "controlNoController.php");
 	define(CUSTOMERCONTROLLER, "customerController.php");
 	define(DEPARTMENTCONTROLLER, "departmentController.php");
@@ -8,5 +9,7 @@
 	define(MENUCONTROLLER, "menuController.php");
 	define(SIZINGCONTROLLER,"sizingController.php");
 	define(UOMCONTROLLER, "uomController.php");
+	define(USERCONTROLLER, "userController.php");
+	define(MENUACCESSCONTROLLER, "menuaccessController.php");
 	// -- END CONTROLLERS --
 ?>

@@ -12,7 +12,7 @@
 					<div class="control-group">
 						<label class="control-label" for="txtMenuCode">Menu Code</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtMenuCode" id="txtMenuCode" disabled type="text" value="[SYSTEM GENERATED]" />
+							<input class="input-xlarge" value="<?=$row_menu[0]['menuCode'];?>" name="txtMenuCode" id="txtMenuCode" disabled type="text" placeholder="[SYSTEM GENERATED]" />
 						</div>
 					</div>
 					<div class="control-group">
@@ -25,6 +25,13 @@
 						<label class="control-label" for="txtMenuLink">Menu Link</label>
 						<div class="controls">
 							<input class="input-xlarge" value="<?=$row_menu[0]['link'];?>" name="txtMenuLink" id="txtMenuLink" type="text" placeholder="Link Here..." />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtMenuIcon">Menu Icon</label>
+						<div class="controls">
+							<input class="input-xlarge" value="<?=$row_menu[0]['icon'];?>" name="txtMenuIcon" id="txtMenuIcon" type="text" placeholder="Icon Here..." />
+							 <i class="<?=$menuTrans[0]['icon'];?>"></i> <a href="icons.php" target="_blank">Reference Here</a>
 						</div>
 					</div>
 					<div class="control-group">

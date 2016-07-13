@@ -12,7 +12,7 @@
 					<div class="control-group">
 						<label class="control-label" for="txtMaterialCode">Material Code</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtMaterialCode" id="txtMaterialCode" disabled type="text" value="[SYSTEM GENERATED]" />
+							<input class="input-xlarge" value="<?=$row_material[0]['materialCode'];?>" name="txtMaterialCode" id="txtMaterialCode" disabled type="text" placeholder="[SYSTEM GENERATED]" />
 						</div>
 					</div>
 					<div class="control-group">

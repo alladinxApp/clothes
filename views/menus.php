@@ -12,6 +12,7 @@
 				<tr>
 				  <th>#</th>
 				  <th>Description</th>
+				  <th>Icon</th>
 				  <th>Maintenance</th>
 				  <th>Transcations</th>
 				  <th>Reports</th>
@@ -36,6 +37,7 @@
 				<tr>
 					<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_menu[$i]['description'];?></td>
+					<td align="left" style="<?=$style;?>"><i class="<?=$row_menu[$i]['icon'];?>"></i> <?=$row_menu[$i]['icon'];?></td>
 					<td align="center" style="<?=$style;?>"><?=$row_menu[$i]['isMaintenanceDesc'];?></td>
 					<td align="center" style="<?=$style;?>"><?=$row_menu[$i]['isTransactionsDesc'];?></td>
 					<td align="center" style="<?=$style;?>"><?=$row_menu[$i]['isReportsDesc'];?></td>

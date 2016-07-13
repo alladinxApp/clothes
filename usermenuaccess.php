@@ -1,8 +1,9 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . CUSTOMERMODEL);
-	require_once(CONTROLLER_PATH . CUSTOMERCONTROLLER);
+	require_once(MODEL_PATH . MENUMODEL);
+	require_once(MODEL_PATH . MENUACCESSMODEL);
+	require_once(CONTROLLER_PATH . MENUACCESSCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -52,13 +53,24 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/customer_add.php");?>
+					<? require_once("views/usermenuaccess.php");?>
 				</div>
 				<!-- end: Content -->
 
 			</div><!--/fluid-row-->
 		</div>
-		
+	<script type="text/javascript">
+		function RemoveMenu(user,menu,id){
+			if(confirm("Are you sure you want to remove this menu?")){
+				window.location="usermenuaccess.php?delete=1&id="+id+"&user="+user+"&menu="+menu;
+			}else{
+				return false;
+			}
+		}
+		function AddMenu(user,menu,id){
+			window.location="usermenuaccess.php?add=1&id="+id+"&user="+user+"&menu="+menu;
+		}
+	</script>
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

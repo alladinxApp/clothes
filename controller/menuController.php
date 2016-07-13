@@ -6,6 +6,7 @@
 		$isTransactions = $_POST['txtIsTransactions'];
 		$isReports = $_POST['txtIsReports'];
 		$link = $_POST['txtMenuLink'];
+		$icon = $_POST['txtMenuIcon'];
 
 		// GET NEW CONTROL NO
 		$newNum = getNewCtrlNo('MENU');
@@ -19,9 +20,34 @@
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
 		$menu->setTable("menumaster");
-		$menu->setField("menuCode,description,link,isMaintenance,isTransactions,isReports,createdDate,createdBy");
-		$menu->setValues("'$newNum','$description','$link','$isMaintenance','$isTransactions','$isReports','$today','$userid'");
+		$menu->setField("menuCode,description,link,icon,isMaintenance,isTransactions,isReports,createdDate,createdBy");
+		$menu->setValues("'$newNum','$description','$link','$icon','$isMaintenance','$isTransactions','$isReports','$today','$userid'");
 		$menu->doQuery("save");
+
+		// GET ADMIN USER
+		$adminuser = new Table();
+		$adminuser->setSQLType($csdb->getSQLType());
+		$adminuser->setInstance($csdb->getInstance());
+		$adminuser->setView("usermaster_v");
+		$adminuser->setParam("WHERE userType = 1");
+		$adminuser->doQuery("query");
+		$row_adminuser = $adminuser->getLists();
+		$num_adminuser = $adminuser->getNumRows();
+
+		if($num_adminuser > 0){
+			for($i=0;$i<count($row_adminuser);$i++){
+				$user = $row_adminuser[$i]['userName'];
+				
+				// INSERT USER MENU ACCESS
+				$usermenu = new Table();
+				$usermenu->setSQLType($csdb->getSQLType());
+				$usermenu->setInstance($csdb->getInstance());
+				$usermenu->setTable("usermenuaccess");
+				$usermenu->setField("userName,menuCode");
+				$usermenu->setValues("'$user','$newNum'");
+				$usermenu->doQuery("save");
+			}
+		}
 
 		// CLOSE DB
 		$csdb->DBClose();
@@ -43,6 +69,7 @@
 		$isTransactions = $_POST['txtIsTransactions'];
 		$isReports = $_POST['txtIsReports'];
 		$link = $_POST['txtMenuLink'];
+		$icon = $_POST['txtMenuIcon'];
 		$status = $_POST['txtStatus'];
 
 		// OPEN DB
@@ -54,7 +81,7 @@
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
 		$menu->setTable("menumaster");
-		$menu->setValues("description = '$description', link = '$link', isMaintenance = '$isMaintenance', isTransactions = '$isTransactions', isReports = '$isReports', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
+		$menu->setValues("description = '$description', link = '$link', icon = '$icon', isMaintenance = '$isMaintenance', isTransactions = '$isTransactions', isReports = '$isReports', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$menu->setParam("WHERE id = '$id'");
 		$menu->doQuery("update");
 
