@@ -16,19 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`clothes` /*!40100 DEFAULT CHARACTER SET
 
 USE `clothes`;
 
-/*Table structure for table ` usermenuaccess` */
-
-DROP TABLE IF EXISTS ` usermenuaccess`;
-
-CREATE TABLE ` usermenuaccess` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` varchar(20) DEFAULT NULL,
-  `menuCode` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Data for the table ` usermenuaccess` */
-
 /*Table structure for table `controlno` */
 
 DROP TABLE IF EXISTS `controlno`;
@@ -51,7 +38,7 @@ CREATE TABLE `controlno` (
 
 /*Data for the table `controlno` */
 
-insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,0,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,0,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,0,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx',NULL,NULL,1),(5,'MENU MAINTENANCE','M','MENU',4,17,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,0,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,0,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1);
+insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,0,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,0,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,0,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx',NULL,NULL,1),(5,'MENU MAINTENANCE','M','MENU',4,19,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,0,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,0,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1);
 
 /*Table structure for table `customersmaster` */
 
@@ -75,7 +62,7 @@ CREATE TABLE `customersmaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `customersmaster` */
 
@@ -93,7 +80,7 @@ CREATE TABLE `departmentmaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `departmentmaster` */
 
@@ -197,7 +184,7 @@ CREATE TABLE `materialmaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `materialmaster` */
 
@@ -210,6 +197,7 @@ CREATE TABLE `menumaster` (
   `menuCode` varchar(20) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
   `link` varchar(100) DEFAULT NULL,
+  `icon` varchar(20) DEFAULT NULL,
   `isMaintenance` int(11) DEFAULT NULL,
   `isTransactions` int(11) DEFAULT NULL,
   `isReports` int(11) DEFAULT NULL,
@@ -219,11 +207,11 @@ CREATE TABLE `menumaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `menumaster` */
 
-insert  into `menumaster`(`id`,`menuCode`,`description`,`link`,`isMaintenance`,`isTransactions`,`isReports`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (2,'M0001','Control Nos','controlnos',1,0,0,'2016-07-10 09:22:59','alladinx',NULL,NULL,1),(3,'M0002','Customers','customers',1,0,0,'2016-07-10 09:23:10','alladinx',NULL,NULL,1),(4,'M0003','Departments','departments',1,0,0,'2016-07-10 09:23:21','alladinx',NULL,NULL,1),(5,'M0004','Job Types','jobtypes',1,0,0,'2016-07-10 09:23:30','alladinx',NULL,NULL,1),(6,'M0005','Materials','materials',1,0,0,'2016-07-10 09:23:40','alladinx',NULL,NULL,1),(7,'M0006','Menus','menus',1,0,0,'2016-07-10 09:23:51','alladinx',NULL,NULL,1),(8,'M0007','Sizing Patterns','sizings',1,0,0,'2016-07-10 09:24:07','alladinx',NULL,NULL,1),(9,'M0008','UOMs','uoms',1,0,0,'2016-07-10 09:24:20','alladinx',NULL,NULL,1),(10,'M0009','Estimates','estimates',0,1,0,'2016-07-10 09:24:41','alladinx',NULL,NULL,1),(11,'M0010','Users','users',1,0,0,'2016-07-10 09:41:29','alladinx',NULL,NULL,1),(12,'M0011','Pending Job Orders','jopending',0,0,1,'2016-07-10 09:41:53','alladinx',NULL,NULL,1),(13,'M0012','Upcoming Dues','dues',0,0,1,'2016-07-10 09:42:22','alladinx',NULL,NULL,1),(14,'M0013','Work In Process','wip',0,0,1,'2016-07-10 09:42:36','alladinx',NULL,NULL,1),(15,'M0014','AR / UI','arui',0,0,1,'2016-07-10 09:42:49','alladinx',NULL,NULL,1),(16,'M0015','Sales per Location','salesperlocation',0,0,1,'2016-07-10 09:43:06','alladinx',NULL,NULL,1),(17,'M0016','Sales per Customer','salespercustomer',0,0,1,'2016-07-10 09:43:18','alladinx',NULL,NULL,1),(18,'M0017','Clothing Report','clothingreport',0,0,1,'2016-07-10 09:43:33','alladinx',NULL,NULL,1);
+insert  into `menumaster`(`id`,`menuCode`,`description`,`link`,`icon`,`isMaintenance`,`isTransactions`,`isReports`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (2,'M0001','Control Nos','controlnos','icon-cogs',1,0,0,'2016-07-10 09:22:59','alladinx',NULL,NULL,1),(3,'M0002','Customers','customers','icon-group',1,0,0,'2016-07-10 09:23:10','alladinx',NULL,NULL,1),(4,'M0003','Departments','departments','icon-home',1,0,0,'2016-07-10 09:23:21','alladinx',NULL,NULL,1),(5,'M0004','Job Types','jobtypes','icon-tags',1,0,0,'2016-07-10 09:23:30','alladinx',NULL,NULL,1),(6,'M0005','Materials','materials','icon-barcode',1,0,0,'2016-07-10 09:23:40','alladinx',NULL,NULL,1),(7,'M0006','Menus','menus','icon-list',1,0,0,'2016-07-10 09:23:51','alladinx',NULL,NULL,1),(8,'M0007','Sizing Patterns','sizings','icon-bar-chart',1,0,0,'2016-07-10 09:24:07','alladinx',NULL,NULL,1),(9,'M0008','UOMs','uoms','icon-signal',1,0,0,'2016-07-10 09:24:20','alladinx',NULL,NULL,1),(10,'M0009','Estimates','estimates','icon-briefcase',0,1,0,'2016-07-10 09:24:41','alladinx',NULL,NULL,1),(11,'M0010','Users','users','icon-user',1,0,0,'2016-07-10 09:41:29','alladinx',NULL,NULL,1),(12,'M0011','Pending Job Orders','jopending','icon-calendar',0,0,1,'2016-07-10 09:41:53','alladinx',NULL,NULL,1),(13,'M0012','Upcoming Dues','dues','icon-calendar',0,0,1,'2016-07-10 09:42:22','alladinx',NULL,NULL,1),(14,'M0013','Work In Process','wip','icon-calendar',0,0,1,'2016-07-10 09:42:36','alladinx',NULL,NULL,1),(15,'M0014','AR / UI','arui','icon-calendar',0,0,1,'2016-07-10 09:42:49','alladinx','2016-07-13 04:53:38','alladinx',1),(16,'M0015','Sales per Location','salesperlocation','icon-calendar',0,0,1,'2016-07-10 09:43:06','alladinx',NULL,NULL,1),(17,'M0016','Sales per Customer','salespercustomer','icon-calendar',0,0,1,'2016-07-10 09:43:18','alladinx',NULL,NULL,1),(18,'M0017','Clothing Report','clothingreport','icon-calendar',0,0,1,'2016-07-10 09:43:33','alladinx',NULL,NULL,1),(19,'M0018','Job Orders','joborders','icon-briefcase',0,1,0,'2016-07-13 01:59:17','alladinx',NULL,NULL,1),(20,'M0019','Deliveries','deliveries','icon-briefcase',0,1,0,'2016-07-13 04:09:47','alladinx',NULL,NULL,1);
 
 /*Table structure for table `sizingmaster` */
 
@@ -268,16 +256,35 @@ DROP TABLE IF EXISTS `usermaster`;
 CREATE TABLE `usermaster` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userName` varchar(20) DEFAULT NULL,
+  `passWord` varchar(50) DEFAULT NULL,
   `fullName` varchar(100) DEFAULT NULL,
+  `userType` int(1) DEFAULT NULL,
   `createdDate` datetime DEFAULT NULL,
   `createdBy` varchar(20) DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usermaster` */
+
+insert  into `usermaster`(`id`,`userName`,`passWord`,`fullName`,`userType`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'ALLADINX','dcbaa000d6a435d4a6d76b41a7b27b85','ALLADINX',1,'2016-07-13 07:17:15','alladinx',NULL,NULL,1),(2,'NOELSR','92b9fa2f52fd311ed02bd48c345a67d0','NOEL S. RODRIGUEZ',1,'2016-07-13 07:17:31','alladinx',NULL,NULL,1),(3,'REYCAST','c61ee97c26b787b2b6adecf39cf667ee','REYCAST',0,'2016-07-13 07:17:41','alladinx',NULL,NULL,1);
+
+/*Table structure for table `usermenuaccess` */
+
+DROP TABLE IF EXISTS `usermenuaccess`;
+
+CREATE TABLE `usermenuaccess` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userName` varchar(20) DEFAULT NULL,
+  `menuCode` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+
+/*Data for the table `usermenuaccess` */
+
+insert  into `usermenuaccess`(`id`,`userName`,`menuCode`) values (1,'ALLADINX','M0014'),(2,'ALLADINX','M0017'),(3,'ALLADINX','M0001'),(4,'ALLADINX','M0002'),(5,'ALLADINX','M0019'),(6,'ALLADINX','M0003'),(7,'ALLADINX','M0009'),(8,'ALLADINX','M0018'),(9,'ALLADINX','M0004'),(10,'ALLADINX','M0005'),(11,'ALLADINX','M0006'),(12,'ALLADINX','M0011'),(13,'ALLADINX','M0016'),(14,'ALLADINX','M0015'),(15,'ALLADINX','M0007'),(16,'ALLADINX','M0008'),(17,'ALLADINX','M0012'),(18,'ALLADINX','M0010'),(19,'ALLADINX','M0013'),(20,'NOELSR','M0014'),(21,'NOELSR','M0017'),(22,'NOELSR','M0001'),(23,'NOELSR','M0002'),(24,'NOELSR','M0019'),(25,'NOELSR','M0003'),(26,'NOELSR','M0009'),(27,'NOELSR','M0018'),(28,'NOELSR','M0004'),(29,'NOELSR','M0005'),(30,'NOELSR','M0006'),(31,'NOELSR','M0011'),(32,'NOELSR','M0016'),(33,'NOELSR','M0015'),(34,'NOELSR','M0007'),(35,'NOELSR','M0008'),(36,'NOELSR','M0012'),(37,'NOELSR','M0010'),(38,'NOELSR','M0013');
 
 /*Table structure for table `controlno_v` */
 
@@ -400,12 +407,14 @@ DROP TABLE IF EXISTS `menumaster_v`;
  `menuCode` varchar(20) ,
  `description` varchar(100) ,
  `link` varchar(100) ,
+ `icon` varchar(20) ,
  `isMaintenance` int(11) ,
  `isMaintenanceDesc` varchar(3) ,
  `isTransactions` int(11) ,
  `isTransactionsDesc` varchar(3) ,
  `isReports` int(11) ,
  `isReportsDesc` varchar(3) ,
+ `xType` varchar(12) ,
  `createdDate` datetime ,
  `createdBy` varchar(20) ,
  `modifiedDate` datetime ,
@@ -462,13 +471,37 @@ DROP TABLE IF EXISTS `usermaster_v`;
 /*!50001 CREATE TABLE  `usermaster_v`(
  `id` int(11) ,
  `userName` varchar(20) ,
+ `passWord` varchar(50) ,
  `fullName` varchar(100) ,
+ `userType` int(1) ,
+ `userTypeDesc` varchar(13) ,
  `createdDate` datetime ,
  `createdBy` varchar(20) ,
  `modifiedDate` datetime ,
  `modifiedBy` varchar(20) ,
  `status` int(1) ,
  `statusDesc` varchar(8) 
+)*/;
+
+/*Table structure for table `usermenuaccess_v` */
+
+DROP TABLE IF EXISTS `usermenuaccess_v`;
+
+/*!50001 DROP VIEW IF EXISTS `usermenuaccess_v` */;
+/*!50001 DROP TABLE IF EXISTS `usermenuaccess_v` */;
+
+/*!50001 CREATE TABLE  `usermenuaccess_v`(
+ `id` int(11) ,
+ `userId` int(11) ,
+ `userName` varchar(20) ,
+ `menuCode` varchar(20) ,
+ `menuDesc` varchar(100) ,
+ `link` varchar(100) ,
+ `icon` varchar(20) ,
+ `isMaintenance` int(11) ,
+ `isTransactions` int(11) ,
+ `isReports` int(11) ,
+ `xType` varchar(12) 
 )*/;
 
 /*View structure for view controlno_v */
@@ -511,7 +544,7 @@ DROP TABLE IF EXISTS `usermaster_v`;
 /*!50001 DROP TABLE IF EXISTS `menumaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `menumaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `menumaster_v` AS (select `menumaster`.`id` AS `id`,`menumaster`.`menuCode` AS `menuCode`,`menumaster`.`description` AS `description`,`menumaster`.`link` AS `link`,`menumaster`.`isMaintenance` AS `isMaintenance`,(case when (`menumaster`.`isMaintenance` = 1) then 'YES' else 'NO' end) AS `isMaintenanceDesc`,`menumaster`.`isTransactions` AS `isTransactions`,(case when (`menumaster`.`isTransactions` = 1) then 'YES' else 'NO' end) AS `isTransactionsDesc`,`menumaster`.`isReports` AS `isReports`,(case when (`menumaster`.`isReports` = 1) then 'YES' else 'NO' end) AS `isReportsDesc`,`menumaster`.`createdDate` AS `createdDate`,`menumaster`.`createdBy` AS `createdBy`,`menumaster`.`modifiedDate` AS `modifiedDate`,`menumaster`.`modifiedBy` AS `modifiedBy`,`menumaster`.`status` AS `status`,(case when (`menumaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `menumaster`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `menumaster_v` AS (select `menumaster`.`id` AS `id`,`menumaster`.`menuCode` AS `menuCode`,`menumaster`.`description` AS `description`,`menumaster`.`link` AS `link`,`menumaster`.`icon` AS `icon`,`menumaster`.`isMaintenance` AS `isMaintenance`,(case when (`menumaster`.`isMaintenance` = 1) then 'YES' else 'NO' end) AS `isMaintenanceDesc`,`menumaster`.`isTransactions` AS `isTransactions`,(case when (`menumaster`.`isTransactions` = 1) then 'YES' else 'NO' end) AS `isTransactionsDesc`,`menumaster`.`isReports` AS `isReports`,(case when (`menumaster`.`isReports` = 1) then 'YES' else 'NO' end) AS `isReportsDesc`,(case when (`menumaster`.`isTransactions` = 1) then 'TRANSACTIONS' when (`menumaster`.`isReports` = 1) then 'REPORTS' else 'MAINTENANCE' end) AS `xType`,`menumaster`.`createdDate` AS `createdDate`,`menumaster`.`createdBy` AS `createdBy`,`menumaster`.`modifiedDate` AS `modifiedDate`,`menumaster`.`modifiedBy` AS `modifiedBy`,`menumaster`.`status` AS `status`,(case when (`menumaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `menumaster`) */;
 
 /*View structure for view sizingmaster_v */
 
@@ -532,7 +565,14 @@ DROP TABLE IF EXISTS `usermaster_v`;
 /*!50001 DROP TABLE IF EXISTS `usermaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `usermaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usermaster_v` AS (select `usermaster`.`id` AS `id`,`usermaster`.`userName` AS `userName`,`usermaster`.`fullName` AS `fullName`,`usermaster`.`createdDate` AS `createdDate`,`usermaster`.`createdBy` AS `createdBy`,`usermaster`.`modifiedDate` AS `modifiedDate`,`usermaster`.`modifiedBy` AS `modifiedBy`,`usermaster`.`status` AS `status`,(case when (`usermaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `usermaster`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usermaster_v` AS (select `usermaster`.`id` AS `id`,`usermaster`.`userName` AS `userName`,`usermaster`.`passWord` AS `passWord`,`usermaster`.`fullName` AS `fullName`,`usermaster`.`userType` AS `userType`,(case when (`usermaster`.`userType` = 1) then 'ADMINISTRATOR' else 'USER' end) AS `userTypeDesc`,`usermaster`.`createdDate` AS `createdDate`,`usermaster`.`createdBy` AS `createdBy`,`usermaster`.`modifiedDate` AS `modifiedDate`,`usermaster`.`modifiedBy` AS `modifiedBy`,`usermaster`.`status` AS `status`,(case when (`usermaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `usermaster`) */;
+
+/*View structure for view usermenuaccess_v */
+
+/*!50001 DROP TABLE IF EXISTS `usermenuaccess_v` */;
+/*!50001 DROP VIEW IF EXISTS `usermenuaccess_v` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usermenuaccess_v` AS (select `usermenuaccess`.`id` AS `id`,`usermaster`.`id` AS `userId`,`usermenuaccess`.`userName` AS `userName`,`usermenuaccess`.`menuCode` AS `menuCode`,`menumaster`.`description` AS `menuDesc`,`menumaster`.`link` AS `link`,`menumaster`.`icon` AS `icon`,`menumaster`.`isMaintenance` AS `isMaintenance`,`menumaster`.`isTransactions` AS `isTransactions`,`menumaster`.`isReports` AS `isReports`,(case when (`menumaster`.`isTransactions` = 1) then 'TRANSACTIONS' when (`menumaster`.`isReports` = 1) then 'REPORTS' else 'MAINTENANCE' end) AS `xType` from ((`usermenuaccess` join `menumaster` on((`menumaster`.`menuCode` = `usermenuaccess`.`menuCode`))) join `usermaster` on((`usermaster`.`userName` = `usermenuaccess`.`userName`)))) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
