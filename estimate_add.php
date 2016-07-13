@@ -4,7 +4,8 @@
 	require_once(MODEL_PATH . SIZINGMODEL);
 	require_once(MODEL_PATH . MATERIALMODEL);
 	require_once(MODEL_PATH . JOBTYPEMODEL);
-	// require_once(CONTROLLER_PATH . CONTROLNOCONTROLLER);
+	require_once(MODEL_PATH . CUSTOMERMODEL);
+	require_once(CONTROLLER_PATH . CONTROLNOCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -60,12 +61,36 @@
 
 			</div><!--/fluid-row-->
 		</div>
+	
+	<? require_once("inc-box/footer.php");?>
+	<? require_once("inc-box/default-js.php");?>
+
 	<script type="text/javascript">
+		// function getCustomerInfo(){
+		// 	var val = $("#txtCustomer").val();
+		// 	var strURL = "inc-ajax/divAddEstimateCustInfo.php?id="+val;
+
+		// 	$.ajax({	
+		// 		url: strURL,
+		// 		type: 'GET',
+		// 		datatype: 'json',
+		// 		contentType: 'application/json; charset=utf-8',
+				
+		// 		success: function (data) {
+		// 			console.log(data);
+		// 			// $("#divMLDates").replaceWith(data);
+		// 			// $.unblockUI();
+		// 		},	
+						
+		// 		error: function (request, status, err) {
+		// 			alert(status);
+		// 			alert(err);
+		// 		}
+		// 	});	
+		// }
 		jQuery(document).ready(function() {
 			
 		});
 	</script>
-	<? require_once("inc-box/footer.php");?>
-	<? require_once("inc-box/default-js.php");?>
 </body>
 </html>
