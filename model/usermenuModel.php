@@ -8,7 +8,7 @@
 	$usermenu->setSQLType($csdb->getSQLType());
 	$usermenu->setInstance($csdb->getInstance());
 	$usermenu->setView("usermenuaccess_v");
-	$usermenu->setParam("WHERE userName = '$userid' ORDER BY menuDesc");
+	$usermenu->setParam("WHERE userName = '$userid' ORDER BY sortNo,menuDesc");
 	$usermenu->doQuery("query");
 	$row_usermenu = $usermenu->getLists();
 	

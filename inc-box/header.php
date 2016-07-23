@@ -7,8 +7,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
+			
 			<a class="brand" href="index.html"><img src="img/logo.png" border="0" width="180" /></a>
-							
+
 			<!-- start: Header Menu -->
 			<div class="nav-no-collapse header-nav">
 				<ul class="nav pull-right">
@@ -30,7 +31,6 @@
 				</ul>
 			</div>
 			<!-- end: Header Menu -->
-			
 		</div>
 	</div>
 </div>

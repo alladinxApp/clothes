@@ -61,6 +61,12 @@
 							</select>
 						</div>
 					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtSortNo">Sort No</label>
+						<div class="controls">
+							<input class="input-xlarge" name="txtSortNo" id="txtSortNo" type="text" placeholder="0" />
+						</div>
+					</div>
 					<div class="form-actions">
 						<input type="submit" class="btn btn-primary" value="Save changes" />
 						<a href="menu_add.php" class="btn">Cancel</a>

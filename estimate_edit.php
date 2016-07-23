@@ -51,7 +51,6 @@
 		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		var result = '';
 		for(var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-		console.log(result);
 		return result;
 	}
 	function AddItem(){
@@ -68,7 +67,7 @@
 		if($("#txtItemArr").val() != ""){
 			Items += $("#txtItemArr").val() + "::";
 		}
-		Items += "" + "||" + size + "||" + piece + "||" + color + "||" + materials + "||" + uom + "||" + spec + "::";
+		Items += "" + "||" + size + "||" + piece + "||" + color + "||" + uom + "||" + materials + "||" + spec + "::";
 		Items = Items.slice(0, -2);
 		nItemArr = Items.split("::");
 
@@ -86,22 +85,24 @@
 			  tbl += '<th>REMOVE</th>';
 			tbl += '</tr>';
 		var nItemArray = "";
+		// id | sizeid | size | qty | color | uomid | uom | material | specification
 		for(var i=0;i<nItemArr.length;i++){
 			var id = generateRandomString(6);
 			if(nItemArr[i] != ""){
 				var item = nItemArr[i].split("||");
+				console.log(nItemArr[i]);
 				tbl += '<tr>';
 				  tbl += '<td align="center">' + cnt + '</td>';
 				  tbl += '<td>' + item[2] + '</td>';
 				  tbl += '<td align="center">' + item[3] + '</td>';
 				  tbl += '<td>' + item[4] + '</td>';
 				  tbl += '<td>' + item[6] + '</td>';
-				  tbl += '<td>' + item[5] + '</td>';
 				  tbl += '<td>' + item[7] + '</td>';
+				  tbl += '<td>' + item[8] + '</td>';
 				  var rid = "'" + id + "'";
 				  tbl += '<td align="center"><a href="#" onClick="RemoveItem('+rid+')"><img src="img/del_ico.png" width="20" border="0" /></td>';
 				tbl += '</tr>';
-				nItemArray += id + "||" + item[1] + "||" + item[2] + "||" + item[3] + "||" + item[4] + "||" + item[5] + "||" + item[6] + "||" + item[7] + "::";
+				nItemArray += id + "||" + item[1] + "||" + item[2] + "||" + item[3] + "||" + item[4] + "||" + item[5] + "||" + item[6] + "||" + item[7] + "||" + item[8] + "::";
 				cnt++;
 			}
 		}
@@ -133,6 +134,7 @@
 			  tbl += '<th>REMOVE</th>';
 			tbl += '</tr>';
 		var nItemArray = "";
+		// id | sizeid | size | qty | color | uomid | uom | material | specification
 		for(var i=0;i<nItemArr.length;i++){
 			var id = generateRandomString(6);
 			if(nItemArr[i] != ""){
@@ -144,12 +146,12 @@
 						tbl += '<td align="center">' + item[3] + '</td>';
 						tbl += '<td>' + item[4] + '</td>';
 						tbl += '<td>' + item[6] + '</td>';
-						tbl += '<td>' + item[5] + '</td>';
 						tbl += '<td>' + item[7] + '</td>';
+						tbl += '<td>' + item[8] + '</td>';
 						var rid = "'" + id + "'";
 						tbl += '<td align="center"><a href="#" onClick="RemoveItem('+rid+')"><img src="img/del_ico.png" width="20" border="0" /></td>';
 					tbl += '</tr>';
-					nItemArray += id + "||" + item[1] + "||" + item[2] + "||" + item[3] + "||" + item[4] + "||" + item[5] + "||" + item[6] + "||" + item[7] + "::";
+					nItemArray += id + "||" + item[1] + "||" + item[2] + "||" + item[3] + "||" + item[4] + "||" + item[5] + "||" + item[6] + "||" + item[7] + "||" + item[8] + "::";
 					cnt++;
 				}
 			}
@@ -181,6 +183,18 @@
 		$("#txtSubTotal").val(subtotal.toFixed(2));
 		$("#txtVat").val(vat.toFixed(2));
 		$("#txtTotalAmount").val(total.toFixed(2));
+	}
+	function RushEstimate(){
+		if(document.estimateForm.chkIsRush.checked){
+			document.estimateForm.txtLeadTime.readOnly = false;
+			document.estimateForm.txtDueDate.disabled = false;
+		}else{
+			$("#txtLeadTime").val("");
+			$("#txtDueDate").val("");
+			$("#txtJobType").val("");
+			document.estimateForm.txtLeadTime.readOnly = true;
+			document.estimateForm.txtDueDate.disabled = true;
+		}
 	}
 </script>
 <body>

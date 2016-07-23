@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<form class="form-horizontal" method="POST" enctype="multipart/form-data">
+			<form class="form-horizontal" method="POST" enctype="multipart/form-data" name="estimateForm">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="txtEstimateNo">Estimate No</label>
@@ -52,6 +52,24 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="chkIsRush">is Rush?</label>
+						<div class="controls">
+							<input type="checkbox" name="chkIsRush" id="chkIsRush" onClick="RushEstimate();" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtLeadTime">Lead Time</label>
+						<div class="controls">
+							<input class="input-xlarge" name="txtLeadTime" readonly id="txtLeadTime" type="text" placeholder="0" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtDueDate">Due Date</label>
+						<div class="controls">
+							<input class="input-xlarge datepicker" name="txtDueDate" disabled id="txtDueDate" type="text" placeholder="MM/DD/YYYY" />
+						</div>
+					</div>
+					<div class="control-group">
 						<label class="control-label" for="txtAttachment">Attachment</label>
 						<div class="controls">
 							<input class="input-file uniform_on" id="txtAttachment" name="txtAttachment" type="file" />
@@ -66,7 +84,6 @@
 					<tr>
 						<td></td>
 						<td><select name="txtSize" id="txtSize" style="width: 100px;">
-					  		<option value="">Size</option>
 					  		<? for($i=0;$i<count($row_sizing);$i++){ ?>
 							<option value="<?=$row_sizing[$i]['sizingCode']."||".$row_sizing[$i]['description'];?>"><?=$row_sizing[$i]['description'];?></option>
 							<? } ?>
@@ -74,7 +91,6 @@
 						<td><input class="input-small" name="txtPieces" id="txtPieces" type="text" placeholder="0" /></td>
 						<td><input class="input-small" name="txtColor" id="txtColor" type="text" placeholder="Color here..." /></td>
 						<td><select name="txtUOM" id="txtUOM" style="width: 100px;">
-					  		<option value="">UOM</option>
 					  		<? for($i=0;$i<count($row_uom);$i++){ ?>
 							<option value="<?=$row_uom[$i]['UOMCode']."||".$row_uom[$i]['description'];?>"><?=$row_uom[$i]['description'];?></option>
 							<? } ?>

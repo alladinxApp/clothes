@@ -62,6 +62,12 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="txtSortNo">Sort No</label>
+						<div class="controls">
+							<input class="input-xlarge" value="<?=$row_menu[0]['sortNo'];?>" name="txtSortNo" id="txtSortNo" type="text" placeholder="0" />
+						</div>
+					</div>
+					<div class="control-group">
 						<label class="control-label" for="txtStatus">Status</label>
 						<div class="controls">
 							<select name="txtStatus" id="txtStatus">

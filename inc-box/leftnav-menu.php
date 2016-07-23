@@ -5,7 +5,7 @@
 		<ul class="nav nav-tabs nav-stacked main-menu">
 			<? if(count($menuMain) > 0){ ?>
 			<li>
-				<a class="dropmenu" href="#"><i class="icon-folder-close"></i> <span class="hidden-tablet">Maintenance</span></a>
+				<a class="dropmenu" href="#"><i class="icon-align-justify"></i> <span class="hidden-tablet">Maintenance</span></a>
 				<ul>
 					<? for($i=0;$i<count($menuMain);$i++){ ?>
 					<li><a class="submenu" href="<?=$menuMain[$i]['link'];?>.php"><i class="<?=$menuMain[$i]['icon'];?>"></i> <span class="hidden-tablet"><?=$menuMain[$i]['menuDesc'];?></span></a></li>
@@ -22,7 +22,7 @@
 			</li>
 			<? } if(count($menuTrans) > 0){ ?>
 			<li>
-				<a class="dropmenu" href="#"><i class="icon-folder-close"></i> <span class="hidden-tablet">Transactions</span></a>
+				<a class="dropmenu" href="#"><i class="icon-bar-chart"></i> <span class="hidden-tablet">Transactions</span></a>
 				<ul>
 					<? for($i=0;$i<count($menuTrans);$i++){ ?>
 					<li><a class="submenu" href="<?=$menuTrans[$i]['link'];?>.php"><i class="<?=$menuTrans[$i]['icon'];?>"></i> <span class="hidden-tablet"><?=$menuTrans[$i]['menuDesc'];?></span></a></li>
@@ -32,7 +32,7 @@
 			</li>
 			<? } if(count($menuReps) > 0){ ?>
 			<li>
-				<a class="dropmenu" href="#"><i class="icon-folder-close"></i> <span class="hidden-tablet">Reports</span></a>
+				<a class="dropmenu" href="#"><i class="icon-calendar"></i> <span class="hidden-tablet">Reports</span></a>
 				<ul>
 					<? for($i=0;$i<count($menuReps);$i++){ ?>
 					<li><a class="submenu" href="<?=$menuReps[$i]['link'];?>.php"><i class="<?=$menuReps[$i]['icon'];?>"></i> <span class="hidden-tablet"><?=$menuReps[$i]['menuDesc'];?></span></a></li>

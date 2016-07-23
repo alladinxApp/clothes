@@ -1,7 +1,7 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header" data-original-title>
-			<h2><i class="halflings-icon cog"></i><span class="break"></span><b>Add New Estimate</b></h2>
+			<h2><i class="halflings-icon cog"></i><span class="break"></span><b>Edit Estimate #<?=$id;?></b></h2>
 			<div class="box-icon">
 				<a href="estimate_add.php"><i class="halflings-icon plus"></i> ADD NEW</a>
 			</div>
@@ -10,12 +10,18 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<form class="form-horizontal" method="POST" enctype="multipart/form-data">
+			<form class="form-horizontal" method="POST" enctype="multipart/form-data" name="estimateForm">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="txtEstimateNo">Estimate No</label>
 						<div class="controls">
 							<input class="input-xlarge" value="<?=$row_estmst[0]['quoteReferenceNo'];?>" name="txtEstimateNo" id="txtEstimateNo" type="text" placeholder="[SYSTEM GENERATED]" readonly />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtEstimateDate">Estimate Date</label>
+						<div class="controls">
+							<input class="input-xlarge" value="<?=dateFormat($row_estmst[0]['transactionDate'],"m-d-Y");?>" name="txtEstimateDate" id="txtEstimateDate" type="text" placeholder="[SYSTEM GENERATED]" readonly />
 						</div>
 					</div>
 					<div class="control-group">
@@ -45,6 +51,26 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="chkIsRush">is Rush?</label>
+						<div class="controls">
+							<input type="checkbox" name="chkIsRush" id="chkIsRush" disabled <? if($row_estmst[0]['isRush'] > 0){ echo 'checked'; } ?> onClick="RushEstimate();" />
+						</div>
+					</div>
+					<span id="divJobTypeInfo">
+					<div class="control-group">
+						<label class="control-label" for="txtLeadTime">Lead Time</label>
+						<div class="controls">
+							<input class="input-xlarge" value="<?=$row_estmst[0]['leadTime'];?>" name="txtLeadTime" readonly id="txtLeadTime" type="text" placeholder="0" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="txtDueDate">Due Date</label>
+						<div class="controls">
+							<input class="input-xlarge datepicker" value="<?=dateFormat($row_estmst[0]['dueDate'],"m-d-Y");?>" name="txtDueDate" disabled id="txtDueDate" type="text" placeholder="mm/dd/YYYY" />
+						</div>
+					</div>
+					</span>
+					<div class="control-group">
 						<label class="control-label" for="txtAttachment">Attachment</label>
 						<div class="controls">
 							<input class="input-file uniform_on" id="txtAttachment" name="txtAttachment" type="file" />
@@ -53,11 +79,14 @@
 					<div class="control-group">
 						<label class="control-label" for="txtAttachment"></label>
 						<div class="controls">
-							<a href="<?=ESTIMATEATTACHMENTS . dateFormat($row_estmst[0]['transactionDate'],"Ym") . "/" . $row_estmst[0]['quoteReferenceNo'] . "/" . $row_estmst[0]['attachment']?>" target="_blank">
-								<img src="<?=ESTIMATEATTACHMENTS . dateFormat($row_estmst[0]['transactionDate'],"Ym") . "/" . $row_estmst[0]['quoteReferenceNo'] . "/" . $row_estmst[0]['attachment']?>">
+							<? if(!empty($row_estmst[0]['attachment']) || $row_estmst[0]['attachment'] != "" || $row_estmst[0]['attachment'] != null){ ?>
+							<a href="<?=ESTIMATEATTACHMENTS . dateFormat($row_estmst[0]['transactionDate'],"Ym") . "/" . $row_estmst[0]['quoteReferenceNo'] . "/" . $row_estmst[0]['attachment'];?>" target="_blank">
+								<img src="<?=ESTIMATEATTACHMENTS . dateFormat($row_estmst[0]['transactionDate'],"Ym") . "/" . $row_estmst[0]['quoteReferenceNo'] . "/" . $row_estmst[0]['attachment'];?>">
 							</a>
+							<? } ?>
 						</div>
-					</div> 
+					</div>
+					<input type="hidden" name="txtCurrentAttachment" id="txtCurrentAttachment" value="<?=$row_estmst[0]['attachment'];?>" />
 				</fieldset>
 				
 				<div class="box-header" data-original-title>
@@ -67,7 +96,6 @@
 					<tr>
 						<td></td>
 						<td><select name="txtSize" id="txtSize" style="width: 100px;">
-					  		<option value="">Size</option>
 					  		<? for($i=0;$i<count($row_sizing);$i++){ ?>
 							<option value="<?=$row_sizing[$i]['sizingCode']."||".$row_sizing[$i]['description'];?>"><?=$row_sizing[$i]['description'];?></option>
 							<? } ?>
@@ -75,7 +103,6 @@
 						<td><input class="input-small" name="txtPieces" id="txtPieces" type="text" placeholder="0" /></td>
 						<td><input class="input-small" name="txtColor" id="txtColor" type="text" placeholder="Color here..." /></td>
 						<td><select name="txtUOM" id="txtUOM" style="width: 100px;">
-					  		<option value="">UOM</option>
 					  		<? for($i=0;$i<count($row_uom);$i++){ ?>
 							<option value="<?=$row_uom[$i]['UOMCode']."||".$row_uom[$i]['description'];?>"><?=$row_uom[$i]['description'];?></option>
 							<? } ?>
@@ -106,9 +133,9 @@
 							$size = $item[2];
 							$qty = $item[3];
 							$color = $item[4];
-							$mat = $item[5];
 							$uom = $item[6];
-							$spec = $item[7];
+							$mat = $item[7];
+							$spec = $item[8];
 					?>
 					<tr>
 						<td align="center"><?=$cnt;?></td>
@@ -129,31 +156,31 @@
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=$row_estmst[0]['amount'];?>" name="txtAmount" id="txtAmount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['amount'],2);?>" name="txtAmount" id="txtAmount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Discount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=$row_estmst[0]['discount'];?>" name="txtDiscount" id="txtDiscount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['discount'],2);?>" name="txtDiscount" id="txtDiscount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Sub-Total</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=$row_estmst[0]['subTotal'];?>" name="txtSubTotal" id="txtSubTotal" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtVat">Vat 12%</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=$row_estmst[0]['vat'];?>" name="txtVat" id="txtVat" type="text" onBlur="return ComputeTotal();" readonly placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['vat'],2);?>" name="txtVat" id="txtVat" type="text" onBlur="return ComputeTotal();" readonly placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtTotalAmount">Total Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=$row_estmst[0]['totalAmount'];?>" name="txtTotalAmount" id="txtTotalAmount" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -167,10 +194,11 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<input type="submit" class="btn btn-primary" value="Save changes" />
-					<a href="controlno_add.php" class="btn">Cancel</a>
+					<input type="submit" class="btn btn-primary" value="Update changes" />
+					<a href="estimates.php" class="btn">Cancel</a>
 				</div>
-				<input type="hidden" name="estimateAdd" id="estimateAdd" value="1" />
+				<input type="hidden" name="estimateUpdate" id="estimateUpdate" value="1" />
+				<input type="hidden" name="estMstId" id="estMstId" value="<?=$row_estmst[0]['id'];?>" />
 			 </form>
 		</div>
 	</div>

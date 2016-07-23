@@ -7,6 +7,7 @@
 		$isReports = $_POST['txtIsReports'];
 		$link = $_POST['txtMenuLink'];
 		$icon = $_POST['txtMenuIcon'];
+		$sortNo = $_POST['txtSortNo'];
 
 		// GET NEW CONTROL NO
 		$newNum = getNewCtrlNo('MENU');
@@ -20,8 +21,8 @@
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
 		$menu->setTable("menumaster");
-		$menu->setField("menuCode,description,link,icon,isMaintenance,isTransactions,isReports,createdDate,createdBy");
-		$menu->setValues("'$newNum','$description','$link','$icon','$isMaintenance','$isTransactions','$isReports','$today','$userid'");
+		$menu->setField("menuCode,description,link,icon,isMaintenance,isTransactions,isReports,sortNo,createdDate,createdBy");
+		$menu->setValues("'$newNum','$description','$link','$icon','$isMaintenance','$isTransactions','$isReports','$sortNo','$today','$userid'");
 		$menu->doQuery("save");
 
 		// GET ADMIN USER
@@ -71,6 +72,7 @@
 		$link = $_POST['txtMenuLink'];
 		$icon = $_POST['txtMenuIcon'];
 		$status = $_POST['txtStatus'];
+		$sortNo = $_POST['txtSortNo'];
 
 		// OPEN DB
 		$csdb = new DBConfig();
@@ -81,7 +83,7 @@
 		$menu->setSQLType($csdb->getSQLType());
 		$menu->setInstance($csdb->getInstance());
 		$menu->setTable("menumaster");
-		$menu->setValues("description = '$description', link = '$link', icon = '$icon', isMaintenance = '$isMaintenance', isTransactions = '$isTransactions', isReports = '$isReports', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
+		$menu->setValues("description = '$description', link = '$link', icon = '$icon', isMaintenance = '$isMaintenance', isTransactions = '$isTransactions', isReports = '$isReports', sortNo = '$sortNo', modifiedDate = '$today', modifiedBy = '$userid', status = '$status'");
 		$menu->setParam("WHERE id = '$id'");
 		$menu->doQuery("update");
 
