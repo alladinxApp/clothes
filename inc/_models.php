@@ -12,5 +12,6 @@
 	define(USERMODEL, "userModel.php");
 	define(USERMENUMODEL, "usermenuModel.php");
 	define(MENUACCESSMODEL, "menuaccessModel.php");
+	define(ESTIMATESMODEL, "estimatesModel.php");
 	// -- END MODELS --
 ?>

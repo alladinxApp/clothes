@@ -11,5 +11,6 @@
 	define(UOMCONTROLLER, "uomController.php");
 	define(USERCONTROLLER, "userController.php");
 	define(MENUACCESSCONTROLLER, "menuaccessController.php");
+	define(ESTIMATECONTROLLER, "estimateController.php");
 	// -- END CONTROLLERS --
 ?>

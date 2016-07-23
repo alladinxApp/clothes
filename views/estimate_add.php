@@ -7,18 +7,12 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<form class="form-horizontal" method="POST">
+			<form class="form-horizontal" method="POST" enctype="multipart/form-data">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="txtEstimateNo">Estimate No</label>
 						<div class="controls">
 							<input class="input-xlarge" name="txtEstimateNo" id="txtEstimateNo" type="text" placeholder="[SYSTEM GENERATED]" readonly />
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="txtEstimateDate">Estimate Date</label>
-						<div class="controls">
-							<input class="input-xlarge" name="txtEstimateDate" id="txtEstimateDate" type="text" value="<?=date('m/d/Y');?>" readonly />
 						</div>
 					</div>
 					<div class="control-group">
@@ -63,57 +57,33 @@
 							<input class="input-file uniform_on" id="txtAttachment" name="txtAttachment" type="file" />
 						</div>
 					</div> 
-					<!-- <div class="form-actions">
-						<input type="submit" class="btn btn-primary" value="Save changes" />
-						<a href="controlno_add.php" class="btn">Cancel</a>
-					</div> -->
 				</fieldset>
-				<!-- <input type="hidden" name="save" id="save" value="1" /> -->
-				<hr />
-				<div class="control-group">
-					<label class="control-label" for="txtSizes">Sizes</label>
-					<div class="controls">
-						<select name="txtSizes" id="txtSizes">
-					  		<option value="">Sizes</option>
+				
+				<div class="box-header" data-original-title>
+					<h2><i class="halflings-icon shopping-cart"></i><span class="break"></span><b>Add Item</b></h2>
+				</div>
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<td></td>
+						<td><select name="txtSize" id="txtSize" style="width: 150px;">
+					  		<option value="">Size</option>
 					  		<? for($i=0;$i<count($row_sizing);$i++){ ?>
-							<option value="<?=$row_sizing[$i]['sizingCode'];?>"><?=$row_sizing[$i]['description'];?></option>
+							<option value="<?=$row_sizing[$i]['sizingCode']."||".$row_sizing[$i]['description'];?>"><?=$row_sizing[$i]['description'];?></option>
 							<? } ?>
-						</select>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="txtPieces">Pieces</label>
-					<div class="controls">
-						<input class="input-xlarge" name="txtPieces" id="txtPieces" type="text" placeholder="0" />
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="txtColor">Color</label>
-					<div class="controls">
-						<input class="input-xlarge" name="txtColor" id="txtColor" type="text" placeholder="Color here..." />
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="txtMaterials">Materials</label>
-					<div class="controls">
-						<input class="input-xlarge" name="txtMaterials" id="txtMaterials" type="text" placeholder="Materials here..." />
-					</div>
-				</div>
-				<!-- <div class="control-group">
-					<label class="control-label" for="txtMaterials">Materials</label>
-					<div class="controls">
-						<select name="txtMaterials" id="txtMaterials">
-					  		<option value="">Materials</option>
-					  		<? for($i=0;$i<count($row_material);$i++){ ?>
-							<option value="<?=$row_material[$i]['materialCode'];?>"><?=$row_material[$i]['description'];?></option>
+						</select></td>
+						<td><input class="input-small" name="txtPieces" id="txtPieces" type="text" placeholder="0" /></td>
+						<td><input class="input-small" name="txtColor" id="txtColor" type="text" placeholder="Color here..." /></td>
+						<td><select name="txtUOM" id="txtUOM" style="width: 150px;">
+					  		<option value="">UOM</option>
+					  		<? for($i=0;$i<count($row_uom);$i++){ ?>
+							<option value="<?=$row_uom[$i]['UOMCode']."||".$row_uom[$i]['description'];?>"><?=$row_uom[$i]['description'];?></option>
 							<? } ?>
-						</select>
-					</div>
-				</div> -->
-				<div class="form-actions">
-					<input type="button" class="btn btn-primary" value="Add Item" />
-				</div>
-				<hr />
+						</select></td>
+						<td><input class="input-small" name="txtMaterials" id="txtMaterials" type="text" placeholder="Materials here..." /></td>
+						<td><input class="input-small" name="txtSpecification" id="txtSpecification" type="text" placeholder="Specification Here..." /></td>
+						<td><input type="button" class="btn btn-primary" value="Add Item" onClick="AddItem();" /></td>
+					</tr>
+				</table>
 				<div id="divDetails">
 				<table class="table table-bordered table-condensed">
 					<tr>
@@ -121,41 +91,51 @@
 					  <th>SIZES</th>
 					  <th>PCS</th>
 					  <th>COLOR</th>
+					  <th>UOM</th>
 					  <th>MATERIALS</th>
+					  <th>SPEICIFICATION</th>
 					  <th>REMOVE</th>
 					</tr>
 				</table>
-				<input type="hidden" name="txtItemArray" id="txtItemArray" value="" />
-				</div> 
+				</div>
+				
+				<input type="hidden" name="txtItemArray" id="txtItemArr" value="" />
 
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" name="txtAmount" id="txtAmount" type="text" placeholder="0.00" />
+						<input class="input-xlarge" name="txtAmount" id="txtAmount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Discount</label>
 					<div class="controls">
-						<input class="input-xlarge" name="txtDiscount" id="txtDiscount" type="text" placeholder="0.00" />
+						<input class="input-xlarge" name="txtDiscount" id="txtDiscount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="txtVat">Vat</label>
+					<label class="control-label" for="txtDiscount">Sub-Total</label>
 					<div class="controls">
-						<input class="input-xlarge" name="txtVat" id="txtVat" type="text" readonly placeholder="0.00" />
+						<input class="input-xlarge" name="txtSubTotal" id="txtSubTotal" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtVat">Vat 12%</label>
+					<div class="controls">
+						<input class="input-xlarge" name="txtVat" id="txtVat" type="text" onBlur="return ComputeTotal();" readonly placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtTotalAmount">Total Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" name="txtTotalAmount" id="txtTotalAmount" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" name="txtTotalAmount" id="txtTotalAmount" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="form-actions">
 					<input type="submit" class="btn btn-primary" value="Save changes" />
 					<a href="controlno_add.php" class="btn">Cancel</a>
 				</div>
+				<input type="hidden" name="estimateAdd" id="estimateAdd" value="1" />
 			 </form>
 		</div>
 	</div>

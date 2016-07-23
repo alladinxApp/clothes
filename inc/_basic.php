@@ -8,7 +8,7 @@
 	define(VIEW_PATH, "views/");
 	define(CONTROLLER_PATH, "controller/");
 	define(FILES_PATH, "files/");
-	// define(USERPICS, FILES_PATH . "userpics/");
+	define(ESTIMATEATTACHMENTS, FILES_PATH . "estimates/");
 	// define(COMPANYPICS, FILES_PATH . "companypics/");
 	// define(EQUIPMENTPICS, FILES_PATH . "equipmentpics/");
 	// define(COMPANYLOGOS, COMPANYPICS . "logo/");
