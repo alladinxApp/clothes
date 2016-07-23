@@ -41,7 +41,7 @@
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['jobTypeDesc'];?></td>
 					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_estimates[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
-						<a class="btn btn-info" href="estimate_edit.php?edit=1&id=<?=$row_estimates[$i]['id'];?>" title="Edit <?=$row_estimates[$i]['quoteReferenceNo'];?>">
+						<a class="btn btn-info" href="estimate_edit.php?edit=1&id=<?=$row_estimates[$i]['quoteReferenceNo'];?>" title="Edit <?=$row_estimates[$i]['quoteReferenceNo'];?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
 						<!-- <a class="btn btn-danger" href="#" onClick="deleteDepartment(<?=$row_estimates[$i]['id'];?>);" title="Delete <?=$row_department[$i]['description'];?>">

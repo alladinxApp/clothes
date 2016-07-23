@@ -1,6 +1,184 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header">
+			<h2><i class="halflings-icon picture"></i><span class="break"></span>Glyphicons PRO - Halflings (SVG, PNG, Font)</h2>
+			<div class="box-icon">
+				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+				<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+				<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+			</div>
+		</div>
+		<div class="box-content">
+			<section id="icons1">
+
+			  <div class="row-fluid bs-icons">
+				<div class="span3">
+				  <ul class="the-icons">
+					<li><i class="halflings-icon glass"></i> halflings-icon glass</li>
+					<li><i class="halflings-icon music"></i> halflings-icon music</li>
+					<li><i class="halflings-icon search"></i> halflings-icon search</li>
+					<li><i class="halflings-icon envelope"></i> halflings-icon envelope</li>
+					<li><i class="halflings-icon heart"></i> halflings-icon heart</li>
+					<li><i class="halflings-icon star"></i> halflings-icon star</li>
+					<li><i class="halflings-icon star-empty"></i> halflings-icon star-empty</li>
+					<li><i class="halflings-icon user"></i> halflings-icon user</li>
+					<li><i class="halflings-icon film"></i> halflings-icon film</li>
+					<li><i class="halflings-icon th-large"></i> halflings-icon th-large</li>
+					<li><i class="halflings-icon th"></i> halflings-icon th</li>
+					<li><i class="halflings-icon th-list"></i> halflings-icon th-list</li>
+					<li><i class="halflings-icon ok"></i> halflings-icon ok</li>
+					<li><i class="halflings-icon remove"></i> halflings-icon remove</li>
+					<li><i class="halflings-icon zoom-in"></i> halflings-icon zoom-in</li>
+					<li><i class="halflings-icon zoom-out"></i> halflings-icon zoom-out</li>
+					<li><i class="halflings-icon off"></i> halflings-icon off</li>
+					<li><i class="halflings-icon signal"></i> halflings-icon signal</li>
+					<li><i class="halflings-icon cog"></i> halflings-icon cog</li>
+					<li><i class="halflings-icon trash"></i> halflings-icon trash</li>
+					<li><i class="halflings-icon home"></i> halflings-icon home</li>
+					<li><i class="halflings-icon file"></i> halflings-icon file</li>
+					<li><i class="halflings-icon time"></i> halflings-icon time</li>
+					<li><i class="halflings-icon road"></i> halflings-icon road</li>
+					<li><i class="halflings-icon download-alt"></i> halflings-icon download-alt</li>
+					<li><i class="halflings-icon download"></i> halflings-icon download</li>
+					<li><i class="halflings-icon upload"></i> halflings-icon upload</li>
+					<li><i class="halflings-icon inbox"></i> halflings-icon inbox</li>
+					<li><i class="halflings-icon play-circle"></i> halflings-icon play-circle</li>
+					<li><i class="halflings-icon repeat"></i> halflings-icon repeat</li>
+					<li><i class="halflings-icon refresh"></i> halflings-icon refresh</li>
+					<li><i class="halflings-icon list-alt"></i> halflings-icon list-alt</li>
+					<li><i class="halflings-icon lock"></i> halflings-icon lock</li>
+					<li><i class="halflings-icon flag"></i> halflings-icon flag</li>
+					<li><i class="halflings-icon headphones"></i> halflings-icon headphones</li>
+				  </ul>
+				</div>
+				<div class="span3">
+				  <ul class="the-icons">
+					<li><i class="halflings-icon volume-off"></i> halflings-icon volume-off</li>
+					<li><i class="halflings-icon volume-down"></i> halflings-icon volume-down</li>
+					<li><i class="halflings-icon volume-up"></i> halflings-icon volume-up</li>
+					<li><i class="halflings-icon qrcode"></i> halflings-icon qrcode</li>
+					<li><i class="halflings-icon barcode"></i> halflings-icon barcode</li>
+					<li><i class="halflings-icon tag"></i> halflings-icon tag</li>
+					<li><i class="halflings-icon tags"></i> halflings-icon tags</li>
+					<li><i class="halflings-icon book"></i> halflings-icon book</li>
+					<li><i class="halflings-icon bookmark"></i> halflings-icon bookmark</li>
+					<li><i class="halflings-icon print"></i> halflings-icon print</li>
+					<li><i class="halflings-icon camera"></i> halflings-icon camera</li>
+					<li><i class="halflings-icon font"></i> halflings-icon font</li>
+					<li><i class="halflings-icon bold"></i> halflings-icon bold</li>
+					<li><i class="halflings-icon italic"></i> halflings-icon italic</li>
+					<li><i class="halflings-icon text-height"></i> halflings-icon text-height</li>
+					<li><i class="halflings-icon text-width"></i> halflings-icon text-width</li>
+					<li><i class="halflings-icon align-left"></i> halflings-icon align-left</li>
+					<li><i class="halflings-icon align-center"></i> halflings-icon align-center</li>
+					<li><i class="halflings-icon align-right"></i> halflings-icon align-right</li>
+					<li><i class="halflings-icon align-justify"></i> halflings-icon align-justify</li>
+					<li><i class="halflings-icon list"></i> halflings-icon list</li>
+					<li><i class="halflings-icon indent-left"></i> halflings-icon indent-left</li>
+					<li><i class="halflings-icon indent-right"></i> halflings-icon indent-right</li>
+					<li><i class="halflings-icon facetime-video"></i> halflings-icon facetime-video</li>
+					<li><i class="halflings-icon picture"></i> halflings-icon picture</li>
+					<li><i class="halflings-icon pencil"></i> halflings-icon pencil</li>
+					<li><i class="halflings-icon map-marker"></i> halflings-icon map-marker</li>
+					<li><i class="halflings-icon adjust"></i> halflings-icon adjust</li>
+					<li><i class="halflings-icon tint"></i> halflings-icon tint</li>
+					<li><i class="halflings-icon edit"></i> halflings-icon edit</li>
+					<li><i class="halflings-icon share"></i> halflings-icon share</li>
+					<li><i class="halflings-icon check"></i> halflings-icon check</li>
+					<li><i class="halflings-icon move"></i> halflings-icon move</li>
+					<li><i class="halflings-icon step-backward"></i> halflings-icon step-backward</li>
+					<li><i class="halflings-icon fast-backward"></i> halflings-icon fast-backward</li>
+				  </ul>
+				</div>
+				<div class="span3">
+				  <ul class="the-icons">
+					<li><i class="halflings-icon backward"></i> halflings-icon backward</li>
+					<li><i class="halflings-icon play"></i> halflings-icon play</li>
+					<li><i class="halflings-icon pause"></i> halflings-icon pause</li>
+					<li><i class="halflings-icon stop"></i> halflings-icon stop</li>
+					<li><i class="halflings-icon forward"></i> halflings-icon forward</li>
+					<li><i class="halflings-icon fast-forward"></i> halflings-icon fast-forward</li>
+					<li><i class="halflings-icon step-forward"></i> halflings-icon step-forward</li>
+					<li><i class="halflings-icon eject"></i> halflings-icon eject</li>
+					<li><i class="halflings-icon chevron-left"></i> halflings-icon chevron-left</li>
+					<li><i class="halflings-icon chevron-right"></i> halflings-icon chevron-right</li>
+					<li><i class="halflings-icon plus-sign"></i> halflings-icon plus-sign</li>
+					<li><i class="halflings-icon minus-sign"></i> halflings-icon minus-sign</li>
+					<li><i class="halflings-icon remove-sign"></i> halflings-icon remove-sign</li>
+					<li><i class="halflings-icon ok-sign"></i> halflings-icon ok-sign</li>
+					<li><i class="halflings-icon question-sign"></i> halflings-icon question-sign</li>
+					<li><i class="halflings-icon info-sign"></i> halflings-icon info-sign</li>
+					<li><i class="halflings-icon screenshot"></i> halflings-icon screenshot</li>
+					<li><i class="halflings-icon remove-circle"></i> halflings-icon remove-circle</li>
+					<li><i class="halflings-icon ok-circle"></i> halflings-icon ok-circle</li>
+					<li><i class="halflings-icon ban-circle"></i> halflings-icon ban-circle</li>
+					<li><i class="halflings-icon arrow-left"></i> halflings-icon arrow-left</li>
+					<li><i class="halflings-icon arrow-right"></i> halflings-icon arrow-right</li>
+					<li><i class="halflings-icon arrow-up"></i> halflings-icon arrow-up</li>
+					<li><i class="halflings-icon arrow-down"></i> halflings-icon arrow-down</li>
+					<li><i class="halflings-icon share-alt"></i> halflings-icon share-alt</li>
+					<li><i class="halflings-icon resize-full"></i> halflings-icon resize-full</li>
+					<li><i class="halflings-icon resize-small"></i> halflings-icon resize-small</li>
+					<li><i class="halflings-icon plus"></i> halflings-icon plus</li>
+					<li><i class="halflings-icon minus"></i> halflings-icon minus</li>
+					<li><i class="halflings-icon asterisk"></i> halflings-icon asterisk</li>
+					<li><i class="halflings-icon exclamation-sign"></i> halflings-icon exclamation-sign</li>
+					<li><i class="halflings-icon gift"></i> halflings-icon gift</li>
+					<li><i class="halflings-icon leaf"></i> halflings-icon leaf</li>
+					<li><i class="halflings-icon fire"></i> halflings-icon fire</li>
+					<li><i class="halflings-icon eye-open"></i> halflings-icon eye-open</li>
+				  </ul>
+				</div>
+				<div class="span3">
+				  <ul class="the-icons">
+					<li><i class="halflings-icon eye-close"></i> halflings-icon eye-close</li>
+					<li><i class="halflings-icon warning-sign"></i> halflings-icon warning-sign</li>
+					<li><i class="halflings-icon plane"></i> halflings-icon plane</li>
+					<li><i class="halflings-icon calendar"></i> halflings-icon calendar</li>
+					<li><i class="halflings-icon random"></i> halflings-icon random</li>
+					<li><i class="halflings-icon comment"></i> halflings-icon comment</li>
+					<li><i class="halflings-icon magnet"></i> halflings-icon magnet</li>
+					<li><i class="halflings-icon chevron-up"></i> halflings-icon chevron-up</li>
+					<li><i class="halflings-icon chevron-down"></i> halflings-icon chevron-down</li>
+					<li><i class="halflings-icon retweet"></i> halflings-icon retweet</li>
+					<li><i class="halflings-icon shopping-cart"></i> halflings-icon shopping-cart</li>
+					<li><i class="halflings-icon folder-close"></i> halflings-icon folder-close</li>
+					<li><i class="halflings-icon folder-open"></i> halflings-icon folder-open</li>
+					<li><i class="halflings-icon resize-vertical"></i> halflings-icon resize-vertical</li>
+					<li><i class="halflings-icon resize-horizontal"></i> halflings-icon resize-horizontal</li>
+					<li><i class="halflings-icon hdd"></i> halflings-icon hdd</li>
+					<li><i class="halflings-icon bullhorn"></i> halflings-icon bullhorn</li>
+					<li><i class="halflings-icon bell"></i> halflings-icon bell</li>
+					<li><i class="halflings-icon certificate"></i> halflings-icon certificate</li>
+					<li><i class="halflings-icon thumbs-up"></i> halflings-icon thumbs-up</li>
+					<li><i class="halflings-icon thumbs-down"></i> halflings-icon thumbs-down</li>
+					<li><i class="halflings-icon hand-right"></i> halflings-icon hand-right</li>
+					<li><i class="halflings-icon hand-left"></i> halflings-icon hand-left</li>
+					<li><i class="halflings-icon hand-up"></i> halflings-icon hand-up</li>
+					<li><i class="halflings-icon hand-down"></i> halflings-icon hand-down</li>
+					<li><i class="halflings-icon circle-arrow-right"></i> halflings-icon circle-arrow-right</li>
+					<li><i class="halflings-icon circle-arrow-left"></i> halflings-icon circle-arrow-left</li>
+					<li><i class="halflings-icon circle-arrow-up"></i> halflings-icon circle-arrow-up</li>
+					<li><i class="halflings-icon circle-arrow-down"></i> halflings-icon circle-arrow-down</li>
+					<li><i class="halflings-icon globe"></i> halflings-icon globe</li>
+					<li><i class="halflings-icon wrench"></i> halflings-icon wrench</li>
+					<li><i class="halflings-icon tasks"></i> halflings-icon tasks</li>
+					<li><i class="halflings-icon filter"></i> halflings-icon filter</li>
+					<li><i class="halflings-icon briefcase"></i> halflings-icon briefcase</li>
+					<li><i class="halflings-icon fullscreen"></i> halflings-icon fullscreen</li>
+				  </ul>
+				</div>
+			   
+			</div>
+
+		</div>
+	</div><!--/span-->
+
+</div><!--/row-->
+<hr />
+<div class="row-fluid">
+	<div class="box span12">
+		<div class="box-header">
 			<h2><i class="halflings-icon picture"></i><span class="break"></span>Glyphicons PRO (SVG, PNG, Font)</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>

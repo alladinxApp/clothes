@@ -19,6 +19,16 @@
 
 		return date("YmdHi") . $string;
 	}
+	function generateRandomString($length) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$string = '';    
+
+		for ($p = 0; $p < $length; $p++) {
+			$string .= $characters[mt_rand(0, strlen($characters))];
+		}
+
+		return $string;
+	}
 	function exportRowData($data,$headertype,$filename){
 		header("Content-type: application/octet-stream");
 		
