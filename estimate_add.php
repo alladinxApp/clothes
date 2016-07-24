@@ -47,6 +47,11 @@
 	<!-- end: Favicon -->
 		
 </head>
+<style type="text/css">
+</style>
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
 	function generateRandomString(length){
 		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -91,7 +96,6 @@
 			var id = generateRandomString(6);
 			if(nItemArr[i] != ""){
 				var item = nItemArr[i].split("||");
-				console.log(nItemArr[i]);
 				tbl += '<tr>';
 				  tbl += '<td align="center">' + cnt + '</td>';
 				  tbl += '<td>' + item[2] + '</td>';
@@ -188,15 +192,93 @@
 	function RushEstimate(){
 		if(document.estimateForm.chkIsRush.checked){
 			document.estimateForm.txtLeadTime.readOnly = false;
-			document.estimateForm.txtDueDate.disabled = false;
+			document.estimateForm.txtDueDateDesc.disabled = false;
 		}else{
 			$("#txtLeadTime").val("");
 			$("#txtDueDate").val("");
 			$("#txtJobType").val("");
 			document.estimateForm.txtLeadTime.readOnly = true;
-			document.estimateForm.txtDueDate.disabled = true;
+			document.estimateForm.txtDueDateDesc.disabled = true;
 		}
 	}
+	function SelectCustomer(id,name,addr,telno){
+		$("#txtCustomer").val(id);
+		$("#txtCustomerName").val(name);
+		$("#txtAddress").val(addr);
+		$("#txtTelephoneNo").val(telno);
+		$( "#divCustomersList" ).dialog( "close" );
+	}
+	function SelectJobType(jtcode,jtdesc,leadtime){
+		$("#txtJobType").val(jtcode);
+		$("#txtJobTypeDescription").val(jtdesc);
+		$("#txtLeadTime").val(leadtime);
+		var duedate = addDays(Date(),leadtime);
+		$("#txtDueDateDesc").val(duedate);
+		$("#txtDueDate").val(duedate);
+		$( "#divJobTypeList" ).dialog( "close" );
+	}
+	function getDueDate(duedate){
+		$("#txtDueDate").val(duedate);
+	}
+	function addDays(date,days) {
+		var result = new Date(date);
+		var nResult = result.addDays(days);
+		var dd = nResult.getDate();
+		var mm = nResult.getMonth() + 1;
+		var y = nResult.getFullYear();
+	    return mm + '/' + dd + '/' + y;
+	}
+	$(document).ready(function() {
+		Date.prototype.addDays = function (num) {
+		    var value = this.valueOf();
+		    value += 86400000 * num;
+		    return new Date(value);
+		}
+
+		$("#divCustomersList").hide();
+
+		$("#txtCustomerName").click(function(){
+			$( "#divCustomersList" ).dialog( "open" ); //call approver list
+		});
+
+		$("#txtJobTypeDescription").click(function(){
+			$( "#divJobTypeList" ).dialog( "open" ); //call approver list
+		});
+
+		//POP MODAL FOR CUSTOMER LIST
+		$( "#divCustomersList" ).dialog({
+			autoOpen: false,
+			height: 600,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}		
+		});
+
+		//POP MODAL FOR JOB TYPE LIST
+		$( "#divJobTypeList" ).dialog({
+			autoOpen: false,
+			height: 600,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}
+		});
+	});
 </script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
@@ -217,33 +299,5 @@
 	
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
-
-	<script type="text/javascript">
-		// function getCustomerInfo(){
-		// 	var val = $("#txtCustomer").val();
-		// 	var strURL = "inc-ajax/divAddEstimateCustInfo.php?id="+val;
-
-		// 	$.ajax({	
-		// 		url: strURL,
-		// 		type: 'GET',
-		// 		datatype: 'json',
-		// 		contentType: 'application/json; charset=utf-8',
-				
-		// 		success: function (data) {
-		// 			console.log(data);
-		// 			// $("#divMLDates").replaceWith(data);
-		// 			// $.unblockUI();
-		// 		},	
-						
-		// 		error: function (request, status, err) {
-		// 			alert(status);
-		// 			alert(err);
-		// 		}
-		// 	});	
-		// }
-		jQuery(document).ready(function() {
-			
-		});
-	</script>
 </body>
 </html>

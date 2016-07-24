@@ -24,12 +24,13 @@
 		$items = explode("::",$_POST['txtItemArray']);
 		
 		$isRush = 0;
+		$duedate = dateFormat($_POST['txtDueDate'],"Y-m-d");
 		if(!empty($_POST['chkIsRush'])){
 			$isRush = 1;
+			$duedate = dateFormat($_POST['txtDueDateDesc'],"Y-m-d");
 		}
 		$leadtime = $_POST['txtLeadTime'];
-		$duedate = dateFormat($_POST['txtDueDate'],"Y-m-d");
-
+		
 		// UPDATE CONTROL NO
 		UpdateCtrlNo("ESTIMATE");
 		

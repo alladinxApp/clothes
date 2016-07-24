@@ -6,7 +6,7 @@
 				<a href="estimates.php"><i class="halflings-icon backward"></i> Back to List</a>
 			</div>
 		</div>
-		<div class="box-content">
+		<div class="body-content" style="padding: 20px;">
 			<form class="form-horizontal" method="POST" enctype="multipart/form-data" name="estimateForm">
 				<fieldset>
 					<div class="control-group">
@@ -18,12 +18,14 @@
 					<div class="control-group">
 						<label class="control-label" for="txtCustomer">Customer</label>
 						<div class="controls">
-							<select name="txtCustomer" id="txtCustomer">
-					  		<option value="">Select Customer</option>
-					  		<? for($i=0;$i<count($row_customer);$i++){ ?>
-							<option value="<?=$row_customer[$i]['customerCode'];?>"><?=$row_customer[$i]['customerName'];?></option>
-							<? } ?>
-						</select> <input type="button" class="btn btn-info" value=" New " onClick="" />
+							<!-- <select name="txtCustomer" id="txtCustomer">
+						  		<option value="">Select Customer</option>
+						  		<? for($i=0;$i<count($row_customer);$i++){ ?>
+								<option value="<?=$row_customer[$i]['customerCode'];?>"><?=$row_customer[$i]['customerName'];?></option>
+								<? } ?>
+							</select> -->
+							<input class="input-xlarge" name="txtCustomerName" readonly id="txtCustomerName" type="text" placeholder="Click Here..." />
+							<input type="button" class="btn btn-info" name="btnNewCustomer" id="btnNewCustomer" value=" New " onClick="" />
 						</div>
 					</div>
 					<span id="divCustInfo">
@@ -43,12 +45,13 @@
 					<div class="control-group">
 						<label class="control-label" for="txtJobType">Job Type</label>
 						<div class="controls">
-							<select name="txtJobType" id="txtJobType">
-					  		<option value="">Select Job Type</option>
-					  		<? for($i=0;$i<count($row_jobtype);$i++){ ?>
-							<option value="<?=$row_jobtype[$i]['jobTypeCode'];?>"><?=$row_jobtype[$i]['description'];?></option>
-							<? } ?>
-						</select>
+							<!-- <select name="txtJobType" id="txtJobType">
+						  		<option value="">Select Job Type</option>
+						  		<? for($i=0;$i<count($row_jobtype);$i++){ ?>
+								<option value="<?=$row_jobtype[$i]['jobTypeCode'];?>"><?=$row_jobtype[$i]['description'];?></option>
+								<? } ?>
+							</select> -->
+						<input class="input-xlarge" name="txtJobTypeDescription" readonly id="txtJobTypeDescription" type="text" placeholder="Click Here..." />
 						</div>
 					</div>
 					<div class="control-group">
@@ -64,9 +67,9 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="txtDueDate">Due Date</label>
+						<label class="control-label" for="txtDueDateDesc">Due Date</label>
 						<div class="controls">
-							<input class="input-xlarge datepicker" name="txtDueDate" disabled id="txtDueDate" type="text" placeholder="MM/DD/YYYY" />
+							<input class="input-xlarge datepicker" name="txtDueDateDesc" disabled id="txtDueDateDesc" type="text" placeholder="MM/DD/YYYY" />
 						</div>
 					</div>
 					<div class="control-group">
@@ -152,7 +155,75 @@
 					<a href="controlno_add.php" class="btn">Cancel</a>
 				</div>
 				<input type="hidden" name="estimateAdd" id="estimateAdd" value="1" />
+				<input type="hidden" name="txtCustomer" id="txtCustomer" />
+				<input type="hidden" name="txtJobType" id="txtJobType" />
+				<input type="hidden" name="txtDueDate" id="txtDueDate" />
 			 </form>
 		</div>
 	</div>
 </div>
+
+<!-- MODAL BOX FOR CUSTOMER LIST -->
+<div id="divCustomersList">
+	<table class="table table-bordered table-condensed">
+		<tr>
+			<th>#</th>
+			<th>Customer Code</th>
+			<th>Customer Name</th>
+			<th>Address</th>
+			<th>Contact No</th>
+			<th>Birth Date</th>
+			<th>TIN</th>
+			<th>is VAT</th>
+		</tr>
+		<? 
+			$cnt = 1; 
+			for($i=0;$i<count($row_customer);$i++){ 
+				$customerCode = $row_customer[$i]['customerCode'];
+				$customerName = $row_customer[$i]['customerName'];
+				$address = $row_customer[$i]['address'];
+				$telephoneNo = $row_customer[$i]['telephoneNo'];
+		?>
+		<tr style="cursor: pointer;" onclick="SelectCustomer('<?=$customerCode;?>','<?=$customerName;?>','<?=$address;?>','<?=$telephoneNo;?>');">
+			<td><?=$cnt;?></td>
+			<td><?=$row_customer[$i]['customerCode'];?></td>
+			<td><?=$row_customer[$i]['customerName'];?></td>
+			<td><?=$row_customer[$i]['address'];?></td>
+			<td><?=$row_customer[$i]['mobileNo'] . ' / ' . $row_customer[$i]['telephoneNo'];?></td>
+			<td><?=$row_customer[$i]['birthDate'];?></td>
+			<td><?=$row_customer[$i]['TIN'];?></td>
+			<td><?=$row_customer[$i]['isVat'];?></td>
+		</tr>
+		<? $cnt++; } ?>
+	</table>
+</div>
+<!-- END MODAL BOX FOR CUSTOMER LIST -->
+
+<!-- MODAL BOX FOR JOB TYPE LIST -->
+<div id="divJobTypeList">
+	<table class="table table-bordered table-condensed">
+		<tr>
+			<th>#</th>
+			<th>Job Type Code</th>
+			<th>Description</th>
+			<th>Lead Time</th>
+			<th>Notification Day</th>
+		</tr>
+		<? 
+			$cnt = 1; 
+			for($i=0;$i<count($row_jobtype);$i++){
+				$jobtypecode = $row_jobtype[$i]['jobTypeCode'];
+				$description = $row_jobtype[$i]['description'];
+				$leadtime = $row_jobtype[$i]['leadTime'];
+		?>
+		<tr style="cursor: pointer;" onclick="SelectJobType('<?=$jobtypecode;?>','<?=$description;?>',<?=$leadtime;?>);">
+			<td><?=$cnt;?></td>
+			<td><?=$jobtypecode;?></td>
+			<td><?=$description;?></td>
+			<td align="center"><?=$leadtime;?></td>
+			<td align="center"><?=$row_jobtype[$i]['notificationDay'];?></td>
+		</tr>
+		<? $cnt++; } ?>
+	</table>
+</div>
+<!-- END MODAL BOX FOR JOB TYPE LIST -->
