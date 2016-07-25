@@ -15,6 +15,7 @@
 							<input class="input-xlarge" name="txtEstimateNo" id="txtEstimateNo" type="text" placeholder="[SYSTEM GENERATED]" readonly />
 						</div>
 					</div>
+					<div id="divCustInfo">
 					<div class="control-group">
 						<label class="control-label" for="txtCustomer">Customer</label>
 						<div class="controls">
@@ -25,10 +26,9 @@
 								<? } ?>
 							</select> -->
 							<input class="input-xlarge" name="txtCustomerName" readonly id="txtCustomerName" type="text" placeholder="Click Here..." />
-							<input type="button" class="btn btn-info" name="btnNewCustomer" id="btnNewCustomer" value=" New " onClick="" />
+							<input type="button" class="btn btn-info" name="btnNewCustomer" id="btnNewCustomer" value=" New " />
 						</div>
 					</div>
-					<span id="divCustInfo">
 					<div class="control-group">
 						<label class="control-label" for="txtAddress">Address</label>
 						<div class="controls">
@@ -41,7 +41,7 @@
 							<input class="input-xlarge" name="txtTelephoneNo" readonly id="txtTelephoneNo" type="text" placeholder="Telephone No Here..." />
 						</div>
 					</div>
-					</span>
+					</div>
 					<div class="control-group">
 						<label class="control-label" for="txtJobType">Job Type</label>
 						<div class="controls">
@@ -165,65 +165,153 @@
 
 <!-- MODAL BOX FOR CUSTOMER LIST -->
 <div id="divCustomersList">
-	<table class="table table-bordered table-condensed">
-		<tr>
-			<th>#</th>
-			<th>Customer Code</th>
-			<th>Customer Name</th>
-			<th>Address</th>
-			<th>Contact No</th>
-			<th>Birth Date</th>
-			<th>TIN</th>
-			<th>is VAT</th>
-		</tr>
-		<? 
-			$cnt = 1; 
-			for($i=0;$i<count($row_customer);$i++){ 
-				$customerCode = $row_customer[$i]['customerCode'];
-				$customerName = $row_customer[$i]['customerName'];
-				$address = $row_customer[$i]['address'];
-				$telephoneNo = $row_customer[$i]['telephoneNo'];
-		?>
-		<tr style="cursor: pointer;" onclick="SelectCustomer('<?=$customerCode;?>','<?=$customerName;?>','<?=$address;?>','<?=$telephoneNo;?>');">
-			<td><?=$cnt;?></td>
-			<td><?=$row_customer[$i]['customerCode'];?></td>
-			<td><?=$row_customer[$i]['customerName'];?></td>
-			<td><?=$row_customer[$i]['address'];?></td>
-			<td><?=$row_customer[$i]['mobileNo'] . ' / ' . $row_customer[$i]['telephoneNo'];?></td>
-			<td><?=$row_customer[$i]['birthDate'];?></td>
-			<td><?=$row_customer[$i]['TIN'];?></td>
-			<td><?=$row_customer[$i]['isVat'];?></td>
-		</tr>
-		<? $cnt++; } ?>
-	</table>
+	<div class="box-content">
+		<table class="table table-bordered table-condensed">
+			<tr>
+				<th>#</th>
+				<th>Customer Code</th>
+				<th>Customer Name</th>
+				<th>Address</th>
+				<th>Contact No</th>
+				<th>Birth Date</th>
+				<th>TIN</th>
+				<th>is VAT</th>
+			</tr>
+			<? 
+				$cnt = 1; 
+				for($i=0;$i<count($row_customer);$i++){ 
+					$customerCode = $row_customer[$i]['customerCode'];
+					$customerName = $row_customer[$i]['customerName'];
+					$address = $row_customer[$i]['address'];
+					$telephoneNo = $row_customer[$i]['telephoneNo'];
+			?>
+			<tr style="cursor: pointer;" onclick="SelectCustomer('<?=$customerCode;?>','<?=$customerName;?>','<?=$address;?>','<?=$telephoneNo;?>');">
+				<td><?=$cnt;?></td>
+				<td><?=$row_customer[$i]['customerCode'];?></td>
+				<td><?=$row_customer[$i]['customerName'];?></td>
+				<td><?=$row_customer[$i]['address'];?></td>
+				<td><?=$row_customer[$i]['mobileNo'] . ' / ' . $row_customer[$i]['telephoneNo'];?></td>
+				<td><?=$row_customer[$i]['birthDate'];?></td>
+				<td><?=$row_customer[$i]['TIN'];?></td>
+				<td><?=$row_customer[$i]['isVat'];?></td>
+			</tr>
+			<? $cnt++; } ?>
+		</table>
+	</div>
 </div>
 <!-- END MODAL BOX FOR CUSTOMER LIST -->
 
 <!-- MODAL BOX FOR JOB TYPE LIST -->
 <div id="divJobTypeList">
-	<table class="table table-bordered table-condensed">
-		<tr>
-			<th>#</th>
-			<th>Job Type Code</th>
-			<th>Description</th>
-			<th>Lead Time</th>
-			<th>Notification Day</th>
-		</tr>
-		<? 
-			$cnt = 1; 
-			for($i=0;$i<count($row_jobtype);$i++){
-				$jobtypecode = $row_jobtype[$i]['jobTypeCode'];
-				$description = $row_jobtype[$i]['description'];
-				$leadtime = $row_jobtype[$i]['leadTime'];
-		?>
-		<tr style="cursor: pointer;" onclick="SelectJobType('<?=$jobtypecode;?>','<?=$description;?>',<?=$leadtime;?>);">
-			<td><?=$cnt;?></td>
-			<td><?=$jobtypecode;?></td>
-			<td><?=$description;?></td>
-			<td align="center"><?=$leadtime;?></td>
-			<td align="center"><?=$row_jobtype[$i]['notificationDay'];?></td>
-		</tr>
-		<? $cnt++; } ?>
-	</table>
+	<div class="box-content">
+		<table class="table table-bordered table-condensed">
+			<tr>
+				<th>#</th>
+				<th>Job Type Code</th>
+				<th>Description</th>
+				<th>Lead Time</th>
+				<th>Notification Day</th>
+			</tr>
+			<? 
+				$cnt = 1; 
+				for($i=0;$i<count($row_jobtype);$i++){
+					$jobtypecode = $row_jobtype[$i]['jobTypeCode'];
+					$description = $row_jobtype[$i]['description'];
+					$leadtime = $row_jobtype[$i]['leadTime'];
+			?>
+			<tr style="cursor: pointer;" onclick="SelectJobType('<?=$jobtypecode;?>','<?=$description;?>',<?=$leadtime;?>);">
+				<td><?=$cnt;?></td>
+				<td><?=$jobtypecode;?></td>
+				<td><?=$description;?></td>
+				<td align="center"><?=$leadtime;?></td>
+				<td align="center"><?=$row_jobtype[$i]['notificationDay'];?></td>
+			</tr>
+			<? $cnt++; } ?>
+		</table>
+	</div>
 </div>
 <!-- END MODAL BOX FOR JOB TYPE LIST -->
+
+<!-- MODAL BOX FOR NEW CUSTOMER -->
+<div id="divNewCustomer">
+	<div class="row-fluid">		
+		<div class="box span12">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="txtCustomerCode">Customer Code</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustomerCode" id="txtCustomerCode" disabled type="text" value="[SYSTEM GENERATED]" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustName">Name</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustName" id="txtCustName" type="text" placeholder="Customer Name Here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustBirthDate">Birth Date</label>
+							<div class="controls">
+								<input class="input-xlarge datepicker" name="txtCustBirthDate" id="txtCustBirthDate" type="text" placeholder="MM/DD/YYYY" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustAddress">Address</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustAddress" id="txtCustAddress" type="text" placeholder="Address Here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustMobileNo">Mobile No</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustMobileNo" id="txtCustMobileNo" type="text" placeholder="Mobile No Here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustTelephoneNo">Telephone No</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustTelephoneNo" id="txtCustTelephoneNo" type="text" placeholder="Telephone No Here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustEmailAddress">Email Address</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustEmailAddress" id="txtCustEmailAddress" type="text" placeholder="Email Address Here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustFax">Fax</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustFax" id="txtCustFax" type="text" placeholder="Fax Here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustTIN">TIN</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtCustTIN" id="txtCustTIN" type="text" placeholder="TIN Here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtCustIsVAT">VAT</label>
+							<div class="controls">
+								<select id="txtCustIsVAT" name="txtCustIsVAT">
+									<option value="0">NO</option>
+									<option value="1">YES</option>
+								</select>
+							</div>
+						</div>
+						<!-- <div class="form-actions">
+							<input type="submit" class="btn btn-primary" value="Save changes" />
+							<a href="customer_add.php" class="btn">Cancel</a>
+						</div> -->
+					</fieldset>
+					<!-- <input type="hidden" name="save" id="save" value="1" /> -->
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- END MODAL BOX FOR NEW CUSTOMER -->

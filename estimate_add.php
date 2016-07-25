@@ -228,6 +228,9 @@
 		var y = nResult.getFullYear();
 	    return mm + '/' + dd + '/' + y;
 	}
+	// function NewCustomer(){
+	// 	$( "#divNewCustomer" ).dialog( "open" ); // CALL CUSTOMER FORM
+	// }
 	$(document).ready(function() {
 		Date.prototype.addDays = function (num) {
 		    var value = this.valueOf();
@@ -235,14 +238,16 @@
 		    return new Date(value);
 		}
 
-		$("#divCustomersList").hide();
-
 		$("#txtCustomerName").click(function(){
-			$( "#divCustomersList" ).dialog( "open" ); //call approver list
+			$( "#divCustomersList" ).dialog( "open" ); // CALL CUSTOMER LIST
 		});
 
 		$("#txtJobTypeDescription").click(function(){
-			$( "#divJobTypeList" ).dialog( "open" ); //call approver list
+			$( "#divJobTypeList" ).dialog( "open" ); // CALL JOB TYPE LIST
+		});
+
+		$('#btnNewCustomer').on("click", function(e){
+			$( "#divNewCustomer" ).dialog( "open" ); // CALL CUSTOMER FORM
 		});
 
 		//POP MODAL FOR CUSTOMER LIST
@@ -271,6 +276,57 @@
 			cache: false,
 			buttons: {
 				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}
+		});
+
+		//POP MODAL FOR NEW CUSTOMER FORM
+		$( "#divNewCustomer" ).dialog({
+			autoOpen: false,
+			height: 680,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
+				"Save": function() {
+					var name = $("#txtCustName").val();
+					var bdate = $("#txtCustBirthDate").val();
+					var addr = $("#txtCustAddress").val();
+					var mobno = $("#txtCustMobileNo").val();
+					var telno = $("#txtCustTelephoneNo").val();
+					var eadd = $("#txtCustEmailAddress").val();
+					var faxno = $("#txtCustFax").val();
+					var tin = $("#txtCustTIN").val();
+					var vat = $("#txtCustIsVAT").val();
+
+					$.ajax({
+						url: 'inc-ajax/divSaveNewCustomer.php?name='+name+'&bdate='+bdate+'&addr='+addr+'&mobno='+mobno+'&telno='+telno+'&eadd='+eadd+'&faxno='+faxno+'&tin='+tin+'&vat='+vat,
+						type: 'POST',
+						data: null,
+						datatype: 'json',
+						contentType: 'application/json; charset=utf-8',
+						
+						success: function (data) {
+							console.log(data);
+							$("#divCustInfo").replaceWith(data);
+							// $("#txtCustomerName").val($("#txtCustName").val());
+							// $("#txtAddress").val($("#txtCustAddress").val());
+							// $("#txtTelephoneNo").val($("#txtCustTelephoneNo").val());
+						},	
+								
+						error: function (request, status, err) {
+							alert(status);
+							alert(err);
+						}
+					});	
+
+					$( this ).dialog( "close" );
+				},
+				"Cancel": function() {
 					$( this ).dialog( "close" );
 				}
 			},
