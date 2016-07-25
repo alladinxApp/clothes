@@ -1,6 +1,11 @@
 <?
-	require_once("../inc/global.php");
-	require_once("../inc/validateuser.php");
+	require_once("../inc/_basic.php");
+	require_once("../inc/Browser.php");
+	require_once("../inc/Database.php");
+	require_once("../inc/DBConfig.php");
+	require_once("../inc/Table.php");
+	require_once("../inc/MessageAlert.php");
+	require_once("../inc/functions.php");
 
 	$custname = $_GET['name'];
 	$custAddress = $_GET['addr'];
@@ -14,21 +19,24 @@
 	// GET NEW CONTROL NO
 	$newNum = getNewCtrlNo('CUSTOMER');
 
-	// // OPEN DB
-	// $csdb = new DBConfig();
-	// $csdb->setClothesDB();
+	// OPEN DB
+	$csdb = new DBConfig();
+	$csdb->setClothesDB();
 
-	// // INSERT NEW CUSTOMER
-	// $customer = new Table();
-	// $customer->setSQLType($csdb->getSQLType());
-	// $customer->setInstance($csdb->getInstance());
-	// $customer->setTable("customersmaster");
-	// $customer->setField("customerCode,customerName,birthDate,address,emailAddress,mobileNo,telephoneNo,faxNo,TIN,isVat,createdDate,createdBy");
-	// $customer->setValues("'$newNum','$custname','$bdate','$custAddress','$emailAddress','$mobileNo','$telephoneNo','$faxNo','$TIN','$isVat','$today','$userid'");
-	// $customer->doQuery("save");
+	// INSERT NEW CUSTOMER
+	$customer = new Table();
+	$customer->setSQLType($csdb->getSQLType());
+	$customer->setInstance($csdb->getInstance());
+	$customer->setTable("customersmaster");
+	$customer->setField("customerCode,customerName,birthDate,address,emailAddress,mobileNo,telephoneNo,faxNo,TIN,isVat,createdDate,createdBy");
+	$customer->setValues("'$newNum','$custname','$bdate','$custAddress','$emailAddress','$mobileNo','$telephoneNo','$faxNo','$TIN','$isVat','$today','$userid'");
+	$customer->doQuery("save");
 
-	// // CLOSE DB
-	// $csdb->DBClose();
+	// CLOSE DB
+	$csdb->DBClose();
+
+	// UPDATE CONTROL NUMBER
+	UpdateCtrlNo('CUSTOMER');
 ?>
 <div class="control-group">
 	<label class="control-label" for="txtCustomer">Customer</label>
@@ -49,3 +57,4 @@
 		<input class="input-xlarge" value="<?=$telephoneNo;?>" name="txtTelephoneNo" readonly id="txtTelephoneNo" type="text" placeholder="Telephone No Here..." />
 	</div>
 </div>
+<input type="hidden" name="txtCustomer" id="txtCustomer" value="<?=$newNum;?>" />

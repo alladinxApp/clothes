@@ -5,6 +5,9 @@
 			<div class="box-icon">
 				<a href="estimate_add.php"><i class="halflings-icon plus"></i> ADD NEW</a>
 			</div>
+			<div class="box-icon">
+				<a href="estimate_search.php"><i class="halflings-icon search"></i> SEARCH</a>
+			</div>
 		</div>
 
 		<div class="box-content">
@@ -15,6 +18,8 @@
 					<th>Customer</th>
 					<th>Contact No</th>
 					<th>Job Type</th>
+					<th>Lead Time</th>
+					<th>Due Date</th>
 					<th>Status</th>
 					<th>Actions</th>
 				</tr>
@@ -39,6 +44,8 @@
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['customerName'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['customerTelNo'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['jobTypeDesc'];?></td>
+					<td align="center" style="<?=$style;?>"><?=$row_estimates[$i]['leadTime'];?></td>
+					<td align="left" style="<?=$style;?>"><?=dateFormat($row_estimates[$i]['dueDate'],"M d, Y");?></td>
 					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_estimates[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
 						<a class="btn btn-info" href="estimate_edit.php?edit=1&id=<?=$row_estimates[$i]['quoteReferenceNo'];?>" title="Edit <?=$row_estimates[$i]['quoteReferenceNo'];?>">

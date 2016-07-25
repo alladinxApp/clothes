@@ -228,4 +228,67 @@
 		$alert->Alert();
 	}
 	// END UPDATE ESTIMATE
+
+	// SEARCH ESTIMATE
+	if(isset($_POST['estimateSearch']) && !empty($_POST['estimateSearch']) && $_POST['estimateSearch'] == 1){
+		$xDate = "";
+		$estNo = "";
+		$jtNo = "";
+		$stat = "";
+		// TRANSACTION DATE
+		if(!empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
+			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
+			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
+			$xDate = " AND transactionDate between '$dtfrom' AND '$dtto'";
+		}else if(!empty($_POST['txtFrom']) && empty($_POST['txtTo'])){
+			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
+			$dtto = dateFormat($_POST['txtFrom'],"Y-m-d");
+			$xDate = " transactionDate between '$dtfrom' AND '$dtto'";
+		}else if(empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
+			$dtfrom = dateFormat($_POST['txtTo'],"Y-m-d");
+			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
+			$xDate = " transactionDate between '$dtfrom' AND '$dtto'";
+		}else{ }
+
+		// ESTIMATE NO
+		if(isset($_POST['txtEstimateNo']) && !empty($_POST['txtEstimateNo'])){
+			$estimateNo = $_POST['txtEstimateNo'];
+			$estNo = " AND quoteReferenceNo = '$estimateNo'";
+		}
+
+		// CUSTOMER CODE
+		if(isset($_POST['txtCustomerCode']) && !empty($_POST['txtCustomerCode'])){
+			$customerCode = $_POST['txtCustomerCode'];
+			$cCode = " AND customerCode = '$customerCode'";
+		}
+
+		// JOB TYPE
+		if(isset($_POST['txtJobTypeCode']) && !empty($_POST['txtJobTypeCode'])){
+			$jobTypeNo = $_POST['txtJobTypeCode'];
+			$jtNo = " AND jobType = '$jobTypeNo'";
+		}
+
+		// STATUS
+		if(isset($_POST['txtStatus']) && !empty($_POST['txtStatus'])){
+			$status = $_POST['txtStatus'];
+			$stat = " AND status = '$status'";
+		}
+
+		// OPEN DB
+		$csdb = new DBConfig();
+		$csdb->setClothesDB();
+
+		// SET ESTIMATES MASTER
+		$estimates = new Table();
+		$estimates->setSQLType($csdb->getSQLType());
+		$estimates->setInstance($csdb->getInstance());
+		$estimates->setView("estimatemaster_v");
+		$estimates->setParam("WHERE 1 $xDate $estNo $cCode $jtNo $stat ORDER BY transactionDate DESC");
+		$estimates->doQuery("query");
+		$row_estimates = $estimates->getLists();
+
+		// CLOSE DB
+		$csdb->DBClose();
+	}
+	// END SEARCH ESTIMATE
 ?>

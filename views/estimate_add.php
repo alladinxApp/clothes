@@ -19,12 +19,6 @@
 					<div class="control-group">
 						<label class="control-label" for="txtCustomer">Customer</label>
 						<div class="controls">
-							<!-- <select name="txtCustomer" id="txtCustomer">
-						  		<option value="">Select Customer</option>
-						  		<? for($i=0;$i<count($row_customer);$i++){ ?>
-								<option value="<?=$row_customer[$i]['customerCode'];?>"><?=$row_customer[$i]['customerName'];?></option>
-								<? } ?>
-							</select> -->
 							<input class="input-xlarge" name="txtCustomerName" readonly id="txtCustomerName" type="text" placeholder="Click Here..." />
 							<input type="button" class="btn btn-info" name="btnNewCustomer" id="btnNewCustomer" value=" New " />
 						</div>
@@ -41,16 +35,11 @@
 							<input class="input-xlarge" name="txtTelephoneNo" readonly id="txtTelephoneNo" type="text" placeholder="Telephone No Here..." />
 						</div>
 					</div>
+					<input type="hidden" name="txtCustomer" id="txtCustomer" />
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="txtJobType">Job Type</label>
 						<div class="controls">
-							<!-- <select name="txtJobType" id="txtJobType">
-						  		<option value="">Select Job Type</option>
-						  		<? for($i=0;$i<count($row_jobtype);$i++){ ?>
-								<option value="<?=$row_jobtype[$i]['jobTypeCode'];?>"><?=$row_jobtype[$i]['description'];?></option>
-								<? } ?>
-							</select> -->
 						<input class="input-xlarge" name="txtJobTypeDescription" readonly id="txtJobTypeDescription" type="text" placeholder="Click Here..." />
 						</div>
 					</div>
@@ -155,7 +144,6 @@
 					<a href="controlno_add.php" class="btn">Cancel</a>
 				</div>
 				<input type="hidden" name="estimateAdd" id="estimateAdd" value="1" />
-				<input type="hidden" name="txtCustomer" id="txtCustomer" />
 				<input type="hidden" name="txtJobType" id="txtJobType" />
 				<input type="hidden" name="txtDueDate" id="txtDueDate" />
 			 </form>

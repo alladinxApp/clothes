@@ -311,11 +311,7 @@
 						contentType: 'application/json; charset=utf-8',
 						
 						success: function (data) {
-							console.log(data);
 							$("#divCustInfo").replaceWith(data);
-							// $("#txtCustomerName").val($("#txtCustName").val());
-							// $("#txtAddress").val($("#txtCustAddress").val());
-							// $("#txtTelephoneNo").val($("#txtCustTelephoneNo").val());
 						},	
 								
 						error: function (request, status, err) {
