@@ -140,7 +140,7 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<input type="submit" class="btn btn-primary" value="Save changes" />
+					<input type="submit" name="btnEstimateSave" id="btnEstimateSave" class="btn btn-primary" value="Save changes" />
 					<a href="controlno_add.php" class="btn">Cancel</a>
 				</div>
 				<input type="hidden" name="estimateAdd" id="estimateAdd" value="1" />

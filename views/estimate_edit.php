@@ -88,7 +88,7 @@
 					</div>
 					<input type="hidden" name="txtCurrentAttachment" id="txtCurrentAttachment" value="<?=$row_estmst[0]['attachment'];?>" />
 				</fieldset>
-				
+				<? if($row_estmst[0]['status'] == 0){ ?>
 				<div class="box-header" data-original-title>
 					<h2><i class="halflings-icon shopping-cart"></i><span class="break"></span><b>Add Item</b></h2>
 				</div>
@@ -112,6 +112,7 @@
 						<td><input type="button" class="btn btn-primary" value="Add Item" onClick="AddItem();" /></td>
 					</tr>
 				</table>
+				<? } ?>
 				<div id="divDetails">
 				<table class="table table-bordered table-condensed">
 					<tr>
@@ -122,7 +123,9 @@
 					  <th>UOM</th>
 					  <th>MATERIALS</th>
 					  <th>SPECIFICATION</th>
+					  <? if($row_estmst[0]['status'] == 0){ ?>
 					  <th>REMOVE</th>
+					  <? } ?>
 					</tr>
 					<?
 						$cnt = 1;
@@ -145,7 +148,9 @@
 						<td><?=$uom;?></td>
 						<td><?=$mat;?></td>
 						<td><?=$spec;?></td>
+						<? if($row_estmst[0]['status'] == 0){ ?>
 						<td align="center"><a href="#" onClick="RemoveItem('<?=$itemid;?>')"><img src="img/del_ico.png" width="20" border="0" /></td>
+						<? } ?>
 					</tr>
 					<? $cnt++; } ?>
 				</table>
@@ -184,21 +189,30 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="txtTotalAmount">Remarks</label>
+					<div class="controls">
+						<textarea rows="5" name="txtRemarks" id="txtRemarks" style="resize: none;"><?=$row_estmst[0]['remarks'];?></textarea>
+					</div>
+				</div>
+				<? if($row_estmst[0]['status'] != 0){ $disableStatus = 'disabled'; } ?>
+				<div class="control-group">
 					<label class="control-label" for="txtStatus">Status</label>
 					<div class="controls">
-						<select name="txtStatus" id="txtStatus">
+						<select name="txtStatus" id="txtStatus" <?=$disableStatus;?> >
 							<option value="0" <? if($row_estmst[0]['status'] == 0){ echo 'selected';} ?>>PENDING</option>
-							<option value="1" <? if($row_estmst[0]['status'] == 1){ echo 'selected';} ?>>APPROVE</option>
+							<option value="1" <? if($row_estmst[0]['status'] == 1){ echo 'selected';} ?>>ACKNOWLEDGE</option>
 							<option value="3" <? if($row_estmst[0]['status'] == 3){ echo 'selected';} ?>>CANCEL</option>
 						</select>
 					</div>
 				</div>
+				<? if($row_estmst[0]['status'] == 0){ ?>
 				<div class="form-actions">
-					<input type="submit" class="btn btn-primary" value="Update changes" />
+					<input type="submit" name="btnEstimateSave" id="btnEstimateSave" class="btn btn-primary" value="Update changes" />
 					<a href="estimates.php" class="btn">Cancel</a>
 				</div>
 				<input type="hidden" name="estimateUpdate" id="estimateUpdate" value="1" />
 				<input type="hidden" name="estMstId" id="estMstId" value="<?=$row_estmst[0]['id'];?>" />
+				<? } ?>
 			 </form>
 		</div>
 	</div>

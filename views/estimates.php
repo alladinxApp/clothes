@@ -28,14 +28,22 @@
 					for($i=0;$i<count($row_estimates);$i++){
 						$bg = null;
 						$font = null;
-						$lbl = 'success';
+						$lbl = 'warning';
 						if($cnt%2){
 							$bg = 'background: #eee;';
 						}
-						if($row_estimates[$i]['status'] == 1){
-							$font = 'color: #00ff00';
-							$lbl = 'important';
+						switch($row_estimates[$i]['status']){
+							case 1:
+									$font = 'color: #00ff00';
+									$lbl = 'success';
+								break;
+							case 3:
+									$font = 'color: #ff0000';
+									$lbl = 'important';
+								break;
+							default: break;
 						}
+
 						$style = $bg . $font;
 				?>
 				<tr>
@@ -45,7 +53,7 @@
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['customerTelNo'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['jobTypeDesc'];?></td>
 					<td align="center" style="<?=$style;?>"><?=$row_estimates[$i]['leadTime'];?></td>
-					<td align="left" style="<?=$style;?>"><?=dateFormat($row_estimates[$i]['dueDate'],"M d, Y");?></td>
+					<td align="center" style="<?=$style;?>"><?=dateFormat($row_estimates[$i]['dueDate'],"M d, Y");?></td>
 					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_estimates[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
 						<a class="btn btn-info" href="estimate_edit.php?edit=1&id=<?=$row_estimates[$i]['quoteReferenceNo'];?>" title="Edit <?=$row_estimates[$i]['quoteReferenceNo'];?>">

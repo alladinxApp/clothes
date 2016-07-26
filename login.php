@@ -23,7 +23,7 @@
     <!-- Admin Forms CSS -->
     <link rel="stylesheet" type="text/css" href="css/admin-forms.css">
     <link id="base-style" href="css/style.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <? require_once("inc-box/fonts.php"); ?>
     <!-- end: CSS -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

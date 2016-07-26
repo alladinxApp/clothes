@@ -147,6 +147,7 @@
 		$curFile = $_POST['txtCurrentAttachment'];
 		$estMstId = $_POST['estMstId'];
 		$status = $_POST['txtStatus'];
+		$remarks = $_POST['txtRemarks'];
 
 		// ATTACHMENT
 		$nFile = $_POST['txtCurrentAttachment'];
@@ -202,9 +203,34 @@
 		$estmst->setSQLType($csdb->getSQLType());
 		$estmst->setInstance($csdb->getInstance());
 		$estmst->setTable("estimatemaster");
-		$estmst->setValues("attachment = '$nFile', amount = '$amount', discount = '$discount', subTotal = '$subtotal', vat = '$vat', totalAmount = '$totalamount', status = '$status'");
+		$estmst->setValues("attachment = '$nFile', amount = '$amount', discount = '$discount', subTotal = '$subtotal', vat = '$vat', totalAmount = '$totalamount', status = '$status', modifiedDate = '$today', modifiedBy = '$userid', remarks = '$remarks'");
 		$estmst->setParam("WHERE quoteReferenceNo = '$id'");
 		$estmst->doQuery("update");
+
+		switch($status){
+			case 1:
+					// GET CONTROL NO
+					$joNo = getNewCtrlNo("JOBORDER");
+
+					// SAVE JOB ORDER MASTER
+					$jomst = new Table();
+					$jomst->setSQLType($csdb->getSQLType());
+					$jomst->setInstance($csdb->getInstance());
+					$jomst->setTable("jobordermaster");
+					$jomst->setField("jobOrderReferenceNo,quoteReferenceNo,createdDate,createdBy");
+					$jomst->setValues("'$joNo','$id','$today','$userid'");
+					$jomst->doQuery("save");
+					
+					// UPDATE CONTROL NO
+					UpdateCtrlNo("JOBORDER");
+
+					$msg = $id . " successfully acknowledged.";
+				break;
+			case 3:
+					$msg = $id . " successfully canceled.";
+				break;
+			default: $msg = $id . " successfully updated."; break;
+		}
 		
 		// CLOSE DB
 		$csdb->DBClose();
@@ -221,7 +247,6 @@
 		// CLOSE DB
 		$csdb->DBClose();
 
-		$msg = $id . " successfully updated.";
 		$alert = new MessageAlert();
 		$alert->setMessage($msg);
 		$alert->setURL(BASE_URL . "estimate_edit.php?edit=1&id=".$id);

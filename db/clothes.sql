@@ -47,11 +47,11 @@ CREATE TABLE `controlno` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `controlno` */
 
-insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,0,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,0,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx',NULL,NULL,1),(5,'MENU MAINTENANCE','M','MENU',4,21,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE','EST','ESTIMATE',8,0,'ESTIMATE','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1);
+insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,1,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,0,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx',NULL,NULL,1),(5,'MENU MAINTENANCE','M','MENU',4,21,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE','EST','ESTIMATE',8,0,'ESTIMATE','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1),(10,'JOB ORDER MAINTENANCE','JO','JOBORDER',8,0,'Job Order Maintenance','2016-07-25 11:23:56','ALLADINX',NULL,NULL,1);
 
 /*Table structure for table `customersmaster` */
 
@@ -75,9 +75,11 @@ CREATE TABLE `customersmaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `customersmaster` */
+
+insert  into `customersmaster`(`id`,`customerCode`,`customerName`,`address`,`mobileNo`,`telephoneNo`,`emailAddress`,`faxNo`,`birthDate`,`TIN`,`isVat`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'C00000001','cust1','cust1','cust1','cust1','cust1','cust1','2016-07-01','cust1',1,'2016-07-22 03:30:17','ALLADINX',NULL,NULL,1);
 
 /*Table structure for table `departmentmaster` */
 
@@ -109,7 +111,8 @@ CREATE TABLE `estimatedetail` (
   `quantity` int(11) DEFAULT NULL,
   `color` varchar(20) DEFAULT NULL,
   `uom` varchar(20) DEFAULT NULL,
-  `material` varchar(20) DEFAULT NULL
+  `material` text,
+  `actual_material` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `estimatedetail` */
@@ -135,6 +138,7 @@ CREATE TABLE `estimatemaster` (
   `totalAmount` decimal(10,2) DEFAULT NULL,
   `acknowledgeBy` varchar(20) DEFAULT NULL,
   `acknowledgeDate` datetime DEFAULT NULL,
+  `remarks` text,
   `createdBy` varchar(20) DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
   `modifiedBy` varchar(20) DEFAULT NULL,
@@ -144,6 +148,25 @@ CREATE TABLE `estimatemaster` (
 
 /*Data for the table `estimatemaster` */
 
+/*Table structure for table `joborderdetails` */
+
+DROP TABLE IF EXISTS `joborderdetails`;
+
+CREATE TABLE `joborderdetails` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jo_masterid` int(11) DEFAULT NULL,
+  `jobOrderReferenceNo` varchar(20) DEFAULT NULL,
+  `departmentCode` varchar(20) DEFAULT NULL,
+  `startDate` datetime DEFAULT NULL,
+  `endDate` datetime DEFAULT NULL,
+  `startedBy` varchar(20) DEFAULT NULL,
+  `endedBy` varchar(20) DEFAULT NULL,
+  `Remarks` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `joborderdetails` */
+
 /*Table structure for table `jobordermaster` */
 
 DROP TABLE IF EXISTS `jobordermaster`;
@@ -151,10 +174,8 @@ DROP TABLE IF EXISTS `jobordermaster`;
 CREATE TABLE `jobordermaster` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jobOrderReferenceNo` varchar(20) DEFAULT NULL,
-  `estimateReferenceNo` varchar(20) DEFAULT NULL,
-  `assignTo` varchar(20) DEFAULT NULL,
-  `startDate` date DEFAULT NULL,
-  `endDate` date DEFAULT NULL,
+  `quoteReferenceNo` varchar(20) DEFAULT NULL,
+  `amount` decimal(12,2) DEFAULT NULL,
   `vat` decimal(12,2) DEFAULT NULL,
   `discount` decimal(12,2) DEFAULT NULL,
   `subTotal` decimal(12,2) DEFAULT NULL,
@@ -398,7 +419,8 @@ DROP TABLE IF EXISTS `estimatedetail_v`;
  `color` varchar(20) ,
  `uom` varchar(20) ,
  `uomDesc` varchar(100) ,
- `material` varchar(20) 
+ `material` text ,
+ `actual_material` text 
 )*/;
 
 /*Table structure for table `estimatemaster_v` */
@@ -430,6 +452,7 @@ DROP TABLE IF EXISTS `estimatemaster_v`;
  `totalAmount` decimal(10,2) ,
  `acknowledgeBy` varchar(20) ,
  `acknowledgeDate` datetime ,
+ `remarks` text ,
  `createdBy` varchar(20) ,
  `modifiedDate` datetime ,
  `modifiedBy` varchar(20) ,
@@ -614,14 +637,14 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `estimatedetail_v` */;
 /*!50001 DROP VIEW IF EXISTS `estimatedetail_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `estimatedetail_v` AS (select `estimatedetail`.`estimateMasterId` AS `estimateMasterId`,`estimatedetail`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatedetail`.`specification` AS `specification`,`estimatedetail`.`size` AS `size`,`sizingmaster`.`description` AS `sizeDesc`,`estimatedetail`.`quantity` AS `quantity`,`estimatedetail`.`color` AS `color`,`estimatedetail`.`uom` AS `uom`,`uommaster`.`description` AS `uomDesc`,`estimatedetail`.`material` AS `material` from ((`estimatedetail` join `sizingmaster` on((`sizingmaster`.`sizingCode` = `estimatedetail`.`size`))) join `uommaster` on((`uommaster`.`UOMCode` = `estimatedetail`.`uom`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `estimatedetail_v` AS (select `estimatedetail`.`estimateMasterId` AS `estimateMasterId`,`estimatedetail`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatedetail`.`specification` AS `specification`,`estimatedetail`.`size` AS `size`,`sizingmaster`.`description` AS `sizeDesc`,`estimatedetail`.`quantity` AS `quantity`,`estimatedetail`.`color` AS `color`,`estimatedetail`.`uom` AS `uom`,`uommaster`.`description` AS `uomDesc`,`estimatedetail`.`material` AS `material`,`estimatedetail`.`actual_material` AS `actual_material` from ((`estimatedetail` join `sizingmaster` on((`sizingmaster`.`sizingCode` = `estimatedetail`.`size`))) join `uommaster` on((`uommaster`.`UOMCode` = `estimatedetail`.`uom`)))) */;
 
 /*View structure for view estimatemaster_v */
 
 /*!50001 DROP TABLE IF EXISTS `estimatemaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `estimatemaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `estimatemaster_v` AS (select `estimatemaster`.`id` AS `id`,`estimatemaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster`.`transactionDate` AS `transactionDate`,`estimatemaster`.`customerCode` AS `customerCode`,`customersmaster`.`customerName` AS `customerName`,`customersmaster`.`address` AS `address`,`customersmaster`.`telephoneNo` AS `customerTelNo`,`estimatemaster`.`isRush` AS `isRush`,`estimatemaster`.`jobType` AS `jobType`,`jobtypemaster`.`description` AS `jobTypeDesc`,(case when (`estimatemaster`.`isRush` = 1) then `estimatemaster`.`leadTime` else `jobtypemaster`.`leadTime` end) AS `leadTime`,`jobtypemaster`.`notificationDay` AS `notificationDay`,`estimatemaster`.`dueDate` AS `dueDate`,`estimatemaster`.`attachment` AS `attachment`,`estimatemaster`.`amount` AS `amount`,`estimatemaster`.`discount` AS `discount`,`estimatemaster`.`subTotal` AS `subTotal`,`estimatemaster`.`vat` AS `vat`,`estimatemaster`.`totalAmount` AS `totalAmount`,`estimatemaster`.`acknowledgeBy` AS `acknowledgeBy`,`estimatemaster`.`acknowledgeDate` AS `acknowledgeDate`,`estimatemaster`.`createdBy` AS `createdBy`,`estimatemaster`.`modifiedDate` AS `modifiedDate`,`estimatemaster`.`modifiedBy` AS `modifiedBy`,`estimatemaster`.`status` AS `status`,(case when (`estimatemaster`.`status` = 1) then 'ACKNOWLEDGED' else 'PENDING' end) AS `statusDesc` from ((`estimatemaster` join `customersmaster` on((`customersmaster`.`customerCode` = `estimatemaster`.`customerCode`))) join `jobtypemaster` on((`jobtypemaster`.`jobTypeCode` = `estimatemaster`.`jobType`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `estimatemaster_v` AS (select `estimatemaster`.`id` AS `id`,`estimatemaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster`.`transactionDate` AS `transactionDate`,`estimatemaster`.`customerCode` AS `customerCode`,`customersmaster`.`customerName` AS `customerName`,`customersmaster`.`address` AS `address`,`customersmaster`.`telephoneNo` AS `customerTelNo`,`estimatemaster`.`isRush` AS `isRush`,`estimatemaster`.`jobType` AS `jobType`,`jobtypemaster`.`description` AS `jobTypeDesc`,(case when (`estimatemaster`.`isRush` = 1) then `estimatemaster`.`leadTime` else `jobtypemaster`.`leadTime` end) AS `leadTime`,`jobtypemaster`.`notificationDay` AS `notificationDay`,`estimatemaster`.`dueDate` AS `dueDate`,`estimatemaster`.`attachment` AS `attachment`,`estimatemaster`.`amount` AS `amount`,`estimatemaster`.`discount` AS `discount`,`estimatemaster`.`subTotal` AS `subTotal`,`estimatemaster`.`vat` AS `vat`,`estimatemaster`.`totalAmount` AS `totalAmount`,`estimatemaster`.`acknowledgeBy` AS `acknowledgeBy`,`estimatemaster`.`acknowledgeDate` AS `acknowledgeDate`,`estimatemaster`.`remarks` AS `remarks`,`estimatemaster`.`createdBy` AS `createdBy`,`estimatemaster`.`modifiedDate` AS `modifiedDate`,`estimatemaster`.`modifiedBy` AS `modifiedBy`,`estimatemaster`.`status` AS `status`,(case when (`estimatemaster`.`status` = 1) then 'ACKNOWLEDGED' when (`estimatemaster`.`status` = 3) then 'CANCELED' when (`estimatemaster`.`status` = 2) then 'DISAPPROVED' else 'PENDING' end) AS `statusDesc` from ((`estimatemaster` join `customersmaster` on((`customersmaster`.`customerCode` = `estimatemaster`.`customerCode`))) join `jobtypemaster` on((`jobtypemaster`.`jobTypeCode` = `estimatemaster`.`jobType`)))) */;
 
 /*View structure for view jobtypemaster_v */
 
