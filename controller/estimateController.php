@@ -264,15 +264,15 @@
 		if(!empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
 			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
 			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
-			$xDate = " AND transactionDate between '$dtfrom' AND '$dtto'";
+			$xDate = " AND transactionDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
 		}else if(!empty($_POST['txtFrom']) && empty($_POST['txtTo'])){
 			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
 			$dtto = dateFormat($_POST['txtFrom'],"Y-m-d");
-			$xDate = " transactionDate between '$dtfrom' AND '$dtto'";
+			$xDate = " AND transactionDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
 		}else if(empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
 			$dtfrom = dateFormat($_POST['txtTo'],"Y-m-d");
 			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
-			$xDate = " transactionDate between '$dtfrom' AND '$dtto'";
+			$xDate = " AND transactionDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
 		}else{ }
 
 		// ESTIMATE NO
