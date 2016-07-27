@@ -42,28 +42,34 @@
 		
 </head>
 <script type="text/javascript">
-	function ComputeTotal(){
-		var amnt = 0;
-		var discount = 0;
-		var subtotal = 0;
-		var vat = 0;
-		var total = 0;
+	// function ComputeTotal(){
+	// 	var amnt = 0;
+	// 	var discount = 0;
+	// 	var subtotal = 0;
+	// 	var vat = 0;
+	// 	var total = 0;
 		
-		if($("#txtAmount").val() > 0){
-			amnt = $("#txtAmount").val();
-		}
-		if($("#txtDiscount").val() > 0){
-			discount = $("#txtDiscount").val();
-		}
+	// 	if($("#txtAmount").val() > 0){
+	// 		amnt = $("#txtAmount").val();
+	// 	}
+	// 	if($("#txtDiscount").val() > 0){
+	// 		discount = $("#txtDiscount").val();
+	// 	}
 
-		subtotal = (parseFloat(amnt) - parseFloat(discount));
-		vat = parseFloat(subtotal) * parseFloat(0.12);
-		total = (parseFloat(subtotal) + parseFloat(vat));
+	// 	subtotal = (parseFloat(amnt) - parseFloat(discount));
+	// 	vat = parseFloat(subtotal) * parseFloat(0.12);
+	// 	total = (parseFloat(subtotal) + parseFloat(vat));
 
-		$("#txtSubTotal").val(subtotal.toFixed(2));
-		$("#txtVat").val(vat.toFixed(2));
-		$("#txtTotalAmount").val(total.toFixed(2));
-	}
+	// 	$("#txtSubTotal").val(subtotal.toFixed(2));
+	// 	$("#txtVat").val(vat.toFixed(2));
+	// 	$("#txtTotalAmount").val(total.toFixed(2));
+	// }
+
+	$(document).ready(function(){
+		$("#jobOrderUpdate").on("click", function(){
+			
+		})
+	});
 </script>
 <body>
 	<? require_once("inc-box/header.php"); ?>

@@ -56,9 +56,11 @@
 					<td align="center" style="<?=$style;?>"><?=dateFormat($row_joborders[$i]['dueDate'],"M d, Y");?></td>
 					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_joborders[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
+						<? if(!empty($row_joborders[$i]['department'])){ ?>
 						<a class="btn btn-info" href="joborder_edit.php?edit=1&id=<?=$jono;?>" title="Edit <?=$jono;?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
+						<? } ?>
 						<a class="btn btn-info" href="joborder_transfer.php?edit=1&id=<?=$jono;?>" title="Transfer <?=$jono;?>">
 							<i class="halflings-icon white home"></i>  
 						</a>

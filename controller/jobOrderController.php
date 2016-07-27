@@ -48,6 +48,15 @@
 		}
 		$itemArray = rtrim($itemArray,"::");
 
+		// SET JOB ORDER DEPARTMENT
+		$jodept = new Table();
+		$jodept->setSQLType($csdb->getSQLType());
+		$jodept->setInstance($csdb->getInstance());
+		$jodept->setView("joborderdepartment_v");
+		$jodept->setParam("WHERE jobOrderReferenceNo = '$id' ORDER BY startDate DESC");
+		$jodept->doQuery("query");
+		$row_jodept = $jodept->getLists();
+
 		// CLOSE DB
 		$csdb->DBClose();
 	}
@@ -93,10 +102,14 @@
 
 		// CLOSE DB
 		$csdb->DBClose();
+		
+		switch($status){
+			case 1:
+				$msg = '#' . $id . ' successfully completed.'; break;
+			default: $msg = '#' . $id . ' successfully updated.'; break;
+		}
 
-		// CLOSE DB
-		$csdb->DBClose();
-
+		
 		$alert = new MessageAlert();
 		$alert->setMessage($msg);
 		$alert->setURL(BASE_URL . "joborder_edit.php?edit=1&id=".$id);

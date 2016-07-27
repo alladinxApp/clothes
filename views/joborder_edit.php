@@ -91,7 +91,9 @@
 					</div>
 					<input type="hidden" name="txtCurrentAttachment" id="txtCurrentAttachment" value="<?=$row_jomst[0]['attachment'];?>" />
 				</fieldset>
-				
+				<div class="box-header" data-original-title>
+					<h2><i class="halflings-icon shopping-cart"></i><span class="break"></span><b>Items</b></h2>
+				</div>
 				<div id="divDetails">
 				<table class="table table-bordered table-condensed">
 					<tr>
@@ -137,37 +139,72 @@
 					<? $cnt++; } ?>
 				</table>
 				</div>
+				<div class="box-header" data-original-title>
+					<h2><i class="halflings-icon home"></i><span class="break"></span><b>Department History</b></h2>
+				</div>
+				<table class="table table-bordered table-condensed">
+					<tr>
+					  <th>#</th>
+					  <th>DEPARTMENT</th>
+					  <th>START DATE</th>
+					  <th>END DATE</th>
+					  <th>REMARKS</th>
+					</tr>
+					<?
+						$cnt = 1;
+						$statuscnt = 0;
+						for($i=0;$i<count($row_jodept);$i++){
+							if($row_jodept[$i]['status'] == 0){
+								$statuscnt++;
+							}
+					?>
+					<tr>
+						<td align="center"><?=$cnt;?></td>
+						<td><?=$row_jodept[$i]['departmentName'];?></td>
+						<td align="center"><?=dateFormat($row_jodept[$i]['startDate'],"M d, Y H:i:s A");?></td>
+						<td align="center">
+							<?
+								if(!empty($row_jodept[$i]['endDate'])){
+									echo dateFormat($row_jodept[$i]['endDate'],"M d, Y H:i:s A");
+								}else{  } ?>
+						</td>
+						<td>
+							<? if(empty($row_jodept[$i]['remarks'])){ }else{ echo $row_jodept[$i]['remarks']; }?>
+						</td>
+					</tr>
+					<? $cnt++; } ?>
+				</table>
 				
 				<input type="hidden" name="txtItemArray" id="txtItemArr" value="<?=$itemArray;?>" />
 
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['amount'],2);?>" name="txtAmount" id="txtAmount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['amount'],2);?>" disabled name="txtAmount" id="txtAmount" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Discount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['discount'],2);?>" name="txtDiscount" id="txtDiscount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['discount'],2);?>" disabled name="txtDiscount" id="txtDiscount" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Sub-Total</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" disabled type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtVat">Vat 12%</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['vat'],2);?>" name="txtVat" id="txtVat" type="text" readonly placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['vat'],2);?>" name="txtVat" id="txtVat" type="text" disabled placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtTotalAmount">Total Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" disabled type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<? if($row_jomst[0]['status'] != 0){ $disableStatus = 'disabled'; } ?>
@@ -176,7 +213,7 @@
 					<div class="controls">
 						<select name="txtStatus" id="txtStatus" <?=$disableStatus;?> >
 							<option value="0" <? if($row_jomst[0]['status'] == 0){ echo 'selected';} ?>>PENDING</option>
-							<option value="1" <? if($row_jomst[0]['status'] == 1){ echo 'selected';} ?>>ACKNOWLEDGE</option>
+							<option value="1" <? if($row_jomst[0]['status'] == 1){ echo 'selected';} ?>>COMPLETED</option>
 						</select>
 					</div>
 				</div>
