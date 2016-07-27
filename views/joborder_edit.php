@@ -4,10 +4,12 @@
 			<h2>
 				<i class="halflings-icon cog"></i><span class="break"></span><b>Job Order #<?=$id;?></b>
 			</h2>
+			<? if($row_jomst[0]['status'] == 1){ ?>
 			<div class="box-icon">
 				<span class="break">
 				<a href="joborder_print.php?id=<?=$row_jomst[0]['jobOrderReferenceNo'];?>" target="_blank"><i class="halflings-icon print"></i> PRINT</a>
 			</div>
+			<? } ?>
 			<div class="box-icon">
 				<span class="break">
 				<a href="joborder_transfer.php?edit=1&id=<?=$row_jomst[0]['jobOrderReferenceNo'];?>"><i class="halflings-icon home"></i> Transfer</a>

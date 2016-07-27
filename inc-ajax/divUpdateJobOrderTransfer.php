@@ -67,7 +67,7 @@
 			<input type="button" id="btnEndJob" name="btnEndJob" class="btn btn-primary" value=" End Job " onClick="return EndJob();" />
 			<? } ?>
 		</td>
-		<td align="center">
+		<td>
 			<? if(empty($row_jodept[$i]['remarks'])){ ?>
 				<textarea rows="2" cols="40" style="resize: none; width: 200px; " name="txtRemarks" id="txtRemarks"></textarea>
 				<input type="hidden" name="txtId" id="txtId" value="<?=$row_jodept[$i]['id'];?>">

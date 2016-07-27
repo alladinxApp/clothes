@@ -26,6 +26,7 @@
 				<?
 					$cnt = 1;
 					for($i=0;$i<count($row_estimates);$i++){
+						$estNo = $row_estimates[$i]['quoteReferenceNo'];
 						$bg = null;
 						$font = null;
 						$lbl = 'warning';
@@ -48,7 +49,7 @@
 				?>
 				<tr>
 					<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
-					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['quoteReferenceNo'];?></td>
+					<td align="left" style="<?=$style;?>"><?=$estNo;?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['customerName'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['customerTelNo'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_estimates[$i]['jobTypeDesc'];?></td>
@@ -56,12 +57,12 @@
 					<td align="center" style="<?=$style;?>"><?=dateFormat($row_estimates[$i]['dueDate'],"M d, Y");?></td>
 					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_estimates[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
-						<a class="btn btn-info" href="estimate_edit.php?edit=1&id=<?=$row_estimates[$i]['quoteReferenceNo'];?>" title="Edit <?=$row_estimates[$i]['quoteReferenceNo'];?>">
+						<a class="btn btn-info" href="estimate_edit.php?edit=1&id=<?=$estNo;?>" title="Edit <?=$estNo;?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
-						<!-- <a class="btn btn-danger" href="#" onClick="deleteDepartment(<?=$row_estimates[$i]['id'];?>);" title="Delete <?=$row_department[$i]['description'];?>">
-							<i class="halflings-icon white trash"></i> 
-						</a> -->
+						<a class="btn btn-info" href="#" onClick="EstimatePrint('<?=$estNo;?>');" title="Print <?=$estNo;?>">
+							<i class="halflings-icon white print"></i> 
+						</a>
 					</td>
 				</tr>
 				<? $cnt++; } ?>

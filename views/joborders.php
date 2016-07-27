@@ -24,6 +24,7 @@
 				<?
 					$cnt = 1;
 					for($i=0;$i<count($row_joborders);$i++){
+						$jono = $row_joborders[$i]['jobOrderReferenceNo'];
 						$bg = null;
 						$font = null;
 						$lbl = 'warning';
@@ -55,12 +56,17 @@
 					<td align="center" style="<?=$style;?>"><?=dateFormat($row_joborders[$i]['dueDate'],"M d, Y");?></td>
 					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_joborders[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
-						<a class="btn btn-info" href="joborder_edit.php?edit=1&id=<?=$row_joborders[$i]['jobOrderReferenceNo'];?>" title="Edit <?=$row_joborders[$i]['jobOrderReferenceNo'];?>">
+						<a class="btn btn-info" href="joborder_edit.php?edit=1&id=<?=$jono;?>" title="Edit <?=$jono;?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
-						<a class="btn btn-info" href="joborder_transfer.php?edit=1&id=<?=$row_joborders[$i]['jobOrderReferenceNo'];?>" title="Transfer <?=$row_joborders[$i]['jobOrderReferenceNo'];?>">
+						<a class="btn btn-info" href="joborder_transfer.php?edit=1&id=<?=$jono;?>" title="Transfer <?=$jono;?>">
 							<i class="halflings-icon white home"></i>  
 						</a>
+						<? if($row_joborders[$i]['status'] == 1){ ?>
+						<a class="btn btn-info" href="#" onClick="JobOrderPrint('<?=$jono;?>');" title="Print <?=$jono;?>">
+							<i class="halflings-icon white print"></i> 
+						</a>
+						<? } ?>
 					</td>
 				</tr>
 				<? $cnt++; } ?>

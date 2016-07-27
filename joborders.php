@@ -42,6 +42,12 @@
 	<!-- end: Favicon -->
 		
 </head>
+<script type="text/javascript">
+	function JobOrderPrint(jono){
+		window.open("joborder_print.php?id="+jono);
+		return false;
+	}
+</script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
 	
