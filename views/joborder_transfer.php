@@ -6,7 +6,7 @@
 			</h2>
 			<div class="box-icon">
 				<span class="break">
-				<a href="joborder_edit.php?edit=1&id=<?=$row_jomst[0]['jobOrderReferenceNo'];?>" target="_blank"><i class="halflings-icon edit"></i> EDIT #<?=$id;?></a>
+				<a href="joborder_edit.php?edit=1&id=<?=$row_jomst[0]['jobOrderReferenceNo'];?>"><i class="halflings-icon edit"></i> EDIT #<?=$id;?></a>
 			</div>
 			<div class="box-icon">
 				<a href="joborders.php"><i class="halflings-icon backward"></i> Back to List</a>
