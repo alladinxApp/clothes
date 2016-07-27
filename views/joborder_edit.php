@@ -12,7 +12,7 @@
 			<? } ?>
 			<div class="box-icon">
 				<span class="break">
-				<a href="joborder_transfer.php?edit=1&id=<?=$row_jomst[0]['jobOrderReferenceNo'];?>"><i class="halflings-icon home"></i> Transfer</a>
+				<a href="joborder_transfer.php?edit=1&id=<?=$row_jomst[0]['jobOrderReferenceNo'];?>"><i class="halflings-icon home"></i> Assign To</a>
 			</div>
 			<div class="box-icon">
 				<a href="joborders.php"><i class="halflings-icon backward"></i> Back to List</a>

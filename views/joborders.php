@@ -61,7 +61,7 @@
 							<i class="halflings-icon white edit"></i>  
 						</a>
 						<? } ?>
-						<a class="btn btn-info" href="joborder_transfer.php?edit=1&id=<?=$jono;?>" title="Transfer <?=$jono;?>">
+						<a class="btn btn-info" href="joborder_transfer.php?edit=1&id=<?=$jono;?>" title="Assign <?=$jono;?>">
 							<i class="halflings-icon white home"></i>  
 						</a>
 						<? if($row_joborders[$i]['status'] == 1){ ?>
