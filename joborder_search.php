@@ -1,8 +1,9 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . JOBORDERSMODEL);
-	require_once(CONTROLLER_PATH . JOBORDERCONTROLLER);
+	require_once(MODEL_PATH . CUSTOMERMODEL);
+	require_once(MODEL_PATH . JOBTYPEMODEL);
+	require_once(CONTROLLER_PATH . ESTIMATECONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -42,6 +43,64 @@
 	<!-- end: Favicon -->
 		
 </head>
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+	function SelectCustomer(id,name){
+		$("#txtCustomer").val(name);
+		$("#txtCustomerCode").val(id);
+		$( "#divCustomersList" ).dialog( "close" );
+	}
+	function SelectJobType(jtcode,jtdesc){
+		$("#txtJobType").val(jtdesc);
+		$("#txtJobTypeCode").val(jtcode);
+		$( "#divJobTypeList" ).dialog( "close" );
+	}
+	$(document).ready(function() {
+		$("#txtCustomer").click(function(){
+			$( "#divCustomersList" ).dialog( "open" ); // CALL CUSTOMER LIST
+		});
+
+		$("#txtJobType").click(function(){
+			$( "#divJobTypeList" ).dialog( "open" ); // CALL JOB TYPE LIST
+		});
+
+		//POP MODAL FOR CUSTOMER LIST
+		$( "#divCustomersList" ).dialog({
+			autoOpen: false,
+			height: 600,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}		
+		});
+
+		//POP MODAL FOR JOB TYPE LIST
+		$( "#divJobTypeList" ).dialog({
+			autoOpen: false,
+			height: 600,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}
+		});
+	});
+</script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
 	
@@ -52,7 +111,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/joborders.php");?>
+					<? require_once("views/joborder_search.php");?>
 				</div>
 				<!-- end: Content -->
 

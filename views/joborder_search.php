@@ -1,25 +1,25 @@
 <div class="row-fluid">		
 	<div class="box span12">
 		<div class="box-header" data-original-title>
-			<h2><i class="icon-book"></i><span class="break"></span><b>Search Estimate</b></h2>
+			<h2><i class="icon-upload-alt"></i><span class="break"></span><b>Search Job Order</b></h2>
 			<div class="box-icon">
-				<a href="estimates.php"><i class="halflings-icon backward"></i> Back to List</a>
+				<a href="joborders.php"><i class="halflings-icon backward"></i> Back to List</a>
 			</div>
 		</div>
 		<div class="body-content" style="padding: 20px;">
-			<form class="form-horizontal" method="POST" action="estimates.php">
+			<form class="form-horizontal" method="POST" action="joborders.php">
 				<fieldset>
 					<div class="control-group">
-						<label class="control-label" for="txtEstimateDate">Estimate Date</label>
+						<label class="control-label" for="txtEstimateDate">Job Order Date</label>
 						<div class="controls">
 							<input class="input-xlarge datepicker" name="txtFrom" id="txtFrom" readonly type="text" placeholder="From: MM/DD/YYYY" />
 							<input class="input-xlarge datepicker" name="txtTo" id="txtTo" readonly type="text" placeholder="To: MM/DD/YYYY" />
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="txtEstimateNo">Estimate No</label>
+						<label class="control-label" for="txtJobOrderNo">Job Order No</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtEstimateNo" id="txtEstimateNo" type="text" placeholder="Estimate No Here..." />
+							<input class="input-xlarge" name="txtJobOrderNo" id="txtJobOrderNo" type="text" placeholder="Job Order No Here..." />
 						</div>
 					</div>
 					<div class="control-group">
@@ -43,17 +43,15 @@
 								<option value="">STATUS</option>
 								<option value="0">PENDING</option>
 								<option value="1">ACKNOWLEDGED</option>
-								<option value="2">DISAPPROVED</option>
-								<option value="3">CANCELED</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-actions">
 						<input type="submit" class="btn btn-primary" value=" SEARCH " />
-						<a href="estimates.php" class="btn">Cancel</a>
+						<a href="joborders.php" class="btn">Cancel</a>
 					</div>
 				</fieldset>
-				<input type="hidden" name="estimateSearch" id="estimateSearch" value="1" />
+				<input type="hidden" name="jobOrderSearch" id="jobOrderSearch" value="1" />
 			</form>
 		</div>
 
