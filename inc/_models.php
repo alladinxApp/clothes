@@ -13,5 +13,6 @@
 	define(USERMENUMODEL, "usermenuModel.php");
 	define(MENUACCESSMODEL, "menuaccessModel.php");
 	define(ESTIMATESMODEL, "estimatesModel.php");
+	define(JOBORDERSMODEL, "jobOrderModel.php");
 	// -- END MODELS --
 ?>

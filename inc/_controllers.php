@@ -12,5 +12,7 @@
 	define(USERCONTROLLER, "userController.php");
 	define(MENUACCESSCONTROLLER, "menuaccessController.php");
 	define(ESTIMATECONTROLLER, "estimateController.php");
+	define(JOBORDERCONTROLLER, "jobOrderController.php");
+	define(JOBORDERTRANSFERCONTROLLER, "jobOrderTransferController.php");
 	// -- END CONTROLLERS --
 ?>

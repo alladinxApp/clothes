@@ -46,6 +46,9 @@
 	<!-- end: Favicon -->
 		
 </head>
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
 	function generateRandomString(length){
 		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -67,7 +70,7 @@
 		if($("#txtItemArr").val() != ""){
 			Items += $("#txtItemArr").val() + "::";
 		}
-		Items += "" + "||" + size + "||" + piece + "||" + color + "||" + uom + "||" + materials + "||" + spec + "::";
+		Items += generateRandomString(6) + "||" + size + "||" + piece + "||" + color + "||" + uom + "||" + materials + "||" + spec + "::";
 		Items = Items.slice(0, -2);
 		nItemArr = Items.split("::");
 
@@ -87,10 +90,9 @@
 		var nItemArray = "";
 		// id | sizeid | size | qty | color | uomid | uom | material | specification
 		for(var i=0;i<nItemArr.length;i++){
-			var id = generateRandomString(6);
 			if(nItemArr[i] != ""){
 				var item = nItemArr[i].split("||");
-				console.log(nItemArr[i]);
+				var id = item[0];
 				tbl += '<tr>';
 				  tbl += '<td align="center">' + cnt + '</td>';
 				  tbl += '<td>' + item[2] + '</td>';
@@ -136,9 +138,10 @@
 		var nItemArray = "";
 		// id | sizeid | size | qty | color | uomid | uom | material | specification
 		for(var i=0;i<nItemArr.length;i++){
-			var id = generateRandomString(6);
+			
 			if(nItemArr[i] != ""){
 				var item = nItemArr[i].split("||");
+				var id = item[0];
 				if(item[0] != val){
 					tbl += '<tr>';
 						tbl += '<td align="center">' + cnt + '</td>';
@@ -195,6 +198,10 @@
 			document.estimateForm.txtLeadTime.readOnly = true;
 			document.estimateForm.txtDueDate.disabled = true;
 		}
+	}
+	function EstimatePrint(estno){
+		window.open("estimate_print.php?id="+estno);
+		return false;
 	}
 </script>
 <body>

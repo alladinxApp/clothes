@@ -1,8 +1,17 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header" data-original-title>
-			<h2><i class="halflings-icon cog"></i><span class="break"></span><b>Edit Estimate #<?=$id;?></b></h2>
+			<h2>
+				<i class="halflings-icon cog"></i><span class="break"></span><b>Edit Estimate #<?=$id;?></b>
+			</h2>
+			<? if($row_estmst[0]['status'] == 1){ ?>
 			<div class="box-icon">
+				<span class="break">
+				<a href="estimate_print.php?id=<?=$row_estmst[0]['quoteReferenceNo'];?>" target="_blank"><i class="halflings-icon print"></i> PRINT</a>
+			</div>
+			<? } ?>
+			<div class="box-icon">
+				<span class="break">
 				<a href="estimate_add.php"><i class="halflings-icon plus"></i> ADD NEW</a>
 			</div>
 			<div class="box-icon">
@@ -212,6 +221,14 @@
 				</div>
 				<input type="hidden" name="estimateUpdate" id="estimateUpdate" value="1" />
 				<input type="hidden" name="estMstId" id="estMstId" value="<?=$row_estmst[0]['id'];?>" />
+				<? } ?>
+				<? if($row_estmst[0]['status'] == 1){ ?>
+			 	<div class="control-group">
+					<label class="control-label" for="btnEstimatePrint"></label>
+					<div class="controls">
+						<input type="button" name="btnEstimatePrint" id="btnEstimatePrint" class="btn btn-primary" value=" Print Estimate " onClick="EstimatePrint('<?=$row_estmst[0]['quoteReferenceNo'];?>');" />
+					</div>
+				</div>
 				<? } ?>
 			 </form>
 		</div>

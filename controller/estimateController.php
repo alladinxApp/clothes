@@ -124,7 +124,7 @@
 		// id | sizeid | size | qty | color | uomid | uom | material | specification
 		for($i=0;$i<count($row_estdtl);$i++){
 			$rand = generateRandomString(6);
-			$itemArray .= $rand
+			$itemArray .= $row_estdtl[$i]['id']
 						 . "||" . $row_estdtl[$i]['size']
 						 . "||" . $row_estdtl[$i]['sizeDesc']
 						 . "||" . $row_estdtl[$i]['quantity']
@@ -165,19 +165,37 @@
 		$items = explode("::",$_POST['txtItemArray']);
 
 		$dir = ESTIMATEATTACHMENTS . Date("Ym") . "/" . $id;
-		
+
 		// OPEN DB
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
 
-		// DELETE ESTIMATE DETAILS
-		$delestmst = new Table();
-		$delestmst->setSQLType($csdb->getSQLType());
-		$delestmst->setInstance($csdb->getInstance());
-		$delestmst->setTable("estimatedetail");
-		$delestmst->setParam("WHERE quoteReferenceNo = '$id'");
-		$delestmst->doQuery("delete");
+		// DELETING ITEM
+		for($a=0;$a<count($row_estdtl);$a++){
+			$exist = 0;
+			$itemid = $row_estdtl[$a]['id'];
 
+			// CHECK IF ITEM IN TABLE EXIST IN CURRENT ITEMS
+			for($b=0;$b<count($items);$b++){
+				$item = explode("||",$items[$b]);
+				if($item[0] == $itemid){
+					$exist++;
+				}
+			}
+			
+			// DELETE ITEM
+			if($exist == 0){
+				// DELETE ESTIMATE DETAILS
+				$delestmst = new Table();
+				$delestmst->setSQLType($csdb->getSQLType());
+				$delestmst->setInstance($csdb->getInstance());
+				$delestmst->setTable("estimatedetail");
+				$delestmst->setParam("WHERE quoteReferenceNo = '$id' AND id = '$itemid'");
+				$delestmst->doQuery("delete");
+			}
+		}
+
+		// ADDING ITEM
 		// id | sizeid | size | qty | color | uomid | uom | material | specification
 		for($i=0;$i<count($items);$i++){
 			$item = explode("||",$items[$i]);
@@ -187,15 +205,27 @@
 			$uom = $item[5];
 			$mat = $item[7];
 			$spec = $item[8];
+			$exist = 0;
 
-			// INSERT ESTIMATE DETAIL
-			$estdtl = new Table();
-			$estdtl->setSQLType($csdb->getSQLType());
-			$estdtl->setInstance($csdb->getInstance());
-			$estdtl->setTable("estimatedetail");
-			$estdtl->setField("estimateMasterId,quoteReferenceNo,specification,size,quantity,color,uom,material");
-			$estdtl->setValues("'$estMstId','$id','$spec','$size','$qty','$color','$uom','$mat'");
-			$estdtl->doQuery("save");
+			// CHECK IF CURRENT ITEMS EXIST IN TABLE
+			for($a=0;$a<count($row_estdtl);$a++){
+				$itemid = $row_estdtl[$a]['id'];
+				if($item[0] == $itemid){
+					$exist++;
+				}
+			}
+
+			// ADD ITEM
+			if($exist == 0){
+				// INSERT ESTIMATE DETAIL
+				$estdtl = new Table();
+				$estdtl->setSQLType($csdb->getSQLType());
+				$estdtl->setInstance($csdb->getInstance());
+				$estdtl->setTable("estimatedetail");
+				$estdtl->setField("estimateMasterId,quoteReferenceNo,specification,size,quantity,color,uom,material");
+				$estdtl->setValues("'$estMstId','$id','$spec','$size','$qty','$color','$uom','$mat'");
+				$estdtl->doQuery("save");
+			}
 		}
 
 		// UPDATE ESTIMATES MASTER
@@ -224,6 +254,45 @@
 					// UPDATE CONTROL NO
 					UpdateCtrlNo("JOBORDER");
 
+					for($i=0;$i<count($items);$i++){
+						$item = explode("||",$items[$i]);
+						$size = $item[1];
+						$qty = $item[3];
+						$color = $item[4];
+						$uom = $item[5];
+						$mat = $item[7];
+						$spec = $item[8];
+
+						// INSERT JOB ORDER DETAIL
+						$jodtl = new Table();
+						$jodtl->setSQLType($csdb->getSQLType());
+						$jodtl->setInstance($csdb->getInstance());
+						$jodtl->setTable("joborderdetail");
+						$jodtl->setField("jobOrderReferenceNo,specification,size,quantity,color,uom,material");
+						$jodtl->setValues("'$joNo','$spec','$size','$qty','$color','$uom','$mat'");
+						$jodtl->doQuery("save");
+					}
+
+					// SET JOB ORDER MASTER
+					$getjomst = new Table();
+					$getjomst->setSQLType($csdb->getSQLType());
+					$getjomst->setInstance($csdb->getInstance());
+					$getjomst->setView("jobordermaster_v");
+					$getjomst->setCol("id");
+					$getjomst->setParam("WHERE jobOrderReferenceNo = '$joNo'");
+					$getjomst->doQuery("query");
+					$row_getjomst = $getjomst->getLists();
+					$joid = $row_getjomst[0]['id'];
+
+					// UPDATE JOB ORDER DETAIL
+					$updjodtl = new Table();
+					$updjodtl->setSQLType($csdb->getSQLType());
+					$updjodtl->setInstance($csdb->getInstance());
+					$updjodtl->setTable("joborderdetail");
+					$updjodtl->setValues("jobOrderMasterId = '$joid'");
+					$updjodtl->setParam("WHERE jobOrderReferenceNo = '$joNo'");
+					$updjodtl->doQuery("update");
+					
 					$msg = $id . " successfully acknowledged.";
 				break;
 			case 3:
