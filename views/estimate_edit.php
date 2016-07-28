@@ -4,12 +4,10 @@
 			<h2>
 				<i class="halflings-icon cog"></i><span class="break"></span><b>Edit Estimate #<?=$id;?></b>
 			</h2>
-			<? if($row_estmst[0]['status'] == 1){ ?>
 			<div class="box-icon">
 				<span class="break">
 				<a href="estimate_print.php?id=<?=$row_estmst[0]['quoteReferenceNo'];?>" target="_blank"><i class="halflings-icon print"></i> PRINT</a>
 			</div>
-			<? } ?>
 			<div class="box-icon">
 				<span class="break">
 				<a href="estimate_add.php"><i class="halflings-icon plus"></i> ADD NEW</a>

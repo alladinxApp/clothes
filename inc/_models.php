@@ -14,5 +14,7 @@
 	define(MENUACCESSMODEL, "menuaccessModel.php");
 	define(ESTIMATESMODEL, "estimatesModel.php");
 	define(JOBORDERSMODEL, "jobOrderModel.php");
+	define(LABORCOSTMODEL, "laborCostModel.php");
+	define(JOBORDERLABORMODEL, "jobOrderLaborModel.php");
 	// -- END MODELS --
 ?>

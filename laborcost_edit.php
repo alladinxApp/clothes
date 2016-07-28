@@ -1,7 +1,8 @@
-<? 
+<?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(CONTROLLER_PATH . JOBORDERCONTROLLER);
+	require_once(MODEL_PATH . LABORCOSTMODEL);
+	require_once(CONTROLLER_PATH . LABORCOSTCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -41,30 +42,6 @@
 	<!-- end: Favicon -->
 		
 </head>
-<script type="text/javascript">
-	// function ComputeTotal(){
-	// 	var amnt = 0;
-	// 	var discount = 0;
-	// 	var subtotal = 0;
-	// 	var vat = 0;
-	// 	var total = 0;
-		
-	// 	if($("#txtAmount").val() > 0){
-	// 		amnt = $("#txtAmount").val();
-	// 	}
-	// 	if($("#txtDiscount").val() > 0){
-	// 		discount = $("#txtDiscount").val();
-	// 	}
-
-	// 	subtotal = (parseFloat(amnt) - parseFloat(discount));
-	// 	vat = parseFloat(subtotal) * parseFloat(0.12);
-	// 	total = (parseFloat(subtotal) + parseFloat(vat));
-
-	// 	$("#txtSubTotal").val(subtotal.toFixed(2));
-	// 	$("#txtVat").val(vat.toFixed(2));
-	// 	$("#txtTotalAmount").val(total.toFixed(2));
-	// }
-</script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
 	
@@ -75,15 +52,14 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/joborder_edit.php");?>
+					<? require_once("views/laborcost_edit.php");?>
 				</div>
 				<!-- end: Content -->
 
 			</div><!--/fluid-row-->
 		</div>
-	
+		
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
-
 </body>
 </html>

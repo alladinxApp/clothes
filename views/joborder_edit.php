@@ -2,7 +2,7 @@
 	<div class="box span12">
 		<div class="box-header" data-original-title>
 			<h2>
-				<i class="halflings-icon cog"></i><span class="break"></span><b>Job Order #<?=$id;?></b>
+				<i class="icon-upload-alt"></i><span class="break"></span><b>Job Order #<?=$id;?></b>
 			</h2>
 			<? if($row_jomst[0]['status'] == 1){ ?>
 			<div class="box-icon">
@@ -160,7 +160,14 @@
 					?>
 					<tr>
 						<td align="center"><?=$cnt;?></td>
-						<td><?=$row_jodept[$i]['departmentName'];?></td>
+						<td><? 
+							echo $row_jodept[$i]['departmentName'];
+
+							if($row_jodept[$i]['isCurrent'] == 1){
+								echo ' <i class="halflings-icon ok"></i> ';
+							}
+							
+						?></td>
 						<td align="center"><?=dateFormat($row_jodept[$i]['startDate'],"M d, Y H:i:s A");?></td>
 						<td align="center">
 							<?

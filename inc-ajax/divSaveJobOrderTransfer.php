@@ -10,28 +10,66 @@
 	$id = $_GET['id'];
 	$jono = $_GET['jono'];
 	$deptcode = $_GET['deptcode'];
-
+	$errmsg = "";
 	// OPEN DB
 	$csdb = new DBConfig();
 	$csdb->setClothesDB();
 
-	// INSERT JOB ORDER DEPARTMENT TRANSFER
-	$jodepttrans = new Table();
-	$jodepttrans->setSQLType($csdb->getSQLType());
-	$jodepttrans->setInstance($csdb->getInstance());
-	$jodepttrans->setTable("joborderdepartment");
-	$jodepttrans->setValues("'$id','$jono','$deptcode','$today','$userid','$userid','$today'");
-	$jodepttrans->setField("jobOrderMasterId,jobOrderReferenceNo,departmentCode,startDate,createdBy,startedBy,createdDate");
-	$jodepttrans->doQuery("save");
+	// CHECK JOB ORDER DEPARTMENT
+	$chkjodept = new Table();
+	$chkjodept->setSQLType($csdb->getSQLType());
+	$chkjodept->setInstance($csdb->getInstance());
+	$chkjodept->setView("joborderdepartment_v");
+	$chkjodept->setParam("WHERE jobOrderReferenceNo = '$jono' AND departmentCode = '$deptcode'");
+	$chkjodept->doQuery("query");
+	$num_chkjodept = $chkjodept->getNumRows();
+
+	if($num_chkjodept == 0){
+		// INSERT JOB ORDER DEPARTMENT TRANSFER
+		$updjodept = new Table();
+		$updjodept->setSQLType($csdb->getSQLType());
+		$updjodept->setInstance($csdb->getInstance());
+		$updjodept->setTable("joborderdepartment");
+		$updjodept->setValues("isCurrent = '0'");
+		$updjodept->setParam("WHERE jobOrderReferenceNo = '$jono' AND isCurrent = '1'");
+		$updjodept->doQuery("update");
+
+		// INSERT JOB ORDER DEPARTMENT TRANSFER
+		$jodepttrans = new Table();
+		$jodepttrans->setSQLType($csdb->getSQLType());
+		$jodepttrans->setInstance($csdb->getInstance());
+		$jodepttrans->setTable("joborderdepartment");
+		$jodepttrans->setValues("'$id','$jono','$deptcode','$today','$userid','$userid','$today'");
+		$jodepttrans->setField("jobOrderMasterId,jobOrderReferenceNo,departmentCode,startDate,createdBy,startedBy,createdDate");
+		$jodepttrans->doQuery("save");
+	}else{
+		// INSERT JOB ORDER DEPARTMENT TRANSFER
+		$updjodept = new Table();
+		$updjodept->setSQLType($csdb->getSQLType());
+		$updjodept->setInstance($csdb->getInstance());
+		$updjodept->setTable("joborderdepartment");
+		$updjodept->setValues("isCurrent = '0'");
+		$updjodept->setParam("WHERE jobOrderReferenceNo = '$jono' AND isCurrent = '1'");
+		$updjodept->doQuery("update");
+
+		// INSERT JOB ORDER DEPARTMENT TRANSFER
+		$updjodept1 = new Table();
+		$updjodept1->setSQLType($csdb->getSQLType());
+		$updjodept1->setInstance($csdb->getInstance());
+		$updjodept1->setTable("joborderdepartment");
+		$updjodept1->setValues("isCurrent = '1'");
+		$updjodept1->setParam("WHERE jobOrderReferenceNo = '$jono' AND departmentCode = '$deptcode'");
+		$updjodept1->doQuery("update");
+	}
 
 	// SET JOB ORDER DEPARTMENT
-	$jodepttrans = new Table();
-	$jodepttrans->setSQLType($csdb->getSQLType());
-	$jodepttrans->setInstance($csdb->getInstance());
-	$jodepttrans->setView("joborderdepartment_v");
-	$jodepttrans->setParam("WHERE jobOrderReferenceNo = '$jono' ORDER BY startDate DESC");
-	$jodepttrans->doQuery("query");
-	$row_jodept = $jodepttrans->getLists();
+	$jodept = new Table();
+	$jodept->setSQLType($csdb->getSQLType());
+	$jodept->setInstance($csdb->getInstance());
+	$jodept->setView("joborderdepartment_v");
+	$jodept->setParam("WHERE jobOrderReferenceNo = '$jono' ORDER BY startDate DESC");
+	$jodept->doQuery("query");
+	$row_jodept = $jodept->getLists();
 
 	// CLOSE DB
 	$csdb->DBClose();
@@ -79,6 +117,7 @@
 	  <th>START DATE</th>
 	  <th>END DATE</th>
 	  <th>REMARKS</th>
+	  <th>LABOR</th>
 	</tr>
 	<?
 		$cnt = 1;
@@ -90,7 +129,14 @@
 	?>
 	<tr>
 		<td align="center"><?=$cnt;?></td>
-		<td><?=$row_jodept[$i]['departmentName'];?></td>
+		<td><? 
+			echo $row_jodept[$i]['departmentName'];
+
+			if($row_jodept[$i]['isCurrent'] == 1){
+				echo ' <i class="halflings-icon ok"></i> ';
+			}
+			
+		?></td>
 		<td align="center"><?=dateFormat($row_jodept[$i]['startDate'],"M d, Y H:i:s A");?></td>
 		<td align="center">
 			<?
@@ -101,11 +147,18 @@
 			<input type="button" id="btnEndJob" name="btnEndJob" class="btn btn-primary" value=" End Job " onClick="return EndJob();" />
 			<? } ?>
 		</td>
-		<td>
+		<td align="center">
 			<? if(empty($row_jodept[$i]['remarks'])){ ?>
 				<textarea rows="2" cols="40" style="resize: none; width: 200px; " name="txtRemarks" id="txtRemarks"></textarea>
 				<input type="hidden" name="txtId" id="txtId" value="<?=$row_jodept[$i]['id'];?>">
 			<? }else{ echo $row_jodept[$i]['remarks']; }?>
+		</td>
+		<td align="center">
+			<? if($row_jodept[$i]['isCurrent'] == 1){ ?>
+			<a href="joborder_labor.php?id=<?=$row_jodept[$i]['jobOrderReferenceNo'];?>&deptcode=<?=$row_jodept[$i]['departmentCode'];?>"><i class="halflings-icon plus"></i> LABOR</a>
+			<? }else{ ?>
+			<a href="joborder_labor_print.php?id=<?=$row_jodept[$i]['jobOrderReferenceNo'];?>&deptcode=<?=$row_jodept[$i]['departmentCode'];?>" target="_blank"><i class="halflings-icon print"></i> PRINT</a>
+			<? } ?>
 		</td>
 	</tr>
 	<? $cnt++; } ?>

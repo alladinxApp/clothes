@@ -2,7 +2,7 @@
 	<div class="box span12">
 		<div class="box-header" data-original-title>
 			<h2>
-				<i class="halflings-icon cog"></i><span class="break"></span><b>Job Order #<?=$id;?></b>
+				<i class="icon-upload-alt"></i><span class="break"></span><b>Job Order #<?=$id;?></b>
 			</h2>
 			<div class="box-icon">
 				<span class="break">
@@ -85,7 +85,7 @@
 					</div>
 				</fieldset>
 				<div class="box-header" data-original-title>
-					<h2><i class="halflings-icon shopping-cart"></i><span class="break"></span><b>Add Department</b></h2>
+					<h2><i class="halflings-icon home"></i><span class="break"></span><b>Add Department</b></h2>
 				</div>
 				<table class="table table-bordered table-condensed">
 					<tr>
@@ -104,6 +104,7 @@
 					  <th>START DATE</th>
 					  <th>END DATE</th>
 					  <th>REMARKS</th>
+					  <th>LABOR</th>
 					</tr>
 					<?
 						$cnt = 1;
@@ -115,7 +116,14 @@
 					?>
 					<tr>
 						<td align="center"><?=$cnt;?></td>
-						<td><?=$row_jodept[$i]['departmentName'];?></td>
+						<td><? 
+							echo $row_jodept[$i]['departmentName'];
+
+							if($row_jodept[$i]['isCurrent'] == 1){
+								echo ' <i class="halflings-icon ok"></i> ';
+							}
+							
+						?></td>
 						<td align="center"><?=dateFormat($row_jodept[$i]['startDate'],"M d, Y H:i:s A");?></td>
 						<td align="center">
 							<?
@@ -126,11 +134,18 @@
 							<input type="button" id="btnEndJob" name="btnEndJob" class="btn btn-primary" value=" End Job " onClick="return EndJob();" />
 							<? } ?>
 						</td>
-						<td>
+						<td align="center">
 							<? if(empty($row_jodept[$i]['remarks'])){ ?>
 								<textarea rows="2" cols="40" style="resize: none; width: 200px; " name="txtRemarks" id="txtRemarks"></textarea>
 								<input type="hidden" name="txtId" id="txtId" value="<?=$row_jodept[$i]['id'];?>">
 							<? }else{ echo $row_jodept[$i]['remarks']; }?>
+						</td>
+						<td align="center">
+							<? if($row_jodept[$i]['isCurrent'] == 1){ ?>
+							<a href="joborder_labors.php?id=<?=$row_jodept[$i]['jobOrderReferenceNo'];?>&deptcode=<?=$row_jodept[$i]['departmentCode'];?>"><i class="icon-legal"></i> LABOR</a>
+							<? }else{ ?>
+							<a href="joborder_labor_print.php?id=<?=$row_jodept[$i]['jobOrderReferenceNo'];?>&deptcode=<?=$row_jodept[$i]['departmentCode'];?>" target="_blank"><i class="halflings-icon print"></i> PRINT</a>
+							<? } ?>
 						</td>
 					</tr>
 					<? $cnt++; } ?>
