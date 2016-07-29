@@ -22,7 +22,7 @@
 	$jolaborcostemp->setSQLType($csdb->getSQLType());
 	$jolaborcostemp->setInstance($csdb->getInstance());
 	$jolaborcostemp->setTable("jolaborcostsmaster");
-	$jolaborcostemp->setField("jobOrderDepartmentId,jobOrderReferenceNo,departmentCode,employeeName,description,createdDate,createdBy");
+	$jolaborcostemp->setField("jobOrderDepartmentId,jobOrderReferenceNo,departmentCode,employeeName,jobDescriptionCode,createdDate,createdBy");
 	$jolaborcostemp->setValues("'$id','$jono','$deptcode','$empname','$jobdesc','$today','$userid'");
 	$jolaborcostemp->doQuery("save");
 
@@ -53,8 +53,11 @@
 	<tr>
 		<td align="center"><?=$cnt;?></td>
 		<td><?=$row_jolabor[$i]['employeeName'];?></td>
-		<td><?=$row_jolabor[$i]['description'];?></td>
-		<td align="center"><a href="joborder_labor_add.php?id=<?=$row_jolabor[0]['id'];?>&deptcode=<?=$deptcode;?>&jono=<?=$id;?>"><i class="halflings-icon plus"></i> LABOR</a></td>
+		<td><?=$row_jolabor[$i]['jobDescription'];?></td>
+		<td align="center">
+						<a class="btn btn-info" href="joborder_labor_add.php?add=1&id=<?=$row_jolabor[0]['id'];?>&deptcode=<?=$deptcode;?>&jono=<?=$id;?>"><i class="halflings-icon white plus"></i></a>
+						<a class="btn btn-danger" onClick="deleteLabor(<?=$row_jolabor[0]['id'];?>,'<?=$deptcode;?>','<?=$id;?>');" href="#"><i class="halflings-icon white trash"></i></a>
+					</td>
 	</tr>
 	<? $cnt++; } ?>
 </table>

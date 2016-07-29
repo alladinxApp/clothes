@@ -1,9 +1,8 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . JOBORDERLABORMODEL);
 	require_once(MODEL_PATH . JOBDESCRIPTIONMODEL);
-	require_once(CONTROLLER_PATH . JOBORDERLABORCONTROLLER);
+	require_once(CONTROLLER_PATH . JOBDESCRIPTIONCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -43,58 +42,6 @@
 	<!-- end: Favicon -->
 		
 </head>
-<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui.js"></script>
-<script type="text/javascript">
-	function JobOrderLaborPrint(jono,deptcode){
-		window.open("joborder_labor_print.php?id="+jono+"&deptcode="+deptcode);
-		return false;
-	}
-	function deleteLabor(id,jono,deptcode){
-		if(confirm("Are you sure you want to delete this employee labor?")){
-			window.location="joborder_labors.php?delete=1&id="+id+"&jono="+jono+"&deptcode="+deptcode;
-		}else{
-			return false;
-		}
-	}
-	function AddEmployee(){
-		var empname = $("#txtEmployeeName").val();
-		var jobdesc = $("#txtJobDescription").val();
-		var id = $("#txtId").val();
-		var jono = $("#txtJono").val();
-		var deptcode = $("#txtDeptCode").val();
-		var strURL = 'inc-ajax/divSaveLaborCostEmp.php?id='+id+'&jono='+jono+'&deptcode='+deptcode+'&name='+empname+'&desc='+jobdesc;
-		
-		if(empname == "" || empname == null){
-			alert("Please enter employee name!");
-			$("#txtEmployeeName").focus();
-			return false;
-		}
-
-		if(jobdesc == "" || jobdesc == null){
-			alert("Please select employee job description!");
-			return false;
-		}
-
-		$.ajax({
-			url: strURL,
-			type: 'GET',
-			data: null,
-			datatype: 'json',
-			contentType: 'application/json; charset=utf-8',
-			
-			success: function (data) {
-				$("#divDetails").replaceWith(data);
-			},	
-					
-			error: function (request, status, err) {
-				alert(status);
-				alert(err);
-			}
-		});	
-	}
-</script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
 	
@@ -105,13 +52,22 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/joborder_labors.php");?>
+					<? require_once("views/jobdescriptions.php");?>
 				</div>
 				<!-- end: Content -->
 
 			</div><!--/fluid-row-->
 		</div>
-		
+	
+	<script type="text/javascript">
+		function deleteJD(jdno){
+			if(confirm("Are you sure you want to delete this job description?")){
+				window.location="jobdescriptions.php?delete=1&id="+jdno;
+			}else{
+				return false;
+			}
+		}
+	</script>
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 </body>

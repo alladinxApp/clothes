@@ -16,5 +16,8 @@
 	define(JOBORDERSMODEL, "jobOrderModel.php");
 	define(LABORCOSTMODEL, "laborCostModel.php");
 	define(JOBORDERLABORMODEL, "jobOrderLaborModel.php");
+	define(PRINTESTIMATEMODEL, "printEstimateModel.php");
+	define(JOBDESCRIPTIONMODEL, "jobDescriptionModel.php");
 	// -- END MODELS --
+	
 ?>

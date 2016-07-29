@@ -1,8 +1,7 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . JOBORDERLABORMODEL);
-	require_once(MODEL_PATH . JOBDESCRIPTIONMODEL);
+	require_once(MODEL_PATH . LABORCOSTMODEL);
 	require_once(CONTROLLER_PATH . JOBORDERLABORCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
@@ -47,33 +46,25 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-	function JobOrderLaborPrint(jono,deptcode){
-		window.open("joborder_labor_print.php?id="+jono+"&deptcode="+deptcode);
-		return false;
-	}
-	function deleteLabor(id,jono,deptcode){
-		if(confirm("Are you sure you want to delete this employee labor?")){
-			window.location="joborder_labors.php?delete=1&id="+id+"&jono="+jono+"&deptcode="+deptcode;
-		}else{
-			return false;
-		}
-	}
-	function AddEmployee(){
-		var empname = $("#txtEmployeeName").val();
-		var jobdesc = $("#txtJobDescription").val();
-		var id = $("#txtId").val();
-		var jono = $("#txtJono").val();
-		var deptcode = $("#txtDeptCode").val();
-		var strURL = 'inc-ajax/divSaveLaborCostEmp.php?id='+id+'&jono='+jono+'&deptcode='+deptcode+'&name='+empname+'&desc='+jobdesc;
-		
-		if(empname == "" || empname == null){
-			alert("Please enter employee name!");
-			$("#txtEmployeeName").focus();
-			return false;
-		}
+	function AddLabor(){
+		var jolaborid = $("#txtJOLaborId").val();
+		var laborcostid = $("#txtLaborCostId").val();
+		var qty = $("#txtQty").val();
+		var amount = $("#txtAmount").val();
+		var strURL = 'inc-ajax/divSaveNewLaborCost.php?id='+jolaborid+'&laborcostid='+laborcostid+'&qty='+qty+'&amount='+amount;
 
-		if(jobdesc == "" || jobdesc == null){
-			alert("Please select employee job description!");
+		if(laborcostid == ""){
+			alert("Please select labor cost!");
+			return false;
+		}
+		if(qty == ""){
+			alert("Please enter quantity!");
+			$("#txtQty").focus();
+			return false;
+		}
+		if(amount == ""){
+			alert("Please enter amount!");
+			$("#txtAmount").focus();
 			return false;
 		}
 
@@ -86,6 +77,8 @@
 			
 			success: function (data) {
 				$("#divDetails").replaceWith(data);
+				$("#txtQty").val("");
+				$("#txtAmount").val("");
 			},	
 					
 			error: function (request, status, err) {
@@ -105,7 +98,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/joborder_labors.php");?>
+					<? require_once("views/joborder_labor_add.php");?>
 				</div>
 				<!-- end: Content -->
 

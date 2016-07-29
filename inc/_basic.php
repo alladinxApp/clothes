@@ -26,6 +26,7 @@
 	define(FUNCTIONS, "functions.php");
 	define(PHPMAILER, "class.phpmailer.php");
 	define(SMTP, "class.smtp.php");
+	define(FPDF, "fpdf.php");
 
 	$title = "CLOTHES DESIGN INC.";
 	$today = date("Y-m-d h:i:s");

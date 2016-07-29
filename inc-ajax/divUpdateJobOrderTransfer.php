@@ -83,7 +83,7 @@
 		</td>
 		<td align="center">
 			<? if($row_jodept[$i]['isCurrent'] == 1){ ?>
-			<a href="joborder_labor.php?id=<?=$row_jodept[$i]['jobOrderReferenceNo'];?>&deptcode=<?=$row_jodept[$i]['departmentCode'];?>"><i class="halflings-icon plus"></i> LABOR</a>
+			<a href="joborder_labors.php?id=<?=$row_jodept[$i]['jobOrderReferenceNo'];?>&deptcode=<?=$row_jodept[$i]['departmentCode'];?>"><i class="icon-legal"></i> LABOR</a>
 			<? }else{ ?>
 			<a href="joborder_labor_print.php?id=<?=$row_jodept[$i]['jobOrderReferenceNo'];?>&deptcode=<?=$row_jodept[$i]['departmentCode'];?>" target="_blank"><i class="halflings-icon print"></i> PRINT</a>
 			<? } ?>

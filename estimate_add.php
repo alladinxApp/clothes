@@ -228,9 +228,6 @@
 		var y = nResult.getFullYear();
 	    return mm + '/' + dd + '/' + y;
 	}
-	// function NewCustomer(){
-	// 	$( "#divNewCustomer" ).dialog( "open" ); // CALL CUSTOMER FORM
-	// }
 	$(document).ready(function() {
 		// jQuery.expr[':'].Contains = function(a,i,m){
 		// 	return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;

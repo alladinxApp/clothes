@@ -123,22 +123,23 @@
 		$jono = "";
 		$jtNo = "";
 		$stat = "";
+
 		// TRANSACTION DATE
 		if(!empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
 			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
 			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
-			$xDate = " AND createDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
+			$xDate = " AND createdDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
 		}else if(!empty($_POST['txtFrom']) && empty($_POST['txtTo'])){
 			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
 			$dtto = dateFormat($_POST['txtFrom'],"Y-m-d");
-			$xDate = " AND createDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
+			$xDate = " AND createdDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
 		}else if(empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
 			$dtfrom = dateFormat($_POST['txtTo'],"Y-m-d");
 			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
-			$xDate = " AND createDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
+			$xDate = " AND createdDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
 		}else{ }
 
-		// ESTIMATE NO
+		// JOB ORDER NO
 		if(isset($_POST['txtJobOrderNo']) && !empty($_POST['txtJobOrderNo'])){
 			$joborderno = $_POST['txtJobOrderNo'];
 			$jono = " AND jobOrderReferenceNo = '$joborderno'";
@@ -171,7 +172,7 @@
 		$joborders->setSQLType($csdb->getSQLType());
 		$joborders->setInstance($csdb->getInstance());
 		$joborders->setView("jobordermaster_v");
-		$joborders->setParam("WHERE 1 $xDate $jono $cCode $jtNo $stat ORDER BY transactionDate DESC");
+		$joborders->setParam("WHERE 1 $xDate $jono $cCode $jtNo $stat ORDER BY createdDate DESC");
 		$joborders->doQuery("query");
 		$row_joborders = $joborders->getLists();
 

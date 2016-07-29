@@ -11,6 +11,7 @@
 	require_once(TABLE);
 	require_once(MESSAGEALERT);
 	require_once(FUNCTIONS);
+	require_once(FPDF);
 
 	require_once(MODEL_PATH . IMAGE_MODEL);
 	require_once(MODEL_PATH . USERMENUMODEL);

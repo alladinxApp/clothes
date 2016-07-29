@@ -34,11 +34,16 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="txtJobDescription"> Job Description </label>
-				<div class="controls">
-					<input class="input-xlarge" name="txtJobDescription" id="txtJobDescription" type="text" placeholder="Job Description Here..." />
-				</div>
-			</div>
+						<label class="control-label" for="txtJobDescription">Job Description</label>
+						<div class="controls">
+							<select id="txtJobDescription" name="txtJobDescription">
+								<option value="">Job Description</option>
+								<? for($i=0;$i<count($row_jobdescription);$i++){ ?>
+								<option value="<?=$row_jobdescription[$i]['jobDescriptionCode'];?>"><?=$row_jobdescription[$i]['description'];?></option>
+								<? } ?>
+							</select>
+						</div>
+					</div>
 			<div class="control-group">
 				<label class="control-label" for="txtJobDescription"></label>
 				<div class="controls">
@@ -52,7 +57,7 @@
 				  <th>#</th>
 				  <th>Employee Name</th>
 				  <th>Job Description</th>
-				  <th>Add Labor</th>
+				  <th>Action</th>
 				</tr>
 				<?
 					$cnt = 1;
@@ -61,8 +66,11 @@
 				<tr>
 					<td align="center"><?=$cnt;?></td>
 					<td><?=$row_jolabor[$i]['employeeName'];?></td>
-					<td><?=$row_jolabor[$i]['description'];?></td>
-					<td align="center"><a href="joborder_labor_add.php?id=<?=$row_jolabor[0]['id'];?>&deptcode=<?=$deptcode;?>&jono=<?=$id;?>"><i class="halflings-icon plus"></i> LABOR</a></td>
+					<td><?=$row_jolabor[$i]['jobDescription'];?></td>
+					<td align="center">
+						<a class="btn btn-info" href="joborder_labor_add.php?add=1&id=<?=$row_jolabor[0]['id'];?>&deptcode=<?=$deptcode;?>&jono=<?=$id;?>"><i class="halflings-icon white plus"></i></a>
+						<a class="btn btn-danger" onClick="deleteLabor(<?=$row_jolabor[0]['id'];?>,'<?=$id;?>','<?=$deptcode;?>');" href="#"><i class="halflings-icon white trash"></i></a>
+					</td>
 				</tr>
 				<? $cnt++; } ?>
 			</table>
