@@ -31,7 +31,9 @@
    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
    <![endif]-->
 </head>
-
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <body class="external-page sb-l-c sb-r-c">
 
     <!-- Start: Main -->
@@ -153,7 +155,7 @@
                             </div>
                             <!-- end .form-body section -->
                             <div class="panel-footer clearfix p10 ph15">
-                                <button type="submit" class="button btn-primary mr10 pull-right">Login</button>
+                                <button type="submit" id="btnLogin" name="btnLogin" class="button btn-primary mr10 pull-right">Login</button>
                                 <label class="switch block switch-primary pull-left input-align mt10">
                                     <input type="checkbox" name="remember" id="remember" checked>
                                     <label for="remember" data-on="YES" data-off="NO"></label>
@@ -175,73 +177,12 @@
     </div>
     <!-- End: Main -->
 
-    <!-- BEGIN: PAGE SCRIPTS -->
-
-    <!-- jQuery -->
-    <script type="text/javascript" src="vendor/jquery/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
-
-    <!-- Bootstrap -->
-    <script type="text/javascript" src="assets/js/bootstrap/bootstrap.min.js"></script>
-
-    <!-- Page Plugins -->
-    <script type="text/javascript" src="assets/js/pages/login/EasePack.min.js"></script>
-    <script type="text/javascript" src="assets/js/pages/login/rAF.js"></script>
-    <script type="text/javascript" src="assets/js/pages/login/TweenLite.min.js"></script>
-    <script type="text/javascript" src="assets/js/pages/login/login.js"></script>
-
-    <!-- Theme Javascript -->
-    <script type="text/javascript" src="assets/js/utility/utility.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
-    <!-- <script type="text/javascript" src="assets/js/demo.js"></script> -->
-
-    <script type="text/javascript" src="assets/admin-tools/admin-forms/js/jquery.validate.min.js"></script>
-
     <!-- Page Javascript -->
     <script type="text/javascript">
         jQuery(document).ready(function() {
 
-            "use strict";
-
-            // Init Theme Core      
-            Core.init();
-
-            // Init Demo JS
-            Demo.init();
-
-            // Init CanvasBG and pass target starting location
-            CanvasBG.init({
-                Loc: {
-                    x: window.innerWidth / 2,
-                    y: window.innerHeight / 3.3
-                },
-            });
-
-            $("#txtusername").focus();
-
-            $( "#login-form" ).validate({
-                errorClass: "state-error",
-                validClass: "state-success",
-                errorElement: "em",
-
-                rules: {
-                    txtusername: {
-                        required: true
-                    },
-                    txtpassword: {
-                        required: true
-                    }
-                },
-
-                messages:{
-                    txtusername: {
-                        required: 'Please enter username!'
-                    },
-                    txtpassword: {
-                        required: 'Please enter password!'
-                    }
-                }
-            });
+            $("#txtUsername").focus();
+            
         });
     </script>
     <!-- END: PAGE SCRIPTS -->
