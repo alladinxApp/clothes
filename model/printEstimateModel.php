@@ -9,6 +9,13 @@
 		public function setAttachment($attachment){
 			$this->attachment = $attachment;
 		}
+		public function setAttachmentW($w){
+			$this->attachmentW = $w <= 189 ? $w : 189;
+			$this->indent = (190 - $this->attachmentW) / 2;
+		}
+		public function setAttachmentH($h){
+			$this->attachmentH = $h <= 58 ? $h : 58;
+		}
 		public function Header(){
 			$this->Image('img/logo.png', 80, 5, 50);
 			$this->Ln(10);
@@ -67,10 +74,12 @@
 			$this->SetFont('helvetica','',10);
 			$this->Cell(43,4,dateFormat($this->estMst['dueDate'],"M d, Y"),'B',0,'L');
 			$this->Ln(8);
-
-			// $this->Image($this->attachment, 80, 70, 100);
-			// $this->Cell(190,50,, 80, 5, 50);,'TLBR',0,'C');
-			// $this->Ln(55);
+			// echo $this->attachmentW . " " . $this->attachmentH;
+			// echo $this->indent;
+			$this->Cell($this->indent,60,'','TLB',0,'C');
+			$this->Cell($this->attachmentW,60,$this->Image($this->attachment, $this->GetX() + 1, $this->GetY() + 1, $this->attachmentW -2, $this->attachmentH),'TB',0,'C', false);
+			$this->Cell($this->indent,60,'','TBR',0,'C');
+			$this->Ln(65);
 		}
 
 		public function ImprovedTable(){

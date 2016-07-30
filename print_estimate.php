@@ -35,13 +35,27 @@
 	// CLOSE DB
 	$csdb->DBClose();
 	
+	function getImageWidthHeight($img){
+		$imgDimension = getimagesize($img);
+		$a = explode(" ",$imgDimension[3]);
+		$w = explode("=",str_replace('"','',$a[0]));
+		$h = explode("=",str_replace('"','',$a[1]));
+		$width = $w[1];
+		$height = $h[1];
+		
+		return array("width" => $width, "height" => $height);
+	}
+
 	$attachment = ESTIMATEATTACHMENTS . dateFormat($row_estmst[0]['transactionDate'], "Ym") . "/" . $id . "/" . $row_estmst[0]['attachment'];
 	
-	$pdf = new PrintEstimate;
+	$imgWidthHeight = getImageWidthHeight($attachment);
 
+	$pdf = new PrintEstimate;
 	$pdf->setEstMaster($row_estmst[0]);
 	$pdf->setEstDetail($row_estdtl);
 	$pdf->setAttachment($attachment);
+	$pdf->setAttachmentW($imgWidthHeight['width']);
+	$pdf->setAttachmentH($imgWidthHeight['height']);
 
 	$pdf->AddPage();
 	$pdf->ImprovedTable();

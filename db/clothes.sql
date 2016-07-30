@@ -47,11 +47,11 @@ CREATE TABLE `controlno` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `controlno` */
 
-insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,1,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,3,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx','2016-07-27 05:43:22','ALLADINX',0),(5,'MENU MAINTENANCE','M','MENU',4,23,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE MAINTENANCE','EST','ESTIMATE',8,0,'Estimate Maintenance','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1),(10,'JOB ORDER MAINTENANCE','JO','JOBORDER',8,0,'Job Order Maintenance','2016-07-25 11:23:56','ALLADINX',NULL,NULL,1),(11,'DELIVERY MAINTENANCE','DR','DELIVERY',8,0,'Delivery Maintenance','2016-07-27 05:43:00','ALLADINX',NULL,NULL,1),(12,'BILLING MAINTENANCE','B','BILLING',8,0,'Billing Maintenance','2016-07-27 08:05:00','ALLADINX',NULL,NULL,1),(13,'LABOR COSTS MAINTENANCE','LC','LABORCOSTS',4,19,'Labor Costs Maintenance','2016-07-28 03:57:51','ALLADINX',NULL,NULL,1),(14,'JOB DESCRIPTION MAINTENANCE','JD','JOBDESCRIPTION',4,3,'Job Description Maintenance','2016-07-29 01:46:11','ALLADINX',NULL,NULL,1);
+insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,1,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,3,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx','2016-07-27 05:43:22','ALLADINX',0),(5,'MENU MAINTENANCE','M','MENU',4,22,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE MAINTENANCE','EST','ESTIMATE',8,0,'Estimate Maintenance','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1),(10,'JOB ORDER MAINTENANCE','JO','JOBORDER',8,0,'Job Order Maintenance','2016-07-25 11:23:56','ALLADINX',NULL,NULL,1),(11,'DELIVERY MAINTENANCE','DR','DELIVERY',8,0,'Delivery Maintenance','2016-07-27 05:43:00','ALLADINX',NULL,NULL,1),(12,'BILLING MAINTENANCE','B','BILLING',8,0,'Billing Maintenance','2016-07-27 08:05:00','ALLADINX',NULL,NULL,1),(13,'LABOR COSTS MAINTENANCE','LC','LABORCOSTS',4,19,'Labor Costs Maintenance','2016-07-28 03:57:51','ALLADINX',NULL,NULL,1);
 
 /*Table structure for table `customersmaster` */
 
@@ -150,26 +150,6 @@ CREATE TABLE `estimatemaster` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `estimatemaster` */
-
-/*Table structure for table `jobdescriptionmaster` */
-
-DROP TABLE IF EXISTS `jobdescriptionmaster`;
-
-CREATE TABLE `jobdescriptionmaster` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `jobDescriptionCode` varchar(20) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `createdDate` datetime DEFAULT NULL,
-  `createdBy` varchar(20) DEFAULT NULL,
-  `modifiedDate` datetime DEFAULT NULL,
-  `modifiedBy` varchar(20) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-/*Data for the table `jobdescriptionmaster` */
-
-insert  into `jobdescriptionmaster`(`id`,`jobDescriptionCode`,`description`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'JD0001','SEWING','2016-07-29 01:55:10','ALLADINX',NULL,NULL,1),(2,'JD0002','PATCHING','2016-07-29 01:55:26','ALLADINX',NULL,NULL,1),(3,'JD0003','PRINTING','2016-07-29 01:55:38','ALLADINX',NULL,NULL,1);
 
 /*Table structure for table `joborderdepartment` */
 
@@ -286,7 +266,6 @@ CREATE TABLE `jolaborcostsmaster` (
   `jobOrderReferenceNo` varchar(20) DEFAULT NULL,
   `departmentCode` varchar(20) DEFAULT NULL,
   `employeeName` varchar(100) DEFAULT NULL,
-  `jobDescriptionCode` varchar(20) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
   `createdBy` varchar(20) DEFAULT NULL,
   `createdDate` datetime DEFAULT NULL,
@@ -356,11 +335,11 @@ CREATE TABLE `menumaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 /*Data for the table `menumaster` */
 
-insert  into `menumaster`(`id`,`menuCode`,`description`,`link`,`icon`,`isMaintenance`,`isTransactions`,`isReports`,`sortNo`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (2,'M0001','Control Nos','controlnos','icon-cogs',1,0,0,1,'2016-07-10 09:22:59','alladinx','2016-07-23 10:07:57','ALLADINX',1),(3,'M0002','Customers','customers','icon-group',1,0,0,3,'2016-07-10 09:23:10','alladinx','2016-07-23 10:08:20','ALLADINX',1),(4,'M0003','Departments','departments','icon-home',1,0,0,2,'2016-07-10 09:23:21','alladinx','2016-07-23 10:08:07','ALLADINX',1),(5,'M0004','Job Types','jobtypes','icon-tags',1,0,0,4,'2016-07-10 09:23:30','alladinx','2016-07-23 10:08:27','ALLADINX',1),(6,'M0005','Materials','materials','icon-barcode',1,0,0,5,'2016-07-10 09:23:40','alladinx','2016-07-23 10:08:34','ALLADINX',1),(7,'M0006','Menus','menus','icon-list',1,0,0,6,'2016-07-10 09:23:51','alladinx','2016-07-23 10:08:43','ALLADINX',1),(8,'M0007','Sizing Patterns','sizings','icon-bar-chart',1,0,0,7,'2016-07-10 09:24:07','alladinx','2016-07-23 10:08:51','ALLADINX',1),(9,'M0008','UOMs','uoms','icon-signal',1,0,0,8,'2016-07-10 09:24:20','alladinx','2016-07-23 10:08:58','ALLADINX',1),(10,'M0009','Estimates','estimates','icon-book',0,1,0,1,'2016-07-10 09:24:41','alladinx','2016-07-23 10:04:17','ALLADINX',1),(11,'M0010','Users','users','icon-user',1,0,0,9,'2016-07-10 09:41:29','alladinx','2016-07-23 10:09:06','ALLADINX',1),(12,'M0011','Pending Job Orders','jopending','icon-calendar',0,0,1,NULL,'2016-07-10 09:41:53','alladinx',NULL,NULL,1),(13,'M0012','Upcoming Dues','dues','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:22','alladinx',NULL,NULL,1),(14,'M0013','Work In Process','wip','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:36','alladinx',NULL,NULL,1),(15,'M0014','AR / UI','arui','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:49','alladinx','2016-07-13 04:53:38','alladinx',1),(16,'M0015','Sales per Location','salesperlocation','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:06','alladinx',NULL,NULL,1),(17,'M0016','Sales per Customer','salespercustomer','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:18','alladinx',NULL,NULL,1),(18,'M0017','Clothing Report','clothingreport','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:33','alladinx',NULL,NULL,1),(19,'M0018','Job Orders','joborders','icon-upload-alt',0,1,0,2,'2016-07-13 01:59:17','alladinx','2016-07-23 10:05:50','ALLADINX',1),(20,'M0019','Deliveries','deliveries','icon-truck',0,1,0,3,'2016-07-13 04:09:47','alladinx','2016-07-23 10:06:01','ALLADINX',1),(21,'M0020','Billings','billings','icon-money',0,1,0,4,'2016-07-25 04:58:04','ALLADINX','2016-07-25 05:02:24','ALLADINX',1),(22,'M0021','Daily Collections','dailycollections','icon-credit-card',0,1,0,5,'2016-07-25 04:59:19','ALLADINX','2016-07-25 05:01:14','ALLADINX',1),(23,'M0022','Labor Costs','laborcosts','icon-legal',1,0,0,10,'2016-07-28 03:24:05','ALLADINX','2016-07-28 03:38:59','ALLADINX',1),(24,'M0023','Job Description','jobdescriptions','icon-tasks',1,0,0,11,'2016-07-29 01:11:15','ALLADINX',NULL,NULL,1);
+insert  into `menumaster`(`id`,`menuCode`,`description`,`link`,`icon`,`isMaintenance`,`isTransactions`,`isReports`,`sortNo`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (2,'M0001','Control Nos','controlnos','icon-cogs',1,0,0,1,'2016-07-10 09:22:59','alladinx','2016-07-23 10:07:57','ALLADINX',1),(3,'M0002','Customers','customers','icon-group',1,0,0,3,'2016-07-10 09:23:10','alladinx','2016-07-23 10:08:20','ALLADINX',1),(4,'M0003','Departments','departments','icon-home',1,0,0,2,'2016-07-10 09:23:21','alladinx','2016-07-23 10:08:07','ALLADINX',1),(5,'M0004','Job Types','jobtypes','icon-tags',1,0,0,4,'2016-07-10 09:23:30','alladinx','2016-07-23 10:08:27','ALLADINX',1),(6,'M0005','Materials','materials','icon-barcode',1,0,0,5,'2016-07-10 09:23:40','alladinx','2016-07-23 10:08:34','ALLADINX',1),(7,'M0006','Menus','menus','icon-list',1,0,0,6,'2016-07-10 09:23:51','alladinx','2016-07-23 10:08:43','ALLADINX',1),(8,'M0007','Sizing Patterns','sizings','icon-bar-chart',1,0,0,7,'2016-07-10 09:24:07','alladinx','2016-07-23 10:08:51','ALLADINX',1),(9,'M0008','UOMs','uoms','icon-signal',1,0,0,8,'2016-07-10 09:24:20','alladinx','2016-07-23 10:08:58','ALLADINX',1),(10,'M0009','Estimates','estimates','icon-book',0,1,0,1,'2016-07-10 09:24:41','alladinx','2016-07-23 10:04:17','ALLADINX',1),(11,'M0010','Users','users','icon-user',1,0,0,9,'2016-07-10 09:41:29','alladinx','2016-07-23 10:09:06','ALLADINX',1),(12,'M0011','Pending Job Orders','jopending','icon-calendar',0,0,1,NULL,'2016-07-10 09:41:53','alladinx',NULL,NULL,1),(13,'M0012','Upcoming Dues','dues','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:22','alladinx',NULL,NULL,1),(14,'M0013','Work In Process','wip','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:36','alladinx',NULL,NULL,1),(15,'M0014','AR / UI','arui','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:49','alladinx','2016-07-13 04:53:38','alladinx',1),(16,'M0015','Sales per Location','salesperlocation','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:06','alladinx',NULL,NULL,1),(17,'M0016','Sales per Customer','salespercustomer','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:18','alladinx',NULL,NULL,1),(18,'M0017','Clothing Report','clothingreport','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:33','alladinx',NULL,NULL,1),(19,'M0018','Job Orders','joborders','icon-upload-alt',0,1,0,2,'2016-07-13 01:59:17','alladinx','2016-07-23 10:05:50','ALLADINX',1),(20,'M0019','Deliveries','deliveries','icon-truck',0,1,0,3,'2016-07-13 04:09:47','alladinx','2016-07-23 10:06:01','ALLADINX',1),(21,'M0020','Billings','billings','icon-money',0,1,0,4,'2016-07-25 04:58:04','ALLADINX','2016-07-25 05:02:24','ALLADINX',1),(22,'M0021','Daily Collections','dailycollections','icon-credit-card',0,1,0,5,'2016-07-25 04:59:19','ALLADINX','2016-07-25 05:01:14','ALLADINX',1),(23,'M0022','Labor Costs','laborcosts','icon-legal',1,0,0,10,'2016-07-28 03:24:05','ALLADINX','2016-07-28 03:38:59','ALLADINX',1);
 
 /*Table structure for table `sizingmaster` */
 
@@ -433,11 +412,11 @@ CREATE TABLE `usermenuaccess` (
   `userName` varchar(20) DEFAULT NULL,
   `menuCode` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usermenuaccess` */
 
-insert  into `usermenuaccess`(`id`,`userName`,`menuCode`) values (1,'ALLADINX','M0014'),(2,'ALLADINX','M0017'),(3,'ALLADINX','M0001'),(4,'ALLADINX','M0002'),(5,'ALLADINX','M0019'),(6,'ALLADINX','M0003'),(7,'ALLADINX','M0009'),(8,'ALLADINX','M0018'),(9,'ALLADINX','M0004'),(10,'ALLADINX','M0005'),(11,'ALLADINX','M0006'),(12,'ALLADINX','M0011'),(13,'ALLADINX','M0016'),(14,'ALLADINX','M0015'),(15,'ALLADINX','M0007'),(16,'ALLADINX','M0008'),(17,'ALLADINX','M0012'),(18,'ALLADINX','M0010'),(19,'ALLADINX','M0013'),(20,'NOELSR','M0014'),(21,'NOELSR','M0017'),(22,'NOELSR','M0001'),(23,'NOELSR','M0002'),(24,'NOELSR','M0019'),(25,'NOELSR','M0003'),(26,'NOELSR','M0009'),(27,'NOELSR','M0018'),(28,'NOELSR','M0004'),(29,'NOELSR','M0005'),(30,'NOELSR','M0006'),(31,'NOELSR','M0011'),(32,'NOELSR','M0016'),(33,'NOELSR','M0015'),(34,'NOELSR','M0007'),(35,'NOELSR','M0008'),(36,'NOELSR','M0012'),(37,'NOELSR','M0010'),(38,'NOELSR','M0013'),(39,'ALLADINX','M0020'),(40,'NOELSR','M0020'),(41,'ALLADINX','M0021'),(42,'NOELSR','M0021'),(43,'ALLADINX','M0022'),(44,'NOELSR','M0022'),(45,'REYCAST','M0009'),(46,'ALLADINX','M0023'),(47,'NOELSR','M0023');
+insert  into `usermenuaccess`(`id`,`userName`,`menuCode`) values (1,'ALLADINX','M0014'),(2,'ALLADINX','M0017'),(3,'ALLADINX','M0001'),(4,'ALLADINX','M0002'),(5,'ALLADINX','M0019'),(6,'ALLADINX','M0003'),(7,'ALLADINX','M0009'),(8,'ALLADINX','M0018'),(9,'ALLADINX','M0004'),(10,'ALLADINX','M0005'),(11,'ALLADINX','M0006'),(12,'ALLADINX','M0011'),(13,'ALLADINX','M0016'),(14,'ALLADINX','M0015'),(15,'ALLADINX','M0007'),(16,'ALLADINX','M0008'),(17,'ALLADINX','M0012'),(18,'ALLADINX','M0010'),(19,'ALLADINX','M0013'),(20,'NOELSR','M0014'),(21,'NOELSR','M0017'),(22,'NOELSR','M0001'),(23,'NOELSR','M0002'),(24,'NOELSR','M0019'),(25,'NOELSR','M0003'),(26,'NOELSR','M0009'),(27,'NOELSR','M0018'),(28,'NOELSR','M0004'),(29,'NOELSR','M0005'),(30,'NOELSR','M0006'),(31,'NOELSR','M0011'),(32,'NOELSR','M0016'),(33,'NOELSR','M0015'),(34,'NOELSR','M0007'),(35,'NOELSR','M0008'),(36,'NOELSR','M0012'),(37,'NOELSR','M0010'),(38,'NOELSR','M0013'),(39,'ALLADINX','M0020'),(40,'NOELSR','M0020'),(41,'ALLADINX','M0021'),(42,'NOELSR','M0021'),(43,'ALLADINX','M0022'),(44,'NOELSR','M0022'),(45,'REYCAST','M0009');
 
 /*Table structure for table `controlno_v` */
 
@@ -566,25 +545,6 @@ DROP TABLE IF EXISTS `estimatemaster_v`;
  `modifiedBy` varchar(20) ,
  `status` int(5) ,
  `statusDesc` varchar(12) 
-)*/;
-
-/*Table structure for table `jobdescriptionmaster_v` */
-
-DROP TABLE IF EXISTS `jobdescriptionmaster_v`;
-
-/*!50001 DROP VIEW IF EXISTS `jobdescriptionmaster_v` */;
-/*!50001 DROP TABLE IF EXISTS `jobdescriptionmaster_v` */;
-
-/*!50001 CREATE TABLE  `jobdescriptionmaster_v`(
- `id` int(11) ,
- `jobDescriptionCode` varchar(20) ,
- `description` varchar(100) ,
- `createdDate` datetime ,
- `createdBy` varchar(20) ,
- `modifiedDate` datetime ,
- `modifiedBy` varchar(20) ,
- `status` int(1) ,
- `statusDesc` varchar(8) 
 )*/;
 
 /*Table structure for table `joborderdepartment_v` */
@@ -723,8 +683,7 @@ DROP TABLE IF EXISTS `jolaborcostsmaster_v`;
  `departmentCode` varchar(20) ,
  `departmentName` varchar(50) ,
  `employeeName` varchar(100) ,
- `jobDescriptionCode` varchar(20) ,
- `jobDescription` varchar(100) ,
+ `description` varchar(100) ,
  `createdBy` varchar(20) ,
  `createdDate` datetime ,
  `modifiedBy` varchar(20) ,
@@ -915,13 +874,6 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `estimatemaster_v` AS (select `estimatemaster`.`id` AS `id`,`estimatemaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster`.`transactionDate` AS `transactionDate`,`estimatemaster`.`customerCode` AS `customerCode`,`customersmaster`.`customerName` AS `customerName`,`customersmaster`.`address` AS `address`,`customersmaster`.`telephoneNo` AS `customerTelNo`,`estimatemaster`.`isRush` AS `isRush`,(case when (`estimatemaster`.`isRush` = '1') then 'YES' else 'NO' end) AS `isRushDesc`,`estimatemaster`.`jobType` AS `jobType`,`jobtypemaster`.`description` AS `jobTypeDesc`,(case when (`estimatemaster`.`isRush` = 1) then `estimatemaster`.`leadTime` else `jobtypemaster`.`leadTime` end) AS `leadTime`,`jobtypemaster`.`notificationDay` AS `notificationDay`,`estimatemaster`.`dueDate` AS `dueDate`,`estimatemaster`.`attachment` AS `attachment`,`estimatemaster`.`amount` AS `amount`,`estimatemaster`.`discount` AS `discount`,`estimatemaster`.`subTotal` AS `subTotal`,`estimatemaster`.`vat` AS `vat`,`estimatemaster`.`totalAmount` AS `totalAmount`,`estimatemaster`.`acknowledgeBy` AS `acknowledgeBy`,`estimatemaster`.`acknowledgeDate` AS `acknowledgeDate`,`estimatemaster`.`remarks` AS `remarks`,`estimatemaster`.`createdBy` AS `createdBy`,`usermaster`.`fullName` AS `userName`,`estimatemaster`.`modifiedDate` AS `modifiedDate`,`estimatemaster`.`modifiedBy` AS `modifiedBy`,`estimatemaster`.`status` AS `status`,(case when (`estimatemaster`.`status` = 1) then 'ACKNOWLEDGED' when (`estimatemaster`.`status` = 3) then 'CANCELED' when (`estimatemaster`.`status` = 2) then 'DISAPPROVED' else 'PENDING' end) AS `statusDesc` from (((`estimatemaster` join `customersmaster` on((`customersmaster`.`customerCode` = `estimatemaster`.`customerCode`))) join `jobtypemaster` on((`jobtypemaster`.`jobTypeCode` = `estimatemaster`.`jobType`))) join `usermaster` on((`usermaster`.`userName` = `estimatemaster`.`createdBy`)))) */;
 
-/*View structure for view jobdescriptionmaster_v */
-
-/*!50001 DROP TABLE IF EXISTS `jobdescriptionmaster_v` */;
-/*!50001 DROP VIEW IF EXISTS `jobdescriptionmaster_v` */;
-
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobdescriptionmaster_v` AS (select `jobdescriptionmaster`.`id` AS `id`,`jobdescriptionmaster`.`jobDescriptionCode` AS `jobDescriptionCode`,`jobdescriptionmaster`.`description` AS `description`,`jobdescriptionmaster`.`createdDate` AS `createdDate`,`jobdescriptionmaster`.`createdBy` AS `createdBy`,`jobdescriptionmaster`.`modifiedDate` AS `modifiedDate`,`jobdescriptionmaster`.`modifiedBy` AS `modifiedBy`,`jobdescriptionmaster`.`status` AS `status`,(case when (`jobdescriptionmaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `jobdescriptionmaster`) */;
-
 /*View structure for view joborderdepartment_v */
 
 /*!50001 DROP TABLE IF EXISTS `joborderdepartment_v` */;
@@ -962,7 +914,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `jolaborcostsmaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `jolaborcostsmaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jolaborcostsmaster_v` AS (select `jolaborcostsmaster`.`id` AS `id`,`jolaborcostsmaster`.`jobOrderDepartmentId` AS `jobOrderDepartmentId`,`jolaborcostsmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`customerName` AS `customerName`,`jolaborcostsmaster`.`departmentCode` AS `departmentCode`,`joborderdepartment_v`.`departmentName` AS `departmentName`,`jolaborcostsmaster`.`employeeName` AS `employeeName`,`jolaborcostsmaster`.`jobDescriptionCode` AS `jobDescriptionCode`,`jobdescriptionmaster`.`description` AS `jobDescription`,`jolaborcostsmaster`.`createdBy` AS `createdBy`,`jolaborcostsmaster`.`createdDate` AS `createdDate`,`jolaborcostsmaster`.`modifiedBy` AS `modifiedBy`,`jolaborcostsmaster`.`modifiedDate` AS `modifiedDate` from (((`jolaborcostsmaster` join `joborderdepartment_v` on(((`joborderdepartment_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`) and (`joborderdepartment_v`.`departmentCode` = `jolaborcostsmaster`.`departmentCode`)))) join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`))) join `jobdescriptionmaster` on((`jobdescriptionmaster`.`jobDescriptionCode` = `jolaborcostsmaster`.`jobDescriptionCode`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jolaborcostsmaster_v` AS (select `jolaborcostsmaster`.`id` AS `id`,`jolaborcostsmaster`.`jobOrderDepartmentId` AS `jobOrderDepartmentId`,`jolaborcostsmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`customerName` AS `customerName`,`jolaborcostsmaster`.`departmentCode` AS `departmentCode`,`joborderdepartment_v`.`departmentName` AS `departmentName`,`jolaborcostsmaster`.`employeeName` AS `employeeName`,`jolaborcostsmaster`.`description` AS `description`,`jolaborcostsmaster`.`createdBy` AS `createdBy`,`jolaborcostsmaster`.`createdDate` AS `createdDate`,`jolaborcostsmaster`.`modifiedBy` AS `modifiedBy`,`jolaborcostsmaster`.`modifiedDate` AS `modifiedDate` from ((`jolaborcostsmaster` join `joborderdepartment_v` on(((`joborderdepartment_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`) and (`joborderdepartment_v`.`departmentCode` = `jolaborcostsmaster`.`departmentCode`)))) join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`)))) */;
 
 /*View structure for view laborcostsmaster_v */
 
