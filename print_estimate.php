@@ -46,9 +46,11 @@
 		return array("width" => $width, "height" => $height);
 	}
 
-	$attachment = ESTIMATEATTACHMENTS . dateFormat($row_estmst[0]['transactionDate'], "Ym") . "/" . $id . "/" . $row_estmst[0]['attachment'];
-	
-	$imgWidthHeight = getImageWidthHeight($attachment);
+	$imgWidthHeight = array("width" => 0, "height" => 0);
+	if(!empty($row_estmst[0]['attachment'])){
+		$attachment = ESTIMATEATTACHMENTS . dateFormat($row_estmst[0]['transactionDate'], "Ym") . "/" . $id . "/" . $row_estmst[0]['attachment'];
+		$imgWidthHeight = getImageWidthHeight($attachment);
+	}
 
 	$pdf = new PrintEstimate;
 	$pdf->setEstMaster($row_estmst[0]);

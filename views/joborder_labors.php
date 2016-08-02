@@ -57,6 +57,7 @@
 				  <th>#</th>
 				  <th>Employee Name</th>
 				  <th>Job Description</th>
+				  <th>Total Labor</th>
 				  <th>Action</th>
 				</tr>
 				<?
@@ -67,9 +68,13 @@
 					<td align="center"><?=$cnt;?></td>
 					<td><?=$row_jolabor[$i]['employeeName'];?></td>
 					<td><?=$row_jolabor[$i]['jobDescription'];?></td>
+					<td align="right"><?=number_format($row_jolabor[$i]['totalLabor'],2);?></td>
 					<td align="center">
-						<a class="btn btn-info" href="joborder_labor_add.php?add=1&id=<?=$row_jolabor[0]['id'];?>&deptcode=<?=$deptcode;?>&jono=<?=$id;?>"><i class="halflings-icon white plus"></i></a>
-						<a class="btn btn-danger" onClick="deleteLabor(<?=$row_jolabor[0]['id'];?>,'<?=$id;?>','<?=$deptcode;?>');" href="#"><i class="halflings-icon white trash"></i></a>
+						<a class="btn btn-info" href="joborder_labor_add.php?add=1&id=<?=$row_jolabor[$i]['id'];?>&deptcode=<?=$deptcode;?>&jono=<?=$id;?>"><i class="halflings-icon white plus"></i></a>
+						<a class="btn btn-danger" onClick="deleteLabor(<?=$row_jolabor[$i]['id'];?>,'<?=$deptcode;?>','<?=$id;?>');" href="#"><i class="halflings-icon white trash"></i></a>
+						<a class="btn btn-info" href="#" onClick="EmpLaborPrint('<?=$row_jolabor[$i]['id'];?>');" title="Print <?=$row_jolabor[$i]['id'];?>">
+							<i class="halflings-icon white print"></i> 
+						</a>
 					</td>
 				</tr>
 				<? $cnt++; } ?>

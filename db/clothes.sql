@@ -828,7 +828,8 @@ DROP TABLE IF EXISTS `jolaborcostsmaster_v`;
  `createdBy` varchar(20) ,
  `createdDate` datetime ,
  `modifiedBy` varchar(20) ,
- `modifiedDate` datetime 
+ `modifiedDate` datetime ,
+ `totalLabor` decimal(44,2) 
 )*/;
 
 /*Table structure for table `laborcostsmaster_v` */
@@ -1076,7 +1077,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `jolaborcostsmaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `jolaborcostsmaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jolaborcostsmaster_v` AS (select `jolaborcostsmaster`.`id` AS `id`,`jolaborcostsmaster`.`jobOrderDepartmentId` AS `jobOrderDepartmentId`,`jolaborcostsmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`customerName` AS `customerName`,`jolaborcostsmaster`.`departmentCode` AS `departmentCode`,`joborderdepartment_v`.`departmentName` AS `departmentName`,`jolaborcostsmaster`.`employeeName` AS `employeeName`,`jolaborcostsmaster`.`jobDescriptionCode` AS `jobDescriptionCode`,`jobdescriptionmaster`.`description` AS `jobDescription`,`jolaborcostsmaster`.`createdBy` AS `createdBy`,`jolaborcostsmaster`.`createdDate` AS `createdDate`,`jolaborcostsmaster`.`modifiedBy` AS `modifiedBy`,`jolaborcostsmaster`.`modifiedDate` AS `modifiedDate` from (((`jolaborcostsmaster` join `joborderdepartment_v` on(((`joborderdepartment_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`) and (`joborderdepartment_v`.`departmentCode` = `jolaborcostsmaster`.`departmentCode`)))) join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`))) join `jobdescriptionmaster` on((`jobdescriptionmaster`.`jobDescriptionCode` = `jolaborcostsmaster`.`jobDescriptionCode`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jolaborcostsmaster_v` AS (select `jolaborcostsmaster`.`id` AS `id`,`jolaborcostsmaster`.`jobOrderDepartmentId` AS `jobOrderDepartmentId`,`jolaborcostsmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`customerName` AS `customerName`,`jolaborcostsmaster`.`departmentCode` AS `departmentCode`,`joborderdepartment_v`.`departmentName` AS `departmentName`,`jolaborcostsmaster`.`employeeName` AS `employeeName`,`jolaborcostsmaster`.`jobDescriptionCode` AS `jobDescriptionCode`,`jobdescriptionmaster`.`description` AS `jobDescription`,`jolaborcostsmaster`.`createdBy` AS `createdBy`,`jolaborcostsmaster`.`createdDate` AS `createdDate`,`jolaborcostsmaster`.`modifiedBy` AS `modifiedBy`,`jolaborcostsmaster`.`modifiedDate` AS `modifiedDate`,(select sum(`jolaborcostsdetail_v`.`total`) AS `SUM(jolaborcostsdetail_v.total)` from `jolaborcostsdetail_v` where (`jolaborcostsdetail_v`.`joLaborCostMasterId` = `jolaborcostsmaster`.`id`)) AS `totalLabor` from (((`jolaborcostsmaster` join `joborderdepartment_v` on(((`joborderdepartment_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`) and (`joborderdepartment_v`.`departmentCode` = `jolaborcostsmaster`.`departmentCode`)))) join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`))) join `jobdescriptionmaster` on((`jobdescriptionmaster`.`jobDescriptionCode` = `jolaborcostsmaster`.`jobDescriptionCode`)))) */;
 
 /*View structure for view laborcostsmaster_v */
 

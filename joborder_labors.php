@@ -47,11 +47,15 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
+	function EmpLaborPrint(id){
+		window.open("emplabor_print.php?id="+id);
+		return false;
+	}
 	function JobOrderLaborPrint(jono,deptcode){
 		window.open("joborder_labor_print.php?id="+jono+"&deptcode="+deptcode);
 		return false;
 	}
-	function deleteLabor(id,jono,deptcode){
+	function deleteLabor(id,deptcode,jono){
 		if(confirm("Are you sure you want to delete this employee labor?")){
 			window.location="joborder_labors.php?delete=1&id="+id+"&jono="+jono+"&deptcode="+deptcode;
 		}else{

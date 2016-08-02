@@ -74,10 +74,11 @@
 			$this->SetFont('helvetica','',10);
 			$this->Cell(43,4,dateFormat($this->estMst['dueDate'],"M d, Y"),'B',0,'L');
 			$this->Ln(8);
-			// echo $this->attachmentW . " " . $this->attachmentH;
-			// echo $this->indent;
+
 			$this->Cell($this->indent,60,'','TLB',0,'C');
-			$this->Cell($this->attachmentW,60,$this->Image($this->attachment, $this->GetX() + 1, $this->GetY() + 1, $this->attachmentW -2, $this->attachmentH),'TB',0,'C', false);
+			if(!empty($this->attachment)){
+				$this->Cell($this->attachmentW,60,$this->Image($this->attachment, $this->GetX() + 1, $this->GetY() + 1, $this->attachmentW -2, $this->attachmentH),'TB',0,'C', false);
+			}
 			$this->Cell($this->indent,60,'','TBR',0,'C');
 			$this->Ln(65);
 		}

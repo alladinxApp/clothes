@@ -22,6 +22,7 @@
 
 	define(PRINTESTIMATEMODEL, "printEstimateModel.php");
 	define(PRINTDELIVERYMODEL, "printDeliveryModel.php");
+	define(PRINTEMPLOYEELABORMODEL, "printEmployeeLaborModel.php");
 	// -- END MODELS --
 	
 ?>
