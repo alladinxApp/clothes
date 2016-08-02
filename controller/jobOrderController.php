@@ -100,6 +100,23 @@
 			$jodtl->doQuery("update");
 		}
 
+		// if($status == 1){
+		// 	// GET CONTROL NO
+		// 	$newNum = getNewCtrlNo("DELIVERY");
+
+		// 	// SAVE DELIVERY MASTER
+		// 	$delivery = new Table();
+		// 	$delivery->setSQLType($csdb->getSQLType());
+		// 	$delivery->setInstance($csdb->getInstance());
+		// 	$delivery->setTable("deliverymaster");
+		// 	$delivery->setField("deliveryCode,jobOrderReferenceNo,createdBy,createdDate");
+		// 	$delivery->setValues("'$newNum','$id','$userid','$today'");
+		// 	$delivery->doQuery("save");
+
+		// 	// UPDATE CONTROL NO
+		// 	UpdateCtrlNo("DELIVERY");
+		// }
+
 		// CLOSE DB
 		$csdb->DBClose();
 		

@@ -105,7 +105,7 @@
 				$this->Cell(20,4,$this->estDtl[$i]['sizeDesc'],'L',0,'C');
 				$this->Cell(20,4,$this->estDtl[$i]['quantity'],'L',0,'C');
 				$this->Cell(40,4,$this->estDtl[$i]['color'],'L',0,'C');
-				$this->Cell(105,4,$this->estDtl[$i]['material'],'LR',0,'C');
+				$this->Cell(105,4,$this->estDtl[$i]['material'],'LR',0,'L');
 				$this->Ln(4);
 				$cnt++;
 			}
@@ -126,7 +126,7 @@
 		}
 
 		public function Footer(){
-			$this->SetY(-30);
+			$this->SetY(-28);
 			
 			$this->SetFont('Courier','B',9);
 			$this->Cell(190,4,'I agree that the above specifications/descriptions are my request upon order.',0,0,'L');

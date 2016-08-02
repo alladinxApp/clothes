@@ -81,6 +81,47 @@ CREATE TABLE `customersmaster` (
 
 insert  into `customersmaster`(`id`,`customerCode`,`customerName`,`address`,`mobileNo`,`telephoneNo`,`emailAddress`,`faxNo`,`birthDate`,`TIN`,`isVat`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'C00000001','cust1','cust1','cust1','cust1','cust1','cust1','2016-07-01','cust1',1,'2016-07-22 03:30:17','ALLADINX',NULL,NULL,1);
 
+/*Table structure for table `deliverydetail` */
+
+DROP TABLE IF EXISTS `deliverydetail`;
+
+CREATE TABLE `deliverydetail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deliveryCode` varchar(20) DEFAULT NULL,
+  `estimateDtlId` int(11) DEFAULT NULL,
+  `JODtlId` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `price` decimal(12,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `deliverydetail` */
+
+/*Table structure for table `deliverymaster` */
+
+DROP TABLE IF EXISTS `deliverymaster`;
+
+CREATE TABLE `deliverymaster` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deliveryCode` varchar(20) DEFAULT NULL,
+  `jobOrderReferenceNo` varchar(20) DEFAULT NULL,
+  `amount` decimal(12,2) DEFAULT NULL,
+  `discount` decimal(12,2) DEFAULT NULL,
+  `vat` decimal(12,2) DEFAULT NULL,
+  `subTotal` decimal(12,2) DEFAULT NULL,
+  `totalAmount` decimal(12,2) DEFAULT NULL,
+  `preparedBy` varchar(20) DEFAULT NULL,
+  `preparedDate` datetime DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
+  `createdBy` varchar(20) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(20) DEFAULT NULL,
+  `status` int(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `deliverymaster` */
+
 /*Table structure for table `departmentmaster` */
 
 DROP TABLE IF EXISTS `departmentmaster`;
@@ -209,7 +250,7 @@ CREATE TABLE `joborderdetail` (
   `uom` varchar(20) DEFAULT NULL,
   `material` text,
   `actual` text,
-  `qty_delivered` int(11) DEFAULT NULL,
+  `qty_delivered` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -490,6 +531,61 @@ DROP TABLE IF EXISTS `customersmaster_v`;
  `statusDesc` varchar(8) 
 )*/;
 
+/*Table structure for table `deliverydetail_v` */
+
+DROP TABLE IF EXISTS `deliverydetail_v`;
+
+/*!50001 DROP VIEW IF EXISTS `deliverydetail_v` */;
+/*!50001 DROP TABLE IF EXISTS `deliverydetail_v` */;
+
+/*!50001 CREATE TABLE  `deliverydetail_v`(
+ `id` int(11) ,
+ `deliveryCode` varchar(20) ,
+ `JODtlId` int(11) ,
+ `sizeDesc` varchar(100) ,
+ `color` varchar(20) ,
+ `uomDesc` varchar(100) ,
+ `specification` varchar(20) ,
+ `material` longtext ,
+ `quantity` int(11) ,
+ `price` decimal(12,2) 
+)*/;
+
+/*Table structure for table `deliverymaster_v` */
+
+DROP TABLE IF EXISTS `deliverymaster_v`;
+
+/*!50001 DROP VIEW IF EXISTS `deliverymaster_v` */;
+/*!50001 DROP TABLE IF EXISTS `deliverymaster_v` */;
+
+/*!50001 CREATE TABLE  `deliverymaster_v`(
+ `id` int(11) ,
+ `deliveryCode` varchar(20) ,
+ `jobOrderReferenceNo` varchar(20) ,
+ `quoteReferenceNo` varchar(20) ,
+ `customerName` varchar(250) ,
+ `address` varchar(300) ,
+ `customerTelNo` varchar(100) ,
+ `jobTypeDesc` varchar(100) ,
+ `isRush` int(1) ,
+ `leadTime` varbinary(100) ,
+ `dueDate` date ,
+ `attachment` text ,
+ `amount` decimal(12,2) ,
+ `discount` decimal(12,2) ,
+ `subTotal` decimal(12,2) ,
+ `vat` decimal(12,2) ,
+ `totalAmount` decimal(12,2) ,
+ `preparedBy` varchar(20) ,
+ `preparedDate` datetime ,
+ `modifiedBy` varchar(20) ,
+ `modifiedDate` datetime ,
+ `createdDate` datetime ,
+ `createdBy` varchar(20) ,
+ `status` int(1) ,
+ `statusDesc` varchar(9) 
+)*/;
+
 /*Table structure for table `departmentmaster_v` */
 
 DROP TABLE IF EXISTS `departmentmaster_v`;
@@ -658,7 +754,7 @@ DROP TABLE IF EXISTS `jobordermaster_v`;
  `leadTime` varbinary(100) ,
  `dueDate` date ,
  `department` varchar(50) ,
- `total_qty` bigint(21) ,
+ `total_qty` decimal(41,0) ,
  `amount` decimal(10,2) ,
  `vat` decimal(10,2) ,
  `discount` decimal(10,2) ,
@@ -898,6 +994,20 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customersmaster_v` AS (select `customersmaster`.`id` AS `id`,`customersmaster`.`customerCode` AS `customerCode`,`customersmaster`.`customerName` AS `customerName`,`customersmaster`.`address` AS `address`,`customersmaster`.`mobileNo` AS `mobileNo`,`customersmaster`.`telephoneNo` AS `telephoneNo`,`customersmaster`.`emailAddress` AS `emailAddress`,`customersmaster`.`faxNo` AS `faxNo`,`customersmaster`.`birthDate` AS `birthDate`,`customersmaster`.`TIN` AS `TIN`,`customersmaster`.`isVat` AS `isVat`,`customersmaster`.`createdDate` AS `createdDate`,`customersmaster`.`createdBy` AS `createdBy`,`customersmaster`.`modifiedDate` AS `modifiedDate`,`customersmaster`.`modifiedBy` AS `modifiedBy`,`customersmaster`.`status` AS `status`,(case when (`customersmaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `customersmaster`) */;
 
+/*View structure for view deliverydetail_v */
+
+/*!50001 DROP TABLE IF EXISTS `deliverydetail_v` */;
+/*!50001 DROP VIEW IF EXISTS `deliverydetail_v` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `deliverydetail_v` AS (select `deliverydetail`.`id` AS `id`,`deliverydetail`.`deliveryCode` AS `deliveryCode`,`deliverydetail`.`JODtlId` AS `JODtlId`,`joborderdetail_v`.`sizeDesc` AS `sizeDesc`,`joborderdetail_v`.`color` AS `color`,`joborderdetail_v`.`uomDesc` AS `uomDesc`,`joborderdetail_v`.`specification` AS `specification`,(case when (`joborderdetail_v`.`actual` = NULL) then `joborderdetail_v`.`material` else `joborderdetail_v`.`actual` end) AS `material`,`deliverydetail`.`quantity` AS `quantity`,`deliverydetail`.`price` AS `price` from (`deliverydetail` join `joborderdetail_v` on((`joborderdetail_v`.`id` = `deliverydetail`.`JODtlId`)))) */;
+
+/*View structure for view deliverymaster_v */
+
+/*!50001 DROP TABLE IF EXISTS `deliverymaster_v` */;
+/*!50001 DROP VIEW IF EXISTS `deliverymaster_v` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `deliverymaster_v` AS (select `deliverymaster`.`id` AS `id`,`deliverymaster`.`deliveryCode` AS `deliveryCode`,`deliverymaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`estimatemaster_v`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,`estimatemaster_v`.`attachment` AS `attachment`,`deliverymaster`.`amount` AS `amount`,`deliverymaster`.`discount` AS `discount`,`deliverymaster`.`subTotal` AS `subTotal`,`deliverymaster`.`vat` AS `vat`,`deliverymaster`.`totalAmount` AS `totalAmount`,`deliverymaster`.`preparedBy` AS `preparedBy`,`deliverymaster`.`preparedDate` AS `preparedDate`,`deliverymaster`.`modifiedBy` AS `modifiedBy`,`deliverymaster`.`modifiedDate` AS `modifiedDate`,`deliverymaster`.`createdDate` AS `createdDate`,`deliverymaster`.`createdBy` AS `createdBy`,`deliverymaster`.`status` AS `status`,(case when (`deliverymaster`.`status` = 1) then 'DELIVERED' else 'PENDING' end) AS `statusDesc` from ((`deliverymaster` join `jobordermaster` on((`jobordermaster`.`jobOrderReferenceNo` = `deliverymaster`.`jobOrderReferenceNo`))) join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
+
 /*View structure for view departmentmaster_v */
 
 /*!50001 DROP TABLE IF EXISTS `departmentmaster_v` */;
@@ -938,14 +1048,14 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `joborderdetail_v` */;
 /*!50001 DROP VIEW IF EXISTS `joborderdetail_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `joborderdetail_v` AS (select `joborderdetail`.`id` AS `id`,`joborderdetail`.`jobOrderMasterId` AS `jobOrderMasterId`,`joborderdetail`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`joborderdetail`.`specification` AS `specification`,`joborderdetail`.`size` AS `size`,`sizingmaster`.`description` AS `sizeDesc`,`joborderdetail`.`quantity` AS `quantity`,`joborderdetail`.`color` AS `color`,`joborderdetail`.`uom` AS `uom`,`uommaster`.`description` AS `uomDesc`,`joborderdetail`.`material` AS `material`,`joborderdetail`.`actual` AS `actual`,`joborderdetail`.`qty_delivered` AS `qty_delivered`,(`joborderdetail`.`quantity` - `joborderdetail`.`qty_delivered`) AS `qty_remaining` from ((`joborderdetail` join `sizingmaster` on((`sizingmaster`.`sizingCode` = `joborderdetail`.`size`))) join `uommaster` on((`uommaster`.`UOMCode` = `joborderdetail`.`uom`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `joborderdetail_v` AS (select `joborderdetail`.`id` AS `id`,`joborderdetail`.`jobOrderMasterId` AS `jobOrderMasterId`,`joborderdetail`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`joborderdetail`.`specification` AS `specification`,`joborderdetail`.`size` AS `size`,`sizingmaster`.`description` AS `sizeDesc`,`joborderdetail`.`quantity` AS `quantity`,`joborderdetail`.`color` AS `color`,`joborderdetail`.`uom` AS `uom`,`uommaster`.`description` AS `uomDesc`,`joborderdetail`.`material` AS `material`,`joborderdetail`.`actual` AS `actual`,`joborderdetail`.`qty_delivered` AS `qty_delivered`,(case when (`joborderdetail`.`qty_delivered` > 0) then (`joborderdetail`.`quantity` - `joborderdetail`.`qty_delivered`) else `joborderdetail`.`quantity` end) AS `qty_remaining` from ((`joborderdetail` join `sizingmaster` on((`sizingmaster`.`sizingCode` = `joborderdetail`.`size`))) join `uommaster` on((`uommaster`.`UOMCode` = `joborderdetail`.`uom`)))) */;
 
 /*View structure for view jobordermaster_v */
 
 /*!50001 DROP TABLE IF EXISTS `jobordermaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `jobordermaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobordermaster_v` AS (select `jobordermaster`.`id` AS `id`,`jobordermaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`jobType` AS `jobType`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`isRushDesc` AS `isRushDesc`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,(select `departmentmaster`.`description` AS `description` from (`joborderdepartment` join `departmentmaster` on((`departmentmaster`.`departmentCode` = `joborderdepartment`.`departmentCode`))) where ((`joborderdepartment`.`isCurrent` = 1) and (`joborderdepartment`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) limit 0,1) AS `department`,(select count(`joborderdetail_v`.`qty_remaining`) AS `COUNT(joborderdetail_v.qty_remaining)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `total_qty`,`estimatemaster_v`.`amount` AS `amount`,`estimatemaster_v`.`vat` AS `vat`,`estimatemaster_v`.`discount` AS `discount`,`estimatemaster_v`.`subTotal` AS `subTotal`,`estimatemaster_v`.`totalAmount` AS `totalAmount`,`jobordermaster`.`acknowledgeBy` AS `acknowledgeBy`,`jobordermaster`.`acknowledgeDate` AS `acknowledgeDate`,`jobordermaster`.`createdDate` AS `createdDate`,`jobordermaster`.`createdBy` AS `createdBy`,`jobordermaster`.`modifiedDate` AS `modifiedDate`,`jobordermaster`.`modifiedBy` AS `modifiedBy`,`jobordermaster`.`status` AS `status`,(case when (`jobordermaster`.`status` = 1) then 'COMPLETED' else 'PENDING' end) AS `statusDesc` from (`jobordermaster` join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobordermaster_v` AS (select `jobordermaster`.`id` AS `id`,`jobordermaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`jobType` AS `jobType`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`isRushDesc` AS `isRushDesc`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,(select `departmentmaster`.`description` AS `description` from (`joborderdepartment` join `departmentmaster` on((`departmentmaster`.`departmentCode` = `joborderdepartment`.`departmentCode`))) where ((`joborderdepartment`.`isCurrent` = 1) and (`joborderdepartment`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) limit 0,1) AS `department`,(select sum(`joborderdetail_v`.`qty_remaining`) AS `COUNT(joborderdetail_v.qty_remaining)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `total_qty`,`estimatemaster_v`.`amount` AS `amount`,`estimatemaster_v`.`vat` AS `vat`,`estimatemaster_v`.`discount` AS `discount`,`estimatemaster_v`.`subTotal` AS `subTotal`,`estimatemaster_v`.`totalAmount` AS `totalAmount`,`jobordermaster`.`acknowledgeBy` AS `acknowledgeBy`,`jobordermaster`.`acknowledgeDate` AS `acknowledgeDate`,`jobordermaster`.`createdDate` AS `createdDate`,`jobordermaster`.`createdBy` AS `createdBy`,`jobordermaster`.`modifiedDate` AS `modifiedDate`,`jobordermaster`.`modifiedBy` AS `modifiedBy`,`jobordermaster`.`status` AS `status`,(case when (`jobordermaster`.`status` = 1) then 'COMPLETED' when (`jobordermaster`.`status` = 2) then 'DELIVERED' else 'PENDING' end) AS `statusDesc` from (`jobordermaster` join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
 
 /*View structure for view jobtypemaster_v */
 

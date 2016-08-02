@@ -87,7 +87,7 @@
 							<option value="<?=$row_uom[$i]['UOMCode']."||".$row_uom[$i]['description'];?>"><?=$row_uom[$i]['description'];?></option>
 							<? } ?>
 						</select></td>
-						<td><input class="input-medium" name="txtMaterials" id="txtMaterials" type="text" placeholder="Materials here..." /></td>
+						<td><input class="input-medium" name="txtMaterials" id="txtMaterials" type="text" size="60" placeholder="Materials here..." /></td>
 						<td><input class="input-medium" name="txtSpecification" id="txtSpecification" type="text" placeholder="Specification Here..." /></td>
 						<td><input type="button" class="btn btn-primary" value="Add Item" onClick="AddItem();" /></td>
 					</tr>

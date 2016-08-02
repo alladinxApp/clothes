@@ -17,5 +17,6 @@
 	define(LABORCOSTCONTROLLER, "laborCostController.php");
 	define(JOBORDERLABORCONTROLLER, "JobOrderLaborController.php");
 	define(JOBDESCRIPTIONCONTROLLER, "JobDescriptionController.php");
+	define(DELIVERYCONTROLLER, "deliveryController.php");
 	// -- END CONTROLLERS --
 ?>

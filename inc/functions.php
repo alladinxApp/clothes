@@ -95,4 +95,30 @@
 		// CLOSING DB
 		$cs_db->DBClose();
 	}
+	function BreakMe($string,$end){
+		$str = explode(" ",$string);
+		$strcnt = count($str);
+		$strlen = strlen($string);
+		
+		$str1 = null;
+		$start = 0;
+		$start1 = 0;
+		$end1 = 0;
+		$cnt = 0;
+		
+		for($i=0; $i < $strcnt; $i++){
+			$start1 += $start;
+			$end1 += $end;
+			$cnt += strlen($str[$i] . " ");
+			if($cnt > $end){
+				$str1 .= '|';
+				$cnt = 0;
+			}
+			$str1 .= $str[$i] . ' ';
+			
+			$start1 += $end;
+			$end1 += $end;
+		}
+		return $str1;
+	}
 ?>
