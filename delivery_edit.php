@@ -53,10 +53,10 @@
 		var subtotal = 0;
 		var totalamount = 0;
 
-		subtotal = $("#txtAmount").val();
+		subtotal = $("#txtAmount").val().replace(/,/g,"");
 		
 		if($("#txtDiscount").val() > 0){
-			discount = $("#txtDiscount").val();
+			discount = $("#txtDiscount").val().replace(/,/g,"");
 		}
 
 		amnt = (parseFloat(subtotal) - parseFloat(discount));
