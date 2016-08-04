@@ -29,6 +29,36 @@ CREATE TABLE ` usermenuaccess` (
 
 /*Data for the table ` usermenuaccess` */
 
+/*Table structure for table `billingdetail` */
+
+DROP TABLE IF EXISTS `billingdetail`;
+
+CREATE TABLE `billingdetail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `billingMasterId` int(11) DEFAULT NULL,
+  `deliveryCode` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `billingdetail` */
+
+/*Table structure for table `billingmaster` */
+
+DROP TABLE IF EXISTS `billingmaster`;
+
+CREATE TABLE `billingmaster` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `billingCode` varchar(20) DEFAULT NULL,
+  `billingDate` datetime DEFAULT NULL,
+  `createdBy` varchar(20) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(20) DEFAULT NULL,
+  `status` int(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `billingmaster` */
+
 /*Table structure for table `controlno` */
 
 DROP TABLE IF EXISTS `controlno`;
@@ -199,24 +229,6 @@ CREATE TABLE `estimatemaster` (
 /*Data for the table `estimatemaster` */
 
 insert  into `estimatemaster`(`id`,`quoteReferenceNo`,`transactionDate`,`customerCode`,`jobType`,`leadTime`,`dueDate`,`isRush`,`attachment`,`amount`,`discount`,`subTotal`,`vat`,`totalAmount`,`acknowledgeBy`,`acknowledgeDate`,`remarks`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'EST00000001','2016-08-03 01:01:31','C00000001','JT00000002',30,'2016-09-02',0,'20160803010131cf.jpg','1000.00','100.00','900.00','108.00','1008.00',NULL,NULL,'','ALLADINX','2016-08-03 01:02:19','ALLADINX',1);
-
-/*Table structure for table `invoicemaster` */
-
-DROP TABLE IF EXISTS `invoicemaster`;
-
-CREATE TABLE `invoicemaster` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invoiceCode` varchar(20) DEFAULT NULL,
-  `invoiceDate` datetime DEFAULT NULL,
-  `customerCode` varchar(20) DEFAULT NULL,
-  `createdBy` varchar(20) DEFAULT NULL,
-  `modifiedDate` datetime DEFAULT NULL,
-  `modifiedBy` varchar(20) DEFAULT NULL,
-  `status` int(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Data for the table `invoicemaster` */
 
 /*Table structure for table `jobdescriptionmaster` */
 
