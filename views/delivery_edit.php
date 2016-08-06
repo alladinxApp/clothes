@@ -156,7 +156,7 @@
 					<div class="controls">
 						<select name="txtStatus" id="txtStatus" <?=$disableStatus;?> >
 							<option value="0" <? if($row_deliverymst[0]['status'] == 0){ echo 'selected';} ?>>PENDING</option>
-							<option value="1" <? if($row_deliverymst[0]['status'] == 1){ echo 'selected';} ?>>DELIVERED</option>
+							<option value="1" <? if($row_deliverymst[0]['status'] == 1){ echo 'selected';} ?>>ACKNOWLEDGE</option>
 						</select>
 					</div>
 				</div>

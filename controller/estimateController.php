@@ -16,6 +16,7 @@
 			$nFile = date("Ymdhis") . $file;
 		}
 		
+		$downpayment = str_replace(",","",$_POST['txtDownPayment']);
 		$amount = str_replace(",","",$_POST['txtAmount']);
 		$discount = str_replace(",","",$_POST['txtDiscount']);
 		$subtotal = str_replace(",","",$_POST['txtSubTotal']);

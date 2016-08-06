@@ -224,32 +224,5 @@
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
 
-	<script type="text/javascript">
-		// function getCustomerInfo(){
-		// 	var val = $("#txtCustomer").val();
-		// 	var strURL = "inc-ajax/divAddEstimateCustInfo.php?id="+val;
-
-		// 	$.ajax({	
-		// 		url: strURL,
-		// 		type: 'GET',
-		// 		datatype: 'json',
-		// 		contentType: 'application/json; charset=utf-8',
-				
-		// 		success: function (data) {
-		// 			console.log(data);
-		// 			// $("#divMLDates").replaceWith(data);
-		// 			// $.unblockUI();
-		// 		},	
-						
-		// 		error: function (request, status, err) {
-		// 			alert(status);
-		// 			alert(err);
-		// 		}
-		// 	});	
-		// }
-		jQuery(document).ready(function() {
-			
-		});
-	</script>
 </body>
 </html>

@@ -42,7 +42,7 @@
 							<select id="txtStatus" name="txtStatus">
 								<option value="">STATUS</option>
 								<option value="0">PENDING</option>
-								<option value="1">DELIVERED</option>
+								<option value="1">ACKNOWLEDGED</option>
 							</select>
 						</div>
 					</div>

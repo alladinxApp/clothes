@@ -19,6 +19,8 @@
 	define(JOBDESCRIPTIONMODEL, "jobDescriptionModel.php");
 	define(DELIVERIESMODEL, "deliveriesModel.php");
 	define(DELIVERYMODEL, "deliveryModel.php");
+	define(BILLINGMODEL, "billingModel.php");
+	define(BILLINGCUSTOMERSMODEL, "billingCustomersModel.php");
 
 	define(PRINTESTIMATEMODEL, "printEstimateModel.php");
 	define(PRINTDELIVERYMODEL, "printDeliveryModel.php");
