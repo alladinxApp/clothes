@@ -166,6 +166,12 @@
 				<input type="hidden" name="txtItemArray" id="txtItemArr" value="<?=$itemArray;?>" />
 
 				<div class="control-group">
+					<label class="control-label" for="txtDownPayment">Down Payment</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['downPayment'],2);?>" name="txtDownPayment" id="txtDownPayment" type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
 						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['amount'],2);?>" name="txtAmount" id="txtAmount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />

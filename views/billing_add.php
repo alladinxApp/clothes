@@ -3,6 +3,9 @@
 		<div class="box-header" data-original-title>
 			<h2><i class="icon-money"></i><span class="break"></span><b>Add New Billing to </b></h2>
 			<div class="box-icon">
+				<a href="billing_joborders.php"><i class="halflings-icon plus"></i> ADD NEW</a>
+			</div>
+			<div class="box-icon">
 				<a href="billing_search.php"><i class="halflings-icon search"></i> SEARCH</a>
 			</div>
 		</div>
@@ -13,13 +16,13 @@
 				<div class="control-group">
 					<label class="control-label" for="txtCustomerName">Customer Name</label>
 					<div class="controls">
-						<input class="input-xlarge" name="txtCustomerName" id="txtCustomerName" readonly type="text" value="<?=$?>" />
+						<input class="input-xlarge" value="<?=$row_joborders[0]['customerName'];?>" name="txtCustomerName" id="txtCustomerName" readonly type="text" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtJobType">Job Type</label>
 					<div class="controls">
-						<input class="input-xlarge" name="txtJobType" id="txtJobType" readonly type="text" placeholder="Click Here..." />
+						<input class="input-xlarge" value="<?=$row_joborders[0]['jobTypeDesc'];?>" name="txtJobType" id="txtJobType" readonly type="text" placeholder="Click Here..." />
 					</div>
 				</div>
 				<table class="table table-bordered table-condensed">
@@ -33,6 +36,7 @@
 					</tr>
 					<?
 						$cnt = 1;
+						$totalAmount = 0;
 						for($i=0;$i<count($row_deliveries);$i++){
 							$bg = null;
 							$font = null;
@@ -42,9 +46,11 @@
 							}
 
 							$style = $bg;
+
+							$totalAmount += $row_deliveries[$i]['totalAmount'];
 					?>
 					<tr>
-						<td align="center" style="<?=$style;?>"><input type="checkbox" onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliveries[$i]['deliveryCode'] .'#'. $row_deliveries[$i]['totalAmount'];?>"></td>
+						<td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliveries[$i]['deliveryCode'] .'#'. $row_deliveries[$i]['totalAmount'];?>"></td>
 						<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['deliveryCode'];?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['jobOrderReferenceNo'];?></td>
@@ -57,19 +63,20 @@
 				<div class="control-group">
 					<label class="control-label" for="txtDownPayment">Down Payment</label>
 					<div class="controls">
-						<input class="input-xlarge" name="txtDownPayment" id="txtDownPayment" readonly type="text" placeholder="Click Here..." />
+						<input class="input-xlarge" style="text-align: right;" readonly value="<?=$dpamnt;?>" name="txtDownPayment" id="txtDownPayment" value="" type="text" placeholder="0.00" />
+						<input type="checkbox" name="chkApplyDP" id="chkApplyDP" checked /> Apply
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Total Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtAmount" id="txtAmount" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($totalAmount,2);?>" style="text-align: right;" name="txtAmount" id="txtAmount" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtAmountReceived">Amount Received</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -86,34 +93,3 @@
 		</div>
 	</div>
 </div>
-
-<!-- MODAL BOX FOR COMPLETED JOB ORDERS -->
-<div id="divDownPayments">
-	<div class="box-content">
-		<table class="table table-bordered table-condensed">
-			<tr>
-				<th>#</th>
-				<th>Customer</th>
-				<th>Amount</th>
-				<th>Customer</th>
-				<th>Job Type</th>
-				<th>Rush</th>
-			</tr>
-			<? 
-				$cnt = 1; 
-				for($i=0;$i<count($row_joborders);$i++){
-					$joNo = $row_joborders[$i]['jobOrderReferenceNo'];
-			?>
-			<tr style="cursor: pointer;" onclick="SelectJobOrder('<?=$joNo;?>');">
-				<td><?=$cnt;?></td>
-				<td><?=$joNo;?></td>
-				<td><?=$row_joborders[$i]['quoteReferenceNo'];?></td>
-				<td><?=$row_joborders[$i]['customerName'];?></td>
-				<td><?=$row_joborders[$i]['jobTypeDesc'];?></td>
-				<td><?=$row_joborders[$i]['isRushDesc'];?></td>
-			</tr>
-			<? $cnt++; } ?>
-		</table>
-	</div>
-</div>
-<!-- END MODAL BOX FOR COMPLETED JOB ORDERS -->

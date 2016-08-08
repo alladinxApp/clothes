@@ -3,7 +3,7 @@
 		<div class="box-header" data-original-title>
 			<h2><i class="icon-money"></i><span class="break"></span><b>Billings</b></h2>
 			<div class="box-icon">
-				<a href="billing_customers.php"><i class="halflings-icon plus"></i> ADD NEW</a>
+				<a href="billing_joborders.php"><i class="halflings-icon plus"></i> ADD NEW</a>
 			</div>
 			<div class="box-icon">
 				<a href="billing_search.php"><i class="halflings-icon search"></i> SEARCH</a>

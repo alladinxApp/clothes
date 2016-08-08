@@ -46,8 +46,8 @@
 		$estmst->setSQLType($csdb->getSQLType());
 		$estmst->setInstance($csdb->getInstance());
 		$estmst->setTable("estimatemaster");
-		$estmst->setField("quoteReferenceNo,transactionDate,customerCode,isRush,jobType,leadTime,dueDate,attachment,amount,discount,subTotal,vat,totalAmount,createdBy");
-		$estmst->setValues("'$newNum','$tDate','$custCode','$isRush','$jobtype','$leadtime','$duedate','$nFile','$amount','$discount','$subtotal','$vat','$totalamount','$userid'");
+		$estmst->setField("quoteReferenceNo,transactionDate,customerCode,isRush,jobType,leadTime,dueDate,attachment,downpayment,amount,discount,subTotal,vat,totalAmount,createdBy");
+		$estmst->setValues("'$newNum','$tDate','$custCode','$isRush','$jobtype','$leadtime','$duedate','$nFile','$downpayment','$amount','$discount','$subtotal','$vat','$totalamount','$userid'");
 		$estmst->doQuery("save");
 		$newid = $estmst->getNewID();
 		
@@ -157,6 +157,7 @@
 			$nFile = date("Ymdhis") . $file;
 		}
 
+		$downpayment = str_replace(",","",$_POST['txtDownPayment']);
 		$amount = str_replace(",","",$_POST['txtAmount']);
 		$discount = str_replace(",","",$_POST['txtDiscount']);
 		$subtotal = str_replace(",","",$_POST['txtSubTotal']);
@@ -234,7 +235,7 @@
 		$estmst->setSQLType($csdb->getSQLType());
 		$estmst->setInstance($csdb->getInstance());
 		$estmst->setTable("estimatemaster");
-		$estmst->setValues("attachment = '$nFile', amount = '$amount', discount = '$discount', subTotal = '$subtotal', vat = '$vat', totalAmount = '$totalamount', status = '$status', modifiedDate = '$today', modifiedBy = '$userid', remarks = '$remarks'");
+		$estmst->setValues("attachment = '$nFile', downpayment = '$downpayment', amount = '$amount', discount = '$discount', subTotal = '$subtotal', vat = '$vat', totalAmount = '$totalamount', status = '$status', modifiedDate = '$today', modifiedBy = '$userid', remarks = '$remarks'");
 		$estmst->setParam("WHERE quoteReferenceNo = '$id'");
 		$estmst->doQuery("update");
 

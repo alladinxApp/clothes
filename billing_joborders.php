@@ -1,7 +1,7 @@
 <? 
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . BILLINGMODEL);
+	require_once(MODEL_PATH . BILLINGJOBORDERSMODEL);
 	// require_once(CONTROLLER_PATH . DELIVERYCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
@@ -42,28 +42,6 @@
 	<!-- end: Favicon -->
 		
 </head>
-<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui.js"></script>
-<script type="text/javascript">
-
-	function getTotalAmount(){
-		var noofitems = $("#txtNoOfItems").val();
-		var total = 0;
-		
-		for(var i=1;i<=noofitems;i++){
-			if($("#chkDeliveryCode_"+i).prop('checked') == true){
-				var item = $("#chkDeliveryCode_"+i).val();
-				var amount = item.split("#");
-				amnt = amount[1].replace(/,/g,'');
-
-				total += parseFloat(amnt);
-			}
-		}
-
-		$("#txtAmount").val(total.toFixed(2));
-	}
-</script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
 	
@@ -74,7 +52,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/billing_add.php");?>
+					<? require_once("views/billing_joborders.php");?>
 				</div>
 				<!-- end: Content -->
 
