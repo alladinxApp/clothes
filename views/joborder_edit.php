@@ -187,31 +187,31 @@
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['amount'],2);?>" disabled name="txtAmount" id="txtAmount" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['amount'],2);?>" disabled name="txtAmount" id="txtAmount" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Discount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['discount'],2);?>" disabled name="txtDiscount" id="txtDiscount" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['discount'],2);?>" disabled name="txtDiscount" id="txtDiscount" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Sub-Total</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" disabled type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" disabled type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtVat">Vat 12%</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['vat'],2);?>" name="txtVat" id="txtVat" type="text" disabled placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['vat'],2);?>" name="txtVat" id="txtVat" type="text" disabled placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtTotalAmount">Total Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_jomst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" disabled type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" disabled type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<? if($row_jomst[0]['status'] != 0){ $disableStatus = 'disabled'; } ?>

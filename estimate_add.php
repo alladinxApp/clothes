@@ -173,6 +173,7 @@
 		var subtotal = 0;
 		var vat = 0;
 		var total = 0;
+		var dp = 0;
 		
 		if($("#txtAmount").val() > 0){
 			amnt = $("#txtAmount").val();
@@ -180,8 +181,11 @@
 		if($("#txtDiscount").val() > 0){
 			discount = $("#txtDiscount").val();
 		}
+		if($("#txtDownPayment").val() > 0){
+			dpamnt = $("#txtDownPayment").val();
+		}
 
-		subtotal = (parseFloat(amnt) - parseFloat(discount));
+		subtotal = (parseFloat(amnt) - (parseFloat(discount) + parseFloat(dpamnt)));
 		vat = parseFloat(subtotal) * parseFloat(0.12);
 		total = (parseFloat(subtotal) + parseFloat(vat));
 

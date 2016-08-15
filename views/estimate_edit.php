@@ -174,31 +174,31 @@
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['amount'],2);?>" name="txtAmount" id="txtAmount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['amount'],2);?>" name="txtAmount" id="txtAmount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Discount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['discount'],2);?>" name="txtDiscount" id="txtDiscount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['discount'],2);?>" name="txtDiscount" id="txtDiscount" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Sub-Total</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtVat">Vat 12%</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['vat'],2);?>" name="txtVat" id="txtVat" type="text" onBlur="return ComputeTotal();" readonly placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['vat'],2);?>" name="txtVat" id="txtVat" type="text" onBlur="return ComputeTotal();" readonly placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtTotalAmount">Total Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_estmst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
