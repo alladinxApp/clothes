@@ -173,16 +173,19 @@
 		var total = 0;
 		var dpamnt = 0;
 		
-		if($("#txtAmount").val() > 0){
-			amnt = $("#txtAmount").val();
+		if($("#txtAmount").val().replace(/,/g,'') > 0){
+			var amnt1 = $("#txtAmount").val();
+			amnt = amnt1.replace(/,/g,'');
 		}
-		if($("#txtDiscount").val() > 0){
-			discount = $("#txtDiscount").val();
+		if($("#txtDiscount").val().replace(/,/g,'') > 0){
+			var discount1 = $("#txtDiscount").val();
+			discount = discount1.replace(/,/g,'');
 		}
-		if($("#txtDownPayment").val() > 0){
-			dpamnt = $("#txtDownPayment").val();
+		if($("#txtDownPayment").val().replace(/,/g,'') > 0){
+			var dpamnt1 = $("#txtDownPayment").val();
+			dpamnt = dpamnt1.replace(/,/g,'');
 		}
-
+		
 		subtotal = (parseFloat(amnt) - (parseFloat(discount) + parseFloat(dpamnt)));
 		vat = parseFloat(subtotal) * parseFloat(0.12);
 		total = (parseFloat(subtotal) + parseFloat(vat));

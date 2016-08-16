@@ -164,9 +164,10 @@
 		<div class="control-group">
 			<label class="control-label" for="txtSearchCustomer" style="float: left; width: 130px; padding-top: 3px;"> Search Customer </label>
 			<div class="controls" style="float: left;">
-				<input class="input-xlarge" name="txtSearchCustomer" id="txtSearchCustomer" type="text" placeholder="Customer Name Here..." />
+				<input class="input-xlarge" name="txtSearchCustomer" id="txtSearchCustomer" onKeyUp="return findCustomer(this.value);" type="text" placeholder="Customer Name Here..." />
 			</div>
 		</div>
+		<div id="divCustList">
 		<table class="table table-bordered table-condensed" id="customerHeader">
 			<tr>
 				<th>#</th>
@@ -198,7 +199,8 @@
 			</tr>
 			<? $cnt++; } ?>
 		</table>
-	</form>
+		</div>
+		</form>
 	</div>
 </div>
 <!-- END MODAL BOX FOR CUSTOMER LIST -->

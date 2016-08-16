@@ -173,16 +173,19 @@
 		var subtotal = 0;
 		var vat = 0;
 		var total = 0;
-		var dp = 0;
+		var dpamnt = 0;
 		
-		if($("#txtAmount").val() > 0){
-			amnt = $("#txtAmount").val();
+		if($("#txtAmount").val().replace(/,/g,'') > 0){
+			var amnt1 = $("#txtAmount").val();
+			amnt = amnt1.replace(/,/g,'');
 		}
-		if($("#txtDiscount").val() > 0){
-			discount = $("#txtDiscount").val();
+		if($("#txtDiscount").val().replace(/,/g,'') > 0){
+			var discount1 = $("#txtDiscount").val();
+			discount = discount1.replace(/,/g,'');
 		}
-		if($("#txtDownPayment").val() > 0){
-			dpamnt = $("#txtDownPayment").val();
+		if($("#txtDownPayment").val().replace(/,/g,'') > 0){
+			var dpamnt1 = $("#txtDownPayment").val();
+			dpamnt = dpamnt1.replace(/,/g,'');
 		}
 
 		subtotal = (parseFloat(amnt) - (parseFloat(discount) + parseFloat(dpamnt)));
@@ -232,36 +235,25 @@
 		var y = nResult.getFullYear();
 	    return mm + '/' + dd + '/' + y;
 	}
+	function findCustomer(q){
+		$.ajax({
+			url: 'inc-ajax/divSearchCustomer.php?q='+q,
+			type: 'POST',
+			data: null,
+			datatype: 'json',
+			contentType: 'application/json; charset=utf-8',
+			
+			success: function (data) {
+				$("#divCustList").replaceWith(data);
+			},	
+					
+			error: function (request, status, err) {
+				alert(status);
+				alert(err);
+			}
+		});	
+	}
 	$(document).ready(function() {
-		// jQuery.expr[':'].Contains = function(a,i,m){
-		// 	return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
-		// };
-
-		// function listFilter(header, list) {
-		// 	var form = $("<form>").attr({"class":"filterform","action":"#"}),
-		// 	input = $("#txtSearchCustomer").attr({"class":"filterinput","type":"text"});
-		// 	$(form).append(input).appendTo(header);
-
-		// 	$(input)
-		// 	.change( function () {
-		// 		var filter = $(this).val();
-		// 		if(filter) {
-		// 			$(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
-		// 			$(list).find("a:Contains(" + filter + ")").parent().slideDown();
-		// 		} else {
-		// 			$(list).find("td").slideDown();
-		// 		}
-		// 		return false;
-		// 	})
-		// 	.keyup( function () {
-		// 		$(this).change();
-		// 	});
-		// }
-
-		// $(function () {
-		// 	listFilter($("#customerHeader"), $("#customerList"));
-		// });
-
 		Date.prototype.addDays = function (num) {
 		    var value = this.valueOf();
 		    value += 86400000 * num;
