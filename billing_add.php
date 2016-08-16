@@ -2,7 +2,7 @@
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
 	require_once(MODEL_PATH . BILLINGMODEL);
-	// require_once(CONTROLLER_PATH . DELIVERYCONTROLLER);
+	require_once(CONTROLLER_PATH . BILLINGCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -47,21 +47,13 @@
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
 
-	function getTotalAmount(){
-		var noofitems = $("#txtNoOfItems").val();
-		var total = 0;
-		
-		for(var i=1;i<=noofitems;i++){
-			if($("#chkDeliveryCode_"+i).prop('checked') == true){
-				var item = $("#chkDeliveryCode_"+i).val();
-				var amount = item.split("#");
-				amnt = amount[1].replace(/,/g,'');
+	function ComputeTotal(){	
+		var amnt = $("#txtAmount").val().replace(/,/g,'');
+		var amntrcv = $("#txtAmountReceived").val().replace(/,/g,'');
 
-				total += parseFloat(amnt);
-			}
-		}
+		var total = (parseFloat(amntrcv) - parseFloat(amnt));
 
-		$("#txtAmount").val(total.toFixed(2));
+		$("#txtChange").val(total.toFixed(2));
 	}
 </script>
 <body>

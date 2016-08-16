@@ -27,7 +27,7 @@
 				</div>
 				<table class="table table-bordered table-condensed">
 					<tr>
-						<th><input type="checkbox" name="chkAll" id="chkAll" checked onclick="SelectAll(this);"></th>
+						<!-- <th><input type="checkbox" name="chkAll" id="chkAll" checked onclick="SelectAll(this);"></th> -->
 						<th>#</th>
 						<th>Delivery Code</th>
 						<th>Job Order Code</th>
@@ -50,21 +50,21 @@
 							$totalAmount += $row_deliveries[$i]['totalAmount'];
 					?>
 					<tr>
-						<td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliveries[$i]['deliveryCode'] .'#'. $row_deliveries[$i]['totalAmount'];?>"></td>
+						<!-- <td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliveries[$i]['deliveryCode'] .'#'. $row_deliveries[$i]['totalAmount'];?>"></td> -->
 						<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['deliveryCode'];?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['jobOrderReferenceNo'];?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['quoteReferenceNo'];?></td>
 						<td align="right" style="<?=$style;?>"><?=number_format($row_deliveries[$i]['totalAmount'],2);?></td>
 					</tr>
-					<? $cnt++; } $noOfItems = ($cnt - 1); ?>
+					<? $cnt++; } $noOfItems = ($cnt - 1); $totalAmount = ($totalAmount - $dpamnt);?>
 				</table> 
 				<input type="hidden" name="txtNoOfItems" id="txtNoOfItems" value="<?=$noOfItems;?>" />
 				<div class="control-group">
 					<label class="control-label" for="txtDownPayment">Down Payment</label>
 					<div class="controls">
 						<input class="input-xlarge" style="text-align: right;" readonly value="<?=$dpamnt;?>" name="txtDownPayment" id="txtDownPayment" value="" type="text" placeholder="0.00" />
-						<input type="checkbox" name="chkApplyDP" id="chkApplyDP" checked /> Apply
+						<!-- <input type="checkbox" name="chkApplyDP" id="chkApplyDP" checked /> Apply -->
 					</div>
 				</div>
 				<div class="control-group">
@@ -76,7 +76,7 @@
 				<div class="control-group">
 					<label class="control-label" for="txtAmountReceived">Amount Received</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">

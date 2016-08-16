@@ -8,7 +8,7 @@
 	$billingjos->setSQLType($csdb->getSQLType());
 	$billingjos->setInstance($csdb->getInstance());
 	$billingjos->setView("jobordermaster_v");
-	$billingjos->setParam("WHERE jobOrderReferenceNo IN(SELECT jobOrderReferenceNo FROM deliverymaster_v WHERE deliverymaster_v.status = 1)");
+	$billingjos->setParam("WHERE jobordermaster_v.status = 2 AND jobOrderReferenceNo IN(SELECT jobOrderReferenceNo FROM deliverymaster_v WHERE deliverymaster_v.status = 1) AND total_qty = 0");
 	$billingjos->doQuery("query");
 	$row_billingjos = $billingjos->getLists();
 
