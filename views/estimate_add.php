@@ -112,7 +112,7 @@
 				<div class="control-group">
 					<label class="control-label" for="txtDownPayment">Down Payment</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtDownPayment" id="txtDownPayment" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" name="txtDownPayment" id="txtDownPayment" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -143,6 +143,12 @@
 					<label class="control-label" for="txtTotalAmount">Total Amount</label>
 					<div class="controls">
 						<input class="input-xlarge" style="text-align: right;" name="txtTotalAmount" id="txtTotalAmount" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<div class="control-group" id="divTxtBalance">
+					<label class="control-label" for="txtBalance">Balance</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" readonly name="txtBalance" id="txtBalance" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="form-actions">

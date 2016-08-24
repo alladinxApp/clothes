@@ -70,7 +70,7 @@
 
 		$totalQty = $row_joborders[0]['total_qty'];
 
-		if($totalQty == 0){
+		if($totalQty == 0 && $num_joborders > 0){
 			// UPDATE JOB ORDER MASTER
 			$jomst = new Table();
 			$jomst->setSQLType($csdb->getSQLType());

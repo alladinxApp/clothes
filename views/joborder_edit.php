@@ -105,7 +105,7 @@
 					  <th>MATERIALS</th>
 					  <th>SPECIFICATION</th>
 					  <? if($row_jomst[0]['status'] == 0){ ?>
-					  <th>ACTUAL</th>
+					  <th>ACTUAL PCS</th>
 					  <? } ?>
 					</tr>
 					<?
@@ -132,7 +132,7 @@
 						<td><?=$spec;?></td>
 						<? if($row_jomst[0]['status'] == 0){ ?>
 						<td align="center">
-							<textarea rows="1" cols="20" style="resize: none;" name="txtMaterial_<?=$itemid;?>" id="txtMaterial_<?=$itemid;?>"><?=$actual;?></textarea>
+							<input name="txtMaterial_<?=$itemid;?>" id="txtMaterial_<?=$itemid;?>" value="<?=$actual;?>" style="text-align: center;" />
 						</td>
 						<? } ?>
 					</tr>
@@ -153,10 +153,11 @@
 					<?
 						$cnt = 1;
 						$statuscnt = 0;
-						for($i=0;$i<count($row_jodept);$i++){
-							if($row_jodept[$i]['status'] == 0){
-								$statuscnt++;
-							}
+						if(count($row_jodept) > 0){
+							for($i=0;$i<count($row_jodept);$i++){
+								if($row_jodept[$i]['status'] == 0){
+									$statuscnt++;
+								}
 					?>
 					<tr>
 						<td align="center"><?=$cnt;?></td>
@@ -179,7 +180,11 @@
 							<? if(empty($row_jodept[$i]['remarks'])){ }else{ echo $row_jodept[$i]['remarks']; }?>
 						</td>
 					</tr>
-					<? $cnt++; } ?>
+					<? $cnt++; }}else{ ?>
+					<tr>
+						<td align="center" colspan="10">Please assign Job Order to continue process</td>
+					</tr>
+					<? } ?>
 				</table>
 				
 				<input type="hidden" name="txtItemArray" id="txtItemArr" value="<?=$itemArray;?>" />
@@ -214,7 +219,10 @@
 						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" disabled type="text" placeholder="0.00" />
 					</div>
 				</div>
-				<? if($row_jomst[0]['status'] != 0){ $disableStatus = 'disabled'; } ?>
+				<? 
+					if(count($row_jodept) > 0){
+						if($row_jomst[0]['status'] != 0){ $disableStatus = 'disabled'; } 
+				?>
 				<div class="control-group">
 					<label class="control-label" for="txtStatus">Status</label>
 					<div class="controls">
@@ -231,7 +239,7 @@
 				</div>
 				<input type="hidden" name="jobOrderUpdate" id="jobOrderUpdate" value="1" />
 				<input type="hidden" name="estMstId" id="estMstId" value="<?=$row_jomst[0]['id'];?>" />
-				<? } ?>
+				<? } } ?>
 				<? if($row_jomst[0]['status'] == 1){ ?>
 			 	<div class="control-group">
 					<label class="control-label" for="btnJobOrderPrint"></label>

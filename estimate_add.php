@@ -174,6 +174,9 @@
 		var vat = 0;
 		var total = 0;
 		var dpamnt = 0;
+		var discounted = 0;
+		var balance = 0;
+		$("#divTxtBalance").hide();
 		
 		if($("#txtAmount").val().replace(/,/g,'') > 0){
 			var amnt1 = $("#txtAmount").val();
@@ -186,15 +189,19 @@
 		if($("#txtDownPayment").val().replace(/,/g,'') > 0){
 			var dpamnt1 = $("#txtDownPayment").val();
 			dpamnt = dpamnt1.replace(/,/g,'');
+
+			$("#divTxtBalance").show();
 		}
 
-		subtotal = (parseFloat(amnt) - (parseFloat(discount) + parseFloat(dpamnt)));
-		vat = parseFloat(subtotal) * parseFloat(0.12);
-		total = (parseFloat(subtotal) + parseFloat(vat));
+		discounted = (parseFloat(amnt) - parseFloat(discount));
+		vat = parseFloat(discounted) * parseFloat(0.12);
+		total = (parseFloat(discounted) + parseFloat(vat));
+		balance = (parseFloat(total) - parseFloat(dpamnt));
 
-		$("#txtSubTotal").val(subtotal.toFixed(2));
+		$("#txtSubTotal").val(discounted.toFixed(2));
 		$("#txtVat").val(vat.toFixed(2));
 		$("#txtTotalAmount").val(total.toFixed(2));
+		$("#txtBalance").val(balance.toFixed(2));
 	}
 	function RushEstimate(){
 		if(document.estimateForm.chkIsRush.checked){
@@ -254,6 +261,8 @@
 		});	
 	}
 	$(document).ready(function() {
+		$("#divTxtBalance").hide();
+
 		Date.prototype.addDays = function (num) {
 		    var value = this.valueOf();
 		    value += 86400000 * num;

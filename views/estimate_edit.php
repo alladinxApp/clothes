@@ -168,7 +168,7 @@
 				<div class="control-group">
 					<label class="control-label" for="txtDownPayment">Down Payment</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['downPayment'],2);?>" name="txtDownPayment" id="txtDownPayment" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" value="<?=number_format($row_estmst[0]['downPayment'],2);?>" name="txtDownPayment" id="txtDownPayment" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -199,6 +199,12 @@
 					<label class="control-label" for="txtTotalAmount">Total Amount</label>
 					<div class="controls">
 						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<div class="control-group" id="divTxtBalance">
+					<label class="control-label" for="txtBalance">Balance</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['balance'],2);?>" readonly name="txtBalance" id="txtBalance" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">

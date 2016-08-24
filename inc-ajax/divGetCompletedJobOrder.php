@@ -117,7 +117,7 @@
 			  <th>SIZES</th>
 			  <th>COLOR</th>
 			  <th>UOM</th>
-			  <th>ACTUAL MATERIALS</th>
+			  <th>ACTUAL</th>
 			  <th>SPECIFICATION</th>
 			  <th>PRICE</th>
 			  <th>QUANTITY</th>
@@ -134,7 +134,7 @@
 				<td><?=$row_jodtl[$i]['sizeDesc'];?></td>
 				<td><?=$row_jodtl[$i]['color'];?></td>
 				<td><?=$row_jodtl[$i]['uomDesc'];?></td>
-				<td><?=$row_jodtl[$i]['actual'];?></td>
+				<td align="center"><?=$row_jodtl[$i]['qty_remaining'];?></td>
 				<td><?=$row_jodtl[$i]['specification'];?></td>
 				<td align="center">
 					<input class="input-small" onKeyUp="return ComputeTotal();" style="text-align:right;" type="text" name="txtPrice<?=$row_jodtl[$i]['id'];?>" id="txtPrice<?=$row_jodtl[$i]['id'];?>" value="0.00" placeholder="0.00" />

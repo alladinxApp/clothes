@@ -4,6 +4,7 @@
 		// GET CONTROL NO
 		$newNum = getNewCtrlNo("ESTIMATE");
 
+		$balance = null;
 		$tDate = Date("Y-m-d h:i:s");
 		$custCode = $_POST['txtCustomer'];
 		$jobtype = $_POST['txtJobType'];
@@ -22,6 +23,9 @@
 		$subtotal = str_replace(",","",$_POST['txtSubTotal']);
 		$vat = str_replace(",","",$_POST['txtVat']);
 		$totalamount = str_replace(",","",$_POST['txtTotalAmount']);
+		if($downpayment > 0){
+			$balance = str_replace(",","",$_POST['txtBalance']);
+		}
 		$items = explode("::",$_POST['txtItemArray']);
 		
 		$isRush = 0;
@@ -46,8 +50,8 @@
 		$estmst->setSQLType($csdb->getSQLType());
 		$estmst->setInstance($csdb->getInstance());
 		$estmst->setTable("estimatemaster");
-		$estmst->setField("quoteReferenceNo,transactionDate,customerCode,isRush,jobType,leadTime,dueDate,attachment,downpayment,amount,discount,subTotal,vat,totalAmount,createdBy");
-		$estmst->setValues("'$newNum','$tDate','$custCode','$isRush','$jobtype','$leadtime','$duedate','$nFile','$downpayment','$amount','$discount','$subtotal','$vat','$totalamount','$userid'");
+		$estmst->setField("quoteReferenceNo,transactionDate,customerCode,isRush,jobType,leadTime,dueDate,attachment,downpayment,amount,discount,subTotal,vat,totalAmount,balance,createdBy");
+		$estmst->setValues("'$newNum','$tDate','$custCode','$isRush','$jobtype','$leadtime','$duedate','$nFile','$downpayment','$amount','$discount','$subtotal','$vat','$totalamount','$balance','$userid'");
 		$estmst->doQuery("save");
 		$newid = $estmst->getNewID();
 		
@@ -163,6 +167,7 @@
 		$subtotal = str_replace(",","",$_POST['txtSubTotal']);
 		$vat = str_replace(",","",$_POST['txtVat']);
 		$totalamount = str_replace(",","",$_POST['txtTotalAmount']);
+		$balance = str_replace(",","",$_POST['txtBalance']);
 		
 		$items = explode("::",$_POST['txtItemArray']);
 
@@ -235,7 +240,7 @@
 		$estmst->setSQLType($csdb->getSQLType());
 		$estmst->setInstance($csdb->getInstance());
 		$estmst->setTable("estimatemaster");
-		$estmst->setValues("attachment = '$nFile', downpayment = '$downpayment', amount = '$amount', discount = '$discount', subTotal = '$subtotal', vat = '$vat', totalAmount = '$totalamount', status = '$status', modifiedDate = '$today', modifiedBy = '$userid', remarks = '$remarks'");
+		$estmst->setValues("attachment = '$nFile', downpayment = '$downpayment', amount = '$amount', discount = '$discount', subTotal = '$subtotal', vat = '$vat', totalAmount = '$totalamount', balance = '$balance', status = '$status', modifiedDate = '$today', modifiedBy = '$userid', remarks = '$remarks'");
 		$estmst->setParam("WHERE quoteReferenceNo = '$id'");
 		$estmst->doQuery("update");
 
