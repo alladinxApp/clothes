@@ -24,9 +24,18 @@
 	$row_joborders = $joborders->getLists();
 
 	$dpamnt = 0;
-	if($row_joborders[0]['downPayment'] > 0 && $row_joborders[0]['isAppliedDP'] == 0){
+	if($row_joborders[0]['downPayment'] > 0){
 		$dpamnt = $row_joborders[0]['downPayment'];
 	}
+
+	// SET BILLING
+	$billingmst = new Table();
+	$billingmst->setSQLType($csdb->getSQLType());
+	$billingmst->setInstance($csdb->getInstance());
+	$billingmst->setView("billingmaster_v");
+	$billingmst->setParam("WHERE status IN(0,1)");
+	$billingmst->doQuery("query");
+	$row_billingmst = $billingmst->getLists();
 	
 	// CLOSE DB
 	$csdb->DBClose();

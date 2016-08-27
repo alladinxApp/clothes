@@ -189,6 +189,14 @@
 				
 				<input type="hidden" name="txtItemArray" id="txtItemArr" value="<?=$itemArray;?>" />
 
+				<? if($row_jomst[0]['downPayment'] > 0){ ?>
+				<div class="control-group">
+					<label class="control-label" for="txtDownPayment">Down Payment</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['downPayment'],2);?>" disabled name="txtDownPayment" id="txtDownPayment" type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<? } ?>
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
@@ -219,6 +227,14 @@
 						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['totalAmount'],2);?>" name="txtTotalAmount" id="txtTotalAmount" disabled type="text" placeholder="0.00" />
 					</div>
 				</div>
+				<? if($row_jomst[0]['downPayment'] > 0){ ?>
+				<div class="control-group">
+					<label class="control-label" for="txtBalance">Balance</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['balance'],2);?>" disabled name="txtBalance" id="txtBalance" type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<? } ?>
 				<? 
 					if(count($row_jodept) > 0){
 						if($row_jomst[0]['status'] != 0){ $disableStatus = 'disabled'; } 
@@ -227,8 +243,10 @@
 					<label class="control-label" for="txtStatus">Status</label>
 					<div class="controls">
 						<select name="txtStatus" id="txtStatus" <?=$disableStatus;?> >
-							<option value="0" <? if($row_jomst[0]['status'] == 0){ echo 'selected';} ?>>PENDING</option>
-							<option value="1" <? if($row_jomst[0]['status'] == 1){ echo 'selected';} ?>>COMPLETED</option>
+							<option value="0" <? if($row_jomst[0]['status'] == 0){ echo 'selected';} ?>>PENDING/UPDATE</option>
+							<? if($row_jodept[0]['status'] > 0){ ?>
+							<option value="1" <? if($row_jomst[0]['status'] == 1 || $row_jomst[0]['status'] == 2){ echo 'selected';} ?>>COMPLETED</option>
+							<? } ?>
 						</select>
 					</div>
 				</div>

@@ -47,11 +47,18 @@
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
 
-	function ComputeTotal(){	
+	function ComputeTotal(){
+		var dp = $("#txtDownPayment").val().replace(/,/g,'');
 		var amnt = $("#txtAmount").val().replace(/,/g,'');
 		var amntrcv = $("#txtAmountReceived").val().replace(/,/g,'');
+		var bal = $("#txtBalance").val().replace(/,/g,'');
+		var total = 0;
 
-		var total = (parseFloat(amntrcv) - parseFloat(amnt));
+		if(parseFloat(dp) > 0){
+			total = (parseFloat(amntrcv) - parseFloat(bal));
+		}else{
+			total = (parseFloat(amntrcv) - parseFloat(amnt));
+		}
 
 		$("#txtChange").val(total.toFixed(2));
 	}

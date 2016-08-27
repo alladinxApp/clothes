@@ -22,15 +22,15 @@
 				</tr>
 				<?
 					$cnt = 1;
-					for($i=0;$i<count($row_billing);$i++){
-						$billNo = $row_billing[$i]['billingCode'];
+					for($i=0;$i<count($row_billingmst);$i++){
+						$billNo = $row_billingmst[$i]['billingReferenceNo'];
 						$bg = null;
 						$font = null;
 						$lbl = 'warning';
 						if($cnt%2){
 							$bg = 'background: #eee;';
 						}
-						switch($row_billing[$i]['status']){
+						switch($row_billingmst[$i]['status']){
 							case 1:
 									$font = 'color: #00ff00';
 									$lbl = 'success';
@@ -47,14 +47,14 @@
 				<tr>
 					<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 					<td align="left" style="<?=$style;?>"><?=$billNo;?></td>
-					<td align="left" style="<?=$style;?>"><?=$row_billing[$i]['customerName'];?></td>
-					<td align="left" style="<?=$style;?>"><?=$row_billing[$i]['customerTelNo'];?></td>
-					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_billing[$i]['statusDesc'];?></span></td>                                       
+					<td align="left" style="<?=$style;?>"><?=$row_billingmst[$i]['customerName'];?></td>
+					<td align="left" style="<?=$style;?>"><?=$row_billingmst[$i]['customerTelNo'];?></td>
+					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_billingmst[$i]['statusDesc'];?></span></td>                                       
 					<td align="center" style="<?=$style;?>">
-						<a class="btn btn-info" href="invoice_edit.php?edit=1&id=<?=$billNo;?>" title="Edit <?=$billNo;?>">
+						<a class="btn btn-info" href="billing_edit.php?edit=1&id=<?=$billNo;?>" title="Edit <?=$billNo;?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
-						<a class="btn btn-info" href="#" onClick="InvoicePrint('<?=$billNo;?>');" title="Print <?=$billNo;?>">
+						<a class="btn btn-info" href="#" onClick="billingPrint('<?=$billNo;?>');" title="Print <?=$billNo;?>">
 							<i class="halflings-icon white print"></i> 
 						</a>
 					</td>

@@ -1,7 +1,7 @@
 <div class="row-fluid">		
 	<div class="box span12">
 		<div class="box-header" data-original-title>
-			<h2><i class="icon-money"></i><span class="break"></span><b>Add New Billing to </b></h2>
+			<h2><i class="icon-money"></i><span class="break"></span><b>Add New Billing to <?=$row_joborders[0]['customerName'];?></b></h2>
 			<div class="box-icon">
 				<a href="billing_joborders.php"><i class="halflings-icon plus"></i> ADD NEW</a>
 			</div>
@@ -57,7 +57,7 @@
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['quoteReferenceNo'];?></td>
 						<td align="right" style="<?=$style;?>"><?=number_format($row_deliveries[$i]['totalAmount'],2);?></td>
 					</tr>
-					<? $cnt++; } $noOfItems = ($cnt - 1); $totalAmount = ($totalAmount - $dpamnt);?>
+					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
 				</table> 
 				<input type="hidden" name="txtNoOfItems" id="txtNoOfItems" value="<?=$noOfItems;?>" />
 				<div class="control-group">
@@ -73,6 +73,14 @@
 						<input class="input-xlarge" value="<?=number_format($totalAmount,2);?>" style="text-align: right;" name="txtAmount" id="txtAmount" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
+				<? if($dpamnt > 0){ ?>
+				<div class="control-group">
+					<label class="control-label" for="txtBalance">Balance</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=number_format($balance,2);?>" style="text-align: right;" name="txtBalance" id="txtBalance" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<? } ?>
 				<div class="control-group">
 					<label class="control-label" for="txtAmountReceived">Amount Received</label>
 					<div class="controls">
@@ -89,6 +97,7 @@
 					<input type="submit" name="btnBillingSave" id="btnBillingSave" class="btn btn-primary" value="Save changes" />
 				</div>
 				</fieldset>
+				<input type="hidden" name="billingSaved" id="billingSaved" value="1" />
 			</form>
 		</div>
 	</div>

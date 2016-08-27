@@ -24,6 +24,15 @@
 	$jolabor->doQuery("query");
 	$row_jolabor = $jolabor->getLists();
 
+	// SET JOB ORDER
+	$jomst = new Table();
+	$jomst->setSQLType($csdb->getSQLType());
+	$jomst->setInstance($csdb->getInstance());
+	$jomst->setView("jobordermaster_v");
+	$jomst->setParam("WHERE jobOrderReferenceNo = '$id'");
+	$jomst->doQuery("query");
+	$row_jomst = $jomst->getLists();
+
 	$deptname = $row_jodept[0]['departmentName'];
 
 	// CLOSE DB

@@ -64,7 +64,7 @@
 						<a class="btn btn-info" href="joborder_transfer.php?edit=1&id=<?=$jono;?>" title="Assign <?=$jono;?>">
 							<i class="halflings-icon white home"></i>  
 						</a>
-						<? if($row_joborders[$i]['status'] == 1){ ?>
+						<? if($row_joborders[$i]['status'] > 0){ ?>
 						<a class="btn btn-info" href="#" onClick="JobOrderPrint('<?=$jono;?>');" title="Print <?=$jono;?>">
 							<i class="halflings-icon white print"></i> 
 						</a>

@@ -1,7 +1,7 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	// require_once(MODEL_PATH . ESTIMATESMODEL);
+	require_once(MODEL_PATH . BILLINGMODEL);
 	// require_once(CONTROLLER_PATH . ESTIMATECONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">

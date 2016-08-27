@@ -312,12 +312,7 @@
 								</select>
 							</div>
 						</div>
-						<!-- <div class="form-actions">
-							<input type="submit" class="btn btn-primary" value="Save changes" />
-							<a href="customer_add.php" class="btn">Cancel</a>
-						</div> -->
 					</fieldset>
-					<!-- <input type="hidden" name="save" id="save" value="1" /> -->
 				</form>
 			</div>
 

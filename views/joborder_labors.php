@@ -34,22 +34,24 @@
 				</div>
 			</div>
 			<div class="control-group">
-						<label class="control-label" for="txtJobDescription">Job Description</label>
-						<div class="controls">
-							<select id="txtJobDescription" name="txtJobDescription">
-								<option value="">Job Description</option>
-								<? for($i=0;$i<count($row_jobdescription);$i++){ ?>
-								<option value="<?=$row_jobdescription[$i]['jobDescriptionCode'];?>"><?=$row_jobdescription[$i]['description'];?></option>
-								<? } ?>
-							</select>
-						</div>
-					</div>
+				<label class="control-label" for="txtJobDescription">Job Description</label>
+				<div class="controls">
+					<select id="txtJobDescription" name="txtJobDescription">
+						<option value="">Job Description</option>
+						<? for($i=0;$i<count($row_jobdescription);$i++){ ?>
+						<option value="<?=$row_jobdescription[$i]['jobDescriptionCode'];?>"><?=$row_jobdescription[$i]['description'];?></option>
+						<? } ?>
+					</select>
+				</div>
+			</div>
+			<? if($row_jomst[0]['status'] == 0){ ?>
 			<div class="control-group">
 				<label class="control-label" for="txtJobDescription"></label>
 				<div class="controls">
 					<input type="button" class="btn btn-primary" value="Add Employee" onClick="return AddEmployee();" />
 				</div>
 			</div>
+			<? } ?>
 			</form>
 			<div id="divDetails">
 			<table class="table table-bordered table-condensed">

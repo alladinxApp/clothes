@@ -1,28 +1,46 @@
 <?
 	// SAVE BILLING
-	if(isset($_POST['save']) && !empty($_POST['save']) && $_POST['save'] == 1){
+	if(isset($_POST['billingSaved']) && !empty($_POST['billingSaved']) && $_POST['billingSaved'] == 1){
+		$id = $_GET['id'];
 		// GET CONTROL NO
 		$newNum = getNewCtrlNo("BILLING");
+		$downpayment = str_replace(",","",$_POST['txtDownPayment']);
+		$amntrec = str_replace(",","",$_POST['txtAmountReceived']);
+		$ttlamount = str_replace(",","",$_POST['txtAmount']);
+		$bal = str_replace(",","",$_POST['txtBalance']);
+		$change = str_replace(",","",$_POST['txtChange']);
 
 		// OPEN DB
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
 
-		// INSERT NEW CONTROL NO
-		$ctrlno = new Table();
-		$ctrlno->setSQLType($csdb->getSQLType());
-		$ctrlno->setInstance($csdb->getInstance());
-		$ctrlno->setTable("billingmaster");
-		$ctrlno->setField("description,controlType,controlCode,noOfDigit,remarks,createdDate,createdBy");
-		$ctrlno->setValues("'$description','$type','$code','$noofdigit','$remarks','$today','$userid'");
-		$ctrlno->doQuery("save");
+		// INSERT NEW BILLING
+		$billing = new Table();
+		$billing->setSQLType($csdb->getSQLType());
+		$billing->setInstance($csdb->getInstance());
+		$billing->setTable("billingmaster");
+		$billing->setField("billingReferenceNo,billedDate,jobOrderReferenceNo,downPayment,amountReceived,totalAmount,balance,createdBy");
+		$billing->setValues("'$newNum','$today','$id','$downpayment','$amntrec','$ttlamount','$bal','$userid'");
+		$billing->doQuery("save");
+
+		// UPDATE JO
+		$updjo = new Table();
+		$updjo->setSQLType($csdb->getSQLType());
+		$updjo->setInstance($csdb->getInstance());
+		$updjo->setTable("jobordermaster");
+		$updjo->setValues("status = 2");
+		$updjo->setParam("WHERE jobOrderReferenceNo = '$id'");
+		$updjo->doQuery("update");
+
+		// UPDATE CONTROL NO
+		UpdateCtrlNo("BILLING");
 
 		// CLOSE DB
 		$csdb->DBClose();
 		
 		$alert = new MessageAlert();
-		$alert->setMessage("New control no successfully saved.");
-		$alert->setURL(BASE_URL . "controlnos.php");
+		$alert->setMessage("New billing successfully saved.");
+		$alert->setURL(BASE_URL . "billings.php");
 		$alert->Alert();
 	}
 	// END SAVE BILLING

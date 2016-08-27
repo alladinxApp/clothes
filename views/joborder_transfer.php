@@ -84,6 +84,7 @@
 						</div>
 					</div>
 				</fieldset>
+				<? if($row_jomst[0]['status'] == 0){ ?>
 				<div class="box-header" data-original-title>
 					<h2><i class="halflings-icon home"></i><span class="break"></span><b>Add Department</b></h2>
 				</div>
@@ -96,6 +97,7 @@
 						</select> <input type="button" id="btnAddDepartment" name="btnAddDepartment" class="btn btn-primary" value=" Add Department " onClick="return AddDepartment();" /></td>
 					</tr>
 				</table>
+				<? } ?>
 				<div id="divDetails">
 				<table class="table table-bordered table-condensed">
 					<tr>
