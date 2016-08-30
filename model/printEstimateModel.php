@@ -118,6 +118,76 @@
 			$this->Cell(105,2,'','LRB',0,'C');
 			$this->Ln(4);
 
+			$this->Cell(190,6,'',0,0,'C');
+			$this->Ln(6);
+
+			if($this->estMst['downPayment'] > 0){
+				$this->SetFont('helvetica','B',10);
+				$this->Cell(146,5,'',0,0,'C');
+				$this->Cell(20,5,'Down Payment :',0,0,'R');
+				$this->Cell(2,5,'',0,0,'C');
+				$this->SetFont('helvetica','',9);
+				$this->Cell(20,5,$this->estMst['downPayment'],0,0,'R');
+				$this->Ln(4);
+			}
+
+			$this->SetFont('helvetica','B',10);
+			$this->Cell(146,5,'',0,0,'C');
+			$this->Cell(20,5,'Amount :',0,0,'R');
+			$this->Cell(2,5,'',0,0,'C');
+			$this->SetFont('helvetica','',9);
+			$this->Cell(20,5,$this->estMst['amount'],0,0,'R');
+			$this->Ln(4);
+
+			if($this->estMst['discount'] > 0){
+				$this->SetFont('helvetica','B',10);
+				$this->Cell(146,5,'',0,0,'C');
+				$this->Cell(20,5,'Discount :',0,0,'R');
+				$this->Cell(2,5,'',0,0,'C');
+				$this->SetFont('helvetica','',9);
+				$this->Cell(20,5,$this->estMst['discount'],0,0,'R');
+				$this->Ln(4);
+			}
+
+			if($this->estMst['discount'] > 0){
+				$this->SetFont('helvetica','B',10);
+				$this->Cell(146,5,'',0,0,'C');
+				$this->Cell(20,5,'Sub-Total :',0,0,'R');
+				$this->Cell(2,5,'',0,0,'C');
+				$this->SetFont('helvetica','',9);
+				$this->Cell(20,5,$this->estMst['subTotal'],0,0,'R');
+				$this->Ln(4);
+			}
+
+			$this->SetFont('helvetica','B',10);
+			$this->Cell(146,5,'',0,0,'C');
+			$this->Cell(20,5,'Vat 12% :',0,0,'R');
+			$this->Cell(2,5,'',0,0,'C');
+			$this->SetFont('helvetica','',9);
+			$this->Cell(20,5,$this->estMst['vat'],0,0,'R');
+			$this->Ln(4);
+
+			$this->SetFont('helvetica','B',10);
+			$this->Cell(146,5,'',0,0,'C');
+			$this->Cell(20,5,'Total Amount :',0,0,'R');
+			$this->Cell(2,5,'',0,0,'C');
+			$this->SetFont('helvetica','',9);
+			$this->Cell(20,5,$this->estMst['totalAmount'],0,0,'R');
+			$this->Ln(4);
+
+			if($this->estMst['downPayment'] > 0){
+				$this->SetFont('helvetica','B',10);
+				$this->Cell(146,5,'',0,0,'C');
+				$this->Cell(20,5,'Balance :',0,0,'R');
+				$this->Cell(2,5,'',0,0,'C');
+				$this->SetFont('helvetica','',9);
+				$this->Cell(20,5,$this->estMst['balance'],0,0,'R');
+				$this->Ln(4);
+			}
+
+			$this->Cell(190,6,'',0,0,'C');
+			$this->Ln(6);
+
 			$this->SetFont('helvetica','B',10);
 			$this->Cell(20,5,'Remarks',0,0,'L');
 			$this->Cell(2,5,'',0,0,'C');

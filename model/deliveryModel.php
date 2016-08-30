@@ -7,6 +7,11 @@
 	$joborders = new Table();
 	$joborders->setSQLType($csdb->getSQLType());
 	$joborders->setInstance($csdb->getInstance());
+	$joborders->setCol("DISTINCT jobordermaster_v.jobOrderReferenceNo
+						,jobordermaster_v.quoteReferenceNo
+						,jobordermaster_v.customerName
+						,jobordermaster_v.jobTypeDesc
+						,jobordermaster_v.isRushDesc");
 	$joborders->setView("jobordermaster_v JOIN joborderdepartment_v ON jobordermaster_v.jobOrderReferenceNo = joborderdepartment_v.jobOrderReferenceNo");
 	$joborders->setParam("WHERE joborderdepartment_v.status = 1 AND jobordermaster_v.total_qty > 0 ORDER BY joborderdepartment_v.createdDate");
 	$joborders->doQuery("query");

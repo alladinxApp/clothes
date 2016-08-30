@@ -44,3 +44,24 @@
 		$alert->Alert();
 	}
 	// END SAVE BILLING
+	// EDIT BILLING
+	if(isset($_GET['edit']) && !empty($_GET['edit']) && $_GET['edit'] == 1){
+		$id = $_GET['id'];
+
+		// OPEN DB
+		$csdb = new DBConfig();
+		$csdb->setClothesDB();
+
+		// SET BILLING
+		$billingmst = new Table();
+		$billingmst->setSQLType($csdb->getSQLType());
+		$billingmst->setInstance($csdb->getInstance());
+		$billingmst->setView("billingmaster_v");
+		$billingmst->setParam("WHERE billingReferenceNo = '$id'");
+		$billingmst->doQuery("query");
+		$row_billingmst = $billingmst->getLists();
+
+		// CLOSE DB
+		$csdb->DBClose();
+	}
+	// END EDIT BILLING
