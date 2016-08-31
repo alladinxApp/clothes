@@ -37,7 +37,7 @@
 					<?
 						$cnt = 1;
 						$totalAmount = 0;
-						for($i=0;$i<count($row_deliveries);$i++){
+						for($i=0;$i<count($row_deliverymst);$i++){
 							$bg = null;
 							$font = null;
 							$lbl = 'warning';
@@ -47,15 +47,15 @@
 
 							$style = $bg;
 
-							$totalAmount += $row_deliveries[$i]['totalAmount'];
+							$totalAmount += $row_deliverymst[$i]['totalAmount'];
 					?>
 					<tr>
-						<!-- <td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliveries[$i]['deliveryCode'] .'#'. $row_deliveries[$i]['totalAmount'];?>"></td> -->
+						<!-- <td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliverymst[$i]['deliveryCode'] .'#'. $row_deliverymst[$i]['totalAmount'];?>"></td> -->
 						<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['deliveryCode'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['jobOrderReferenceNo'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['quoteReferenceNo'];?></td>
-						<td align="right" style="<?=$style;?>"><?=number_format($row_deliveries[$i]['totalAmount'],2);?></td>
+						<td align="left" style="<?=$style;?>"><?=$row_deliverymst[$i]['deliveryCode'];?></td>
+						<td align="left" style="<?=$style;?>"><?=$row_deliverymst[$i]['jobOrderReferenceNo'];?></td>
+						<td align="left" style="<?=$style;?>"><?=$row_deliverymst[$i]['quoteReferenceNo'];?></td>
+						<td align="right" style="<?=$style;?>"><?=number_format($row_deliverymst[$i]['totalAmount'],2);?></td>
 					</tr>
 					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
 				</table> 
@@ -63,41 +63,35 @@
 				<div class="control-group">
 					<label class="control-label" for="txtDownPayment">Down Payment</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" readonly value="<?=$dpamnt;?>" name="txtDownPayment" id="txtDownPayment" value="" type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" readonly value="<?=$row_billingmst[0]['downPayment'];?>" name="txtDownPayment" id="txtDownPayment" value="" type="text" placeholder="0.00" />
 						<!-- <input type="checkbox" name="chkApplyDP" id="chkApplyDP" checked /> Apply -->
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Total Amount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($totalAmount,2);?>" style="text-align: right;" name="txtAmount" id="txtAmount" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['totalAmount'],2);?>" style="text-align: right;" name="txtAmount" id="txtAmount" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
-				<? if($dpamnt > 0){ ?>
+				<? if($row_billingmst[0]['downPayment'] > 0){ ?>
 				<div class="control-group">
 					<label class="control-label" for="txtBalance">Balance</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($balance,2);?>" style="text-align: right;" name="txtBalance" id="txtBalance" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['balance'],2);?>" style="text-align: right;" name="txtBalance" id="txtBalance" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<? } ?>
 				<div class="control-group">
 					<label class="control-label" for="txtAmountReceived">Amount Received</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="txtChange">Change</label>
-					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtChange" id="txtChange" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['amountReceived'],2);?>" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="form-actions">
-					<input type="submit" name="btnBillingSave" id="btnBillingSave" class="btn btn-primary" value="Save changes" />
+					<input type="submit" name="btnBillingSave" id="btnBillingSave" class="btn btn-primary" value="Post Billing" />
 				</div>
 				</fieldset>
-				<input type="hidden" name="billingSaved" id="billingSaved" value="1" />
+				<input type="hidden" name="billingPosted" id="billingPosted" value="1" />
 			</form>
 		</div>
 	</div>
