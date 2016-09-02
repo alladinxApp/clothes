@@ -10,7 +10,7 @@
 	$deliveries->setSQLType($csdb->getSQLType());
 	$deliveries->setInstance($csdb->getInstance());
 	$deliveries->setView("deliverymaster_v");
-	$deliveries->setParam("WHERE jobOrderReferenceNo = '$id' AND status = 1");
+	$deliveries->setParam("WHERE jobOrderReferenceNo = '$id'");
 	$deliveries->doQuery("query");
 	$row_deliveries = $deliveries->getLists();
 
@@ -33,7 +33,7 @@
 	$billingmst->setSQLType($csdb->getSQLType());
 	$billingmst->setInstance($csdb->getInstance());
 	$billingmst->setView("billingmaster_v");
-	$billingmst->setParam("WHERE status IN(0,1)");
+	$billingmst->setParam("WHERE status IN(0)");
 	$billingmst->doQuery("query");
 	$row_billingmst = $billingmst->getLists();
 	

@@ -32,19 +32,28 @@
 						<th>Delivery Code</th>
 						<th>Job Order Code</th>
 						<th>Estimate Code</th>
+						<th>Status</th>
 						<th>Amount</th>
 					</tr>
 					<?
 						$cnt = 1;
 						$totalAmount = 0;
+						$pendingcnt = 0;
 						for($i=0;$i<count($row_deliveries);$i++){
 							$bg = null;
-							$font = null;
 							$lbl = 'warning';
 							if($cnt%2){
 								$bg = 'background: #eee;';
 							}
-
+							switch($row_deliveries[$i]['status']){
+								case 1:
+										$lbl = 'success';
+									break;
+								case 3:
+										$lbl = 'important';
+									break;
+								default: $pendingcnt++; break;
+							}
 							$style = $bg;
 
 							$totalAmount += $row_deliveries[$i]['totalAmount'];
@@ -55,6 +64,7 @@
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['deliveryCode'];?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['jobOrderReferenceNo'];?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['quoteReferenceNo'];?></td>
+						<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_deliveries[$i]['statusDesc'];?></span></td>
 						<td align="right" style="<?=$style;?>"><?=number_format($row_deliveries[$i]['totalAmount'],2);?></td>
 					</tr>
 					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
@@ -93,9 +103,15 @@
 						<input class="input-xlarge" style="text-align: right;" name="txtChange" id="txtChange" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
+				<? if($pendingcnt == 0){ ?>
 				<div class="form-actions">
 					<input type="submit" name="btnBillingSave" id="btnBillingSave" class="btn btn-primary" value="Save changes" />
 				</div>
+				<? }else{ ?>
+				<div class="form-actions">
+					<p>Please complete/acknowledge Deliveries to continue process billing for <?=$row_joborders[0]['customerName'];?></p>
+				</div>
+				<? } ?>
 				</fieldset>
 				<input type="hidden" name="billingSaved" id="billingSaved" value="1" />
 			</form>

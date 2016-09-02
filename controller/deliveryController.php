@@ -70,16 +70,16 @@
 
 		$totalQty = $row_joborders[0]['total_qty'];
 
-		if($totalQty == 0 && $num_joborders > 0){
-			// UPDATE JOB ORDER MASTER
-			$jomst = new Table();
-			$jomst->setSQLType($csdb->getSQLType());
-			$jomst->setInstance($csdb->getInstance());
-			$jomst->setTable("jobordermaster");
-			$jomst->setValues("status = '2', acknowledgeBy = '$userid', acknowledgeDate = '$today'");
-			$jomst->setParam("WHERE jobOrderReferenceNo = '$id'");
-			$jomst->doQuery("update");
-		}
+		// if($totalQty == 0 && $num_joborders > 0){
+		// 	// UPDATE JOB ORDER MASTER
+		// 	$jomst = new Table();
+		// 	$jomst->setSQLType($csdb->getSQLType());
+		// 	$jomst->setInstance($csdb->getInstance());
+		// 	$jomst->setTable("jobordermaster");
+		// 	$jomst->setValues("status = '2', acknowledgeBy = '$userid', acknowledgeDate = '$today'");
+		// 	$jomst->setParam("WHERE jobOrderReferenceNo = '$id'");
+		// 	$jomst->doQuery("update");
+		// }
 
 		// CLOSE DB
 		$csdb->DBClose();

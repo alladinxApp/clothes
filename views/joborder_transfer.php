@@ -4,10 +4,12 @@
 			<h2>
 				<i class="icon-upload-alt"></i><span class="break"></span><b>Job Order #<?=$id;?></b>
 			</h2>
+			<? //if($row_jodept[0]['status'] == 1){ ?>
 			<div class="box-icon">
 				<span class="break">
 				<a href="joborder_edit.php?edit=1&id=<?=$row_jomst[0]['jobOrderReferenceNo'];?>"><i class="halflings-icon edit"></i> EDIT #<?=$id;?></a>
 			</div>
+			<? //} ?>
 			<div class="box-icon">
 				<a href="joborders.php"><i class="halflings-icon backward"></i> Back to List</a>
 			</div>

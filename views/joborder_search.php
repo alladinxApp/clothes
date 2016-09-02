@@ -42,7 +42,8 @@
 							<select id="txtStatus" name="txtStatus">
 								<option value="">STATUS</option>
 								<option value="0">PENDING</option>
-								<option value="1">ACKNOWLEDGED</option>
+								<option value="1">COMPLETED</option>
+								<option value="2">BILLED</option>
 							</select>
 						</div>
 					</div>

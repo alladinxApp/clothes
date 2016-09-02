@@ -84,7 +84,7 @@
 				<div class="control-group">
 					<label class="control-label" for="txtAmountReceived">Amount Received</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['amountReceived'],2);?>" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['amountReceived'],2);?>" style="text-align: right;" readonly name="txtAmountReceived" id="txtAmountReceived" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="form-actions">

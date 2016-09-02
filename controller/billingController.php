@@ -80,7 +80,7 @@
 	if(isset($_POST['billingPosted']) && !empty($_POST['billingPosted']) && $_POST['billingPosted'] == 1){
 		$id = $_GET['id'];
 		// GET CONTROL NO
-		$newNum = getNewCtrlNo("ACCOUNTS_RECEIVABLE");
+		// $newNum = getNewCtrlNo("ACCOUNTS_RECEIVABLE");
 		$ttlamount = str_replace(",","",$_POST['txtAmount']);
 
 		// OPEN DB
@@ -97,19 +97,19 @@
 		$billingmst->doQuery("update");
 
 		// INSERT NEW BILLING
-		$ar = new Table();
-		$ar->setSQLType($csdb->getSQLType());
-		$ar->setInstance($csdb->getInstance());
-		$ar->setTable("armaster");
-		$ar->setField("ARNo,billingReferenceNo,amount,createdDate,createdBy");
-		$ar->setValues("'$newNum','$id','$ttlamount','$today','$userid'");
-		$ar->doQuery("save");
+		// $ar = new Table();
+		// $ar->setSQLType($csdb->getSQLType());
+		// $ar->setInstance($csdb->getInstance());
+		// $ar->setTable("armaster");
+		// $ar->setField("ARNo,billingReferenceNo,amount,createdDate,createdBy");
+		// $ar->setValues("'$newNum','$id','$ttlamount','$today','$userid'");
+		// $ar->doQuery("save");
 
 		// CLOSE DB
 		$csdb->DBClose();
 
 		// UPDATE CONTROL NO
-		UpdateCtrlNo("ACCOUNTS_RECEIVABLE");
+		// UpdateCtrlNo("ACCOUNTS_RECEIVABLE");
 
 		$alert = new MessageAlert();
 		$alert->setMessage("Billing successfully posted.");

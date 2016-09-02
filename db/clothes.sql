@@ -16,19 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`clothes` /*!40100 DEFAULT CHARACTER SET
 
 USE `clothes`;
 
-/*Table structure for table ` usermenuaccess` */
-
-DROP TABLE IF EXISTS ` usermenuaccess`;
-
-CREATE TABLE ` usermenuaccess` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` varchar(20) DEFAULT NULL,
-  `menuCode` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Data for the table ` usermenuaccess` */
-
 /*Table structure for table `armaster` */
 
 DROP TABLE IF EXISTS `armaster`;
@@ -40,11 +27,13 @@ CREATE TABLE `armaster` (
   `amount` decimal(12,2) DEFAULT NULL,
   `createdDate` datetime DEFAULT NULL,
   `createdBy` varchar(20) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `armaster` */
+
+insert  into `armaster`(`id`,`ARNo`,`billingReferenceNo`,`amount`,`createdDate`,`createdBy`,`status`) values (1,'AR00000001','B00000001','1680.00','2016-09-02 04:32:37','ALLADINX',0);
 
 /*Table structure for table `billingmaster` */
 
@@ -64,9 +53,11 @@ CREATE TABLE `billingmaster` (
   `createdBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `billingmaster` */
+
+insert  into `billingmaster`(`id`,`billingReferenceNo`,`billedDate`,`jobOrderReferenceNo`,`downPayment`,`amountReceived`,`totalAmount`,`balance`,`change`,`postedDate`,`createdBy`,`status`) values (1,'B00000001','2016-09-02 04:31:39','JO00000004','1000.00','700.00','1680.00','680.00',NULL,'2016-09-02 04:32:37','ALLADINX',1);
 
 /*Table structure for table `controlno` */
 
@@ -90,7 +81,7 @@ CREATE TABLE `controlno` (
 
 /*Data for the table `controlno` */
 
-insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,2,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,3,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx','2016-07-27 05:43:22','ALLADINX',0),(5,'MENU MAINTENANCE','M','MENU',4,23,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE MAINTENANCE','EST','ESTIMATE',8,2,'Estimate Maintenance','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1),(10,'JOB ORDER MAINTENANCE','JO','JOBORDER',8,2,'Job Order Maintenance','2016-07-25 11:23:56','ALLADINX',NULL,NULL,1),(11,'DELIVERY MAINTENANCE','DR','DELIVERY',8,3,'Delivery Maintenance','2016-07-27 05:43:00','ALLADINX',NULL,NULL,1),(12,'BILLING MAINTENANCE','B','BILLING',8,0,'Billing Maintenance','2016-07-27 08:05:00','ALLADINX',NULL,NULL,1),(13,'LABOR COSTS MAINTENANCE','LC','LABORCOSTS',4,19,'Labor Costs Maintenance','2016-07-28 03:57:51','ALLADINX',NULL,NULL,1),(14,'JOB DESCRIPTION MAINTENANCE','JD','JOBDESCRIPTION',4,3,'Job Description Maintenance','2016-07-29 01:46:11','ALLADINX',NULL,NULL,1),(15,'ACCOUNTS RECEIVABLE','AR','ACCOUNTS_RECEIVABLE',8,0,'Accounts Receivable Maintenance','2016-08-31 03:06:19','ALLADINX',NULL,NULL,1);
+insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,2,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,3,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx','2016-07-27 05:43:22','ALLADINX',0),(5,'MENU MAINTENANCE','M','MENU',4,23,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE MAINTENANCE','EST','ESTIMATE',8,4,'Estimate Maintenance','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1),(10,'JOB ORDER MAINTENANCE','JO','JOBORDER',8,4,'Job Order Maintenance','2016-07-25 11:23:56','ALLADINX',NULL,NULL,1),(11,'DELIVERY MAINTENANCE','DR','DELIVERY',8,7,'Delivery Maintenance','2016-07-27 05:43:00','ALLADINX',NULL,NULL,1),(12,'BILLING MAINTENANCE','B','BILLING',8,1,'Billing Maintenance','2016-07-27 08:05:00','ALLADINX',NULL,NULL,1),(13,'LABOR COSTS MAINTENANCE','LC','LABORCOSTS',4,19,'Labor Costs Maintenance','2016-07-28 03:57:51','ALLADINX',NULL,NULL,1),(14,'JOB DESCRIPTION MAINTENANCE','JD','JOBDESCRIPTION',4,3,'Job Description Maintenance','2016-07-29 01:46:11','ALLADINX',NULL,NULL,1),(15,'ACCOUNTS RECEIVABLE','AR','ACCOUNTS_RECEIVABLE',8,1,'Accounts Receivable Maintenance','2016-08-31 03:06:19','ALLADINX',NULL,NULL,1);
 
 /*Table structure for table `customersmaster` */
 
@@ -132,11 +123,11 @@ CREATE TABLE `deliverydetail` (
   `quantity` int(11) DEFAULT NULL,
   `price` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `deliverydetail` */
 
-insert  into `deliverydetail`(`id`,`deliveryCode`,`estimateDtlId`,`JODtlId`,`quantity`,`price`) values (1,'DR00000001',NULL,1,10,'200.00'),(2,'DR00000002',NULL,1,5,'200.00'),(3,'DR00000003',NULL,2,10,'100.00');
+insert  into `deliverydetail`(`id`,`deliveryCode`,`estimateDtlId`,`JODtlId`,`quantity`,`price`) values (1,'DR00000006',NULL,1,10,'100.00'),(2,'DR00000007',NULL,1,5,'100.00');
 
 /*Table structure for table `deliverymaster` */
 
@@ -159,11 +150,11 @@ CREATE TABLE `deliverymaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `deliverymaster` */
 
-insert  into `deliverymaster`(`id`,`deliveryCode`,`jobOrderReferenceNo`,`amount`,`discount`,`vat`,`subTotal`,`totalAmount`,`preparedBy`,`preparedDate`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'DR00000001','JO00000001','2000.00','0.00','240.00','2000.00','2240.00','ALLADINX','2016-08-31 03:16:11','2016-08-31 03:15:52','ALLADINX',NULL,NULL,1),(2,'DR00000002','JO00000001','1000.00','0.00','120.00','1000.00','1120.00','ALLADINX','2016-08-31 03:16:29','2016-08-31 03:16:03','ALLADINX',NULL,NULL,1),(3,'DR00000003','JO00000002','1000.00','0.00','120.00','1000.00','1120.00',NULL,NULL,'2016-08-31 03:24:02','ALLADINX',NULL,NULL,0);
+insert  into `deliverymaster`(`id`,`deliveryCode`,`jobOrderReferenceNo`,`amount`,`discount`,`vat`,`subTotal`,`totalAmount`,`preparedBy`,`preparedDate`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'DR00000006','JO00000004','1000.00','0.00','120.00','1000.00','1120.00','ALLADINX','2016-09-02 04:22:06','2016-09-02 04:21:37','ALLADINX',NULL,NULL,1),(2,'DR00000007','JO00000004','500.00','0.00','60.00','500.00','560.00','ALLADINX','2016-09-02 04:31:15','2016-09-02 04:21:47','ALLADINX',NULL,NULL,1);
 
 /*Table structure for table `departmentmaster` */
 
@@ -200,11 +191,11 @@ CREATE TABLE `estimatedetail` (
   `uom` varchar(20) DEFAULT NULL,
   `material` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `estimatedetail` */
 
-insert  into `estimatedetail`(`id`,`estimateMasterId`,`quoteReferenceNo`,`specification`,`size`,`quantity`,`color`,`uom`,`material`) values (1,1,'EST00000001','asf','SP00000005',12,'asdf','UOM001','asf'),(2,2,'EST00000002','asf','SP00000005',10,'asdf','UOM001','asf');
+insert  into `estimatedetail`(`id`,`estimateMasterId`,`quoteReferenceNo`,`specification`,`size`,`quantity`,`color`,`uom`,`material`) values (1,1,'EST00000004','asdf','SP00000005',10,'asf','UOM001','asf');
 
 /*Table structure for table `estimatemaster` */
 
@@ -236,11 +227,11 @@ CREATE TABLE `estimatemaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(5) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `estimatemaster` */
 
-insert  into `estimatemaster`(`id`,`quoteReferenceNo`,`transactionDate`,`customerCode`,`jobType`,`leadTime`,`dueDate`,`isRush`,`attachment`,`downPayment`,`isAppliedDP`,`amount`,`discount`,`subTotal`,`vat`,`totalAmount`,`balance`,`acknowledgeBy`,`acknowledgeDate`,`remarks`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'EST00000001','2016-08-31 03:07:43','C00000001','JT00000002',30,'2016-09-30',0,'20160831030743cflogo.gif','1000.00',0,'3000.00','0.00','3000.00','360.00','3360.00','2360.00',NULL,NULL,'','ALLADINX','2016-08-31 03:07:49','ALLADINX',1),(2,'EST00000002','2016-08-31 03:18:34','C00000002','JT00000001',10,'2016-09-10',0,'20160831031834cf.jpg','150.00',0,'1500.00','0.00','1500.00','180.00','1680.00','1530.00',NULL,NULL,'','ALLADINX','2016-08-31 03:18:39','ALLADINX',1);
+insert  into `estimatemaster`(`id`,`quoteReferenceNo`,`transactionDate`,`customerCode`,`jobType`,`leadTime`,`dueDate`,`isRush`,`attachment`,`downPayment`,`isAppliedDP`,`amount`,`discount`,`subTotal`,`vat`,`totalAmount`,`balance`,`acknowledgeBy`,`acknowledgeDate`,`remarks`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'EST00000004','2016-09-02 04:19:29','C00000001','JT00000001',10,'2016-09-13',0,'20160902041929cflogo.gif','1000.00',0,'1500.00','0.00','1500.00','180.00','1680.00','680.00',NULL,NULL,'','ALLADINX','2016-09-02 04:19:37','ALLADINX',1);
 
 /*Table structure for table `jobdescriptionmaster` */
 
@@ -281,11 +272,11 @@ CREATE TABLE `joborderdepartment` (
   `createdBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `joborderdepartment` */
 
-insert  into `joborderdepartment`(`id`,`jobOrderMasterId`,`jobOrderReferenceNo`,`departmentCode`,`isCurrent`,`startDate`,`endDate`,`startedBy`,`endedBy`,`remarks`,`createdDate`,`createdBy`,`status`) values (1,1,'JO00000001','D00000003',1,'2016-08-31 03:08:02','2016-08-31 03:10:25','ALLADINX','ALLADINX','test','2016-08-31 03:08:02','ALLADINX',1),(2,2,'JO00000002','D00000003',1,'2016-08-31 03:18:46','2016-08-31 03:19:35','ALLADINX','ALLADINX','test','2016-08-31 03:18:46','ALLADINX',1);
+insert  into `joborderdepartment`(`id`,`jobOrderMasterId`,`jobOrderReferenceNo`,`departmentCode`,`isCurrent`,`startDate`,`endDate`,`startedBy`,`endedBy`,`remarks`,`createdDate`,`createdBy`,`status`) values (1,1,'JO00000004','D00000003',1,'2016-09-02 04:19:48','2016-09-02 04:21:03','ALLADINX','ALLADINX','test','2016-09-02 04:19:48','ALLADINX',1);
 
 /*Table structure for table `joborderdetail` */
 
@@ -304,11 +295,11 @@ CREATE TABLE `joborderdetail` (
   `actual` int(11) DEFAULT NULL,
   `qty_delivered` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `joborderdetail` */
 
-insert  into `joborderdetail`(`id`,`jobOrderMasterId`,`jobOrderReferenceNo`,`specification`,`size`,`quantity`,`color`,`uom`,`material`,`actual`,`qty_delivered`) values (1,1,'JO00000001','asf','SP00000005',12,'asdf','UOM001','asf',15,15),(2,2,'JO00000002','asf','SP00000005',10,'asdf','UOM001','asf',15,10);
+insert  into `joborderdetail`(`id`,`jobOrderMasterId`,`jobOrderReferenceNo`,`specification`,`size`,`quantity`,`color`,`uom`,`material`,`actual`,`qty_delivered`) values (1,1,'JO00000004','asdf','SP00000005',10,'asf','UOM001','asf',15,15);
 
 /*Table structure for table `jobordermaster` */
 
@@ -331,11 +322,11 @@ CREATE TABLE `jobordermaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `jobordermaster` */
 
-insert  into `jobordermaster`(`id`,`jobOrderReferenceNo`,`quoteReferenceNo`,`amount`,`vat`,`discount`,`subTotal`,`totalAmount`,`acknowledgeBy`,`acknowledgeDate`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'JO00000001','EST00000001','0.00','0.00','0.00','0.00','0.00','ALLADINX','2016-08-31 03:16:03','2016-08-31 03:07:49','ALLADINX','2016-08-31 03:10:40','ALLADINX',2),(2,'JO00000002','EST00000002','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'2016-08-31 03:18:39','ALLADINX','2016-08-31 03:19:40','ALLADINX',1);
+insert  into `jobordermaster`(`id`,`jobOrderReferenceNo`,`quoteReferenceNo`,`amount`,`vat`,`discount`,`subTotal`,`totalAmount`,`acknowledgeBy`,`acknowledgeDate`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'JO00000004','EST00000004','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'2016-09-02 04:19:37','ALLADINX','2016-09-02 04:22:29','ALLADINX',2);
 
 /*Table structure for table `jobtypemaster` */
 
@@ -370,11 +361,11 @@ CREATE TABLE `jolaborcostsdetail` (
   `quantity` int(11) DEFAULT NULL,
   `amount` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `jolaborcostsdetail` */
 
-insert  into `jolaborcostsdetail`(`id`,`joLaborCostMasterId`,`laborCostsCode`,`quantity`,`amount`) values (1,1,'LC0008',2,'10.00'),(2,1,'LC0013',6,'10.00'),(3,2,'LC0012',2,'10.00'),(4,3,'LC0003',2,'50.00'),(5,4,'LC0008',1,'100.00');
+insert  into `jolaborcostsdetail`(`id`,`joLaborCostMasterId`,`laborCostsCode`,`quantity`,`amount`) values (1,2,'LC0008',15,'10.00'),(2,1,'LC0008',15,'5.00');
 
 /*Table structure for table `jolaborcostsmaster` */
 
@@ -393,11 +384,11 @@ CREATE TABLE `jolaborcostsmaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `jolaborcostsmaster` */
 
-insert  into `jolaborcostsmaster`(`id`,`jobOrderDepartmentId`,`jobOrderReferenceNo`,`departmentCode`,`employeeName`,`jobDescriptionCode`,`description`,`createdBy`,`createdDate`,`modifiedBy`,`modifiedDate`) values (1,1,'JO00000001','D00000003','emp1','JD0002',NULL,'ALLADINX','2016-08-31 03:08:29',NULL,NULL),(2,1,'JO00000001','D00000003','emp2','JD0003',NULL,'ALLADINX','2016-08-31 03:09:03',NULL,NULL),(3,1,'JO00000001','D00000003','emp3','JD0001',NULL,'ALLADINX','2016-08-31 03:09:31',NULL,NULL),(4,2,'JO00000002','D00000003','emp1','JD0002',NULL,'ALLADINX','2016-08-31 03:19:19',NULL,NULL);
+insert  into `jolaborcostsmaster`(`id`,`jobOrderDepartmentId`,`jobOrderReferenceNo`,`departmentCode`,`employeeName`,`jobDescriptionCode`,`description`,`createdBy`,`createdDate`,`modifiedBy`,`modifiedDate`) values (1,1,'JO00000004','D00000003','emp1','JD0002',NULL,'ALLADINX','2016-09-02 04:19:59',NULL,NULL),(2,1,'JO00000004','D00000003','emp2','JD0003',NULL,'ALLADINX','2016-09-02 04:20:04',NULL,NULL);
 
 /*Table structure for table `laborcostsmaster` */
 
