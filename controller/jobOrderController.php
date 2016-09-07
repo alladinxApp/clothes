@@ -158,7 +158,7 @@
 		}
 
 		// STATUS
-		if(isset($_POST['txtStatus']) && !empty($_POST['txtStatus'])){
+		if(isset($_POST['txtStatus']) && !empty($_POST['txtStatus'])|| $_POST['txtStatus'] != ""){
 			$status = $_POST['txtStatus'];
 			$stat = " AND status = '$status'";
 		}

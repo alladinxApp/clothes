@@ -4,34 +4,55 @@
 		$id = $_GET['id'];
 		// GET CONTROL NO
 		$newNum = getNewCtrlNo("BILLING");
-		$downpayment = str_replace(",","",$_POST['txtDownPayment']);
-		$amntrec = str_replace(",","",$_POST['txtAmountReceived']);
 		$ttlamount = str_replace(",","",$_POST['txtAmount']);
-		$bal = str_replace(",","",$_POST['txtBalance']);
-		$change = str_replace(",","",$_POST['txtChange']);
 
 		// OPEN DB
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
 
-		// INSERT NEW BILLING
-		$billing = new Table();
-		$billing->setSQLType($csdb->getSQLType());
-		$billing->setInstance($csdb->getInstance());
-		$billing->setTable("billingmaster");
-		$billing->setField("billingReferenceNo,billedDate,jobOrderReferenceNo,downPayment,amountReceived,totalAmount,balance,createdBy");
-		$billing->setValues("'$newNum','$today','$id','$downpayment','$amntrec','$ttlamount','$bal','$userid'");
-		$billing->doQuery("save");
+		// INSERT NEW BILLING MST
+		$billingmst = new Table();
+		$billingmst->setSQLType($csdb->getSQLType());
+		$billingmst->setInstance($csdb->getInstance());
+		$billingmst->setTable("billingmaster");
+		$billingmst->setField("billingReferenceNo,billedDate,jobOrderReferenceNo,totalAmount,balance,createdBy");
+		$billingmst->setValues("'$newNum','$today','$id','$ttlamount','$ttlamount','$userid'");
+		$billingmst->doQuery("save");
 
-		// UPDATE JO
-		$updjo = new Table();
-		$updjo->setSQLType($csdb->getSQLType());
-		$updjo->setInstance($csdb->getInstance());
-		$updjo->setTable("jobordermaster");
-		$updjo->setValues("status = 2");
-		$updjo->setParam("WHERE jobOrderReferenceNo = '$id'");
-		$updjo->doQuery("update");
+		foreach($_REQUEST['chkDeliveryCode'] as $val){
+			$delivery = explode("#",$val);
+			$dCode = $delivery[0];
+			$amount = $delivery[1];
+			
+			// INSERT NEW BILLING DTL
+			$billingdtl = new Table();
+			$billingdtl->setSQLType($csdb->getSQLType());
+			$billingdtl->setInstance($csdb->getInstance());
+			$billingdtl->setTable("billingdetail");
+			$billingdtl->setField("billingReferenceNo,deliveryCode,Amount");
+			$billingdtl->setValues("'$newNum','$dCode','$amount'");
+			$billingdtl->doQuery("save");
+		}
 
+		$chkdeliveries = new Table();
+		$chkdeliveries->setSQLType($csdb->getSQLType());
+		$chkdeliveries->setInstance($csdb->getInstance());
+		$chkdeliveries->setView("deliverymaster_v");
+		$chkdeliveries->setParam("WHERE jobOrderReferenceNo = '$id' AND status = 0");
+		$chkdeliveries->doQuery("query");
+		$num_chkdeliveries = $chkdeliveries->getNumRows();
+
+		if($num_chkdeliveries == 0){
+			// UPDATE JO
+			$updjo = new Table();
+			$updjo->setSQLType($csdb->getSQLType());
+			$updjo->setInstance($csdb->getInstance());
+			$updjo->setTable("jobordermaster");
+			$updjo->setValues("status = 2");
+			$updjo->setParam("WHERE jobOrderReferenceNo = '$id'");
+			$updjo->doQuery("update");
+		}
+		
 		// UPDATE CONTROL NO
 		UpdateCtrlNo("BILLING");
 
@@ -52,7 +73,7 @@
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
 
-		// SET BILLING
+		// SET BILLING MST
 		$billingmst = new Table();
 		$billingmst->setSQLType($csdb->getSQLType());
 		$billingmst->setInstance($csdb->getInstance());
@@ -63,14 +84,14 @@
 
 		$joNo = $row_billingmst[0]['jobOrderReferenceNo'];
 
-		// SET DELIVERY
-		$deliverymst = new Table();
-		$deliverymst->setSQLType($csdb->getSQLType());
-		$deliverymst->setInstance($csdb->getInstance());
-		$deliverymst->setView("deliverymaster_v");
-		$deliverymst->setParam("WHERE jobOrderReferenceNo = '$joNo'");
-		$deliverymst->doQuery("query");
-		$row_deliverymst = $deliverymst->getLists();
+		// SET BILLING DTL
+		$billingdtl = new Table();
+		$billingdtl->setSQLType($csdb->getSQLType());
+		$billingdtl->setInstance($csdb->getInstance());
+		$billingdtl->setView("billingdetail_v");
+		$billingdtl->setParam("WHERE billingReferenceNo = '$id'");
+		$billingdtl->doQuery("query");
+		$row_billingdtl = $billingdtl->getLists();
 
 		// CLOSE DB
 		$csdb->DBClose();

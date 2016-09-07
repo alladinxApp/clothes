@@ -48,19 +48,20 @@
 <script type="text/javascript">
 
 	function ComputeTotal(){
-		var dp = $("#txtDownPayment").val().replace(/,/g,'');
-		var amnt = $("#txtAmount").val().replace(/,/g,'');
-		var amntrcv = $("#txtAmountReceived").val().replace(/,/g,'');
-		var bal = $("#txtBalance").val().replace(/,/g,'');
+		var chk = document.getElementsByName('chkDeliveryCode[]');
+		// var chk = $("#chkDeliveryCode");
+		var len = chk.length;
 		var total = 0;
-
-		if(parseFloat(dp) > 0){
-			total = (parseFloat(amntrcv) - parseFloat(bal));
-		}else{
-			total = (parseFloat(amntrcv) - parseFloat(amnt));
+		
+		for(i=0;i<len;i++){
+			if(chk[i].checked){
+				var val = chk[i].value;
+				var str = val.split("#");
+				total = parseFloat(total) + parseFloat(str[1]);
+			}
 		}
 
-		$("#txtChange").val(total.toFixed(2));
+		$("#txtAmount").val(total.toFixed(2));
 	}
 </script>
 <body>

@@ -3,10 +3,10 @@
 		<div class="box-header" data-original-title>
 			<h2><i class="icon-money"></i><span class="break"></span><b>Edit Billing to <?=$row_billingmst[0]['customerName'];?></b></h2>
 			<div class="box-icon">
-				<a href="billing_joborders.php"><i class="halflings-icon plus"></i> ADD NEW</a>
+				<a href="billing_search.php"><i class="halflings-icon print"></i> PRINT</a>
 			</div>
 			<div class="box-icon">
-				<a href="billing_search.php"><i class="halflings-icon search"></i> SEARCH</a>
+				<a href="billing_joborders.php"><i class="halflings-icon plus"></i> ADD NEW</a>
 			</div>
 		</div>
 
@@ -37,7 +37,7 @@
 					<?
 						$cnt = 1;
 						$totalAmount = 0;
-						for($i=0;$i<count($row_deliverymst);$i++){
+						for($i=0;$i<count($row_billingdtl);$i++){
 							$bg = null;
 							$font = null;
 							$lbl = 'warning';
@@ -47,15 +47,15 @@
 
 							$style = $bg;
 
-							$totalAmount += $row_deliverymst[$i]['totalAmount'];
+							$totalAmount += $row_billingdtl[$i]['Amount'];
 					?>
 					<tr>
-						<!-- <td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliverymst[$i]['deliveryCode'] .'#'. $row_deliverymst[$i]['totalAmount'];?>"></td> -->
+						<!-- <td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_billingdtl[$i]['deliveryCode'] .'#'. $row_billingdtl[$i]['totalAmount'];?>"></td> -->
 						<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliverymst[$i]['deliveryCode'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliverymst[$i]['jobOrderReferenceNo'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliverymst[$i]['quoteReferenceNo'];?></td>
-						<td align="right" style="<?=$style;?>"><?=number_format($row_deliverymst[$i]['totalAmount'],2);?></td>
+						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['deliveryCode'];?></td>
+						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['jobOrderReferenceNo'];?></td>
+						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['quoteReferenceNo'];?></td>
+						<td align="right" style="<?=$style;?>"><?=number_format($row_billingdtl[$i]['Amount'],2);?></td>
 					</tr>
 					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
 				</table> 

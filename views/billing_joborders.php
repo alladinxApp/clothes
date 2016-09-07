@@ -28,11 +28,11 @@
 						}
 						switch($row_billingjos[$i]['status']){
 							case 1:
-									$font = 'color: #00ff00';
+									$font = 'color: #000';
 									$lbl = 'success';
 								break;
-							case 3:
-									$font = 'color: #ff0000';
+							case 2:
+									$font = 'color: #00ff00';
 									$lbl = 'important';
 								break;
 							default: break;

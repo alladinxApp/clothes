@@ -27,7 +27,7 @@
 				</div>
 				<table class="table table-bordered table-condensed">
 					<tr>
-						<!-- <th><input type="checkbox" name="chkAll" id="chkAll" checked onclick="SelectAll(this);"></th> -->
+						<th><!--<input type="checkbox" name="chkAll" id="chkAll" checked onclick="SelectAll(this);">--></th>
 						<th>#</th>
 						<th>Delivery Code</th>
 						<th>Job Order Code</th>
@@ -42,24 +42,30 @@
 						for($i=0;$i<count($row_deliveries);$i++){
 							$bg = null;
 							$lbl = 'warning';
+							$checked = "checked";
 							if($cnt%2){
 								$bg = 'background: #eee;';
 							}
 							switch($row_deliveries[$i]['status']){
 								case 1:
 										$lbl = 'success';
+										$totalAmount += $row_deliveries[$i]['totalAmount'];
 									break;
 								case 3:
 										$lbl = 'important';
 									break;
-								default: $pendingcnt++; break;
+								default: $pendingcnt++; $checked = null; break;
 							}
 							$style = $bg;
-
-							$totalAmount += $row_deliveries[$i]['totalAmount'];
 					?>
 					<tr>
-						<!-- <td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_deliveries[$i]['deliveryCode'] .'#'. $row_deliveries[$i]['totalAmount'];?>"></td> -->
+						<td align="center" style="<?=$style;?>">
+							<? if($row_deliveries[$i]['status'] == 1){ ?>
+							<input type="checkbox" checked onClick="return ComputeTotal();" name="chkDeliveryCode[]" id="chkDeliveryCode[]]" value="<?=$row_deliveries[$i]['deliveryCode'] .'#'. $row_deliveries[$i]['totalAmount'];?>">
+							<? }else{ ?>
+							&nbsp;
+							<? } ?>
+						</td>
 						<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['deliveryCode'];?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['jobOrderReferenceNo'];?></td>
@@ -71,47 +77,14 @@
 				</table> 
 				<input type="hidden" name="txtNoOfItems" id="txtNoOfItems" value="<?=$noOfItems;?>" />
 				<div class="control-group">
-					<label class="control-label" for="txtDownPayment">Down Payment</label>
-					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" readonly value="<?=$dpamnt;?>" name="txtDownPayment" id="txtDownPayment" value="" type="text" placeholder="0.00" />
-						<!-- <input type="checkbox" name="chkApplyDP" id="chkApplyDP" checked /> Apply -->
-					</div>
-				</div>
-				<div class="control-group">
 					<label class="control-label" for="txtAmount">Total Amount</label>
 					<div class="controls">
 						<input class="input-xlarge" value="<?=number_format($totalAmount,2);?>" style="text-align: right;" name="txtAmount" id="txtAmount" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
-				<? if($dpamnt > 0){ ?>
-				<div class="control-group">
-					<label class="control-label" for="txtBalance">Balance</label>
-					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($balance,2);?>" style="text-align: right;" name="txtBalance" id="txtBalance" readonly type="text" placeholder="0.00" />
-					</div>
-				</div>
-				<? } ?>
-				<div class="control-group">
-					<label class="control-label" for="txtAmountReceived">Amount Received</label>
-					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtAmountReceived" id="txtAmountReceived" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="txtChange">Change</label>
-					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" name="txtChange" id="txtChange" readonly type="text" placeholder="0.00" />
-					</div>
-				</div>
-				<? if($pendingcnt == 0){ ?>
 				<div class="form-actions">
 					<input type="submit" name="btnBillingSave" id="btnBillingSave" class="btn btn-primary" value="Save changes" />
 				</div>
-				<? }else{ ?>
-				<div class="form-actions">
-					<p>Please complete/acknowledge Deliveries to continue process billing for <?=$row_joborders[0]['customerName'];?></p>
-				</div>
-				<? } ?>
 				</fieldset>
 				<input type="hidden" name="billingSaved" id="billingSaved" value="1" />
 			</form>

@@ -10,7 +10,7 @@
 	$deliveries->setSQLType($csdb->getSQLType());
 	$deliveries->setInstance($csdb->getInstance());
 	$deliveries->setView("deliverymaster_v");
-	$deliveries->setParam("WHERE jobOrderReferenceNo = '$id'");
+	$deliveries->setParam("WHERE jobOrderReferenceNo = '$id' AND deliveryCode NOT IN(SELECT deliveryCode FROM billingdetail_v)");
 	$deliveries->doQuery("query");
 	$row_deliveries = $deliveries->getLists();
 
