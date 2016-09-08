@@ -102,7 +102,7 @@
 		$id = $_GET['id'];
 		// GET CONTROL NO
 		// $newNum = getNewCtrlNo("ACCOUNTS_RECEIVABLE");
-		$ttlamount = str_replace(",","",$_POST['txtAmount']);
+		// $ttlamount = str_replace(",","",$_POST['txtAmount']);
 
 		// OPEN DB
 		$csdb = new DBConfig();

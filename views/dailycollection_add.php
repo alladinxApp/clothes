@@ -1,18 +1,24 @@
 <div class="row-fluid">		
 	<div class="box span12">
 		<div class="box-header" data-original-title>
-			<h2><i class="icon-money"></i><span class="break"></span><b>Edit Billing to <?=$row_billingmst[0]['customerName'];?></b></h2>
+			<h2><i class="icon-money"></i><span class="break"></span><b>Daily Collection from <?=$row_billingmst[0]['customerName'];?></b></h2>
 			<div class="box-icon">
-				<a href="billing_search.php"><i class="halflings-icon print"></i> PRINT</a>
+				<a href="billing_print.php"><i class="halflings-icon print"></i> PRINT</a>
 			</div>
 			<div class="box-icon">
-				<a href="billing_joborders.php"><i class="halflings-icon plus"></i> ADD NEW</a>
+				<a href="dailycollections.php"><i class="halflings-icon backward"></i> Back to List</a>
 			</div>
 		</div>
 
 		<div class="box-content">
 			<form class="form-horizontal" method="POST" enctype="multipart/form-data" name="estimateForm">
 				<fieldset>
+					<div class="control-group">
+					<label class="control-label" for="txtBillRefNo">Billing Reference No</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=$row_billingmst[0]['billingReferenceNo'];?>" name="txtBillRefNo" id="txtBillRefNo" readonly type="text" />
+					</div>
+				</div>
 				<div class="control-group">
 					<label class="control-label" for="txtCustomerName">Customer Name</label>
 					<div class="controls">
@@ -57,7 +63,7 @@
 						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['quoteReferenceNo'];?></td>
 						<td align="right" style="<?=$style;?>"><?=number_format($row_billingdtl[$i]['Amount'],2);?></td>
 					</tr>
-					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
+					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt); $amntPaid = ($row_billingmst[0]['totalAmount'] - $row_billingmst[0]['balance']);?>
 				</table> 
 				<input type="hidden" name="txtNoOfItems" id="txtNoOfItems" value="<?=$noOfItems;?>" />
 				<div class="control-group">
@@ -66,11 +72,41 @@
 						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['totalAmount'],2);?>" style="text-align: right;" name="txtAmount" id="txtAmount" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
-				<div class="form-actions">
-					<input type="submit" name="btnBillingSave" id="btnBillingSave" class="btn btn-primary" value="Post Billing" />
+				<? if($amntPaid > 0 || $row_billingmst[0]['status'] == 2){ ?>
+				<div class="control-group">
+					<label class="control-label" for="txtAmountPaid">Amount Paid</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=number_format($amntPaid,2);?>" style="text-align: right;" name="txtAmountPaid" id="txtAmountPaid" readonly type="text" placeholder="0.00" />
+					</div>
 				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtBalance">Balance</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['balance'],2);?>" style="text-align: right;" name="txtBalance" id="txtBalance" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<? }else{ ?>
+					<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['balance'],2);?>" style="text-align: right;" name="txtBalance" id="txtBalance" type="hidden" />
+				<? } ?>
+				<div class="control-group">
+					<label class="control-label" for="txtAmount">Amount Received</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" name="txtTender" id="txtTender" type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<!-- <div class="control-group">
+					<label class="control-label" for="txtAmount">Change</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" name="txtChange" id="txtChange" readonly type="text" placeholder="0.00" />
+					</div>
+				</div> -->
+				<? if($row_billingmst[0]['status'] == 1){ ?>
+				<div class="form-actions">
+					<input type="submit" name="btnARSave" id="btnARSave" class="btn btn-primary" value=" Save AR " />
+				</div>
+				<? } ?>
 				</fieldset>
-				<input type="hidden" name="billingPosted" id="billingPosted" value="1" />
+				<input type="hidden" name="ARSave" id="ARSave" value="1" />
 			</form>
 		</div>
 	</div>

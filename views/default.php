@@ -1,39 +1,38 @@
 <div class="row-fluid">	
 	<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
 		<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
-		<div class="number">854<i class="icon-arrow-up"></i></div>
-		<div class="title">visits</div>
+		<div class="number"><?=$num_estimates;?><i class="icon-arrow-up"></i></div>
+		<div class="title">Pending Estimates</div>
 		<div class="footer">
-			<a href="#"> read full report</a>
+			<a href="estimates.php"> Go to List </a>
 		</div>	
 	</div>
 	<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
 		<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-		<div class="number">123<i class="icon-arrow-up"></i></div>
-		<div class="title">sales</div>
+		<div class="number"><?=$num_joborders;?><i class="icon-arrow-up"></i></div>
+		<div class="title">Pending Job Orders</div>
 		<div class="footer">
-			<a href="#"> read full report</a>
+			<a href="joborders.php"> Go to List </a>
 		</div>
 	</div>
 	<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-		<div class="boxchart">5,6,7,2,0,-4,-2,4,8,2,3,3,2</div>
-		<div class="number">982<i class="icon-arrow-up"></i></div>
-		<div class="title">orders</div>
+		<div class="number"><?=number_format($row_armst[0]['amount'],2);?><i class="icon-arrow-up"></i></div>
+		<div class="title">Account Receivable</div>
 		<div class="footer">
-			<a href="#"> read full report</a>
+			<a href="dailycollections.php"> Go to List </a>
 		</div>
 	</div>
-	<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
+	<!-- <div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
 		<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
 		<div class="number">678<i class="icon-arrow-down"></i></div>
 		<div class="title">visits</div>
 		<div class="footer">
 			<a href="#"> read full report</a>
 		</div>
-	</div>	
+	</div> -->	
 </div>
 
-<div class="row-fluid">
+<!-- <div class="row-fluid">
 	<div class="span8 widget blue" onTablet="span7" onDesktop="span8">
 		<div id="stats-chart2"  style="height:282px" ></div>
 	</div>
@@ -64,7 +63,7 @@
             </li>
         </ul>
 		<div class="clearfix"></div>
-    </div><!-- End .sparkStats -->
+    </div>
 </div>
 
 <div class="row-fluid hideInIE8 circleStats">
@@ -284,7 +283,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-	</div><!--/span-->
+	</div>
 	<div class="widget span3 red" onTablet="span6" onDesktop="span3">
 		<h2><span class="glyphicons pie_chart"><i></i></span> Browsers</h2>
 		<hr>
@@ -318,4 +317,4 @@
 			 <div id="serverLoad2" style="height:224px;"></div>
 		</div>
 	</div>
-</div>
+</div> -->

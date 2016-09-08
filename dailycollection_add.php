@@ -1,10 +1,10 @@
-<?
+<? 
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . DEFAULTMODEL);
+	require_once(MODEL_PATH . DAILYCOLLECTIONMODEL);
+	require_once(CONTROLLER_PATH . DAILYCOLLECTIONCONTROLLER);
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 	
 	<!-- start: Meta -->
@@ -42,6 +42,28 @@
 	<!-- end: Favicon -->
 		
 </head>
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+
+	function ComputeTotal(){
+		var dp = $("#txtDownPayment").val().replace(/,/g,'');
+		var amnt = $("#txtAmount").val().replace(/,/g,'');
+		var amntrcv = $("#txtAmountReceived").val().replace(/,/g,'');
+		var bal = $("#txtBalance").val().replace(/,/g,'');
+		var total = 0;
+
+		if(parseFloat(dp) > 0){
+			total = (parseFloat(amntrcv) - parseFloat(bal));
+		}else{
+			total = (parseFloat(amntrcv) - parseFloat(amnt));
+		}
+
+		$("#txtChange").val(total.toFixed(2));
+	}
+	
+</script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
 	
@@ -52,13 +74,15 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/default.php"); ?>
+					<? require_once("views/dailycollection_add.php");?>
+				</div>
 				<!-- end: Content -->
-				</div><!--/#content.span10-->
+
 			</div><!--/fluid-row-->
 		</div>
-		
+	
 	<? require_once("inc-box/footer.php");?>
 	<? require_once("inc-box/default-js.php");?>
+
 </body>
 </html>

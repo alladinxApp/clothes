@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 			</a>
 			
-			<a class="brand" href="index.html"><img src="img/logo.png" border="0" width="180" /></a>
+			<a class="brand" href="index.php"><img src="img/logo.png" border="0" width="180" /></a>
 
 			<!-- start: Header Menu -->
 			<div class="nav-no-collapse header-nav">

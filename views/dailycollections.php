@@ -17,7 +17,7 @@
 					<th>Billing No</th>
 					<th>Customer</th>
 					<th>Contact No</th>
-					<th>Status</th>
+					<th>Amount</th>
 					<th>Actions</th>
 				</tr>
 				<?
@@ -25,33 +25,20 @@
 					for($i=0;$i<count($row_billingmst);$i++){
 						$billNo = $row_billingmst[$i]['billingReferenceNo'];
 						$bg = null;
-						$font = null;
-						$lbl = 'warning';
 						if($cnt%2){
 							$bg = 'background: #eee;';
 						}
-						switch($row_billingmst[$i]['status']){
-							case 1:
-									$font = 'color: #00ff00';
-									$lbl = 'success';
-								break;
-							case 3:
-									$font = 'color: #ff0000';
-									$lbl = 'important';
-								break;
-							default: break;
-						}
 
-						$style = $bg . $font;
+						$style = $bg;
 				?>
 				<tr>
 					<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 					<td align="left" style="<?=$style;?>"><?=$billNo;?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_billingmst[$i]['customerName'];?></td>
 					<td align="left" style="<?=$style;?>"><?=$row_billingmst[$i]['customerTelNo'];?></td>
-					<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_billingmst[$i]['statusDesc'];?></span></td>                                       
+					<td align="right" style="<?=$style;?>"><?=number_format($row_billingmst[$i]['balance'],2);?></td>
 					<td align="center" style="<?=$style;?>">
-						<a class="btn btn-info" href="billing_edit.php?edit=1&id=<?=$billNo;?>" title="Edit <?=$billNo;?>">
+						<a class="btn btn-info" href="dailycollection_add.php?id=<?=$billNo;?>" title="Add <?=$billNo;?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
 						<a class="btn btn-info" href="#" onClick="billingPrint('<?=$billNo;?>');" title="Print <?=$billNo;?>">

@@ -1,6 +1,7 @@
 <?
 	// -- START MODELS --
 	define(IMAGE_MODEL, "ImageModel.php");
+	define(DEFAULTMODEL, "defaultModel.php");
 	define(CONTROLNOMODEL, "controlNoModel.php");
 	define(CUSTOMERMODEL, "customerModel.php");
 	define(DEPARTMENTMODEL, "departmentModel.php");
@@ -22,6 +23,7 @@
 	define(BILLINGMODEL, "billingModel.php");
 	define(BILLINGCUSTOMERSMODEL, "billingCustomersModel.php");
 	define(BILLINGJOBORDERSMODEL, "billingJobOrdersModel.php");
+	define(DAILYCOLLECTIONMODEL, "dailyCollectionModel.php");
 
 	define(PRINTESTIMATEMODEL, "printEstimateModel.php");
 	define(PRINTDELIVERYMODEL, "printDeliveryModel.php");

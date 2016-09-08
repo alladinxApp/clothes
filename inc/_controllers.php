@@ -19,5 +19,6 @@
 	define(JOBDESCRIPTIONCONTROLLER, "JobDescriptionController.php");
 	define(DELIVERYCONTROLLER, "deliveryController.php");
 	define(BILLINGCONTROLLER, "billingController.php");
+	define(DAILYCOLLECTIONCONTROLLER, "dailyCollectionController.php");
 	// -- END CONTROLLERS --
 ?>
