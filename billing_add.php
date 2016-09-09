@@ -60,9 +60,23 @@
 				total = parseFloat(total) + parseFloat(str[1]);
 			}
 		}
+		if($("#txtDownPayment").val() > 0){
+			total -= parseFloat($("#txtDownPayment").val());
+			if(total < 0){
+				total = 0.00;
+			}
+		}
 
 		$("#txtAmount").val(total.toFixed(2));
 	}
+	$(document).ready(function(){
+		$("#btnBillingSave").on("click", function(){
+			if($("#txtAmount").val() <= 0){
+				alert("Please select delivery to proceed billing!");
+				return false;
+			}
+		});
+	});
 </script>
 <body>
 	<? require_once("inc-box/header.php"); ?>

@@ -76,6 +76,24 @@
 					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
 				</table> 
 				<input type="hidden" name="txtNoOfItems" id="txtNoOfItems" value="<?=$noOfItems;?>" />
+				<? 
+					if($row_joborders[0]['downPayment'] > 0 && $row_joborders[0]['isAppliedDP'] == 0){
+						$subtotal = $totalAmount;
+						$totalAmount -= $row_joborders[0]['downPayment'];
+				?>
+				<div class="control-group">
+					<label class="control-label" for="txtSubTotal">Sub-Total</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=number_format($subtotal,2);?>" style="text-align: right;" name="txtSubTotal" id="txtSubTotal" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtDownPayment">Down Payment</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=number_format($row_joborders[0]['downPayment'],2);?>" style="text-align: right;" name="txtDownPayment" id="txtDownPayment" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<? } ?>
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Total Amount</label>
 					<div class="controls">
@@ -87,6 +105,7 @@
 				</div>
 				</fieldset>
 				<input type="hidden" name="billingSaved" id="billingSaved" value="1" />
+				<input type="hidden" name="txtEstRefNo" id="txtEstRefNo" value="<?=$row_joborders[0]['quoteReferenceNo'];?>" />
 			</form>
 		</div>
 	</div>

@@ -80,7 +80,7 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="txtBalance">Balance</label>
+					<label class="control-label" for="txtBalance">Outstanding Balance</label>
 					<div class="controls">
 						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['balance'],2);?>" style="text-align: right;" name="txtBalance" id="txtBalance" readonly type="text" placeholder="0.00" />
 					</div>

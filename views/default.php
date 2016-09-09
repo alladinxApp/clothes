@@ -17,7 +17,7 @@
 	</div>
 	<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
 		<div class="number"><?=number_format($row_armst[0]['amount'],2);?><i class="icon-arrow-up"></i></div>
-		<div class="title">Account Receivable</div>
+		<div class="title">Accounts Receivable</div>
 		<div class="footer">
 			<a href="dailycollections.php"> Go to List </a>
 		</div>

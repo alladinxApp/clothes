@@ -5,18 +5,33 @@
 		// GET CONTROL NO
 		$newNum = getNewCtrlNo("BILLING");
 		$ttlamount = str_replace(",","",$_POST['txtAmount']);
+		$txtDownPayment = 0;
 
 		// OPEN DB
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
+
+		if($_POST['txtDownPayment'] > 0){
+			$txtDownPayment = str_replace(",","",$_POST['txtDownPayment']);
+			$estrefno = $_POST['txtEstRefNo'];
+			
+			// UPDATE EST
+			$updest = new Table();
+			$updest->setSQLType($csdb->getSQLType());
+			$updest->setInstance($csdb->getInstance());
+			$updest->setTable("estimatemaster");
+			$updest->setValues("isAppliedDP = 1");
+			$updest->setParam("WHERE quoteReferenceNo = '$estrefno'");
+			$updest->doQuery("update");
+		}
 
 		// INSERT NEW BILLING MST
 		$billingmst = new Table();
 		$billingmst->setSQLType($csdb->getSQLType());
 		$billingmst->setInstance($csdb->getInstance());
 		$billingmst->setTable("billingmaster");
-		$billingmst->setField("billingReferenceNo,billedDate,jobOrderReferenceNo,totalAmount,balance,createdBy");
-		$billingmst->setValues("'$newNum','$today','$id','$ttlamount','$ttlamount','$userid'");
+		$billingmst->setField("billingReferenceNo,billedDate,jobOrderReferenceNo,downPayment,totalAmount,balance,createdBy");
+		$billingmst->setValues("'$newNum','$today','$id','$txtDownPayment','$ttlamount','$ttlamount','$userid'");
 		$billingmst->doQuery("save");
 
 		foreach($_REQUEST['chkDeliveryCode'] as $val){

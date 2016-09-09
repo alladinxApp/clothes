@@ -46,7 +46,6 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-
 	function ComputeTotal(){
 		var dp = $("#txtDownPayment").val().replace(/,/g,'');
 		var amnt = $("#txtAmount").val().replace(/,/g,'');
@@ -62,6 +61,12 @@
 
 		$("#txtChange").val(total.toFixed(2));
 	}
+
+	$(document).ready(function(){
+		$("#btnBillingSave").on("click", function(){
+			
+		});
+	});
 </script>
 <body>
 	<? require_once("inc-box/header.php"); ?>

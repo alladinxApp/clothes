@@ -57,9 +57,29 @@
 						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['quoteReferenceNo'];?></td>
 						<td align="right" style="<?=$style;?>"><?=number_format($row_billingdtl[$i]['Amount'],2);?></td>
 					</tr>
-					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
+					<? 
+							$cnt++; 
+						} 
+						$noOfItems = ($cnt - 1); 
+					?>
 				</table> 
 				<input type="hidden" name="txtNoOfItems" id="txtNoOfItems" value="<?=$noOfItems;?>" />
+				<? 
+					if($row_billingmst[0]['downPayment'] > 0 ){
+				?>
+				<div class="control-group">
+					<label class="control-label" for="txtSubTotal">Sub-Total</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=number_format($totalAmount,2);?>" style="text-align: right;" name="txtSubTotal" id="txtSubTotal" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtDownPayment">Down Payment</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=number_format($row_billingmst[0]['downPayment'],2);?>" style="text-align: right;" name="txtDownPayment" id="txtDownPayment" readonly type="text" placeholder="0.00" />
+					</div>
+				</div>
+				<? } ?>
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Total Amount</label>
 					<div class="controls">
