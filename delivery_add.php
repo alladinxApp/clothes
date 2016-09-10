@@ -127,11 +127,10 @@
 				$( "#divJobOrders" ).dialog( "open" ); // CALL JOB ORDERS
 				return false;
 			}
-			if( $("#txtTotalAmount").val() <= 0 || $("#txtTotalAmount").val() == "" || $("#txtTotalAmount").val() == null){
-				alert("Please enter items price!");
-				return false;
-			}
-			return false;
+			// if( $("#txtTotalAmount").val() <= 0 || $("#txtTotalAmount").val() == "" || $("#txtTotalAmount").val() == null){
+			// 	alert("Please enter items price!");
+			// 	return false;
+			// }
 		});
 	});
 </script>
