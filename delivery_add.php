@@ -46,63 +46,63 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-	function SelectJobOrder(jono){
-		var strURL = "inc-ajax/divGetCompletedJobOrder.php?id="+jono;
-
-		$.ajax({
-			url: strURL,
-			type: 'GET',
-			data: null,
-			datatype: 'json',
-			contentType: 'application/json; charset=utf-8',
-			
-			success: function (data) {
-				$("#divCompletedJobOrder").replaceWith(data);
-				$("#divJobOrders").dialog( "close" );
-			},	
-					
-			error: function (request, status, err) {
-				alert(status);
-				alert(err);
-			}
-		});	
-	}
-	function ComputeTotal(){
-		var items = $("#arrItems").val().split(":");
-		var amnt = 0;
-		var discount = 0;
-		var subtotal = 0;
-		var vat = 0;
-		var subtotal = 0;
-		var totalamount = 0;
-
-		for(var i=0;i<items.length;i++){
-			var price = $("#txtPrice"+items[i]).val();
-			var qty = $("#txtActual_"+items[i]).val();
-			var total = (parseFloat(price) * parseFloat(qty));
-
-			$("#txtTotal_"+items[i]).val(total.toFixed(2));
-			subtotal += total;
-		}
-
-		$("#txtAmount").val(subtotal.toFixed(2));
-		
-		if($("#txtDiscount").val() > 0){
-			discount = $("#txtDiscount").val();
-		}
-
-		amnt = (parseFloat(subtotal) - parseFloat(discount));
-		vat = parseFloat(amnt) * parseFloat(0.12);
-		total = (parseFloat(amnt) + parseFloat(vat));
-
-		$("#txtSubTotal").val(amnt.toFixed(2));
-		$("#txtVat").val(vat.toFixed(2));
-		$("#txtTotalAmount").val(total.toFixed(2));
-	}
 	$(document).ready(function(){
+		SelectJobOrder = function(jono){
+			var strURL = "inc-ajax/divGetCompletedJobOrder.php?id="+jono;
+
+			$.ajax({
+				url: strURL,
+				type: 'GET',
+				data: null,
+				datatype: 'json',
+				contentType: 'application/json; charset=utf-8',
+				
+				success: function (data) {
+					$("#divCompletedJobOrder").replaceWith(data);
+					$("#divJobOrders").dialog( "close" );
+				},	
+						
+				error: function (request, status, err) {
+					alert(status);
+					alert(err);
+				}
+			});	
+		}
+		ComputeTotal = function(){
+			var items = $("#arrItems").val().split(":");
+			var amnt = 0;
+			var discount = 0;
+			var subtotal = 0;
+			var vat = 0;
+			var subtotal = 0;
+			var totalamount = 0;
+
+			for(var i=0;i<items.length;i++){
+				var price = $("#txtPrice"+items[i]).val();
+				var qty = $("#txtActual_"+items[i]).val();
+				var total = (parseFloat(price) * parseFloat(qty));
+
+				$("#txtTotal_"+items[i]).val(total.toFixed(2));
+				subtotal += total;
+			}
+
+			$("#txtAmount").val(subtotal.toFixed(2));
+			
+			if($("#txtDiscount").val() > 0){
+				discount = $("#txtDiscount").val();
+			}
+
+			amnt = (parseFloat(subtotal) - parseFloat(discount));
+			vat = parseFloat(amnt) * parseFloat(0.12);
+			total = (parseFloat(amnt) + parseFloat(vat));
+
+			$("#txtSubTotal").val(amnt.toFixed(2));
+			$("#txtVat").val(vat.toFixed(2));
+			$("#txtTotalAmount").val(total.toFixed(2));
+		}
 
 		$("#txtJobOrderNo").click(function(){
-			$( "#divJobOrders" ).dialog( "open" ); // CALL JOB TYPE LIST
+			$( "#divJobOrders" ).dialog( "open" ); // CALL JOB ORDERS
 		});
 
 		//POP MODAL FOR JOB TYPE LIST
@@ -121,7 +121,18 @@
 				$( this ).dialog( "close" );
 			}
 		});
-
+		$("#btnDeliverySave").on("click", function(){
+			if( $("#joNo").val() == "" || $("#joNo").val() == null ){
+				alert("Please select job order to proceed delivery!");
+				$( "#divJobOrders" ).dialog( "open" ); // CALL JOB ORDERS
+				return false;
+			}
+			if( $("#txtTotalAmount").val() <= 0 || $("#txtTotalAmount").val() == "" || $("#txtTotalAmount").val() == null){
+				alert("Please enter items price!");
+				return false;
+			}
+			return false;
+		});
 	});
 </script>
 <body>

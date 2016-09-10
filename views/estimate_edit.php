@@ -164,13 +164,18 @@
 				</div>
 				
 				<input type="hidden" name="txtItemArray" id="txtItemArr" value="<?=$itemArray;?>" />
-
+				<? 
+					$subTotal = $row_estmst[0]['subTotal'];
+					if( $row_estmst[0]['downPayment'] > 0){ 
+						$subTotal = ($row_estmst[0]['amount'] - $row_estmst[0]['downPayment']);
+				?>
 				<div class="control-group">
 					<label class="control-label" for="txtDownPayment">Down Payment</label>
 					<div class="controls">
 						<input class="input-xlarge" style="text-align: right;" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" value="<?=number_format($row_estmst[0]['downPayment'],2);?>" name="txtDownPayment" id="txtDownPayment" onBlur="return ComputeTotal();" onKeyUp="return ComputeTotal();" type="text" placeholder="0.00" />
 					</div>
 				</div>
+				<? } ?>
 				<div class="control-group">
 					<label class="control-label" for="txtAmount">Amount</label>
 					<div class="controls">
@@ -186,7 +191,7 @@
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Sub-Total</label>
 					<div class="controls">
-						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_estmst[0]['subTotal'],2);?>" name="txtSubTotal" id="txtSubTotal" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($subTotal,2);?>" name="txtSubTotal" id="txtSubTotal" onBlur="return ComputeTotal();" readonly type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">

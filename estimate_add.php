@@ -62,7 +62,6 @@
 			for(var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
 			return result;
 		}
-
 		AddItem = function(){
 			var itemArr = "";
 			var size = $("#txtSize").val();
@@ -150,7 +149,6 @@
 			$("#txtMaterials").val("");
 			$("#txtSpecification").val("");
 		}
-
 		RemoveItem = function(val){
 			nItemArr = $("#txtItemArr").val().split("::");
 
@@ -196,7 +194,6 @@
 			nItemArray = nItemArray.slice(0, -2);
 			$("#txtItemArr").val(nItemArray);
 		}
-
 		ComputeTotal = function(){
 			var amnt = 0;
 			var discount = 0;
@@ -233,7 +230,6 @@
 			$("#txtTotalAmount").val(total.toFixed(2));
 			$("#txtBalance").val(balance.toFixed(2));
 		}
-
 		RushEstimate = function(){
 			if(document.estimateForm.chkIsRush.checked){
 				document.estimateForm.txtLeadTime.readOnly = false;
