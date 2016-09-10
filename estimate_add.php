@@ -53,215 +53,244 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-	function generateRandomString(length){
-		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		var result = '';
-		for(var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-		return result;
-	}
-	function AddItem(){
-		var itemArr = "";
-		var size = $("#txtSize").val();
-		var piece = $("#txtPieces").val();
-		var color = $("#txtColor").val();
-		var uom = $("#txtUOM").val();
-		var materials = $("#txtMaterials").val();
-		var spec = $("#txtSpecification").val();
-		var nItemArr = "";
-		var Items = "";
-		
-		if($("#txtItemArr").val() != ""){
-			Items += $("#txtItemArr").val() + "::";
-		}
-		Items += "" + "||" + size + "||" + piece + "||" + color + "||" + uom + "||" + materials + "||" + spec + "::";
-		Items = Items.slice(0, -2);
-		nItemArr = Items.split("::");
+	$(document).ready(function() {
+		$("#divTxtBalance").hide();
 
-		var cnt = 1;
-		var tbl = "";
-		tbl += '<table class="table table-bordered table-condensed">';
-			tbl += '<tr>';
-			  tbl += '<th>#</th>';
-			  tbl += '<th>SIZES</th>';
-			  tbl += '<th>PCS</th>';
-			  tbl += '<th>COLOR</th>';
-			  tbl += '<th>UOM</th>';
-			  tbl += '<th>MATERIALS</th>';
-			  tbl += '<th>SPECIFICATION</th>';
-			  tbl += '<th>REMOVE</th>';
-			tbl += '</tr>';
-		var nItemArray = "";
-		// id | sizeid | size | qty | color | uomid | uom | material | specification
-		for(var i=0;i<nItemArr.length;i++){
-			var id = generateRandomString(6);
-			if(nItemArr[i] != ""){
-				var item = nItemArr[i].split("||");
-				tbl += '<tr>';
-				  tbl += '<td align="center">' + cnt + '</td>';
-				  tbl += '<td>' + item[2] + '</td>';
-				  tbl += '<td align="center">' + item[3] + '</td>';
-				  tbl += '<td>' + item[4] + '</td>';
-				  tbl += '<td>' + item[6] + '</td>';
-				  tbl += '<td>' + item[7] + '</td>';
-				  tbl += '<td>' + item[8] + '</td>';
-				  var rid = "'" + id + "'";
-				  tbl += '<td align="center"><a href="#" onClick="RemoveItem('+rid+')"><img src="img/del_ico.png" width="20" border="0" /></td>';
-				tbl += '</tr>';
-				nItemArray += id + "||" + item[1] + "||" + item[2] + "||" + item[3] + "||" + item[4] + "||" + item[5] + "||" + item[6] + "||" + item[7] + "||" + item[8] + "::";
-				cnt++;
+		generateRandomString = function(length){
+			var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			var result = '';
+			for(var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+			return result;
+		}
+
+		AddItem = function(){
+			var itemArr = "";
+			var size = $("#txtSize").val();
+			var piece = $("#txtPieces").val();
+			var color = $("#txtColor").val();
+			var uom = $("#txtUOM").val();
+			var materials = $("#txtMaterials").val();
+			var spec = $("#txtSpecification").val();
+			var nItemArr = "";
+			var Items = "";
+			
+			if( $("#txtPieces").val() == "" || $("#txtPieces").val() == null ){
+				alert("Please enter quantity!");
+				$("#txtPieces").focus();
+				return false;
 			}
-		}
-		tbl += '</table>';
-		$("#divDetails").html(tbl);
 
-		nItemArray = nItemArray.slice(0, -2);
-		$("#txtItemArr").val(nItemArray);
-		$("#txtSizes").val("");
-		$("#txtPieces").val("");
-		$("#txtColor").val("");
-		$("#txtMaterials").val("");
-		$("#txtSpecification").val("");
-	}
-	function RemoveItem(val){
-		nItemArr = $("#txtItemArr").val().split("::");
+			if( $("#txtColor").val() == "" || $("#txtColor").val() == null ){
+				alert("Please enter color!");
+				$("#txtColor").focus();
+				return false;
+			}
 
-		var cnt = 1;
-		var tbl = "";
-		tbl += '<table class="table table-bordered table-condensed">';
-			tbl += '<tr>';
-			  tbl += '<th>#</th>';
-			  tbl += '<th>SIZES</th>';
-			  tbl += '<th>PCS</th>';
-			  tbl += '<th>COLOR</th>';
-			  tbl += '<th>UOM</th>';
-			  tbl += '<th>MATERIALS</th>';
-			  tbl += '<th>SPECIFICATION</th>';
-			  tbl += '<th>REMOVE</th>';
-			tbl += '</tr>';
-		var nItemArray = "";
-		// id | sizeid | size | qty | color | uomid | uom | material | specification
-		for(var i=0;i<nItemArr.length;i++){
-			var id = generateRandomString(6);
-			if(nItemArr[i] != ""){
-				var item = nItemArr[i].split("||");
-				if(item[0] != val){
+			if( $("#txtMaterials").val() == "" || $("#txtMaterials").val() == null ){
+				alert("Please enter material!");
+				$("#txtMaterials").focus();
+				return false;
+			}
+
+			// if( $("#txtSpecification").val() == "" || $("#txtSpecification").val() == null ){
+			// 	alert("Please enter specification!");
+			// 	$("#txtSpecification").focus();
+			// 	return false;
+			// }
+
+			if($("#txtItemArr").val() != ""){
+				Items += $("#txtItemArr").val() + "::";
+			}
+			Items += "" + "||" + size + "||" + piece + "||" + color + "||" + uom + "||" + materials + "||" + spec + "::";
+			Items = Items.slice(0, -2);
+			nItemArr = Items.split("::");
+
+			var cnt = 1;
+			var tbl = "";
+			tbl += '<table class="table table-bordered table-condensed">';
+				tbl += '<tr>';
+				  tbl += '<th>#</th>';
+				  tbl += '<th>SIZES</th>';
+				  tbl += '<th>PCS</th>';
+				  tbl += '<th>COLOR</th>';
+				  tbl += '<th>UOM</th>';
+				  tbl += '<th>MATERIALS</th>';
+				  tbl += '<th>SPECIFICATION</th>';
+				  tbl += '<th>REMOVE</th>';
+				tbl += '</tr>';
+			var nItemArray = "";
+			// id | sizeid | size | qty | color | uomid | uom | material | specification
+			for(var i=0;i<nItemArr.length;i++){
+				var id = generateRandomString(6);
+				if(nItemArr[i] != ""){
+					var item = nItemArr[i].split("||");
 					tbl += '<tr>';
-						tbl += '<td align="center">' + cnt + '</td>';
-						tbl += '<td>' + item[2] + '</td>';
-						tbl += '<td align="center">' + item[3] + '</td>';
-						tbl += '<td>' + item[4] + '</td>';
-						tbl += '<td>' + item[6] + '</td>';
-						tbl += '<td>' + item[7] + '</td>';
-						tbl += '<td>' + item[8] + '</td>';
-						var rid = "'" + id + "'";
-						tbl += '<td align="center"><a href="#" onClick="RemoveItem('+rid+')"><img src="img/del_ico.png" width="20" border="0" /></td>';
+					  tbl += '<td align="center">' + cnt + '</td>';
+					  tbl += '<td>' + item[2] + '</td>';
+					  tbl += '<td align="center">' + item[3] + '</td>';
+					  tbl += '<td>' + item[4] + '</td>';
+					  tbl += '<td>' + item[6] + '</td>';
+					  tbl += '<td>' + item[7] + '</td>';
+					  tbl += '<td>' + item[8] + '</td>';
+					  var rid = "'" + id + "'";
+					  tbl += '<td align="center"><a href="#" onClick="RemoveItem('+rid+')"><img src="img/del_ico.png" width="20" border="0" /></td>';
 					tbl += '</tr>';
 					nItemArray += id + "||" + item[1] + "||" + item[2] + "||" + item[3] + "||" + item[4] + "||" + item[5] + "||" + item[6] + "||" + item[7] + "||" + item[8] + "::";
 					cnt++;
 				}
 			}
-		}
-		tbl += '</table>';
-		$("#divDetails").html(tbl);
+			tbl += '</table>';
+			$("#divDetails").html(tbl);
 
-		nItemArray = nItemArray.slice(0, -2);
-		$("#txtItemArr").val(nItemArray);
-	}
-	function ComputeTotal(){
-		var amnt = 0;
-		var discount = 0;
-		var subtotal = 0;
-		var vat = 0;
-		var total = 0;
-		var dpamnt = 0;
-		var discounted = 0;
-		var balance = 0;
-		$("#divTxtBalance").hide();
-		
-		if($("#txtAmount").val().replace(/,/g,'') > 0){
-			var amnt1 = $("#txtAmount").val();
-			amnt = amnt1.replace(/,/g,'');
-		}
-		if($("#txtDiscount").val().replace(/,/g,'') > 0){
-			var discount1 = $("#txtDiscount").val();
-			discount = discount1.replace(/,/g,'');
-		}
-		if($("#txtDownPayment").val().replace(/,/g,'') > 0){
-			var dpamnt1 = $("#txtDownPayment").val();
-			dpamnt = dpamnt1.replace(/,/g,'');
-
-			$("#divTxtBalance").show();
+			nItemArray = nItemArray.slice(0, -2);
+			$("#txtItemArr").val(nItemArray);
+			$("#txtSizes").val("");
+			$("#txtPieces").val("");
+			$("#txtColor").val("");
+			$("#txtMaterials").val("");
+			$("#txtSpecification").val("");
 		}
 
-		discounted = (parseFloat(amnt) - parseFloat(discount));
-		vat = parseFloat(discounted) * parseFloat(0.12);
-		total = (parseFloat(discounted) + parseFloat(vat));
-		balance = (parseFloat(total) - parseFloat(dpamnt));
+		RemoveItem = function(val){
+			nItemArr = $("#txtItemArr").val().split("::");
 
-		$("#txtSubTotal").val(discounted.toFixed(2));
-		$("#txtVat").val(vat.toFixed(2));
-		$("#txtTotalAmount").val(total.toFixed(2));
-		$("#txtBalance").val(balance.toFixed(2));
-	}
-	function RushEstimate(){
-		if(document.estimateForm.chkIsRush.checked){
-			document.estimateForm.txtLeadTime.readOnly = false;
-			document.estimateForm.txtDueDateDesc.disabled = false;
-		}else{
-			$("#txtLeadTime").val("");
-			$("#txtDueDate").val("");
-			$("#txtJobType").val("");
-			document.estimateForm.txtLeadTime.readOnly = true;
-			document.estimateForm.txtDueDateDesc.disabled = true;
-		}
-	}
-	function SelectCustomer(id,name,addr,telno){
-		$("#txtCustomer").val(id);
-		$("#txtCustomerName").val(name);
-		$("#txtAddress").val(addr);
-		$("#txtTelephoneNo").val(telno);
-		$( "#divCustomersList" ).dialog( "close" );
-	}
-	function SelectJobType(jtcode,jtdesc,leadtime){
-		$("#txtJobType").val(jtcode);
-		$("#txtJobTypeDescription").val(jtdesc);
-		$("#txtLeadTime").val(leadtime);
-		var duedate = addDays(Date(),leadtime);
-		$("#txtDueDateDesc").val(duedate);
-		$("#txtDueDate").val(duedate);
-		$( "#divJobTypeList" ).dialog( "close" );
-	}
-	function getDueDate(duedate){
-		$("#txtDueDate").val(duedate);
-	}
-	function addDays(date,days) {
-		var result = new Date(date);
-		var nResult = result.addDays(days);
-		var dd = nResult.getDate();
-		var mm = nResult.getMonth() + 1;
-		var y = nResult.getFullYear();
-	    return mm + '/' + dd + '/' + y;
-	}
-	function findCustomer(q){
-		$.ajax({
-			url: 'inc-ajax/divSearchCustomer.php?q='+q,
-			type: 'POST',
-			data: null,
-			datatype: 'json',
-			contentType: 'application/json; charset=utf-8',
-			
-			success: function (data) {
-				$("#divCustList").replaceWith(data);
-			},	
-					
-			error: function (request, status, err) {
-				alert(status);
-				alert(err);
+			var cnt = 1;
+			var tbl = "";
+			tbl += '<table class="table table-bordered table-condensed">';
+				tbl += '<tr>';
+				  tbl += '<th>#</th>';
+				  tbl += '<th>SIZES</th>';
+				  tbl += '<th>PCS</th>';
+				  tbl += '<th>COLOR</th>';
+				  tbl += '<th>UOM</th>';
+				  tbl += '<th>MATERIALS</th>';
+				  tbl += '<th>SPECIFICATION</th>';
+				  tbl += '<th>REMOVE</th>';
+				tbl += '</tr>';
+			var nItemArray = "";
+			// id | sizeid | size | qty | color | uomid | uom | material | specification
+			for(var i=0;i<nItemArr.length;i++){
+				var id = generateRandomString(6);
+				if(nItemArr[i] != ""){
+					var item = nItemArr[i].split("||");
+					if(item[0] != val){
+						tbl += '<tr>';
+							tbl += '<td align="center">' + cnt + '</td>';
+							tbl += '<td>' + item[2] + '</td>';
+							tbl += '<td align="center">' + item[3] + '</td>';
+							tbl += '<td>' + item[4] + '</td>';
+							tbl += '<td>' + item[6] + '</td>';
+							tbl += '<td>' + item[7] + '</td>';
+							tbl += '<td>' + item[8] + '</td>';
+							var rid = "'" + id + "'";
+							tbl += '<td align="center"><a href="#" onClick="RemoveItem('+rid+')"><img src="img/del_ico.png" width="20" border="0" /></td>';
+						tbl += '</tr>';
+						nItemArray += id + "||" + item[1] + "||" + item[2] + "||" + item[3] + "||" + item[4] + "||" + item[5] + "||" + item[6] + "||" + item[7] + "||" + item[8] + "::";
+						cnt++;
+					}
+				}
 			}
-		});	
-	}
-	$(document).ready(function() {
-		$("#divTxtBalance").hide();
+			tbl += '</table>';
+			$("#divDetails").html(tbl);
+
+			nItemArray = nItemArray.slice(0, -2);
+			$("#txtItemArr").val(nItemArray);
+		}
+
+		ComputeTotal = function(){
+			var amnt = 0;
+			var discount = 0;
+			var subtotal = 0;
+			var vat = 0;
+			var total = 0;
+			var dpamnt = 0;
+			var discounted = 0;
+			var balance = 0;
+			$("#divTxtBalance").hide();
+			
+			if($("#txtAmount").val().replace(/,/g,'') > 0){
+				var amnt1 = $("#txtAmount").val();
+				amnt = amnt1.replace(/,/g,'');
+			}
+			if($("#txtDiscount").val().replace(/,/g,'') > 0){
+				var discount1 = $("#txtDiscount").val();
+				discount = discount1.replace(/,/g,'');
+			}
+			if($("#txtDownPayment").val().replace(/,/g,'') > 0){
+				var dpamnt1 = $("#txtDownPayment").val();
+				dpamnt = dpamnt1.replace(/,/g,'');
+
+				$("#divTxtBalance").show();
+			}
+
+			discounted = (parseFloat(amnt) - parseFloat(discount));
+			vat = parseFloat(discounted) * parseFloat(0.12);
+			total = (parseFloat(discounted) + parseFloat(vat));
+			balance = (parseFloat(total) - parseFloat(dpamnt));
+
+			$("#txtSubTotal").val(discounted.toFixed(2));
+			$("#txtVat").val(vat.toFixed(2));
+			$("#txtTotalAmount").val(total.toFixed(2));
+			$("#txtBalance").val(balance.toFixed(2));
+		}
+
+		RushEstimate = function(){
+			if(document.estimateForm.chkIsRush.checked){
+				document.estimateForm.txtLeadTime.readOnly = false;
+				document.estimateForm.txtDueDateDesc.disabled = false;
+			}else{
+				$("#txtLeadTime").val("");
+				$("#txtDueDate").val("");
+				$("#txtJobType").val("");
+				document.estimateForm.txtLeadTime.readOnly = true;
+				document.estimateForm.txtDueDateDesc.disabled = true;
+			}
+		}
+		SelectCustomer = function(id,name,addr,telno){
+			$("#txtCustomer").val(id);
+			$("#txtCustomerName").val(name);
+			$("#txtAddress").val(addr);
+			$("#txtTelephoneNo").val(telno);
+			$( "#divCustomersList" ).dialog( "close" );
+		}
+		SelectJobType = function(jtcode,jtdesc,leadtime){
+			$("#txtJobType").val(jtcode);
+			$("#txtJobTypeDescription").val(jtdesc);
+			$("#txtLeadTime").val(leadtime);
+			var duedate = addDays(Date(),leadtime);
+			$("#txtDueDateDesc").val(duedate);
+			$("#txtDueDate").val(duedate);
+			$( "#divJobTypeList" ).dialog( "close" );
+		}
+		getDueDate = function(duedate){
+			$("#txtDueDate").val(duedate);
+		}
+		addDays = function(date,days) {
+			var result = new Date(date);
+			var nResult = result.addDays(days);
+			var dd = nResult.getDate();
+			var mm = nResult.getMonth() + 1;
+			var y = nResult.getFullYear();
+		    return mm + '/' + dd + '/' + y;
+		}
+		findCustomer = function(q){
+			$.ajax({
+				url: 'inc-ajax/divSearchCustomer.php?q='+q,
+				type: 'POST',
+				data: null,
+				datatype: 'json',
+				contentType: 'application/json; charset=utf-8',
+				
+				success: function (data) {
+					$("#divCustList").replaceWith(data);
+				},	
+						
+				error: function (request, status, err) {
+					alert(status);
+					alert(err);
+				}
+			});	
+		}
 
 		Date.prototype.addDays = function (num) {
 		    var value = this.valueOf();
@@ -360,6 +389,35 @@
 			close: function() {
 				$( this ).dialog( "close" );
 			}
+		});
+
+		$("#btnEstimateSave").on("click", function(){
+			if( $("#txtCustomer").val() == "" || $("#txtCustomer").val() == null ){
+				alert("Please select customer!");
+				$( "#divCustomersList" ).dialog( "open" ); // CALL CUSTOMER LIST
+				return false;
+			}
+			if( $("#txtJobType").val() == "" || $("#txtJobType").val() == null ){
+				alert("Please select job type!");
+				$( "#divJobTypeList" ).dialog( "open" ); // CALL JOB TYPE LIST
+				return false;
+			}
+			if( $("#txtAttachment").val() == "" || $("#txtAttachment").val() == null ){
+				alert("Please choose attachment!");
+				return false;
+			}
+			if( $("#txtItemArr").val() == "" || $("#txtItemArr").val() == null ){
+				alert("Please enter items!");
+				return false;
+			}
+			if( $("#txtTotalAmount").val() <= 0 ){
+				alert("Please enter amount!");
+				$("#txtAmount").focus();
+				return false;
+			}
+
+			console.log('OK');
+			return false;
 		});
 	});
 </script>
