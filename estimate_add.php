@@ -415,9 +415,6 @@
 				$("#txtAmount").focus();
 				return false;
 			}
-
-			console.log('OK');
-			return false;
 		});
 	});
 </script>
