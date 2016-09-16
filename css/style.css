@@ -900,7 +900,7 @@ ul.messages li .message {
 }
 	
 .verticalChart .singleBar {
-	width: 9%;
+	width: 7.3%;
 	float: left;
 	margin-left: 0.5%;
 	margin-right: 0.5%;
@@ -908,7 +908,7 @@ ul.messages li .message {
 	
 .verticalChart .singleBar .bar {
 	position: relative;
-	height: 200px;
+	height: 218px;
 	background: rgba(255,255,255,0.2);
 	overflow: hidden;
 }
@@ -936,6 +936,7 @@ ul.messages li .message {
 .verticalChart .singleBar .title {
 	margin-top: 5px;
 	text-align: center;
+	font-size: 10px;
 }
 
 /* Browsers Stats

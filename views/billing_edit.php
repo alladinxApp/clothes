@@ -25,13 +25,23 @@
 						<input class="input-xlarge" value="<?=$row_billingmst[0]['jobTypeDesc'];?>" name="txtJobType" id="txtJobType" readonly type="text" />
 					</div>
 				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtJONo">Job Order Reference No</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=$row_billingmst[0]['jobOrderReferenceNo'];?>" name="txtJONo" id="txtJONo" readonly type="text" placeholder="Job Order No Here..." />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtEstNo">Estimate Reference No</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=$row_billingmst[0]['quoteReferenceNo'];?>" name="txtEstNo" id="txtEstNo" readonly type="text" placeholder="Estimate No Here..." />
+					</div>
+				</div>
 				<table class="table table-bordered table-condensed">
 					<tr>
 						<!-- <th><input type="checkbox" name="chkAll" id="chkAll" checked onclick="SelectAll(this);"></th> -->
 						<th>#</th>
 						<th>Delivery Code</th>
-						<th>Job Order Code</th>
-						<th>Estimate Code</th>
 						<th>Amount</th>
 					</tr>
 					<?
@@ -53,8 +63,6 @@
 						<!-- <td align="center" style="<?=$style;?>"><input type="checkbox" checked onClick="return getTotalAmount();" name="chkDeliveryCode_<?=$cnt;?>" id="chkDeliveryCode_<?=$cnt;?>" value="<?=$row_billingdtl[$i]['deliveryCode'] .'#'. $row_billingdtl[$i]['totalAmount'];?>"></td> -->
 						<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['deliveryCode'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['jobOrderReferenceNo'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_billingdtl[$i]['quoteReferenceNo'];?></td>
 						<td align="right" style="<?=$style;?>"><?=number_format($row_billingdtl[$i]['Amount'],2);?></td>
 					</tr>
 					<? 

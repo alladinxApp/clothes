@@ -1,5 +1,6 @@
 <?
 	// -- START CONTROLLERS --
+	define(DEFAULTCONTROLLER, "defaultController.php");
 	define(LOGINCONTROLLER, "loginController.php");
 	define(CONTROLNOCONTROLLER, "controlNoController.php");
 	define(CUSTOMERCONTROLLER, "customerController.php");
@@ -20,5 +21,7 @@
 	define(DELIVERYCONTROLLER, "deliveryController.php");
 	define(BILLINGCONTROLLER, "billingController.php");
 	define(DAILYCOLLECTIONCONTROLLER, "dailyCollectionController.php");
+	
+	define(REMINDERSLISTREPORTCONTROLLER, "remindersListReportController.php");
 	// -- END CONTROLLERS --
 ?>

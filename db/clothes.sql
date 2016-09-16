@@ -16,19 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`clothes` /*!40100 DEFAULT CHARACTER SET
 
 USE `clothes`;
 
-/*Table structure for table ` usermenuaccess` */
-
-DROP TABLE IF EXISTS ` usermenuaccess`;
-
-CREATE TABLE ` usermenuaccess` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` varchar(20) DEFAULT NULL,
-  `menuCode` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Data for the table ` usermenuaccess` */
-
 /*Table structure for table `armaster` */
 
 DROP TABLE IF EXISTS `armaster`;
@@ -40,8 +27,11 @@ CREATE TABLE `armaster` (
   `amount` decimal(12,2) DEFAULT NULL,
   `tender` decimal(12,2) DEFAULT NULL,
   `balance` decimal(12,2) DEFAULT NULL,
+  `remarks` text,
   `createdDate` datetime DEFAULT NULL,
   `createdBy` varchar(20) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -72,10 +62,12 @@ CREATE TABLE `billingmaster` (
   `billedDate` datetime DEFAULT NULL,
   `jobOrderReferenceNo` varchar(20) DEFAULT NULL,
   `downPayment` decimal(12,2) DEFAULT NULL,
-  `totalAmount` decimal(12,2) DEFAULT NULL,
+  `totalAmount` decimal(12,2) DEFAULT '0.00',
   `balance` decimal(12,2) DEFAULT NULL,
   `postedDate` datetime DEFAULT NULL,
   `createdBy` varchar(20) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -100,11 +92,11 @@ CREATE TABLE `controlno` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `controlno` */
 
-insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,2,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,3,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx','2016-07-27 05:43:22','ALLADINX',0),(5,'MENU MAINTENANCE','M','MENU',4,23,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE MAINTENANCE','EST','ESTIMATE',8,0,'Estimate Maintenance','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1),(10,'JOB ORDER MAINTENANCE','JO','JOBORDER',8,0,'Job Order Maintenance','2016-07-25 11:23:56','ALLADINX',NULL,NULL,1),(11,'DELIVERY MAINTENANCE','DR','DELIVERY',8,0,'Delivery Maintenance','2016-07-27 05:43:00','ALLADINX',NULL,NULL,1),(12,'BILLING MAINTENANCE','B','BILLING',8,0,'Billing Maintenance','2016-07-27 08:05:00','ALLADINX',NULL,NULL,1),(13,'LABOR COSTS MAINTENANCE','LC','LABORCOSTS',4,19,'Labor Costs Maintenance','2016-07-28 03:57:51','ALLADINX',NULL,NULL,1),(14,'JOB DESCRIPTION MAINTENANCE','JD','JOBDESCRIPTION',4,3,'Job Description Maintenance','2016-07-29 01:46:11','ALLADINX',NULL,NULL,1),(15,'ACCOUNTS RECEIVABLE','AR','ACCOUNTS_RECEIVABLE',8,0,'Accounts Receivable Maintenance','2016-08-31 03:06:19','ALLADINX',NULL,NULL,1);
+insert  into `controlno`(`id`,`description`,`controlCode`,`controlType`,`noOfDigit`,`lastDigit`,`remarks`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'CUSTOMER MAINTENANCE','C','CUSTOMER',8,2,'Customer Maintenance','2016-07-10 07:33:33','alladinx','2016-07-10 09:08:10','alladinx',1),(2,'DEPARTMENT MAINTENANCE','D','DEPARTMENT',8,3,'Department Maintenance','2016-07-10 08:59:19','alladinx','2016-07-10 09:21:57','alladinx',1),(3,'JOB TYPES MAINTENANCE','JT','JOBTYPE',8,2,'Job Types Maintenance','2016-07-10 08:59:45','alladinx',NULL,NULL,1),(4,'MATERIAL MAINTENANCE','MAT','MATERIAL',8,0,'Material Maintenance','2016-07-10 09:00:14','alladinx','2016-07-27 05:43:22','ALLADINX',0),(5,'MENU MAINTENANCE','M','MENU',4,25,'Menu Maintenance','2016-07-10 09:00:33','alladinx',NULL,NULL,1),(6,'SIZING PATTERN MAINTENANCE','SP','SIZING',8,7,'Sizing Pattern Maintenance','2016-07-10 09:00:57','alladinx',NULL,NULL,1),(7,'UOM MAINTENANCE','UOM','UOM',3,1,'UOM Maintenance','2016-07-10 09:01:23','alladinx',NULL,NULL,1),(9,'ESTIMATE MAINTENANCE','EST','ESTIMATE',8,0,'Estimate Maintenance','2016-07-22 01:11:47','ALLADINX',NULL,NULL,1),(10,'JOB ORDER MAINTENANCE','JO','JOBORDER',8,0,'Job Order Maintenance','2016-07-25 11:23:56','ALLADINX',NULL,NULL,1),(11,'DELIVERY MAINTENANCE','DR','DELIVERY',8,0,'Delivery Maintenance','2016-07-27 05:43:00','ALLADINX',NULL,NULL,1),(12,'BILLING MAINTENANCE','B','BILLING',8,0,'Billing Maintenance','2016-07-27 08:05:00','ALLADINX',NULL,NULL,1),(13,'LABOR COSTS MAINTENANCE','LC','LABORCOSTS',4,19,'Labor Costs Maintenance','2016-07-28 03:57:51','ALLADINX',NULL,NULL,1),(14,'JOB DESCRIPTION MAINTENANCE','JD','JOBDESCRIPTION',4,3,'Job Description Maintenance','2016-07-29 01:46:11','ALLADINX',NULL,NULL,1),(15,'ACCOUNTS RECEIVABLE MAINTENANCE','AR','ACCOUNTS_RECEIVABLE',8,0,'Accounts Receivable Maintenance','2016-08-31 03:06:19','ALLADINX',NULL,NULL,1),(16,'REMINDERS MAINTENANCE','REM','REMINDER',8,0,'Reminders Maintenance','2016-09-14 02:24:21','ALLADINX',NULL,NULL,1);
 
 /*Table structure for table `customersmaster` */
 
@@ -231,6 +223,7 @@ CREATE TABLE `estimatemaster` (
   `downPayment` decimal(12,2) DEFAULT '0.00',
   `isAppliedDP` int(1) DEFAULT '0',
   `amount` decimal(10,2) DEFAULT NULL,
+  `isAppliedDiscount` int(1) DEFAULT '0',
   `discount` decimal(10,2) DEFAULT NULL,
   `subTotal` decimal(10,2) DEFAULT NULL,
   `vat` decimal(10,2) DEFAULT NULL,
@@ -454,11 +447,11 @@ CREATE TABLE `menumaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `menumaster` */
 
-insert  into `menumaster`(`id`,`menuCode`,`description`,`link`,`icon`,`isMaintenance`,`isTransactions`,`isReports`,`sortNo`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (2,'M0001','Control Nos','controlnos','icon-cogs',1,0,0,1,'2016-07-10 09:22:59','alladinx','2016-07-23 10:07:57','ALLADINX',1),(3,'M0002','Customers','customers','icon-group',1,0,0,3,'2016-07-10 09:23:10','alladinx','2016-07-23 10:08:20','ALLADINX',1),(4,'M0003','Departments','departments','icon-home',1,0,0,2,'2016-07-10 09:23:21','alladinx','2016-07-23 10:08:07','ALLADINX',1),(5,'M0004','Job Types','jobtypes','icon-tags',1,0,0,4,'2016-07-10 09:23:30','alladinx','2016-07-23 10:08:27','ALLADINX',1),(6,'M0005','Materials','materials','icon-barcode',1,0,0,5,'2016-07-10 09:23:40','alladinx','2016-07-23 10:08:34','ALLADINX',1),(7,'M0006','Menus','menus','icon-list',1,0,0,6,'2016-07-10 09:23:51','alladinx','2016-07-23 10:08:43','ALLADINX',1),(8,'M0007','Sizing Patterns','sizings','icon-bar-chart',1,0,0,7,'2016-07-10 09:24:07','alladinx','2016-07-23 10:08:51','ALLADINX',1),(9,'M0008','UOMs','uoms','icon-signal',1,0,0,8,'2016-07-10 09:24:20','alladinx','2016-07-23 10:08:58','ALLADINX',1),(10,'M0009','Estimates','estimates','icon-book',0,1,0,1,'2016-07-10 09:24:41','alladinx','2016-07-23 10:04:17','ALLADINX',1),(11,'M0010','Users','users','icon-user',1,0,0,9,'2016-07-10 09:41:29','alladinx','2016-07-23 10:09:06','ALLADINX',1),(12,'M0011','Pending Job Orders','jopending','icon-calendar',0,0,1,NULL,'2016-07-10 09:41:53','alladinx',NULL,NULL,1),(13,'M0012','Upcoming Dues','dues','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:22','alladinx',NULL,NULL,1),(14,'M0013','Work In Process','wip','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:36','alladinx',NULL,NULL,1),(15,'M0014','AR / UI','arui','icon-calendar',0,0,1,NULL,'2016-07-10 09:42:49','alladinx','2016-07-13 04:53:38','alladinx',1),(16,'M0015','Sales per Location','salesperlocation','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:06','alladinx',NULL,NULL,1),(17,'M0016','Sales per Customer','salespercustomer','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:18','alladinx',NULL,NULL,1),(18,'M0017','Clothing Report','clothingreport','icon-calendar',0,0,1,NULL,'2016-07-10 09:43:33','alladinx',NULL,NULL,1),(19,'M0018','Job Orders','joborders','icon-upload-alt',0,1,0,2,'2016-07-13 01:59:17','alladinx','2016-07-23 10:05:50','ALLADINX',1),(20,'M0019','Deliveries','deliveries','icon-truck',0,1,0,3,'2016-07-13 04:09:47','alladinx','2016-07-23 10:06:01','ALLADINX',1),(21,'M0020','Billings','billings','icon-money',0,1,0,4,'2016-07-25 04:58:04','ALLADINX','2016-08-06 03:45:09','ALLADINX',1),(22,'M0021','Daily Collections','dailycollections','icon-credit-card',0,1,0,5,'2016-07-25 04:59:19','ALLADINX','2016-07-25 05:01:14','ALLADINX',1),(23,'M0022','Labor Costs','laborcosts','icon-legal',1,0,0,10,'2016-07-28 03:24:05','ALLADINX','2016-07-28 03:38:59','ALLADINX',1),(24,'M0023','Job Description','jobdescriptions','icon-tasks',1,0,0,11,'2016-07-29 01:11:15','ALLADINX',NULL,NULL,1);
+insert  into `menumaster`(`id`,`menuCode`,`description`,`link`,`icon`,`isMaintenance`,`isTransactions`,`isReports`,`sortNo`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (2,'M0001','Control Nos','controlnos','icon-cogs',1,0,0,1,'2016-07-10 09:22:59','alladinx','2016-07-23 10:07:57','ALLADINX',1),(3,'M0002','Customers','customers','icon-group',1,0,0,3,'2016-07-10 09:23:10','alladinx','2016-07-23 10:08:20','ALLADINX',1),(4,'M0003','Departments','departments','icon-home',1,0,0,2,'2016-07-10 09:23:21','alladinx','2016-07-23 10:08:07','ALLADINX',1),(5,'M0004','Job Types','jobtypes','icon-tags',1,0,0,4,'2016-07-10 09:23:30','alladinx','2016-07-23 10:08:27','ALLADINX',1),(6,'M0005','Materials','materials','icon-barcode',1,0,0,5,'2016-07-10 09:23:40','alladinx','2016-07-23 10:08:34','ALLADINX',1),(7,'M0006','Menus','menus','icon-list',1,0,0,6,'2016-07-10 09:23:51','alladinx','2016-07-23 10:08:43','ALLADINX',1),(8,'M0007','Sizing Patterns','sizings','icon-bar-chart',1,0,0,7,'2016-07-10 09:24:07','alladinx','2016-07-23 10:08:51','ALLADINX',1),(9,'M0008','UOMs','uoms','icon-signal',1,0,0,8,'2016-07-10 09:24:20','alladinx','2016-07-23 10:08:58','ALLADINX',1),(10,'M0009','Estimates','estimates','icon-book',0,1,0,1,'2016-07-10 09:24:41','alladinx','2016-07-23 10:04:17','ALLADINX',1),(11,'M0010','Users','users','icon-user',1,0,0,9,'2016-07-10 09:41:29','alladinx','2016-07-23 10:09:06','ALLADINX',1),(12,'M0011','Pending Job Orders','pendingjoreport','icon-calendar',0,0,1,3,'2016-07-10 09:41:53','alladinx','2016-09-15 03:27:02','ALLADINX',1),(13,'M0012','Upcoming Dues','dues','icon-calendar',0,0,1,0,'2016-07-10 09:42:22','alladinx','2016-09-14 07:46:32','ALLADINX',0),(14,'M0013','Work In Process','wip','icon-calendar',0,0,1,0,'2016-07-10 09:42:36','alladinx','2016-09-14 07:46:38','ALLADINX',0),(15,'M0014','Accounts Receivable','accountsreceivablereport','icon-calendar',0,0,1,4,'2016-07-10 09:42:49','alladinx','2016-09-15 03:29:13','ALLADINX',1),(16,'M0015','Labor Report','laborsreport','icon-calendar',0,0,1,7,'2016-07-10 09:43:06','alladinx','2016-09-16 03:35:18','ALLADINX',1),(17,'M0016','Customer Sales Report','customersalesreport','icon-calendar',0,0,1,2,'2016-07-10 09:43:18','alladinx','2016-09-14 08:00:48','ALLADINX',1),(18,'M0017','Reminders List','reminderslistreport','icon-calendar',0,0,1,6,'2016-07-10 09:43:33','alladinx','2016-09-15 01:22:43','ALLADINX',1),(19,'M0018','Job Orders','joborders','icon-upload-alt',0,1,0,2,'2016-07-13 01:59:17','alladinx','2016-07-23 10:05:50','ALLADINX',1),(20,'M0019','Deliveries','deliveries','icon-truck',0,1,0,3,'2016-07-13 04:09:47','alladinx','2016-07-23 10:06:01','ALLADINX',1),(21,'M0020','Billings','billings','icon-money',0,1,0,4,'2016-07-25 04:58:04','ALLADINX','2016-08-06 03:45:09','ALLADINX',1),(22,'M0021','Daily Collections','dailycollections','icon-credit-card',0,1,0,5,'2016-07-25 04:59:19','ALLADINX','2016-07-25 05:01:14','ALLADINX',1),(23,'M0022','Labor Costs','laborcosts','icon-legal',1,0,0,10,'2016-07-28 03:24:05','ALLADINX','2016-07-28 03:38:59','ALLADINX',1),(24,'M0023','Job Description','jobdescriptions','icon-tasks',1,0,0,11,'2016-07-29 01:11:15','ALLADINX',NULL,NULL,1),(25,'M0024','Service Type Sales Report','servicetypesalesreport','icon-calendar',0,0,1,1,'2016-09-14 07:41:25','ALLADINX','2016-09-14 08:00:16','ALLADINX',1),(26,'M0025','Daily Cashiers Report','dailycashiersreport','icon-calendar',0,0,1,5,'2016-09-14 07:53:43','ALLADINX','2016-09-14 08:01:11','ALLADINX',1);
 
 /*Table structure for table `remindermaster` */
 
@@ -471,6 +464,8 @@ CREATE TABLE `remindermaster` (
   `description` text,
   `createdBy` varchar(20) DEFAULT NULL,
   `createdDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(20) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -548,11 +543,11 @@ CREATE TABLE `usermenuaccess` (
   `userName` varchar(20) DEFAULT NULL,
   `menuCode` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usermenuaccess` */
 
-insert  into `usermenuaccess`(`id`,`userName`,`menuCode`) values (1,'ALLADINX','M0014'),(2,'ALLADINX','M0017'),(3,'ALLADINX','M0001'),(4,'ALLADINX','M0002'),(5,'ALLADINX','M0019'),(6,'ALLADINX','M0003'),(7,'ALLADINX','M0009'),(8,'ALLADINX','M0018'),(9,'ALLADINX','M0004'),(10,'ALLADINX','M0005'),(11,'ALLADINX','M0006'),(12,'ALLADINX','M0011'),(13,'ALLADINX','M0016'),(14,'ALLADINX','M0015'),(15,'ALLADINX','M0007'),(16,'ALLADINX','M0008'),(17,'ALLADINX','M0012'),(18,'ALLADINX','M0010'),(19,'ALLADINX','M0013'),(20,'NOELSR','M0014'),(21,'NOELSR','M0017'),(22,'NOELSR','M0001'),(23,'NOELSR','M0002'),(24,'NOELSR','M0019'),(25,'NOELSR','M0003'),(26,'NOELSR','M0009'),(27,'NOELSR','M0018'),(28,'NOELSR','M0004'),(29,'NOELSR','M0005'),(30,'NOELSR','M0006'),(31,'NOELSR','M0011'),(32,'NOELSR','M0016'),(33,'NOELSR','M0015'),(34,'NOELSR','M0007'),(35,'NOELSR','M0008'),(36,'NOELSR','M0012'),(37,'NOELSR','M0010'),(38,'NOELSR','M0013'),(39,'ALLADINX','M0020'),(40,'NOELSR','M0020'),(41,'ALLADINX','M0021'),(42,'NOELSR','M0021'),(43,'ALLADINX','M0022'),(44,'NOELSR','M0022'),(45,'REYCAST','M0009'),(46,'ALLADINX','M0023'),(47,'NOELSR','M0023');
+insert  into `usermenuaccess`(`id`,`userName`,`menuCode`) values (1,'ALLADINX','M0014'),(2,'ALLADINX','M0017'),(3,'ALLADINX','M0001'),(4,'ALLADINX','M0002'),(5,'ALLADINX','M0019'),(6,'ALLADINX','M0003'),(7,'ALLADINX','M0009'),(8,'ALLADINX','M0018'),(9,'ALLADINX','M0004'),(10,'ALLADINX','M0005'),(11,'ALLADINX','M0006'),(12,'ALLADINX','M0011'),(13,'ALLADINX','M0016'),(14,'ALLADINX','M0015'),(15,'ALLADINX','M0007'),(16,'ALLADINX','M0008'),(17,'ALLADINX','M0012'),(18,'ALLADINX','M0010'),(19,'ALLADINX','M0013'),(20,'NOELSR','M0014'),(21,'NOELSR','M0017'),(22,'NOELSR','M0001'),(23,'NOELSR','M0002'),(24,'NOELSR','M0019'),(25,'NOELSR','M0003'),(26,'NOELSR','M0009'),(27,'NOELSR','M0018'),(28,'NOELSR','M0004'),(29,'NOELSR','M0005'),(30,'NOELSR','M0006'),(31,'NOELSR','M0011'),(32,'NOELSR','M0016'),(33,'NOELSR','M0015'),(34,'NOELSR','M0007'),(35,'NOELSR','M0008'),(36,'NOELSR','M0012'),(37,'NOELSR','M0010'),(38,'NOELSR','M0013'),(39,'ALLADINX','M0020'),(40,'NOELSR','M0020'),(41,'ALLADINX','M0021'),(42,'NOELSR','M0021'),(43,'ALLADINX','M0022'),(44,'NOELSR','M0022'),(45,'REYCAST','M0009'),(46,'ALLADINX','M0023'),(47,'NOELSR','M0023'),(48,'ALLADINX','M0024'),(49,'NOELSR','M0024'),(50,'ALLADINX','M0025'),(51,'NOELSR','M0025');
 
 /*Table structure for table `armaster_v` */
 
@@ -565,11 +560,20 @@ DROP TABLE IF EXISTS `armaster_v`;
  `id` int(11) ,
  `ARNo` varchar(20) ,
  `billingReferenceNo` varchar(20) ,
+ `billedDate` datetime ,
+ `jobOrderReferenceNo` varchar(20) ,
+ `customerCode` varchar(20) ,
+ `customerName` varchar(250) ,
+ `totalDelivered` decimal(32,0) ,
  `amount` decimal(12,2) ,
  `tender` decimal(12,2) ,
  `balance` decimal(12,2) ,
+ `daysOld` int(7) ,
+ `remarks` text ,
  `createdDate` datetime ,
  `createdBy` varchar(20) ,
+ `modifiedDate` datetime ,
+ `modifiedBy` varchar(20) ,
  `status` int(1) 
 )*/;
 
@@ -584,8 +588,13 @@ DROP TABLE IF EXISTS `billingdetail_v`;
  `id` int(11) ,
  `billingReferenceNo` varchar(20) ,
  `deliveryCode` varchar(20) ,
- `jobOrderReferenceNo` varchar(20) ,
- `quoteReferenceNo` varchar(20) ,
+ `sizeDesc` varchar(100) ,
+ `color` varchar(20) ,
+ `uomDesc` varchar(100) ,
+ `specification` varchar(20) ,
+ `actual` bigint(11) ,
+ `quantity` int(11) ,
+ `price` decimal(12,2) ,
  `Amount` decimal(12,2) 
 )*/;
 
@@ -601,16 +610,28 @@ DROP TABLE IF EXISTS `billingmaster_v`;
  `billingReferenceNo` varchar(20) ,
  `billedDate` datetime ,
  `jobOrderReferenceNo` varchar(20) ,
+ `quoteReferenceNo` varchar(20) ,
+ `customerCode` varchar(20) ,
  `customerName` varchar(250) ,
  `customerTelNo` varchar(100) ,
+ `customerAddress` varchar(300) ,
+ `jobType` varchar(20) ,
  `jobTypeDesc` varchar(100) ,
  `estDownPayment` decimal(12,2) ,
  `isAppliedDP` int(1) ,
+ `dueDate` date ,
+ `totalQty` decimal(41,0) ,
+ `totalDelivered` decimal(32,0) ,
+ `vat` decimal(10,2) ,
+ `discount` decimal(10,2) ,
+ `isAppliedDiscount` int(1) ,
  `downPayment` decimal(12,2) ,
  `totalAmount` decimal(12,2) ,
  `balance` decimal(12,2) ,
  `postedDate` datetime ,
  `createdBy` varchar(20) ,
+ `modifiedBy` varchar(20) ,
+ `modifiedDate` datetime ,
  `status` int(1) ,
  `statusDesc` varchar(11) 
 )*/;
@@ -679,8 +700,9 @@ DROP TABLE IF EXISTS `deliverydetail_v`;
  `sizeDesc` varchar(100) ,
  `color` varchar(20) ,
  `uomDesc` varchar(100) ,
+ `material` text ,
  `specification` varchar(20) ,
- `material` longblob ,
+ `actual` bigint(11) ,
  `quantity` int(11) ,
  `price` decimal(12,2) 
 )*/;
@@ -701,6 +723,7 @@ DROP TABLE IF EXISTS `deliverymaster_v`;
  `customerName` varchar(250) ,
  `address` varchar(300) ,
  `customerTelNo` varchar(100) ,
+ `jobType` varchar(20) ,
  `jobTypeDesc` varchar(100) ,
  `isRush` int(1) ,
  `leadTime` varbinary(100) ,
@@ -709,7 +732,7 @@ DROP TABLE IF EXISTS `deliverymaster_v`;
  `downPayment` decimal(12,2) ,
  `isAppliedDP` int(1) ,
  `amount` decimal(12,2) ,
- `discount` decimal(12,2) ,
+ `discount` decimal(10,2) ,
  `subTotal` decimal(12,2) ,
  `vat` decimal(12,2) ,
  `totalAmount` decimal(12,2) ,
@@ -790,6 +813,7 @@ DROP TABLE IF EXISTS `estimatemaster_v`;
  `isAppliedDP` int(1) ,
  `amount` decimal(10,2) ,
  `discount` decimal(10,2) ,
+ `isAppliedDiscount` int(1) ,
  `subTotal` decimal(10,2) ,
  `vat` decimal(10,2) ,
  `totalAmount` decimal(10,2) ,
@@ -895,11 +919,13 @@ DROP TABLE IF EXISTS `jobordermaster_v`;
  `dueDate` date ,
  `department` varchar(50) ,
  `total_qty` decimal(41,0) ,
+ `totalDelivered` decimal(32,0) ,
  `downPayment` decimal(12,2) ,
  `isAppliedDP` int(1) ,
  `amount` decimal(10,2) ,
  `vat` decimal(10,2) ,
  `discount` decimal(10,2) ,
+ `isAppliedDiscount` int(1) ,
  `subTotal` decimal(10,2) ,
  `totalAmount` decimal(10,2) ,
  `balance` decimal(10,2) ,
@@ -907,6 +933,7 @@ DROP TABLE IF EXISTS `jobordermaster_v`;
  `attachment` text ,
  `acknowledgeBy` varchar(20) ,
  `acknowledgeDate` datetime ,
+ `daysOld` int(7) ,
  `createdDate` datetime ,
  `createdBy` varchar(20) ,
  `modifiedDate` datetime ,
@@ -970,6 +997,7 @@ DROP TABLE IF EXISTS `jolaborcostsmaster_v`;
  `employeeName` varchar(100) ,
  `jobDescriptionCode` varchar(20) ,
  `jobDescription` varchar(100) ,
+ `totalAmount` decimal(10,2) ,
  `createdBy` varchar(20) ,
  `createdDate` datetime ,
  `modifiedBy` varchar(20) ,
@@ -1042,6 +1070,26 @@ DROP TABLE IF EXISTS `menumaster_v`;
  `modifiedBy` varchar(20) ,
  `status` int(1) ,
  `statusDesc` varchar(8) 
+)*/;
+
+/*Table structure for table `remindermaster_v` */
+
+DROP TABLE IF EXISTS `remindermaster_v`;
+
+/*!50001 DROP VIEW IF EXISTS `remindermaster_v` */;
+/*!50001 DROP TABLE IF EXISTS `remindermaster_v` */;
+
+/*!50001 CREATE TABLE  `remindermaster_v`(
+ `id` int(11) ,
+ `reminderCode` varchar(20) ,
+ `title` varchar(100) ,
+ `description` text ,
+ `createdBy` varchar(20) ,
+ `createdDate` datetime ,
+ `modifiedBy` varchar(20) ,
+ `modifiedDate` datetime ,
+ `status` int(1) ,
+ `statusDesc` varchar(6) 
 )*/;
 
 /*Table structure for table `sizingmaster_v` */
@@ -1131,21 +1179,21 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `armaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `armaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `armaster_v` AS (select `armaster`.`id` AS `id`,`armaster`.`ARNo` AS `ARNo`,`armaster`.`billingReferenceNo` AS `billingReferenceNo`,`armaster`.`amount` AS `amount`,`armaster`.`tender` AS `tender`,`armaster`.`balance` AS `balance`,`armaster`.`createdDate` AS `createdDate`,`armaster`.`createdBy` AS `createdBy`,`armaster`.`status` AS `status` from `armaster`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `armaster_v` AS (select `armaster`.`id` AS `id`,`armaster`.`ARNo` AS `ARNo`,`armaster`.`billingReferenceNo` AS `billingReferenceNo`,`billingmaster_v`.`billedDate` AS `billedDate`,`billingmaster_v`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`billingmaster_v`.`customerCode` AS `customerCode`,`billingmaster_v`.`customerName` AS `customerName`,`billingmaster_v`.`totalDelivered` AS `totalDelivered`,`armaster`.`amount` AS `amount`,`armaster`.`tender` AS `tender`,`armaster`.`balance` AS `balance`,(to_days(curdate()) - to_days(`armaster`.`createdDate`)) AS `daysOld`,`armaster`.`remarks` AS `remarks`,`armaster`.`createdDate` AS `createdDate`,`armaster`.`createdBy` AS `createdBy`,`armaster`.`modifiedDate` AS `modifiedDate`,`armaster`.`modifiedBy` AS `modifiedBy`,`armaster`.`status` AS `status` from (`armaster` join `billingmaster_v` on((`billingmaster_v`.`billingReferenceNo` = `armaster`.`billingReferenceNo`)))) */;
 
 /*View structure for view billingdetail_v */
 
 /*!50001 DROP TABLE IF EXISTS `billingdetail_v` */;
 /*!50001 DROP VIEW IF EXISTS `billingdetail_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `billingdetail_v` AS (select `billingdetail`.`id` AS `id`,`billingdetail`.`billingReferenceNo` AS `billingReferenceNo`,`billingdetail`.`deliveryCode` AS `deliveryCode`,`deliverymaster_v`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`deliverymaster_v`.`quoteReferenceNo` AS `quoteReferenceNo`,`billingdetail`.`Amount` AS `Amount` from (`billingdetail` join `deliverymaster_v` on((`deliverymaster_v`.`deliveryCode` = `billingdetail`.`deliveryCode`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `billingdetail_v` AS (select `billingdetail`.`id` AS `id`,`billingdetail`.`billingReferenceNo` AS `billingReferenceNo`,`billingdetail`.`deliveryCode` AS `deliveryCode`,`deliverydetail_v`.`sizeDesc` AS `sizeDesc`,`deliverydetail_v`.`color` AS `color`,`deliverydetail_v`.`uomDesc` AS `uomDesc`,`deliverydetail_v`.`specification` AS `specification`,`deliverydetail_v`.`actual` AS `actual`,`deliverydetail_v`.`quantity` AS `quantity`,`deliverydetail_v`.`price` AS `price`,`billingdetail`.`Amount` AS `Amount` from (`billingdetail` join `deliverydetail_v` on((`deliverydetail_v`.`deliveryCode` = `billingdetail`.`deliveryCode`)))) */;
 
 /*View structure for view billingmaster_v */
 
 /*!50001 DROP TABLE IF EXISTS `billingmaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `billingmaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `billingmaster_v` AS (select `billingmaster`.`id` AS `id`,`billingmaster`.`billingReferenceNo` AS `billingReferenceNo`,`billingmaster`.`billedDate` AS `billedDate`,`billingmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`customerName` AS `customerName`,`jobordermaster_v`.`customerTelNo` AS `customerTelNo`,`jobordermaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`jobordermaster_v`.`downPayment` AS `estDownPayment`,`jobordermaster_v`.`isAppliedDP` AS `isAppliedDP`,`billingmaster`.`downPayment` AS `downPayment`,`billingmaster`.`totalAmount` AS `totalAmount`,`billingmaster`.`balance` AS `balance`,`billingmaster`.`postedDate` AS `postedDate`,`billingmaster`.`createdBy` AS `createdBy`,`billingmaster`.`status` AS `status`,(case when (`billingmaster`.`status` = 1) then 'POSTED' when (`billingmaster`.`status` = 2) then 'CLOSED' else 'FOR POSTING' end) AS `statusDesc` from (`billingmaster` join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `billingmaster`.`jobOrderReferenceNo`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `billingmaster_v` AS (select `billingmaster`.`id` AS `id`,`billingmaster`.`billingReferenceNo` AS `billingReferenceNo`,`billingmaster`.`billedDate` AS `billedDate`,`billingmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`quoteReferenceNo` AS `quoteReferenceNo`,`jobordermaster_v`.`customerCode` AS `customerCode`,`jobordermaster_v`.`customerName` AS `customerName`,`jobordermaster_v`.`customerTelNo` AS `customerTelNo`,`jobordermaster_v`.`address` AS `customerAddress`,`jobordermaster_v`.`jobType` AS `jobType`,`jobordermaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`jobordermaster_v`.`downPayment` AS `estDownPayment`,`jobordermaster_v`.`isAppliedDP` AS `isAppliedDP`,`jobordermaster_v`.`dueDate` AS `dueDate`,`jobordermaster_v`.`total_qty` AS `totalQty`,`jobordermaster_v`.`totalDelivered` AS `totalDelivered`,`jobordermaster_v`.`vat` AS `vat`,`jobordermaster_v`.`discount` AS `discount`,`jobordermaster_v`.`isAppliedDiscount` AS `isAppliedDiscount`,`billingmaster`.`downPayment` AS `downPayment`,`billingmaster`.`totalAmount` AS `totalAmount`,`billingmaster`.`balance` AS `balance`,`billingmaster`.`postedDate` AS `postedDate`,`billingmaster`.`createdBy` AS `createdBy`,`billingmaster`.`modifiedBy` AS `modifiedBy`,`billingmaster`.`modifiedDate` AS `modifiedDate`,`billingmaster`.`status` AS `status`,(case when (`billingmaster`.`status` = 1) then 'POSTED' when (`billingmaster`.`status` = 2) then 'CLOSED' else 'FOR POSTING' end) AS `statusDesc` from (`billingmaster` join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `billingmaster`.`jobOrderReferenceNo`)))) */;
 
 /*View structure for view controlno_v */
 
@@ -1166,14 +1214,14 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `deliverydetail_v` */;
 /*!50001 DROP VIEW IF EXISTS `deliverydetail_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `deliverydetail_v` AS (select `deliverydetail`.`id` AS `id`,`deliverydetail`.`deliveryCode` AS `deliveryCode`,`deliverydetail`.`JODtlId` AS `JODtlId`,`joborderdetail_v`.`sizeDesc` AS `sizeDesc`,`joborderdetail_v`.`color` AS `color`,`joborderdetail_v`.`uomDesc` AS `uomDesc`,`joborderdetail_v`.`specification` AS `specification`,(case when (`joborderdetail_v`.`actual` = NULL) then `joborderdetail_v`.`material` else `joborderdetail_v`.`actual` end) AS `material`,`deliverydetail`.`quantity` AS `quantity`,`deliverydetail`.`price` AS `price` from (`deliverydetail` join `joborderdetail_v` on((`joborderdetail_v`.`id` = `deliverydetail`.`JODtlId`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `deliverydetail_v` AS (select `deliverydetail`.`id` AS `id`,`deliverydetail`.`deliveryCode` AS `deliveryCode`,`deliverydetail`.`JODtlId` AS `JODtlId`,`joborderdetail_v`.`sizeDesc` AS `sizeDesc`,`joborderdetail_v`.`color` AS `color`,`joborderdetail_v`.`uomDesc` AS `uomDesc`,`joborderdetail_v`.`material` AS `material`,`joborderdetail_v`.`specification` AS `specification`,(case when (`joborderdetail_v`.`actual` = NULL) then `joborderdetail_v`.`quantity` else `joborderdetail_v`.`actual` end) AS `actual`,`deliverydetail`.`quantity` AS `quantity`,`deliverydetail`.`price` AS `price` from (`deliverydetail` join `joborderdetail_v` on((`joborderdetail_v`.`id` = `deliverydetail`.`JODtlId`)))) */;
 
 /*View structure for view deliverymaster_v */
 
 /*!50001 DROP TABLE IF EXISTS `deliverymaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `deliverymaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `deliverymaster_v` AS (select `deliverymaster`.`id` AS `id`,`deliverymaster`.`deliveryCode` AS `deliveryCode`,`deliverymaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`estimatemaster_v`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,`estimatemaster_v`.`attachment` AS `attachment`,`estimatemaster_v`.`downPayment` AS `downPayment`,`estimatemaster_v`.`isAppliedDP` AS `isAppliedDP`,`deliverymaster`.`amount` AS `amount`,`deliverymaster`.`discount` AS `discount`,`deliverymaster`.`subTotal` AS `subTotal`,`deliverymaster`.`vat` AS `vat`,`deliverymaster`.`totalAmount` AS `totalAmount`,`deliverymaster`.`preparedBy` AS `preparedBy`,`deliverymaster`.`preparedDate` AS `preparedDate`,`deliverymaster`.`modifiedBy` AS `modifiedBy`,`deliverymaster`.`modifiedDate` AS `modifiedDate`,`deliverymaster`.`createdDate` AS `createdDate`,`deliverymaster`.`createdBy` AS `createdBy`,`deliverymaster`.`status` AS `status`,(case when (`deliverymaster`.`status` = 1) then 'ACKNOWLEDGED' else 'PENDING' end) AS `statusDesc` from ((`deliverymaster` join `jobordermaster` on((`jobordermaster`.`jobOrderReferenceNo` = `deliverymaster`.`jobOrderReferenceNo`))) join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `deliverymaster_v` AS (select `deliverymaster`.`id` AS `id`,`deliverymaster`.`deliveryCode` AS `deliveryCode`,`deliverymaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`estimatemaster_v`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`jobType` AS `jobType`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,`estimatemaster_v`.`attachment` AS `attachment`,`estimatemaster_v`.`downPayment` AS `downPayment`,`estimatemaster_v`.`isAppliedDP` AS `isAppliedDP`,`deliverymaster`.`amount` AS `amount`,`estimatemaster_v`.`discount` AS `discount`,`deliverymaster`.`subTotal` AS `subTotal`,`deliverymaster`.`vat` AS `vat`,`deliverymaster`.`totalAmount` AS `totalAmount`,`deliverymaster`.`preparedBy` AS `preparedBy`,`deliverymaster`.`preparedDate` AS `preparedDate`,`deliverymaster`.`modifiedBy` AS `modifiedBy`,`deliverymaster`.`modifiedDate` AS `modifiedDate`,`deliverymaster`.`createdDate` AS `createdDate`,`deliverymaster`.`createdBy` AS `createdBy`,`deliverymaster`.`status` AS `status`,(case when (`deliverymaster`.`status` = 1) then 'ACKNOWLEDGED' else 'PENDING' end) AS `statusDesc` from ((`deliverymaster` join `jobordermaster` on((`jobordermaster`.`jobOrderReferenceNo` = `deliverymaster`.`jobOrderReferenceNo`))) join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
 
 /*View structure for view departmentmaster_v */
 
@@ -1194,7 +1242,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `estimatemaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `estimatemaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `estimatemaster_v` AS (select `estimatemaster`.`id` AS `id`,`estimatemaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster`.`transactionDate` AS `transactionDate`,`estimatemaster`.`customerCode` AS `customerCode`,`customersmaster`.`customerName` AS `customerName`,`customersmaster`.`address` AS `address`,`customersmaster`.`telephoneNo` AS `customerTelNo`,`estimatemaster`.`isRush` AS `isRush`,(case when (`estimatemaster`.`isRush` = '1') then 'YES' else 'NO' end) AS `isRushDesc`,`estimatemaster`.`jobType` AS `jobType`,`jobtypemaster`.`description` AS `jobTypeDesc`,(case when (`estimatemaster`.`isRush` = 1) then `estimatemaster`.`leadTime` else `jobtypemaster`.`leadTime` end) AS `leadTime`,`jobtypemaster`.`notificationDay` AS `notificationDay`,`estimatemaster`.`dueDate` AS `dueDate`,`estimatemaster`.`attachment` AS `attachment`,`estimatemaster`.`downPayment` AS `downPayment`,`estimatemaster`.`isAppliedDP` AS `isAppliedDP`,`estimatemaster`.`amount` AS `amount`,`estimatemaster`.`discount` AS `discount`,`estimatemaster`.`subTotal` AS `subTotal`,`estimatemaster`.`vat` AS `vat`,`estimatemaster`.`totalAmount` AS `totalAmount`,`estimatemaster`.`balance` AS `balance`,`estimatemaster`.`acknowledgeBy` AS `acknowledgeBy`,`estimatemaster`.`acknowledgeDate` AS `acknowledgeDate`,`estimatemaster`.`remarks` AS `remarks`,`estimatemaster`.`createdBy` AS `createdBy`,`usermaster`.`fullName` AS `userName`,`estimatemaster`.`modifiedDate` AS `modifiedDate`,`estimatemaster`.`modifiedBy` AS `modifiedBy`,`estimatemaster`.`status` AS `status`,(case when (`estimatemaster`.`status` = 1) then 'ACKNOWLEDGED' when (`estimatemaster`.`status` = 3) then 'CANCELED' when (`estimatemaster`.`status` = 2) then 'DISAPPROVED' else 'PENDING' end) AS `statusDesc` from (((`estimatemaster` join `customersmaster` on((`customersmaster`.`customerCode` = `estimatemaster`.`customerCode`))) join `jobtypemaster` on((`jobtypemaster`.`jobTypeCode` = `estimatemaster`.`jobType`))) join `usermaster` on((`usermaster`.`userName` = `estimatemaster`.`createdBy`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `estimatemaster_v` AS (select `estimatemaster`.`id` AS `id`,`estimatemaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster`.`transactionDate` AS `transactionDate`,`estimatemaster`.`customerCode` AS `customerCode`,`customersmaster`.`customerName` AS `customerName`,`customersmaster`.`address` AS `address`,`customersmaster`.`telephoneNo` AS `customerTelNo`,`estimatemaster`.`isRush` AS `isRush`,(case when (`estimatemaster`.`isRush` = '1') then 'YES' else 'NO' end) AS `isRushDesc`,`estimatemaster`.`jobType` AS `jobType`,`jobtypemaster`.`description` AS `jobTypeDesc`,(case when (`estimatemaster`.`isRush` = 1) then `estimatemaster`.`leadTime` else `jobtypemaster`.`leadTime` end) AS `leadTime`,`jobtypemaster`.`notificationDay` AS `notificationDay`,`estimatemaster`.`dueDate` AS `dueDate`,`estimatemaster`.`attachment` AS `attachment`,`estimatemaster`.`downPayment` AS `downPayment`,`estimatemaster`.`isAppliedDP` AS `isAppliedDP`,`estimatemaster`.`amount` AS `amount`,`estimatemaster`.`discount` AS `discount`,`estimatemaster`.`isAppliedDiscount` AS `isAppliedDiscount`,`estimatemaster`.`subTotal` AS `subTotal`,`estimatemaster`.`vat` AS `vat`,`estimatemaster`.`totalAmount` AS `totalAmount`,`estimatemaster`.`balance` AS `balance`,`estimatemaster`.`acknowledgeBy` AS `acknowledgeBy`,`estimatemaster`.`acknowledgeDate` AS `acknowledgeDate`,`estimatemaster`.`remarks` AS `remarks`,`estimatemaster`.`createdBy` AS `createdBy`,`usermaster`.`fullName` AS `userName`,`estimatemaster`.`modifiedDate` AS `modifiedDate`,`estimatemaster`.`modifiedBy` AS `modifiedBy`,`estimatemaster`.`status` AS `status`,(case when (`estimatemaster`.`status` = 1) then 'ACKNOWLEDGED' when (`estimatemaster`.`status` = 3) then 'CANCELED' when (`estimatemaster`.`status` = 2) then 'DISAPPROVED' else 'PENDING' end) AS `statusDesc` from (((`estimatemaster` join `customersmaster` on((`customersmaster`.`customerCode` = `estimatemaster`.`customerCode`))) join `jobtypemaster` on((`jobtypemaster`.`jobTypeCode` = `estimatemaster`.`jobType`))) join `usermaster` on((`usermaster`.`userName` = `estimatemaster`.`createdBy`)))) */;
 
 /*View structure for view jobdescriptionmaster_v */
 
@@ -1222,7 +1270,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `jobordermaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `jobordermaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobordermaster_v` AS (select `jobordermaster`.`id` AS `id`,`jobordermaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`jobType` AS `jobType`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`isRushDesc` AS `isRushDesc`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,(select `departmentmaster`.`description` AS `description` from (`joborderdepartment` join `departmentmaster` on((`departmentmaster`.`departmentCode` = `joborderdepartment`.`departmentCode`))) where ((`joborderdepartment`.`isCurrent` = 1) and (`joborderdepartment`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) limit 0,1) AS `department`,(select sum(`joborderdetail_v`.`qty_remaining`) AS `COUNT(joborderdetail_v.qty_remaining)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `total_qty`,`estimatemaster_v`.`downPayment` AS `downPayment`,`estimatemaster_v`.`isAppliedDP` AS `isAppliedDP`,`estimatemaster_v`.`amount` AS `amount`,`estimatemaster_v`.`vat` AS `vat`,`estimatemaster_v`.`discount` AS `discount`,`estimatemaster_v`.`subTotal` AS `subTotal`,`estimatemaster_v`.`totalAmount` AS `totalAmount`,`estimatemaster_v`.`balance` AS `balance`,`estimatemaster_v`.`transactionDate` AS `transactionDate`,`estimatemaster_v`.`attachment` AS `attachment`,`jobordermaster`.`acknowledgeBy` AS `acknowledgeBy`,`jobordermaster`.`acknowledgeDate` AS `acknowledgeDate`,`jobordermaster`.`createdDate` AS `createdDate`,`jobordermaster`.`createdBy` AS `createdBy`,`jobordermaster`.`modifiedDate` AS `modifiedDate`,`jobordermaster`.`modifiedBy` AS `modifiedBy`,`jobordermaster`.`status` AS `status`,(case when (`jobordermaster`.`status` = 1) then 'COMPLETED' when (`jobordermaster`.`status` = 2) then 'BILLED' else 'PENDING' end) AS `statusDesc` from (`jobordermaster` join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobordermaster_v` AS (select `jobordermaster`.`id` AS `id`,`jobordermaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`jobType` AS `jobType`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`isRushDesc` AS `isRushDesc`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,(select `departmentmaster`.`description` AS `description` from (`joborderdepartment` join `departmentmaster` on((`departmentmaster`.`departmentCode` = `joborderdepartment`.`departmentCode`))) where ((`joborderdepartment`.`isCurrent` = 1) and (`joborderdepartment`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) limit 0,1) AS `department`,(select sum(`joborderdetail_v`.`qty_remaining`) AS `COUNT(joborderdetail_v.qty_remaining)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `total_qty`,(select sum(`joborderdetail_v`.`qty_delivered`) AS `COUNT(joborderdetail_v.qty_delivered)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `totalDelivered`,`estimatemaster_v`.`downPayment` AS `downPayment`,`estimatemaster_v`.`isAppliedDP` AS `isAppliedDP`,`estimatemaster_v`.`amount` AS `amount`,`estimatemaster_v`.`vat` AS `vat`,`estimatemaster_v`.`discount` AS `discount`,`estimatemaster_v`.`isAppliedDiscount` AS `isAppliedDiscount`,`estimatemaster_v`.`subTotal` AS `subTotal`,`estimatemaster_v`.`totalAmount` AS `totalAmount`,`estimatemaster_v`.`balance` AS `balance`,`estimatemaster_v`.`transactionDate` AS `transactionDate`,`estimatemaster_v`.`attachment` AS `attachment`,`jobordermaster`.`acknowledgeBy` AS `acknowledgeBy`,`jobordermaster`.`acknowledgeDate` AS `acknowledgeDate`,(to_days(curdate()) - to_days(`jobordermaster`.`createdDate`)) AS `daysOld`,`jobordermaster`.`createdDate` AS `createdDate`,`jobordermaster`.`createdBy` AS `createdBy`,`jobordermaster`.`modifiedDate` AS `modifiedDate`,`jobordermaster`.`modifiedBy` AS `modifiedBy`,`jobordermaster`.`status` AS `status`,(case when (`jobordermaster`.`status` = 1) then 'COMPLETED' when (`jobordermaster`.`status` = 2) then 'BILLED' else 'PENDING' end) AS `statusDesc` from (`jobordermaster` join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
 
 /*View structure for view jobtypemaster_v */
 
@@ -1243,7 +1291,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `jolaborcostsmaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `jolaborcostsmaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jolaborcostsmaster_v` AS (select `jolaborcostsmaster`.`id` AS `id`,`jolaborcostsmaster`.`jobOrderDepartmentId` AS `jobOrderDepartmentId`,`jolaborcostsmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`customerName` AS `customerName`,`jolaborcostsmaster`.`departmentCode` AS `departmentCode`,`joborderdepartment_v`.`departmentName` AS `departmentName`,`jolaborcostsmaster`.`employeeName` AS `employeeName`,`jolaborcostsmaster`.`jobDescriptionCode` AS `jobDescriptionCode`,`jobdescriptionmaster`.`description` AS `jobDescription`,`jolaborcostsmaster`.`createdBy` AS `createdBy`,`jolaborcostsmaster`.`createdDate` AS `createdDate`,`jolaborcostsmaster`.`modifiedBy` AS `modifiedBy`,`jolaborcostsmaster`.`modifiedDate` AS `modifiedDate`,(select sum(`jolaborcostsdetail_v`.`total`) AS `SUM(jolaborcostsdetail_v.total)` from `jolaborcostsdetail_v` where (`jolaborcostsdetail_v`.`joLaborCostMasterId` = `jolaborcostsmaster`.`id`)) AS `totalLabor` from (((`jolaborcostsmaster` join `joborderdepartment_v` on(((`joborderdepartment_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`) and (`joborderdepartment_v`.`departmentCode` = `jolaborcostsmaster`.`departmentCode`)))) join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`))) join `jobdescriptionmaster` on((`jobdescriptionmaster`.`jobDescriptionCode` = `jolaborcostsmaster`.`jobDescriptionCode`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jolaborcostsmaster_v` AS (select `jolaborcostsmaster`.`id` AS `id`,`jolaborcostsmaster`.`jobOrderDepartmentId` AS `jobOrderDepartmentId`,`jolaborcostsmaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster_v`.`customerName` AS `customerName`,`jolaborcostsmaster`.`departmentCode` AS `departmentCode`,`joborderdepartment_v`.`departmentName` AS `departmentName`,`jolaborcostsmaster`.`employeeName` AS `employeeName`,`jolaborcostsmaster`.`jobDescriptionCode` AS `jobDescriptionCode`,`jobdescriptionmaster`.`description` AS `jobDescription`,`jobordermaster_v`.`totalAmount` AS `totalAmount`,`jolaborcostsmaster`.`createdBy` AS `createdBy`,`jolaborcostsmaster`.`createdDate` AS `createdDate`,`jolaborcostsmaster`.`modifiedBy` AS `modifiedBy`,`jolaborcostsmaster`.`modifiedDate` AS `modifiedDate`,(select sum(`jolaborcostsdetail_v`.`total`) AS `SUM(jolaborcostsdetail_v.total)` from `jolaborcostsdetail_v` where (`jolaborcostsdetail_v`.`joLaborCostMasterId` = `jolaborcostsmaster`.`id`)) AS `totalLabor` from (((`jolaborcostsmaster` join `joborderdepartment_v` on(((`joborderdepartment_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`) and (`joborderdepartment_v`.`departmentCode` = `jolaborcostsmaster`.`departmentCode`)))) join `jobordermaster_v` on((`jobordermaster_v`.`jobOrderReferenceNo` = `jolaborcostsmaster`.`jobOrderReferenceNo`))) join `jobdescriptionmaster` on((`jobdescriptionmaster`.`jobDescriptionCode` = `jolaborcostsmaster`.`jobDescriptionCode`)))) */;
 
 /*View structure for view laborcostsmaster_v */
 
@@ -1265,6 +1313,13 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP VIEW IF EXISTS `menumaster_v` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `menumaster_v` AS (select `menumaster`.`id` AS `id`,`menumaster`.`menuCode` AS `menuCode`,`menumaster`.`description` AS `description`,`menumaster`.`link` AS `link`,`menumaster`.`icon` AS `icon`,`menumaster`.`isMaintenance` AS `isMaintenance`,(case when (`menumaster`.`isMaintenance` = 1) then 'YES' else 'NO' end) AS `isMaintenanceDesc`,`menumaster`.`isTransactions` AS `isTransactions`,(case when (`menumaster`.`isTransactions` = 1) then 'YES' else 'NO' end) AS `isTransactionsDesc`,`menumaster`.`isReports` AS `isReports`,(case when (`menumaster`.`isReports` = 1) then 'YES' else 'NO' end) AS `isReportsDesc`,(case when (`menumaster`.`isTransactions` = 1) then 'TRANSACTIONS' when (`menumaster`.`isReports` = 1) then 'REPORTS' else 'MAINTENANCE' end) AS `xType`,`menumaster`.`createdDate` AS `createdDate`,`menumaster`.`sortNo` AS `sortNo`,`menumaster`.`createdBy` AS `createdBy`,`menumaster`.`modifiedDate` AS `modifiedDate`,`menumaster`.`modifiedBy` AS `modifiedBy`,`menumaster`.`status` AS `status`,(case when (`menumaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `menumaster`) */;
+
+/*View structure for view remindermaster_v */
+
+/*!50001 DROP TABLE IF EXISTS `remindermaster_v` */;
+/*!50001 DROP VIEW IF EXISTS `remindermaster_v` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `remindermaster_v` AS (select `remindermaster`.`id` AS `id`,`remindermaster`.`reminderCode` AS `reminderCode`,`remindermaster`.`title` AS `title`,`remindermaster`.`description` AS `description`,`remindermaster`.`createdBy` AS `createdBy`,`remindermaster`.`createdDate` AS `createdDate`,`remindermaster`.`modifiedBy` AS `modifiedBy`,`remindermaster`.`modifiedDate` AS `modifiedDate`,`remindermaster`.`status` AS `status`,(case when (`remindermaster`.`status` = 1) then 'CLOSED' else 'OPEN' end) AS `statusDesc` from `remindermaster`) */;
 
 /*View structure for view sizingmaster_v */
 
@@ -1292,7 +1347,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `usermenuaccess_v` */;
 /*!50001 DROP VIEW IF EXISTS `usermenuaccess_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usermenuaccess_v` AS (select `usermenuaccess`.`id` AS `id`,`usermaster`.`id` AS `userId`,`usermenuaccess`.`userName` AS `userName`,`usermenuaccess`.`menuCode` AS `menuCode`,`menumaster`.`description` AS `menuDesc`,`menumaster`.`link` AS `link`,`menumaster`.`icon` AS `icon`,`menumaster`.`isMaintenance` AS `isMaintenance`,`menumaster`.`isTransactions` AS `isTransactions`,`menumaster`.`isReports` AS `isReports`,`menumaster`.`sortNo` AS `sortNo`,(case when (`menumaster`.`isTransactions` = 1) then 'TRANSACTIONS' when (`menumaster`.`isReports` = 1) then 'REPORTS' else 'MAINTENANCE' end) AS `xType` from ((`usermenuaccess` join `menumaster` on((`menumaster`.`menuCode` = `usermenuaccess`.`menuCode`))) join `usermaster` on((`usermaster`.`userName` = `usermenuaccess`.`userName`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usermenuaccess_v` AS (select `usermenuaccess`.`id` AS `id`,`usermaster`.`id` AS `userId`,`usermenuaccess`.`userName` AS `userName`,`usermenuaccess`.`menuCode` AS `menuCode`,`menumaster`.`description` AS `menuDesc`,`menumaster`.`link` AS `link`,`menumaster`.`icon` AS `icon`,`menumaster`.`isMaintenance` AS `isMaintenance`,`menumaster`.`isTransactions` AS `isTransactions`,`menumaster`.`isReports` AS `isReports`,`menumaster`.`sortNo` AS `sortNo`,(case when (`menumaster`.`isTransactions` = 1) then 'TRANSACTIONS' when (`menumaster`.`isReports` = 1) then 'REPORTS' else 'MAINTENANCE' end) AS `xType` from ((`usermenuaccess` join `menumaster` on((`menumaster`.`menuCode` = `usermenuaccess`.`menuCode`))) join `usermaster` on((`usermaster`.`userName` = `usermenuaccess`.`userName`))) where (`menumaster`.`status` = 1)) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

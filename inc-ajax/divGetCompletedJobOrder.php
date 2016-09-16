@@ -200,15 +200,20 @@
 			</tr>
 			<? $cnt++; } ?>
 		</table>
-		
+		<?
+			$discount = 0.00;
+			if($row_jomst[0]['discount'] > 0 && $row_jomst[0]['isAppliedDiscount'] == 0){
+				$discount = $row_jomst[0]['discount'];
+			}
+		?>
 		<div class="control-group">
 			<label class="control-label" for="txtDiscount">Discount</label>
 			<div class="controls">
-				<input class="input-xlarge" onKeyUp="return ComputeTotal();" name="txtDiscount" id="txtDiscount" style="text-align:right;" type="text" placeholder="0.00" />
+				<input class="input-xlarge" readonly onKeyUp="return ComputeTotal();" value="<?=number_format($discount,2);?>" name="txtDiscount" id="txtDiscount" style="text-align:right;" type="text" placeholder="0.00" />
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="txtDiscount">Sub-Total</label>
+			<label class="control-label" for="txtSubTotal">Sub-Total</label>
 			<div class="controls">
 				<input class="input-xlarge" name="txtSubTotal" id="txtSubTotal" style="text-align:right;" readonly type="text" placeholder="0.00" />
 			</div>
@@ -231,6 +236,7 @@
 		</div>
 		<input type="hidden" name="deliverySave" id="deliverySave" value="1" />
 		<input type="hidden" name="joNo" id="joNo" value="<?=$id;?>" />
+		<input type="hidden" name="estNo" id="estNo" value="<?=$row_jomst[0]['quoteReferenceNo'];?>" />
 		<input type="hidden" name="arrItems" id="arrItems" value="<?=$arrItems;?>" />
 	 </form>
 </div>

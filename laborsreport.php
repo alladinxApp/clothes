@@ -1,8 +1,6 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . LABORCOSTMODEL);
-	require_once(CONTROLLER_PATH . JOBORDERLABORCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -46,61 +44,61 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		numericDecimalOnly = function(fld){
-			$(fld).on("keypress keyup blur",function (event) {
-	     		$(this).val($(this).val().replace(/[^0-9\.]/g,''));
-	            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-	                event.preventDefault();
-	            }
-	        });
-	    }
-
-	    numbericOnly = function(fld){
-	    	$(fld).on("keypress keyup blur",function (event) {    
-	           $(this).val($(this).val().replace(/[^\d].+/, ""));
-	            if ((event.which < 48 || event.which > 57)) {
-	                event.preventDefault();
-	            }
-	        });
-	    }
-
-	    numericDecimalOnly("#txtAmount");
-	    numbericOnly("#txtQty");
-
-	    AddLabor = function(){
-			var jolaborid = $("#txtJOLaborId").val();
-			var laborcostid = $("#txtLaborCostId").val();
-			var qty = $("#txtQty").val();
-			var amount = $("#txtAmount").val();
-			var strURL = 'inc-ajax/divSaveNewLaborCost.php?id='+jolaborid+'&laborcostid='+laborcostid+'&qty='+qty+'&amount='+amount;
-
-			if(laborcostid == ""){
-				alert("Please select labor cost!");
-				return false;
-			}
-			if(qty == ""){
-				alert("Please enter quantity!");
-				$("#txtQty").focus();
-				return false;
-			}
-			if(amount == ""){
-				alert("Please enter amount!");
-				$("#txtAmount").focus();
-				return false;
-			}
+	$(document).ready(function() {
+		$("#btnSearch").on("click", function(){
+			var from = $("#txtFrom").val();
+			var to = $("#txtTo").val();
+			var emp = $("#txtEmployeeName").val();
 
 			$.ajax({
-				url: strURL,
+				url: 'inc-ajax/divLaborsReport.php?from='+from+'&to='+to+'&emp='+emp,
 				type: 'GET',
 				data: null,
 				datatype: 'json',
 				contentType: 'application/json; charset=utf-8',
 				
 				success: function (data) {
-					$("#divDetails").replaceWith(data);
-					$("#txtQty").val("");
-					$("#txtAmount").val("");
+					$("#dataSearch").html(data);
+					$("#txtExport").val(1);
+					$("#From").val(from);
+					$("#To").val(to);
+					$("#Employee").val(emp);
+				},	
+						
+				error: function (request, status, err) {
+					alert(status);
+					alert(err);
+				}
+			});
+		});
+
+		$("#btnExport").on("click",function(){
+			if( $("#txtEmployeeName").val() == "" ){
+				alert("Please enter employee to search!");
+				$( "#divEmployeeList" ).dialog( "open" ); // CALL EMPLOYEE LIST
+				return false;
+			}
+			if( $("#txtExport").val() == 0){
+				alert("Please generate row data first before exporting!");
+				return false;
+			}
+		});
+
+		SelectEmployee = function(name){
+			$("#txtEmployeeName").val(name);
+			$( "#divEmployeeList" ).dialog( "close" );
+		}
+
+		findEmployee = function(q){
+			$.ajax({
+				url: 'inc-ajax/divSearchEmployee.php?q='+q,
+				type: 'GET',
+				data: null,
+				datatype: 'json',
+				contentType: 'application/json; charset=utf-8',
+				
+				success: function (data) {
+					$("#divEmpList").replaceWith(data);
 				},	
 						
 				error: function (request, status, err) {
@@ -109,7 +107,28 @@
 				}
 			});	
 		}
-	})
+
+		$("#txtEmployeeName").click(function(){
+			$( "#divEmployeeList" ).dialog( "open" ); // CALL EMPLOYEE LIST
+		});
+
+		//POP MODAL FOR EMPLOYEE LIST
+		$( "#divEmployeeList" ).dialog({
+			autoOpen: false,
+			height: 600,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}		
+		});
+	});
 </script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
@@ -121,7 +140,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/joborder_labor_add.php");?>
+					<? require_once("views/laborsreport.php");?>
 				</div>
 				<!-- end: Content -->
 

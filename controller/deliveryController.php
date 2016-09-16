@@ -2,6 +2,7 @@
 	// SAVE DELIVERY
 	if(isset($_POST['deliverySave']) && !empty($_POST['deliverySave']) && $_POST['deliverySave'] == 1){
 		$id = $_POST['joNo'];
+		$estno = $_POST['estNo'];
 
 		$amount = str_replace(",","",$_POST['txtAmount']);
 		$discount = str_replace(",","",$_POST['txtDiscount']);
@@ -24,6 +25,17 @@
 		$deliverymst->setField("deliveryCode,jobOrderReferenceNo,amount,discount,vat,subTotal,totalAmount,createdBy,createdDate");
 		$deliverymst->setValues("'$newNum','$id','$amount','$discount','$vat','$subtotal','$totalamount','$userid','$today'");
 		$deliverymst->doQuery("save");
+
+		if($discount > 0){
+			// UPDATE JOB ORDER MASTER
+			$updestmst = new Table();
+			$updestmst->setSQLType($csdb->getSQLType());
+			$updestmst->setInstance($csdb->getInstance());
+			$updestmst->setTable("estimatemaster");
+			$updestmst->setValues("isAppliedDiscount = 1");
+			$updestmst->setParam("WHERE quoteReferenceNo = '$estno'");
+			$updestmst->doQuery("update");
+		}
 
 		// SET JOB ORDER DETAIL
 		$jodtl = new Table();

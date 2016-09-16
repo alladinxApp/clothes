@@ -1,4 +1,4 @@
-<?
+ <?
 	// SAVE BILLING
 	if(isset($_POST['billingSaved']) && !empty($_POST['billingSaved']) && $_POST['billingSaved'] == 1){
 		$id = $_GET['id'];
@@ -115,9 +115,10 @@
 	// UPDATE BILLING
 	if(isset($_POST['billingPosted']) && !empty($_POST['billingPosted']) && $_POST['billingPosted'] == 1){
 		$id = $_GET['id'];
+		$amount = str_replace(",","",$_POST['txtAmount']);
+
 		// GET CONTROL NO
-		// $newNum = getNewCtrlNo("ACCOUNTS_RECEIVABLE");
-		// $ttlamount = str_replace(",","",$_POST['txtAmount']);
+		$newNum = getNewCtrlNo("ACCOUNTS_RECEIVABLE");
 
 		// OPEN DB
 		$csdb = new DBConfig();
@@ -132,20 +133,20 @@
 		$billingmst->setParam("WHERE billingReferenceNo = '$id'");
 		$billingmst->doQuery("update");
 
-		// INSERT NEW BILLING
-		// $ar = new Table();
-		// $ar->setSQLType($csdb->getSQLType());
-		// $ar->setInstance($csdb->getInstance());
-		// $ar->setTable("armaster");
-		// $ar->setField("ARNo,billingReferenceNo,amount,createdDate,createdBy");
-		// $ar->setValues("'$newNum','$id','$ttlamount','$today','$userid'");
-		// $ar->doQuery("save");
+		// INSERT NEW AR
+		$armst = new Table();
+		$armst->setSQLType($csdb->getSQLType());
+		$armst->setInstance($csdb->getInstance());
+		$armst->setTable("armaster");
+		$armst->setField("ARNo,billingReferenceNo,amount,balance,createdDate,createdBy");
+		$armst->setValues("'$newNum','$id','$amount','$amount','$today','$userid'");
+		$armst->doQuery("save");
 
 		// CLOSE DB
 		$csdb->DBClose();
 
 		// UPDATE CONTROL NO
-		// UpdateCtrlNo("ACCOUNTS_RECEIVABLE");
+		UpdateCtrlNo("ACCOUNTS_RECEIVABLE");
 
 		$alert = new MessageAlert();
 		$alert->setMessage("Billing successfully posted.");
@@ -153,4 +154,54 @@
 		$alert->Alert();
 	}
 	// END UPDATE BILLING
+	// SEARCH BILLING
+	if(isset($_POST['billingSearch']) && !empty($_POST['billingSearch']) && $_POST['billingSearch'] == 1){
+		$billNo = "";
+		$xDate = "";
+		$stat = "";
+
+		// TRANSACTION DATE
+		if(!empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
+			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
+			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
+			$xDate = " AND billedDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
+		}else if(!empty($_POST['txtFrom']) && empty($_POST['txtTo'])){
+			$dtfrom = dateFormat($_POST['txtFrom'],"Y-m-d");
+			$dtto = dateFormat($_POST['txtFrom'],"Y-m-d");
+			$xDate = " AND billedDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
+		}else if(empty($_POST['txtFrom']) && !empty($_POST['txtTo'])){
+			$dtfrom = dateFormat($_POST['txtTo'],"Y-m-d");
+			$dtto = dateFormat($_POST['txtTo'],"Y-m-d");
+			$xDate = " AND billedDate between '$dtfrom 00:00:00' AND '$dtto 23:59:00'";
+		}else{ }
+
+		// DELIVERY NO
+		if(isset($_POST['txtBillingNo']) && !empty($_POST['txtBillingNo'])){
+			$billCode = $_POST['txtBillingNo'];
+			$billNo = " AND billingReferenceNo = '$billCode'";
+		}
+
+		// STATUS
+		if(isset($_POST['txtStatus']) && !empty($_POST['txtStatus']) || $_POST['txtStatus'] != ""){
+			$status = $_POST['txtStatus'];
+			$stat = " AND status = '$status'";
+		}
+
+		// OPEN DB
+		$csdb = new DBConfig();
+		$csdb->setClothesDB();
+
+		// SET BILLING
+		$billingmst = new Table();
+		$billingmst->setSQLType($csdb->getSQLType());
+		$billingmst->setInstance($csdb->getInstance());
+		$billingmst->setView("billingmaster_v");
+		$billingmst->setParam("WHERE 1 $billNo $xDate $stat ORDER BY billedDate");
+		$billingmst->doQuery("query");
+		$row_billingmst = $billingmst->getLists();
+
+		// CLOSE DB
+		$csdb->DBClose();
+	}
+	// END SEARCH BILLING
 ?>

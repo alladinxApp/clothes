@@ -83,7 +83,7 @@
 					  <th>SIZES</th>
 					  <th>COLOR</th>
 					  <th>UOM</th>
-					  <th>ACTUAL MATERIALS</th>
+					  <th>MATERIALS</th>
 					  <th>SPECIFICATION</th>
 					  <th>PRICE</th>
 					  <th>QUANTITY</th>

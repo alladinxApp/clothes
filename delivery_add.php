@@ -47,6 +47,17 @@
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		numericDecimalOnly = function(fld){
+			$(fld).on("keypress keyup blur",function (event) {
+	     		$(this).val($(this).val().replace(/[^0-9\.]/g,''));
+	            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+	                event.preventDefault();
+	            }
+	        });
+	    }
+
+	    numericDecimalOnly("#txtDiscount");
+	    
 		SelectJobOrder = function(jono){
 			var strURL = "inc-ajax/divGetCompletedJobOrder.php?id="+jono;
 

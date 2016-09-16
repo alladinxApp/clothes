@@ -2,7 +2,7 @@
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
 	require_once(MODEL_PATH . BILLINGMODEL);
-	// require_once(CONTROLLER_PATH . ESTIMATECONTROLLER);
+	require_once(CONTROLLER_PATH . BILLINGCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -43,8 +43,8 @@
 		
 </head>
 <script type="text/javascript">
-	function EstimatePrint(estno){
-		window.open("estimate_print.php?id="+estno);
+	function BillingPrint(billno){
+		window.open("billing_print.php?id="+billno);
 		return false;
 	}
 </script>

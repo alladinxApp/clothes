@@ -2,9 +2,6 @@
 	<div class="box span12">
 		<div class="box-header" data-original-title>
 			<h2><i class="icon-money"></i><span class="break"></span><b>Billing Job Orders</b></h2>
-			<div class="box-icon">
-				<a href="billing_search.php"><i class="halflings-icon search"></i> SEARCH</a>
-			</div>
 		</div>
 
 		<div class="box-content">

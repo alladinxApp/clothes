@@ -1,11 +1,10 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . DEFAULTMODEL);
-	require_once(CONTROLLER_PATH . DEFAULTCONTROLLER);
+	require_once(MODEL_PATH . JOBTYPEMODEL);
+	require_once(MODEL_PATH . CUSTOMERMODEL);
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 	
 	<!-- start: Meta -->
@@ -47,41 +46,59 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-	// function EditReminder(id){
-	// 	$.ajax({
-	// 		url: 'inc-ajax/divEditReminder.php?id='+id,
-	// 		type: 'GET',
-	// 		data: null,
-	// 		datatype: 'json',
-	// 		contentType: 'application/json; charset=utf-8',
-			
-	// 		success: function (data) {
-	// 			$("#dataReminder").html(data);
-	// 			$( "#divEditReminder" ).dialog( "open" ); // CALL REMINDER FORM
-	// 		},	
-					
-	// 		error: function (request, status, err) {
-	// 			alert(status);
-	// 			alert(err);
-	// 		}
-	// 	});	
-	// }
 	$(document).ready(function() {
-		$('#btnNewReminder').on("click", function(e){
-			$( "#divNewReminder" ).dialog( "open" ); // CALL REMINDER FORM
-		});
-
-		EditReminder = function(id){
+		$("#btnSearch").on("click", function(){
+			var from = $("#txtFrom").val();
+			var to = $("#txtTo").val();
+			var cust = $("#txtCustomer").val();
+			var jtype = $("#txtJobType").val();
+			var strURL = 'inc-ajax/divPendingJOReport.php?from='+from+'&to='+to+'&cust='+cust+'&jtype='+jtype;
+			
 			$.ajax({
-				url: 'inc-ajax/divEditReminder.php?id='+id,
+				url: strURL,
 				type: 'GET',
 				data: null,
 				datatype: 'json',
 				contentType: 'application/json; charset=utf-8',
 				
 				success: function (data) {
-					$("#divEditReminder").html(data);
-					$("#divEditReminder").dialog( "open" ); // CALL REMINDER FORM
+					$("#dataSearch").html(data);
+					$("#txtExport").val(1);
+					$("#From").val(from);
+					$("#To").val(to);
+					$("#Customer").val(cust);
+					$("#JobType").val(jtype);
+				},	
+						
+				error: function (request, status, err) {
+					alert(status);
+					alert(err);
+				}
+			});
+		});
+
+		SelectCustomer = function(id,name){
+			$("#txtCustomer").val(id);
+			$("#txtCustomerName").val(name);
+			$( "#divCustomersList" ).dialog( "close" );
+		}
+
+		SelectJobType = function(jtcode,jtdesc){
+			$("#txtJobType").val(jtcode);
+			$("#txtJobTypeDesc").val(jtdesc);
+			$( "#divJobTypeList" ).dialog( "close" );
+		}
+
+		findCustomer = function(q){
+			$.ajax({
+				url: 'inc-ajax/divSearchCustomer.php?q='+q,
+				type: 'POST',
+				data: null,
+				datatype: 'json',
+				contentType: 'application/json; charset=utf-8',
+				
+				success: function (data) {
+					$("#divCustList").replaceWith(data);
 				},	
 						
 				error: function (request, status, err) {
@@ -91,37 +108,39 @@
 			});	
 		}
 
+		$("#txtCustomerName").click(function(){
+			$( "#divCustomersList" ).dialog( "open" ); // CALL CUSTOMER LIST
+		});
+
+		$("#txtJobTypeDesc").click(function(){
+			$( "#divJobTypeList" ).dialog( "open" ); // CALL JOB TYPE LIST
+		});
+
 		//POP MODAL FOR CUSTOMER LIST
-		$( "#divNewReminder" ).dialog({
+		$( "#divCustomersList" ).dialog({
 			autoOpen: false,
-			height: 400,
-			width: 600,
+			height: 600,
+			width: 900,
 			modal: true,
 			cache: false,
 			buttons: {
-				"Save": function() {
-					var title = $("#txtTitle").val();
-					var desc = $("#txtDescription").val();
-
-					$.ajax({
-						url: 'inc-ajax/divSaveNewReminder.php?title='+title+'&desc='+desc,
-						type: 'POST',
-						data: null,
-						datatype: 'json',
-						contentType: 'application/json; charset=utf-8',
-						
-						success: function (data) {
-							$("#divReminderList").replaceWith(data);
-						},	
-								
-						error: function (request, status, err) {
-							alert(status);
-							alert(err);
-						}
-					});	
-
+				"Close": function() {
 					$( this ).dialog( "close" );
-				},
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}		
+		});
+
+		//POP MODAL FOR JOB TYPE LIST
+		$( "#divJobTypeList" ).dialog({
+			autoOpen: false,
+			height: 600,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
 				"Close": function() {
 					$( this ).dialog( "close" );
 				}
@@ -131,44 +150,11 @@
 			}
 		});
 
-		//POP MODAL FOR EDIT REMINDER
-		$( "#divEditReminder" ).dialog({
-			autoOpen: false,
-			height: 410,
-			width: 600,
-			modal: true,
-			cache: false,
-			buttons: {
-				"Update": function() {
-					var id = $("#txtReminderCode").val();
-					var status = $("#txtStatus").val();
-
-					$.ajax({
-						url: 'inc-ajax/divUpdateReminder.php?id='+id+'&status='+status,
-						type: 'POST',
-						data: null,
-						datatype: 'json',
-						contentType: 'application/json; charset=utf-8',
-						
-						success: function (data) {
-							$("#divReminderList").replaceWith(data);
-						},	
-								
-						error: function (request, status, err) {
-							alert(status);
-							alert(err);
-						}
-					});	
-
-					$( this ).dialog( "close" );
-				},
-				"Close": function() {
-					$( this ).dialog( "close" );
-				}
-			},
-			close: function() {
-				$( this ).dialog( "close" );
-			}		
+		$("#btnExport").on("click",function(){
+			if( $("#txtExport").val() == 0){
+				alert("Please generate row data first before exporting!");
+				return false;
+			}
 		});
 	});
 </script>
@@ -182,9 +168,10 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/default.php"); ?>
+					<? require_once("views/pendingjoreport.php");?>
+				</div>
 				<!-- end: Content -->
-				</div><!--/#content.span10-->
+
 			</div><!--/fluid-row-->
 		</div>
 		

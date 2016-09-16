@@ -5,9 +5,9 @@
 			<div class="box-icon">
 				<a href="billing_joborders.php"><i class="halflings-icon plus"></i> ADD NEW</a>
 			</div>
-			<!-- <div class="box-icon">
+			<div class="box-icon">
 				<a href="billing_search.php"><i class="halflings-icon search"></i> SEARCH</a>
-			</div> -->
+			</div>
 		</div>
 
 		<div class="box-content">
@@ -54,7 +54,7 @@
 						<a class="btn btn-info" href="billing_edit.php?edit=1&id=<?=$billNo;?>" title="Edit <?=$billNo;?>">
 							<i class="halflings-icon white edit"></i>  
 						</a>
-						<a class="btn btn-info" href="#" onClick="billingPrint('<?=$billNo;?>');" title="Print <?=$billNo;?>">
+						<a class="btn btn-info" href="#" onClick="BillingPrint('<?=$billNo;?>');" title="Print <?=$billNo;?>">
 							<i class="halflings-icon white print"></i> 
 						</a>
 					</td>

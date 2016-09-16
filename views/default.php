@@ -16,187 +16,134 @@
 		</div>
 	</div>
 	<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-		<div class="number"><?=number_format($row_armst[0]['amount'],2);?><i class="icon-arrow-up"></i></div>
+		<div class="number" style="font-size: 35px;"><?=number_format($amount,2);?><i class="icon-arrow-up"></i></div>
 		<div class="title">Accounts Receivable</div>
 		<div class="footer">
 			<a href="dailycollections.php"> Go to List </a>
 		</div>
 	</div>
-	<!-- <div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
-		<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-		<div class="number">678<i class="icon-arrow-down"></i></div>
-		<div class="title">visits</div>
-		<div class="footer">
-			<a href="#"> read full report</a>
+</div>
+<div class="row-fluid">	
+	<div class="span8" onTablet="span6" onDesktop="span6">
+		<div class="box-header" data-original-title>
+			<h2><i class="icon-upload-alt"></i><span class="break"></span><b>PENDING JOB ORDERS</b></h2>
 		</div>
-	</div> -->	
-</div>
+		<div style="overflow: scroll; height: 300px; border: 1px #fff solid; background: #fff;">
+		<table class="table table-bordered table-condensed">
+				<tr>
+					<th>#</th>
+					<th>JO#</th>
+					<th>Cust</th>
+					<th>Proj</th>
+					<th>Due</th>
+					<th>Days</th>
+					<th>Qty</th>
+				</tr>
+				<?
+					$cnt = 1;
+					for($i=0;$i<count($row_joborders);$i++){
+						$bg = null;
+						$font = null;
+						$lbl = 'warning';
+						if(!$cnt%2){
+							$bg = 'background: #eee;';
+						}
 
-<!-- <div class="row-fluid">
-	<div class="span8 widget blue" onTablet="span7" onDesktop="span8">
-		<div id="stats-chart2"  style="height:282px" ></div>
+						$style = $bg;
+				?>
+				<tr>
+					<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
+					<td align="left" style="<?=$style;?>"><?=$row_joborders[$i]['jobOrderReferenceNo'];?></td>
+					<td align="left" style="<?=$style;?>"><?=$row_joborders[$i]['customerName'];?></td>
+					<td align="left" style="<?=$style;?>"><?=$row_joborders[$i]['jobTypeDesc'];?></td>
+					<td align="center" style="<?=$style;?>"><?=dateFormat($row_joborders[$i]['dueDate'],"M d, Y");?></td>
+					<td align="center" style="<?=$style;?>"><?=$row_joborders[$i]['daysOld'];?></td>
+					<td align="center" style="<?=$style;?>"><?=$row_joborders[$i]['total_qty'];?></td>
+				</tr>
+				<? $cnt++; } ?>
+			 </table>  
+		</div>
 	</div>
-	<div class="sparkLineStats span4 widget green" onTablet="span5" onDesktop="span4">
-        <ul class="unstyled">
-            <li><span class="sparkLineStats3"></span> 
-                Pageviews: 
-                <span class="number">781</span>
-            </li>
-            <li><span class="sparkLineStats4"></span>
-                Pages / Visit: 
-                <span class="number">2,19</span>
-            </li>
-            <li><span class="sparkLineStats5"></span>
-                Avg. Visit Duration: 
-                <span class="number">00:02:58</span>
-            </li>
-            <li><span class="sparkLineStats6"></span>
-                Bounce Rate: <span class="number">59,83%</span>
-            </li>
-            <li><span class="sparkLineStats7"></span>
-                % New Visits: 
-                <span class="number">70,79%</span>
-            </li>
-            <li><span class="sparkLineStats8"></span>
-                % Returning Visitor: 
-                <span class="number">29,21%</span>
-            </li>
-        </ul>
-		<div class="clearfix"></div>
-    </div>
-</div>
-
-<div class="row-fluid hideInIE8 circleStats">
-	<div class="span2" onTablet="span4" onDesktop="span2">
-    	<div class="circleStatsItemBox yellow">
-			<div class="header">Disk Space Usage</div>
-			<span class="percent">percent</span>
-			<div class="circleStat">
-        		<input type="text" value="58" class="whiteCircle" />
-			</div>		
-			<div class="footer">
-				<span class="count">
-					<span class="number">20000</span>
-					<span class="unit">MB</span>
-				</span>
-				<span class="sep"> / </span>
-				<span class="value">
-					<span class="number">50000</span>
-					<span class="unit">MB</span>
-				</span>	
+	<div class="span4" onTablet="span6" onDesktop="span6" id="divReminderList">
+		<div class="box-header" data-original-title>
+			<h2><i class="icon-book"></i><span class="break"></span><b>REMINDERS</b></h2>
+			<div class="box-icon">
+				<input type="button" name="btnNewReminder" id="btnNewReminder" class="btn btn-primary" value="Post Note" />
 			</div>
-    	</div>
+		</div>
+		<div style="overflow: scroll; height: 300px; border: 1px #fff solid; background: #fff;">
+		<table class="table table-bordered table-condensed">
+			<tr>
+			  <th>#</th>
+			  <th>Title</th>
+			</tr>
+			<?
+				$cnt = 1;
+				for($i=0;$i<count($row_remindermst);$i++){
+					$reminderCode = $row_remindermst[$i]['reminderCode'];
+					$bg = null;
+					if($cnt%2){
+						$bg = 'background: #eee;';
+					}
+					$style = $bg;
+			?>
+			<tr>
+				<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
+				<td align="left" style="<?=$style;?>"><a href="#" onClick="EditReminder('<?=$reminderCode;?>');"><?=$row_remindermst[$i]['title'];?></a></td>
+			</tr>
+			<? $cnt++; } ?>
+		 </table>
+		</div>
+	</div>	
+</div><br />
+<div class="row-fluid">	
+	<div class="span8" onTablet="span6" onDesktop="span6">
+		<div class="box-header" data-original-title>
+			<h2><i class="icon-money"></i><span class="break"></span><b>ACCOUNTS RECEIVABLE</b></h2>
+		</div>
+		<div style="overflow: scroll; height: 300px; border: 1px #fff solid; background: #fff;">
+		<table class="table table-bordered table-condensed">
+				<tr>
+					<th>#</th>
+					<th>SI#</th>
+					<th>JO#</th>
+					<th>Cust</th>
+					<th>Amnt</th>
+					<th>Days</th>
+					<th>Qty</th>
+				</tr>
+				<?
+					$cnt = 1;
+					$total = 0;
+					for($i=0;$i<count($row_armst);$i++){
+						$bg = null;
+						if($cnt%2){
+							$bg = 'background: #eee;';
+						}
+
+						$style = $bg;
+						$total += $row_armst[$i]['balance'];
+				?>
+				<tr>
+					<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
+					<td align="left" style="<?=$style;?>"><?=$row_armst[$i]['billingReferenceNo'];?></td>
+					<td align="left" style="<?=$style;?>"><?=$row_armst[$i]['jobOrderReferenceNo'];?></td>
+					<td align="left" style="<?=$style;?>"><?=$row_armst[$i]['customerName'];?></td>
+					<td align="right" style="<?=$style;?>"><?=number_format($row_armst[$i]['balance'],2);?></td>
+					<td align="center" style="<?=$style;?>"><?=$row_armst[$i]['daysOld'];?></td>
+					<td align="center" style="<?=$style;?>"><?=$row_armst[$i]['totalDelivered'];?></td>
+				</tr>
+				<? $cnt++; } ?>
+				<tr>
+					<td colspan="4" align="right">Total >>>>>>>>></td>
+					<td align="right"><?=number_format($total,2);?></td>
+					<td cols="2">&nbsp;</td>
+				</tr>
+			 </table>  
+		</div>
 	</div>
-
-	<div class="span2" onTablet="span4" onDesktop="span2">
-    	<div class="circleStatsItemBox green">
-			<div class="header">Bandwidth</div>
-			<span class="percent">percent</span>
-			<div class="circleStat">
-        		<input type="text" value="78" class="whiteCircle" />
-			</div>
-			<div class="footer">
-				<span class="count">
-					<span class="number">5000</span>
-					<span class="unit">GB</span>
-				</span>
-				<span class="sep"> / </span>
-				<span class="value">
-					<span class="number">5000</span>
-					<span class="unit">GB</span>
-				</span>	
-			</div>
-    	</div>
-	</div>
-
-	<div class="span2" onTablet="span4" onDesktop="span2">
-    	<div class="circleStatsItemBox greenDark">
-			<div class="header">Memory</div>
-			<span class="percent">percent</span>
-        	<div class="circleStat">
-        		<input type="text" value="100" class="whiteCircle" />
-			</div>
-			<div class="footer">
-				<span class="count">
-					<span class="number">64</span>
-					<span class="unit">GB</span>
-				</span>
-				<span class="sep"> / </span>
-				<span class="value">
-					<span class="number">64</span>
-					<span class="unit">GB</span>
-				</span>	
-			</div>
-    	</div>
-	</div>
-
-	<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
-    	<div class="circleStatsItemBox pink">
-			<div class="header">CPU</div>
-			<span class="percent">percent</span>
-        	<div class="circleStat">
-        		<input type="text" value="83" class="whiteCircle" />
-			</div>
-			<div class="footer">
-				<span class="count">
-					<span class="number">64</span>
-					<span class="unit">GHz</span>
-				</span>
-				<span class="sep"> / </span>
-				<span class="value">
-					<span class="number">3.2</span>
-					<span class="unit">GHz</span>
-				</span>	
-			</div>
-    	</div>
-	</div>
-
-	<div class="span2" onTablet="span4" onDesktop="span2">
-    	<div class="circleStatsItemBox orange">
-			<div class="header">Memory</div>
-			<span class="percent">percent</span>
-        	<div class="circleStat">
-        		<input type="text" value="100" class="whiteCircle" />
-			</div>
-			<div class="footer">
-				<span class="count">
-					<span class="number">64</span>
-					<span class="unit">GB</span>
-				</span>
-				<span class="sep"> / </span>
-				<span class="value">
-					<span class="number">64</span>
-					<span class="unit">GB</span>
-				</span>	
-			</div>
-    	</div>
-	</div>
-
-	<div class="span2" onTablet="span4" onDesktop="span2">
-    	<div class="circleStatsItemBox greenLight">
-			<div class="header">Memory</div>
-			<span class="percent">percent</span>
-        	<div class="circleStat">
-        		<input type="text" value="100" class="whiteCircle" />
-			</div>
-			<div class="footer">
-				<span class="count">
-					<span class="number">64</span>
-					<span class="unit">GB</span>
-				</span>
-				<span class="sep"> / </span>
-				<span class="value">
-					<span class="number">64</span>
-					<span class="unit">GB</span>
-				</span>	
-			</div>
-    	</div>
-	</div>
-</div>
-
-<div class="row-fluid">
-	<div class="widget blue span5" onTablet="span6" onDesktop="span5">
-		<h2><span class="glyphicons globe"><i></i></span> Demographics</h2>
+	<div class="widget blue span4" onTablet="span6" onDesktop="span6">
+		<h2><span class="glyphicons globe"><i></i></span> Works for Due</h2>
 		<hr>
 		<div class="content">
 			<div class="verticalChart">
@@ -206,7 +153,7 @@
 							<span>37%</span>
 						</div>
 					</div>
-					<div class="title">US</div>
+					<div class="title">JAN</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -214,7 +161,7 @@
 							<span>16%</span>
 						</div>
 					</div>
-					<div class="title">PL</div>
+					<div class="title">FEB</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -222,7 +169,7 @@
 							<span>12%</span>
 						</div>
 					</div>
-					<div class="title">GB</div>
+					<div class="title">MA</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -230,7 +177,7 @@
 							<span>9%</span>
 						</div>
 					</div>
-					<div class="title">DE</div>
+					<div class="title">APR</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -238,7 +185,7 @@
 							<span>7%</span>
 						</div>
 					</div>
-					<div class="title">NL</div>
+					<div class="title">MAY</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -246,7 +193,7 @@
 							<span>6%</span>
 						</div>
 					</div>
-					<div class="title">CA</div>
+					<div class="title">JUN</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -254,7 +201,7 @@
 							<span>5%</span>
 						</div>
 					</div>
-					<div class="title">FI</div>
+					<div class="title">JUL</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -262,7 +209,7 @@
 							<span>4%</span>
 						</div>
 					</div>
-					<div class="title">RU</div>
+					<div class="title">AUG</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -270,7 +217,7 @@
 							<span>3%</span>
 						</div>
 					</div>
-					<div class="title">AU</div>
+					<div class="title">SEP</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
@@ -278,43 +225,57 @@
 							<span>1%</span>
 						</div>
 					</div>
-					<div class="title">N/A</div>
-				</div>	
+					<div class="title">OCT</div>
+				</div>
+				<div class="singleBar">
+					<div class="bar">
+						<div class="value">
+							<span>1%</span>
+						</div>
+					</div>
+					<div class="title">NOV</div>
+				</div>
+				<div class="singleBar">
+					<div class="bar">
+						<div class="value">
+							<span>1%</span>
+						</div>
+					</div>
+					<div class="title">DEC</div>
+				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
-	</div>
-	<div class="widget span3 red" onTablet="span6" onDesktop="span3">
-		<h2><span class="glyphicons pie_chart"><i></i></span> Browsers</h2>
-		<hr>
-		<div class="content">
-			<div class="browserStat big">
-				<img src="img/browser-chrome-big.png" alt="Chrome">
-				<span>34%</span>
+	</div><!--/span-->
+</div>
+
+<!-- MODAL BOX FOR NEW REMINDER -->
+<div id="divNewReminder">
+	<div class="row-fluid">		
+		<div class="box span12">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="txtTitle">Title</label>
+							<div class="controls">
+								<input class="input-xlarge" name="txtTitle" id="txtTitle" type="text" placeholder="Title here..." />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="txtDescription">Description</label>
+							<div class="controls"><textarea name="txtDescription" id="txtDescription" rows="10" style="resize: none;" placeholder="Description here..."></textarea></div>
+						</div>
+					</fieldset>
+				</form>
 			</div>
-			<div class="browserStat big">
-				<img src="img/browser-firefox-big.png" alt="Firefox">
-				<span>34%</span>
-			</div>
-			<div class="browserStat">
-				<img src="img/browser-ie.png" alt="Internet Explorer">
-				<span>34%</span>
-			</div>
-			<div class="browserStat">
-				<img src="img/browser-safari.png" alt="Safari">
-				<span>34%</span>
-			</div>
-			<div class="browserStat">
-				<img src="img/browser-opera.png" alt="Opera">
-				<span>34%</span>
-			</div>	
 		</div>
 	</div>
-	<div class="widget yellow span4 noMargin" onTablet="span12" onDesktop="span4">
-		<h2><span class="glyphicons fire"><i></i></span> Server Load</h2>
-		<hr>
-		<div class="content">
-			 <div id="serverLoad2" style="height:224px;"></div>
-		</div>
-	</div>
-</div> -->
+</div>
+<!-- END MODAL BOX FOR NEW REMINDER -->
+
+<!-- MODAL BOX FOR EDIT REMINDER -->
+<div id="dataReminder">
+	<div id="divEditReminder"></div>
+</div>
+<!-- END MODAL BOX FOR EDIT REMINDER -->

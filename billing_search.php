@@ -1,8 +1,7 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . DAILYCOLLECTIONMODEL);
-	// require_once(CONTROLLER_PATH . ESTIMATECONTROLLER);
+	require_once(CONTROLLER_PATH . DELIVERYCONTROLLER);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -42,12 +41,6 @@
 	<!-- end: Favicon -->
 		
 </head>
-<script type="text/javascript">
-	function billingPrint(billno){
-		window.open("billing_print.php?id="+billno);
-		return false;
-	}
-</script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
 	
@@ -58,7 +51,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/dailycollections.php");?>
+					<? require_once("views/billing_search.php");?>
 				</div>
 				<!-- end: Content -->
 

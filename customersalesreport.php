@@ -1,8 +1,7 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . LABORCOSTMODEL);
-	require_once(CONTROLLER_PATH . JOBORDERLABORCONTROLLER);
+	require_once(MODEL_PATH . CUSTOMERMODEL);
 ?>
 <!DOCTYPE html><html lang="en">
 <head>
@@ -46,61 +45,57 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		numericDecimalOnly = function(fld){
-			$(fld).on("keypress keyup blur",function (event) {
-	     		$(this).val($(this).val().replace(/[^0-9\.]/g,''));
-	            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-	                event.preventDefault();
-	            }
-	        });
-	    }
-
-	    numbericOnly = function(fld){
-	    	$(fld).on("keypress keyup blur",function (event) {    
-	           $(this).val($(this).val().replace(/[^\d].+/, ""));
-	            if ((event.which < 48 || event.which > 57)) {
-	                event.preventDefault();
-	            }
-	        });
-	    }
-
-	    numericDecimalOnly("#txtAmount");
-	    numbericOnly("#txtQty");
-
-	    AddLabor = function(){
-			var jolaborid = $("#txtJOLaborId").val();
-			var laborcostid = $("#txtLaborCostId").val();
-			var qty = $("#txtQty").val();
-			var amount = $("#txtAmount").val();
-			var strURL = 'inc-ajax/divSaveNewLaborCost.php?id='+jolaborid+'&laborcostid='+laborcostid+'&qty='+qty+'&amount='+amount;
-
-			if(laborcostid == ""){
-				alert("Please select labor cost!");
-				return false;
-			}
-			if(qty == ""){
-				alert("Please enter quantity!");
-				$("#txtQty").focus();
-				return false;
-			}
-			if(amount == ""){
-				alert("Please enter amount!");
-				$("#txtAmount").focus();
-				return false;
-			}
+	$(document).ready(function() {
+		$("#btnSearch").on("click", function(){
+			var from = $("#txtFrom").val();
+			var to = $("#txtTo").val();
+			var cust = $("#txtCustomer").val();
 
 			$.ajax({
-				url: strURL,
+				url: 'inc-ajax/divCustomerSalesReport.php?from='+from+'&to='+to+'&cust='+cust,
 				type: 'GET',
 				data: null,
 				datatype: 'json',
 				contentType: 'application/json; charset=utf-8',
 				
 				success: function (data) {
-					$("#divDetails").replaceWith(data);
-					$("#txtQty").val("");
-					$("#txtAmount").val("");
+					$("#dataSearch").html(data);
+					$("#txtExport").val(1);
+					$("#From").val(from);
+					$("#To").val(to);
+					$("#Customer").val(cust);
+				},	
+						
+				error: function (request, status, err) {
+					alert(status);
+					alert(err);
+				}
+			});
+		});
+
+		$("#btnExport").on("click",function(){
+			if( $("#txtExport").val() == 0){
+				alert("Please generate row data first before exporting!");
+				return false;
+			}
+		});
+
+		SelectCustomer = function(id,name,addr,telno){
+			$("#txtCustomer").val(id);
+			$("#txtCustomerName").val(name);
+			$( "#divCustomersList" ).dialog( "close" );
+		}
+
+		findCustomer = function(q){
+			$.ajax({
+				url: 'inc-ajax/divSearchCustomer.php?q='+q,
+				type: 'POST',
+				data: null,
+				datatype: 'json',
+				contentType: 'application/json; charset=utf-8',
+				
+				success: function (data) {
+					$("#divCustList").replaceWith(data);
 				},	
 						
 				error: function (request, status, err) {
@@ -109,7 +104,28 @@
 				}
 			});	
 		}
-	})
+
+		$("#txtCustomerName").click(function(){
+			$( "#divCustomersList" ).dialog( "open" ); // CALL CUSTOMER LIST
+		});
+
+		//POP MODAL FOR CUSTOMER LIST
+		$( "#divCustomersList" ).dialog({
+			autoOpen: false,
+			height: 600,
+			width: 900,
+			modal: true,
+			cache: false,
+			buttons: {
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				$( this ).dialog( "close" );
+			}		
+		});
+	});
 </script>
 <body>
 	<? require_once("inc-box/header.php"); ?>
@@ -121,7 +137,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/joborder_labor_add.php");?>
+					<? require_once("views/customersalesreport.php");?>
 				</div>
 				<!-- end: Content -->
 

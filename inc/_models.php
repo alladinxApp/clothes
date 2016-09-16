@@ -20,6 +20,7 @@
 	define(JOBDESCRIPTIONMODEL, "jobDescriptionModel.php");
 	define(DELIVERIESMODEL, "deliveriesModel.php");
 	define(DELIVERYMODEL, "deliveryModel.php");
+	define(EMPLOYEEMODEL, "employeeModel.php");
 	define(BILLINGMODEL, "billingModel.php");
 	define(BILLINGCUSTOMERSMODEL, "billingCustomersModel.php");
 	define(BILLINGJOBORDERSMODEL, "billingJobOrdersModel.php");
@@ -29,6 +30,7 @@
 	define(PRINTDELIVERYMODEL, "printDeliveryModel.php");
 	define(PRINTEMPLOYEELABORMODEL, "printEmployeeLaborModel.php");
 	define(PRINTJOBORDERMODEL, "printJobOrderModel.php");
+	define(PRINTBILLINGMODEL, "printBillingModel.php");
 	// -- END MODELS --
 	
 ?>

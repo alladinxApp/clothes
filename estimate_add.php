@@ -47,14 +47,35 @@
 	<!-- end: Favicon -->
 		
 </head>
-<style type="text/css">
-</style>
 <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#divTxtBalance").hide();
+
+		numericDecimalOnly = function(fld){
+			$(fld).on("keypress keyup blur",function (event) {
+	     		$(this).val($(this).val().replace(/[^0-9\.]/g,''));
+	            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+	                event.preventDefault();
+	            }
+	        });
+	    }
+
+	    numbericOnly = function(fld){
+	    	$(fld).on("keypress keyup blur",function (event) {    
+	           $(this).val($(this).val().replace(/[^\d].+/, ""));
+	            if ((event.which < 48 || event.which > 57)) {
+	                event.preventDefault();
+	            }
+	        });
+	    }
+
+	    numericDecimalOnly("#txtDownPayment");
+	    numericDecimalOnly("#txtAmount");
+	    numericDecimalOnly("#txtDiscount");
+	    numbericOnly("#txtPieces");
 
 		generateRandomString = function(length){
 			var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

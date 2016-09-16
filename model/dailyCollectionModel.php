@@ -27,6 +27,15 @@
 		$row_billingdtl = $billingdtl->getLists();
 	}
 
+	// SET AR MST
+	$armst = new Table();
+	$armst->setSQLType($csdb->getSQLType());
+	$armst->setInstance($csdb->getInstance());
+	$armst->setView("armaster_v");
+	$armst->setParam("WHERE billingReferenceNo = '$id' AND tender > 0");
+	$armst->doQuery("query");
+	$row_armst = $armst->getLists();
+
 	// CLOSE DB
 	$csdb->DBClose();
 ?>

@@ -25,15 +25,25 @@
 						<input class="input-xlarge" value="<?=$row_joborders[0]['jobTypeDesc'];?>" name="txtJobType" id="txtJobType" readonly type="text" placeholder="Click Here..." />
 					</div>
 				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtJONo">Job Order Reference No</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=$row_joborders[0]['jobOrderReferenceNo'];?>" name="txtJONo" id="txtJONo" readonly type="text" placeholder="Job Order No Here..." />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="txtEstNo">Estimate Reference No</label>
+					<div class="controls">
+						<input class="input-xlarge" value="<?=$row_joborders[0]['quoteReferenceNo'];?>" name="txtEstNo" id="txtEstNo" readonly type="text" placeholder="Estimate No Here..." />
+					</div>
+				</div>
 				<table class="table table-bordered table-condensed">
 					<tr>
 						<th><!--<input type="checkbox" name="chkAll" id="chkAll" checked onclick="SelectAll(this);">--></th>
 						<th>#</th>
 						<th>Delivery Code</th>
-						<th>Job Order Code</th>
-						<th>Estimate Code</th>
-						<th>Status</th>
 						<th>Amount</th>
+						<th>Status</th>
 					</tr>
 					<?
 						$cnt = 1;
@@ -68,10 +78,8 @@
 						</td>
 						<td align="center" style="<?=$style;?>"><?=$cnt;?></td>
 						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['deliveryCode'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['jobOrderReferenceNo'];?></td>
-						<td align="left" style="<?=$style;?>"><?=$row_deliveries[$i]['quoteReferenceNo'];?></td>
-						<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_deliveries[$i]['statusDesc'];?></span></td>
 						<td align="right" style="<?=$style;?>"><?=number_format($row_deliveries[$i]['totalAmount'],2);?></td>
+						<td align="center" style="<?=$style;?>"><span class="label label-<?=$lbl;?>"><?=$row_deliveries[$i]['statusDesc'];?></span></td>
 					</tr>
 					<? $cnt++; } $noOfItems = ($cnt - 1); $balance = ($totalAmount - $dpamnt);?>
 				</table> 
