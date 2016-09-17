@@ -526,13 +526,14 @@ CREATE TABLE `usermaster` (
   `createdBy` varchar(20) DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
   `modifiedBy` varchar(20) DEFAULT NULL,
+  `changePassDate` datetime DEFAULT NULL,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usermaster` */
 
-insert  into `usermaster`(`id`,`userName`,`passWord`,`fullName`,`userType`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'ALLADINX','dcbaa000d6a435d4a6d76b41a7b27b85','ALLADINX',1,'2016-07-13 07:17:15','alladinx',NULL,NULL,1),(2,'NOELSR','92b9fa2f52fd311ed02bd48c345a67d0','NOEL S. RODRIGUEZ',1,'2016-07-13 07:17:31','alladinx',NULL,NULL,1),(3,'REYCAST','c61ee97c26b787b2b6adecf39cf667ee','REYCAST',0,'2016-07-13 07:17:41','alladinx',NULL,NULL,1);
+insert  into `usermaster`(`id`,`userName`,`passWord`,`fullName`,`userType`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`changePassDate`,`status`) values (1,'ALLADINX','dcbaa000d6a435d4a6d76b41a7b27b85','ALLADINX',1,'2016-07-13 07:17:15','alladinx',NULL,NULL,'2016-09-17 05:09:43',1),(2,'NOELSR','92b9fa2f52fd311ed02bd48c345a67d0','NOEL S. RODRIGUEZ',1,'2016-07-13 07:17:31','alladinx',NULL,NULL,NULL,1),(3,'REYCAST','c61ee97c26b787b2b6adecf39cf667ee','REYCAST',0,'2016-07-13 07:17:41','alladinx',NULL,NULL,NULL,1);
 
 /*Table structure for table `usermenuaccess` */
 
@@ -917,6 +918,8 @@ DROP TABLE IF EXISTS `jobordermaster_v`;
  `isRushDesc` varchar(3) ,
  `leadTime` varbinary(100) ,
  `dueDate` date ,
+ `dueMonth` int(2) ,
+ `dueYear` int(4) ,
  `department` varchar(50) ,
  `total_qty` decimal(41,0) ,
  `totalDelivered` decimal(32,0) ,
@@ -1148,6 +1151,7 @@ DROP TABLE IF EXISTS `usermaster_v`;
  `createdBy` varchar(20) ,
  `modifiedDate` datetime ,
  `modifiedBy` varchar(20) ,
+ `changePassDate` datetime ,
  `status` int(1) ,
  `statusDesc` varchar(8) 
 )*/;
@@ -1270,7 +1274,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `jobordermaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `jobordermaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobordermaster_v` AS (select `jobordermaster`.`id` AS `id`,`jobordermaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`jobType` AS `jobType`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`isRushDesc` AS `isRushDesc`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,(select `departmentmaster`.`description` AS `description` from (`joborderdepartment` join `departmentmaster` on((`departmentmaster`.`departmentCode` = `joborderdepartment`.`departmentCode`))) where ((`joborderdepartment`.`isCurrent` = 1) and (`joborderdepartment`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) limit 0,1) AS `department`,(select sum(`joborderdetail_v`.`qty_remaining`) AS `COUNT(joborderdetail_v.qty_remaining)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `total_qty`,(select sum(`joborderdetail_v`.`qty_delivered`) AS `COUNT(joborderdetail_v.qty_delivered)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `totalDelivered`,`estimatemaster_v`.`downPayment` AS `downPayment`,`estimatemaster_v`.`isAppliedDP` AS `isAppliedDP`,`estimatemaster_v`.`amount` AS `amount`,`estimatemaster_v`.`vat` AS `vat`,`estimatemaster_v`.`discount` AS `discount`,`estimatemaster_v`.`isAppliedDiscount` AS `isAppliedDiscount`,`estimatemaster_v`.`subTotal` AS `subTotal`,`estimatemaster_v`.`totalAmount` AS `totalAmount`,`estimatemaster_v`.`balance` AS `balance`,`estimatemaster_v`.`transactionDate` AS `transactionDate`,`estimatemaster_v`.`attachment` AS `attachment`,`jobordermaster`.`acknowledgeBy` AS `acknowledgeBy`,`jobordermaster`.`acknowledgeDate` AS `acknowledgeDate`,(to_days(curdate()) - to_days(`jobordermaster`.`createdDate`)) AS `daysOld`,`jobordermaster`.`createdDate` AS `createdDate`,`jobordermaster`.`createdBy` AS `createdBy`,`jobordermaster`.`modifiedDate` AS `modifiedDate`,`jobordermaster`.`modifiedBy` AS `modifiedBy`,`jobordermaster`.`status` AS `status`,(case when (`jobordermaster`.`status` = 1) then 'COMPLETED' when (`jobordermaster`.`status` = 2) then 'BILLED' else 'PENDING' end) AS `statusDesc` from (`jobordermaster` join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobordermaster_v` AS (select `jobordermaster`.`id` AS `id`,`jobordermaster`.`jobOrderReferenceNo` AS `jobOrderReferenceNo`,`jobordermaster`.`quoteReferenceNo` AS `quoteReferenceNo`,`estimatemaster_v`.`jobType` AS `jobType`,`estimatemaster_v`.`jobTypeDesc` AS `jobTypeDesc`,`estimatemaster_v`.`customerCode` AS `customerCode`,`estimatemaster_v`.`customerName` AS `customerName`,`estimatemaster_v`.`address` AS `address`,`estimatemaster_v`.`customerTelNo` AS `customerTelNo`,`estimatemaster_v`.`isRush` AS `isRush`,`estimatemaster_v`.`isRushDesc` AS `isRushDesc`,`estimatemaster_v`.`leadTime` AS `leadTime`,`estimatemaster_v`.`dueDate` AS `dueDate`,month(`estimatemaster_v`.`dueDate`) AS `dueMonth`,year(`estimatemaster_v`.`dueDate`) AS `dueYear`,(select `departmentmaster`.`description` AS `description` from (`joborderdepartment` join `departmentmaster` on((`departmentmaster`.`departmentCode` = `joborderdepartment`.`departmentCode`))) where ((`joborderdepartment`.`isCurrent` = 1) and (`joborderdepartment`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) limit 0,1) AS `department`,(select sum(`joborderdetail_v`.`qty_remaining`) AS `COUNT(joborderdetail_v.qty_remaining)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `total_qty`,(select sum(`joborderdetail_v`.`qty_delivered`) AS `COUNT(joborderdetail_v.qty_delivered)` from `joborderdetail_v` where (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS `totalDelivered`,`estimatemaster_v`.`downPayment` AS `downPayment`,`estimatemaster_v`.`isAppliedDP` AS `isAppliedDP`,`estimatemaster_v`.`amount` AS `amount`,`estimatemaster_v`.`vat` AS `vat`,`estimatemaster_v`.`discount` AS `discount`,`estimatemaster_v`.`isAppliedDiscount` AS `isAppliedDiscount`,`estimatemaster_v`.`subTotal` AS `subTotal`,`estimatemaster_v`.`totalAmount` AS `totalAmount`,`estimatemaster_v`.`balance` AS `balance`,`estimatemaster_v`.`transactionDate` AS `transactionDate`,`estimatemaster_v`.`attachment` AS `attachment`,`jobordermaster`.`acknowledgeBy` AS `acknowledgeBy`,`jobordermaster`.`acknowledgeDate` AS `acknowledgeDate`,(to_days(curdate()) - to_days(`jobordermaster`.`createdDate`)) AS `daysOld`,`jobordermaster`.`createdDate` AS `createdDate`,`jobordermaster`.`createdBy` AS `createdBy`,`jobordermaster`.`modifiedDate` AS `modifiedDate`,`jobordermaster`.`modifiedBy` AS `modifiedBy`,`jobordermaster`.`status` AS `status`,(case when (`jobordermaster`.`status` = 1) then 'COMPLETED' when (`jobordermaster`.`status` = 2) then 'BILLED' else 'PENDING' end) AS `statusDesc` from (`jobordermaster` join `estimatemaster_v` on((`estimatemaster_v`.`quoteReferenceNo` = `jobordermaster`.`quoteReferenceNo`)))) */;
 
 /*View structure for view jobtypemaster_v */
 
@@ -1340,7 +1344,7 @@ DROP TABLE IF EXISTS `usermenuaccess_v`;
 /*!50001 DROP TABLE IF EXISTS `usermaster_v` */;
 /*!50001 DROP VIEW IF EXISTS `usermaster_v` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usermaster_v` AS (select `usermaster`.`id` AS `id`,`usermaster`.`userName` AS `userName`,`usermaster`.`passWord` AS `passWord`,`usermaster`.`fullName` AS `fullName`,`usermaster`.`userType` AS `userType`,(case when (`usermaster`.`userType` = 1) then 'ADMINISTRATOR' else 'USER' end) AS `userTypeDesc`,`usermaster`.`createdDate` AS `createdDate`,`usermaster`.`createdBy` AS `createdBy`,`usermaster`.`modifiedDate` AS `modifiedDate`,`usermaster`.`modifiedBy` AS `modifiedBy`,`usermaster`.`status` AS `status`,(case when (`usermaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `usermaster`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usermaster_v` AS (select `usermaster`.`id` AS `id`,`usermaster`.`userName` AS `userName`,`usermaster`.`passWord` AS `passWord`,`usermaster`.`fullName` AS `fullName`,`usermaster`.`userType` AS `userType`,(case when (`usermaster`.`userType` = 1) then 'ADMINISTRATOR' else 'USER' end) AS `userTypeDesc`,`usermaster`.`createdDate` AS `createdDate`,`usermaster`.`createdBy` AS `createdBy`,`usermaster`.`modifiedDate` AS `modifiedDate`,`usermaster`.`modifiedBy` AS `modifiedBy`,`usermaster`.`changePassDate` AS `changePassDate`,`usermaster`.`status` AS `status`,(case when (`usermaster`.`status` = 1) then 'ACTIVE' else 'INACTIVE' end) AS `statusDesc` from `usermaster`) */;
 
 /*View structure for view usermenuaccess_v */
 

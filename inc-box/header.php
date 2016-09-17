@@ -23,7 +23,7 @@
 							<li class="dropdown-menu-title">
 									<span>Account Settings</span>
 							</li>
-							<!-- <li><a href="profile.php"><i class="halflings-icon user"></i> Profile</a></li> -->
+							<li><a href="user_profile.php"><i class="halflings-icon user"></i> Profile</a></li>
 							<li><a href="logout.php"><i class="halflings-icon off"></i> Logout</a></li>
 						</ul>
 					</li>

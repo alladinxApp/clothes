@@ -1,6 +1,7 @@
 <?
 	// -- START CONTROLLERS --
 	define(DEFAULTCONTROLLER, "defaultController.php");
+	define(USERPROFILECONTROLLER, "userProfileController.php");
 	define(LOGINCONTROLLER, "loginController.php");
 	define(CONTROLNOCONTROLLER, "controlNoController.php");
 	define(CUSTOMERCONTROLLER, "customerController.php");

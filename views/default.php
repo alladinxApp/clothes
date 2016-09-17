@@ -150,7 +150,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>37%</span>
+							<span><?=number_format($perJan,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">JAN</div>
@@ -158,7 +158,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>16%</span>
+							<span><?=number_format($perFeb,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">FEB</div>
@@ -166,15 +166,15 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>12%</span>
+							<span><?=number_format($perMar,0);?>%</span>
 						</div>
 					</div>
-					<div class="title">MA</div>
+					<div class="title">MAR</div>
 				</div>
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>9%</span>
+							<span><?=number_format($perApr,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">APR</div>
@@ -182,7 +182,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>7%</span>
+							<span><?=number_format($perMay,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">MAY</div>
@@ -190,7 +190,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>6%</span>
+							<span><?=number_format($perJun,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">JUN</div>
@@ -198,7 +198,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>5%</span>
+							<span><?=number_format($perJul,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">JUL</div>
@@ -206,7 +206,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>4%</span>
+							<span><?=number_format($perAug,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">AUG</div>
@@ -214,7 +214,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>3%</span>
+							<span><?=number_format($perSep,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">SEP</div>
@@ -222,7 +222,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>1%</span>
+							<span><?=number_format($perOct,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">OCT</div>
@@ -230,7 +230,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>1%</span>
+							<span><?=number_format($perNov,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">NOV</div>
@@ -238,7 +238,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span>1%</span>
+							<span><?=number_format($perDec,0);?>%</span>
 						</div>
 					</div>
 					<div class="title">DEC</div>
