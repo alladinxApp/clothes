@@ -23,7 +23,7 @@
 	$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' AND jolaborcostsmaster_v.employeeName LIKE '$emp%' ORDER BY jolaborcostsmaster_v.employeeName");
 	$labor->doQuery("query");
 	$row_labor = $labor->getLists();
-
+	
 	// CLOSE DB
 	$csdb->DBClose();
 ?>
@@ -32,6 +32,7 @@
 		<th>#</th>
 		<th>Job Order No</th>
 		<th>Revenue</th>
+		<th>Freight Cost</th>
 		<th>Labor</th>
 		<th>Retention</th>
 		<th>%</th>
@@ -40,13 +41,14 @@
 		$cnt = 1;
 		if(count($row_labor) > 0){
 			for($i=0;$i<count($row_labor);$i++){
-				$retention = ($row_labor[$i]['totalAmount'] - $row_labor[$i]['totalLabor']);
+				$retention = (($row_labor[$i]['totalAmount'] - $row_labor[$i]['freightCost']) - $row_labor[$i]['totalLabor']);
 				$per = (($retention / $row_labor[$i]['totalAmount']) * 100);
 	?>
 	<tr>
 		<td><?=$cnt;?></td>
 		<td><?=$row_labor[$i]['jobOrderReferenceNo'];?></td>
 		<td align="right"><?=number_format($row_labor[$i]['totalAmount'],2);?></td>
+		<td align="right"><?=number_format($row_labor[$i]['freightCost'],2);?></td>
 		<td align="right"><?=number_format($row_labor[$i]['totalLabor'],2);?></td>
 		<td align="right"><?=number_format($retention,2);?></td>
 		<td align="right"><?=number_format($per,2);?>%</td>

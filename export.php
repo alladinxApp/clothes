@@ -415,19 +415,22 @@
 
 					$ln .= "LABORS REPORT\r\n\r\n";
 
-					$custln = "Employee: ," . $emp;
-					$ln .= $custln . "\r\n";
+					$ln .= "From: ," . dateFormat($frm,"m/d/Y") . "\r\n";
+					$ln .= "To: ," . dateFormat($to,"m/d/Y") . "\r\n";
 
-					$ln .= "\r\n#,Job Order No,Revenue,Labor,Retention,%\r\n";
+					$ln .=  "Employee: ," . $emp . "\r\n";
+
+					$ln .= "\r\n#,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
 
 					$cnt = 1;
 					$total = 0;
 					for($i=0;$i<count($row);$i++){
-						$retention = ($row[$i]['totalAmount'] - $row[$i]['totalLabor']);
+						$retention = (($row[$i]['totalAmount'] - $row[$i]['freightCost']) - $row[$i]['totalLabor']);
 						$per = (($retention / $row[$i]['totalAmount']) * 100);
 
 						$ln .= $cnt . "," . $row[$i]['jobOrderReferenceNo']
 								. "," . $row[$i]['totalAmount']
+								. "," . $row[$i]['freightCost']
 								. "," . $row[$i]['totalLabor']
 								. "," . $retention
 								. "," . number_format($per,2) . "%"

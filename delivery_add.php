@@ -87,6 +87,7 @@
 			var vat = 0;
 			var subtotal = 0;
 			var totalamount = 0;
+			var isvat = $("#isVat").val();
 
 			for(var i=0;i<items.length;i++){
 				var price = $("#txtPrice"+items[i]).val();
@@ -104,7 +105,9 @@
 			}
 
 			amnt = (parseFloat(subtotal) - parseFloat(discount));
-			vat = parseFloat(amnt) * parseFloat(0.12);
+			if(isvat == 1){
+				vat = parseFloat(amnt) * parseFloat(0.12);
+			}
 			total = (parseFloat(amnt) + parseFloat(vat));
 
 			$("#txtSubTotal").val(amnt.toFixed(2));

@@ -129,7 +129,7 @@
 				<div class="control-group">
 					<label class="control-label" for="txtDiscount">Discount</label>
 					<div class="controls">
-						<input class="input-xlarge" value="<?=number_format($row_deliverymst[0]['discount'],2)?>" onKeyUp="return ComputeTotal();" name="txtDiscount" id="txtDiscount" style="text-align:right;" type="text" placeholder="0.00" />
+						<input class="input-xlarge" value="<?=number_format($row_deliverymst[0]['discount'],2)?>" onKeyUp="return ComputeTotal();" readonly name="txtDiscount" id="txtDiscount" style="text-align:right;" type="text" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="control-group">

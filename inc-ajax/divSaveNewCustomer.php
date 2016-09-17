@@ -58,3 +58,4 @@
 	</div>
 </div>
 <input type="hidden" name="txtCustomer" id="txtCustomer" value="<?=$newNum;?>" />
+<input type="hidden" name="txtIsVat" id="txtIsVat" value="<?=$isVat;?>" />

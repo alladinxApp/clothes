@@ -36,6 +36,7 @@
 						</div>
 					</div>
 					<input type="hidden" name="txtCustomer" id="txtCustomer" />
+					<input type="hidden" name="txtIsVat" id="txtIsVat" />
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="txtJobType">Job Type</label>
@@ -101,7 +102,7 @@
 					  <th>COLOR</th>
 					  <th>UOM</th>
 					  <th>MATERIALS</th>
-					  <th>SPEICIFICATION</th>
+					  <th>SPECIFICATION</th>
 					  <th>REMOVE</th>
 					</tr>
 				</table>
@@ -192,8 +193,9 @@
 					$customerName = $row_customer[$i]['customerName'];
 					$address = $row_customer[$i]['address'];
 					$telephoneNo = $row_customer[$i]['telephoneNo'];
+					$isvat = $row_customer[$i]['isVat'];
 			?>
-			<tr id="customerList" style="cursor: pointer;" onclick="SelectCustomer('<?=$customerCode;?>','<?=$customerName;?>','<?=$address;?>','<?=$telephoneNo;?>');">
+			<tr id="customerList" style="cursor: pointer;" onclick="SelectCustomer('<?=$customerCode;?>','<?=$customerName;?>','<?=$address;?>','<?=$telephoneNo;?>','<?=$isvat;?>');">
 				<td><?=$cnt;?></td>
 				<td><?=$row_customer[$i]['customerCode'];?></td>
 				<td><?=$row_customer[$i]['customerName'];?></td>

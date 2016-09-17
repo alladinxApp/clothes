@@ -50,6 +50,12 @@
 			var to = $("#txtTo").val();
 			var emp = $("#txtEmployeeName").val();
 
+			if(emp == "" || emp == null){
+				alert("Please select employee!");
+				$( "#divEmployeeList" ).dialog( "open" ); // CALL EMPLOYEE LIST
+				return false;
+			}
+
 			$.ajax({
 				url: 'inc-ajax/divLaborsReport.php?from='+from+'&to='+to+'&emp='+emp,
 				type: 'GET',

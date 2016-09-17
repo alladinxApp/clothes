@@ -224,6 +224,12 @@
 			var dpamnt = 0;
 			var discounted = 0;
 			var balance = 0;
+			var isvat = $("#txtIsVat").val();
+			if(isvat == "" || isvat == null){
+				alert("Please select customer first!");
+				$( "#divCustomersList" ).dialog( "open" );
+				return false;
+			}
 			$("#divTxtBalance").hide();
 			
 			if($("#txtAmount").val().replace(/,/g,'') > 0){
@@ -242,7 +248,9 @@
 			}
 
 			discounted = (parseFloat(amnt) - parseFloat(discount));
-			vat = parseFloat(discounted) * parseFloat(0.12);
+			if(isvat == 1){
+				vat = parseFloat(discounted) * parseFloat(0.12);
+			}
 			total = (parseFloat(discounted) + parseFloat(vat));
 			balance = (parseFloat(total) - parseFloat(dpamnt));
 
@@ -263,11 +271,12 @@
 				document.estimateForm.txtDueDateDesc.disabled = true;
 			}
 		}
-		SelectCustomer = function(id,name,addr,telno){
+		SelectCustomer = function(id,name,addr,telno,isvat){
 			$("#txtCustomer").val(id);
 			$("#txtCustomerName").val(name);
 			$("#txtAddress").val(addr);
 			$("#txtTelephoneNo").val(telno);
+			$("#txtIsVat").val(isvat);
 			$( "#divCustomersList" ).dialog( "close" );
 		}
 		SelectJobType = function(jtcode,jtdesc,leadtime){

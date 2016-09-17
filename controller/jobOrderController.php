@@ -71,8 +71,9 @@
 		$subtotal = str_replace(",","",$_POST['txtSubTotal']);
 		$vat = str_replace(",","",$_POST['txtVat']);
 		$totalamount = str_replace(",","",$_POST['txtTotalAmount']);
+		$freightcost = str_replace(",","",$_POST['txtFreightCost']);
 		$status = $_POST['txtStatus'];
-		
+
 		// OPEN DB
 		$csdb = new DBConfig();
 		$csdb->setClothesDB();
@@ -82,10 +83,10 @@
 		$jomst->setSQLType($csdb->getSQLType());
 		$jomst->setInstance($csdb->getInstance());
 		$jomst->setTable("jobordermaster");
-		$jomst->setValues("amount = '$amount', vat = '$vat', discount = '$discount', subTotal = '$subtotal', totalAmount = '$totalamount', modifiedBy = '$userid', modifiedDate = '$today', status = '$status'");
+		$jomst->setValues("freightCost = '$freightcost', amount = '$amount', vat = '$vat', discount = '$discount', subTotal = '$subtotal', totalAmount = '$totalamount', modifiedBy = '$userid', modifiedDate = '$today', status = '$status'");
 		$jomst->setParam("WHERE jobOrderReferenceNo = '$id'");
 		$jomst->doQuery("update");
-
+		
 		for($i=0;$i<count($row_jodtl);$i++){
 			$dtlid = $row_jodtl[$i]['id'];
 			$mat = $_POST['txtMaterial_'.$dtlid];

@@ -237,6 +237,7 @@
 		<input type="hidden" name="deliverySave" id="deliverySave" value="1" />
 		<input type="hidden" name="joNo" id="joNo" value="<?=$id;?>" />
 		<input type="hidden" name="estNo" id="estNo" value="<?=$row_jomst[0]['quoteReferenceNo'];?>" />
+		<input type="hidden" name="isVat" id="isVat" value="<?=$row_jomst[0]['isVat'];?>" />
 		<input type="hidden" name="arrItems" id="arrItems" value="<?=$arrItems;?>" />
 	 </form>
 </div>

@@ -236,6 +236,7 @@
 				</div>
 				<input type="hidden" name="estimateUpdate" id="estimateUpdate" value="1" />
 				<input type="hidden" name="estMstId" id="estMstId" value="<?=$row_estmst[0]['id'];?>" />
+				<input type="hidden" name="isVat" id="isVat" value="<?=$row_estmst[0]['isVat'];?>" />
 				<? } ?>
 				<? if($row_estmst[0]['status'] == 1){ ?>
 			 	<div class="control-group">

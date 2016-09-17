@@ -18,7 +18,7 @@
 			$this->Ln(5);
 
 			$this->SetFont('helvetica','B',20);
-			$this->Cell(190,10,'BILLING STATEMENT',0,0,'C');
+			$this->Cell(190,10,'SALES INVOICE',0,0,'C');
 			$this->Ln(12);
 
 			$this->SetFont('helvetica','B',10);

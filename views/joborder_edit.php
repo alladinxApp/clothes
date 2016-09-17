@@ -189,6 +189,12 @@
 				
 				<input type="hidden" name="txtItemArray" id="txtItemArr" value="<?=$itemArray;?>" />
 
+				<div class="control-group">
+					<label class="control-label" for="txtFreightCost">Freight Cost</label>
+					<div class="controls">
+						<input class="input-xlarge" style="text-align: right;" value="<?=number_format($row_jomst[0]['freightCost'],2);?>" name="txtFreightCost" id="txtFreightCost" type="text" placeholder="0.00" />
+					</div>
+				</div>
 				<? if($row_jomst[0]['downPayment'] > 0){ ?>
 				<div class="control-group">
 					<label class="control-label" for="txtDownPayment">Down Payment</label>
