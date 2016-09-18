@@ -14,6 +14,7 @@
 	<meta name="description" content="Clothes Station">
 	<meta name="author" content="Clothes Station">
 	<meta name="keyword" content="Clothes">
+	<meta http-equiv="refresh" content="60">
 	<!-- end: Meta -->
 	
 	<!-- start: Mobile Specific -->
