@@ -150,7 +150,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowJanOpen;?>%</span>
+							<span><?=$rowJanOpen;?></span>
 						</div>
 					</div>
 					<div class="title">JAN</div>
@@ -158,7 +158,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowFebOpen;?>%</span>
+							<span><?=$rowFebOpen;?></span>
 						</div>
 					</div>
 					<div class="title">FEB</div>
@@ -166,7 +166,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowMarOpen;?>%</span>
+							<span><?=$rowMarOpen;?></span>
 						</div>
 					</div>
 					<div class="title">MAR</div>
@@ -174,7 +174,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowAprOpen;?>%</span>
+							<span><?=$rowAprOpen;?></span>
 						</div>
 					</div>
 					<div class="title">APR</div>
@@ -182,7 +182,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowMayOpen;?>%</span>
+							<span><?=$rowMayOpen;?></span>
 						</div>
 					</div>
 					<div class="title">MAY</div>
@@ -190,7 +190,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowJunOpen;?>%</span>
+							<span><?=$rowJunOpen;?></span>
 						</div>
 					</div>
 					<div class="title">JUN</div>
@@ -198,7 +198,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowJulOpen;?>%</span>
+							<span><?=$rowJulOpen;?></span>
 						</div>
 					</div>
 					<div class="title">JUL</div>
@@ -206,7 +206,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowAugOpen;?>%</span>
+							<span><?=$rowAugOpen;?></span>
 						</div>
 					</div>
 					<div class="title">AUG</div>
@@ -214,7 +214,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowOctOpen;?>%</span>
+							<span><?=$rowOctOpen;?></span>
 						</div>
 					</div>
 					<div class="title">SEP</div>
@@ -230,7 +230,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowNovOpen;?>%</span>
+							<span><?=$rowNovOpen;?></span>
 						</div>
 					</div>
 					<div class="title">NOV</div>
@@ -238,7 +238,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowDecOpen;?>%</span>
+							<span><?=$rowDecOpen;?></span>
 						</div>
 					</div>
 					<div class="title">DEC</div>
