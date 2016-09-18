@@ -138,6 +138,7 @@
 					</tr>
 					<? $cnt++; } ?>
 				</table>
+				<input type="hidden" name="txtNoOfItems" id="txtNoOfItems" value="<?=$cnt - 1;?>" />
 				</div>
 				<div class="box-header" data-original-title>
 					<h2><i class="halflings-icon home"></i><span class="break"></span><b>Department History</b></h2>

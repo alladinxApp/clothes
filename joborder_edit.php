@@ -41,29 +41,27 @@
 	<!-- end: Favicon -->
 		
 </head>
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">
-	// function ComputeTotal(){
-	// 	var amnt = 0;
-	// 	var discount = 0;
-	// 	var subtotal = 0;
-	// 	var vat = 0;
-	// 	var total = 0;
-		
-	// 	if($("#txtAmount").val() > 0){
-	// 		amnt = $("#txtAmount").val();
-	// 	}
-	// 	if($("#txtDiscount").val() > 0){
-	// 		discount = $("#txtDiscount").val();
-	// 	}
-
-	// 	subtotal = (parseFloat(amnt) - parseFloat(discount));
-	// 	vat = parseFloat(subtotal) * parseFloat(0.12);
-	// 	total = (parseFloat(subtotal) + parseFloat(vat));
-
-	// 	$("#txtSubTotal").val(subtotal.toFixed(2));
-	// 	$("#txtVat").val(vat.toFixed(2));
-	// 	$("#txtTotalAmount").val(total.toFixed(2));
-	// }
+	$(document).ready(function(){
+		$("#btnJobOrderSave").on("click", function(){
+			if( $("#txtStatus").val() == 1){
+				var itemsArr = $("#txtItemArr").val();
+				var items = itemsArr.split("::");
+				for(var a=0;a<items.length;a++){
+					var item = items[a].split("||");
+					if( $("#txtMaterial_"+item[0]).val() == "" || $("#txtMaterial_"+item[0]).val() == null || $("#txtMaterial_"+item[0]).val() <= 0 ){
+						alert("Please enter actual quantity!");
+						$("#txtMaterial_"+item[0]).val("");
+						$("#txtMaterial_"+item[0]).focus();
+						return false;
+					}
+				}
+			}
+		});
+	});
 </script>
 <body>
 	<? require_once("inc-box/header.php"); ?>

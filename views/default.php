@@ -214,7 +214,7 @@
 				<div class="singleBar">
 					<div class="bar">
 						<div class="value">
-							<span><?=$rowOctOpen;?></span>
+							<span><?=$rowSepOpen;?></span>
 						</div>
 					</div>
 					<div class="title">SEP</div>
