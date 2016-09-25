@@ -154,7 +154,7 @@
 		}
 
 		public function Footer(){
-			$this->SetY(-28);
+			$this->SetY(-38);
 			
 			$this->SetFont('Courier','B',9);
 			$this->Cell(190,4,'Received the above goods and services in good order and conditions.',0,0,'L');

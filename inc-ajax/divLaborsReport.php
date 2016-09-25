@@ -10,7 +10,12 @@
 	$frm = dateFormat($_GET['from'],"Y-m-d") . ' 00:00:00';
 	$to = dateFormat($_GET['to'],"Y-m-d") . ' 23:59:59';
 	$emp = $_GET['emp'];
+	$emplbl = "";
 
+	if($emp != "ALL"){
+		$emplbl = $emp;
+	}
+	
 	// OPEN DB
 	$csdb = new DBConfig();
 	$csdb->setClothesDB();
@@ -30,6 +35,9 @@
 <table class="table table-bordered table-condensed">
 	<tr>
 		<th>#</th>
+		<? if($emp == "ALL"){ ?>
+		<th>Employee</th>
+		<? } ?>
 		<th>Job Order No</th>
 		<th>Revenue</th>
 		<th>Freight Cost</th>
@@ -46,6 +54,9 @@
 	?>
 	<tr>
 		<td><?=$cnt;?></td>
+		<? if($emp == "ALL"){ ?>
+		<td><?=$row_labor[$i]['employeeName'];?></td>
+		<? } ?>
 		<td><?=$row_labor[$i]['jobOrderReferenceNo'];?></td>
 		<td align="right"><?=number_format($row_labor[$i]['totalAmount'],2);?></td>
 		<td align="right"><?=number_format($row_labor[$i]['freightCost'],2);?></td>

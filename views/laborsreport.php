@@ -16,7 +16,7 @@
 					<div class="control-group">
 						<label class="control-label" for="txtEmployeeName">Employee</label>
 						<div class="controls">
-							<input class="input-xlarge" name="txtEmployeeName" readonly id="txtEmployeeName" type="text" placeholder="Employee Name Here..." />
+							<input class="input-xlarge" name="txtEmployeeName" readonly id="txtEmployeeName" type="text" placeholder="ALL" value="ALL" />
 						</div>
 					</div>
 					<div class="form-actions">
@@ -61,6 +61,10 @@
 			<tr>
 				<th>#</th>
 				<th>Employee</th>
+			</tr>
+			<tr id="employeeList" style="cursor: pointer;" onclick="SelectEmployee('ALL');">
+				<td>ALL</td>
+				<td>ALL</td>
 			</tr>
 		</table>
 		</div>

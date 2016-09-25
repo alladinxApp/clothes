@@ -46,18 +46,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#btnSearch").on("click", function(){
-			var from = $("#txtFrom").val();
-			var to = $("#txtTo").val();
-			var emp = $("#txtEmployeeName").val();
-
-			// if(emp == "" || emp == null){
-			// 	alert("Please select employee!");
-			// 	$( "#divEmployeeList" ).dialog( "open" ); // CALL EMPLOYEE LIST
-			// 	return false;
-			// }
+			var isvat = $("#txtIsVat").val();
+			var status = $("#txtStatus").val();
 
 			$.ajax({
-				url: 'inc-ajax/divLaborsReport.php?from='+from+'&to='+to+'&emp='+emp,
+				url: 'inc-ajax/divCustomersListReport.php?isvat='+isvat+'&status='+status,
 				type: 'GET',
 				data: null,
 				datatype: 'json',
@@ -66,9 +59,8 @@
 				success: function (data) {
 					$("#dataSearch").html(data);
 					$("#txtExport").val(1);
-					$("#From").val(from);
-					$("#To").val(to);
-					$("#Employee").val(emp);
+					$("#Status").val(status);
+					$("#IsVat").val(isvat);
 				},	
 						
 				error: function (request, status, err) {
@@ -79,60 +71,10 @@
 		});
 
 		$("#btnExport").on("click",function(){
-			// if( $("#txtEmployeeName").val() == "" ){
-			// 	alert("Please enter employee to search!");
-			// 	$( "#divEmployeeList" ).dialog( "open" ); // CALL EMPLOYEE LIST
-			// 	return false;
-			// }
 			if( $("#txtExport").val() == 0){
 				alert("Please generate row data first before exporting!");
 				return false;
 			}
-		});
-
-		SelectEmployee = function(name){
-			$("#txtEmployeeName").val(name);
-			$( "#divEmployeeList" ).dialog( "close" );
-		}
-
-		findEmployee = function(q){
-			$.ajax({
-				url: 'inc-ajax/divSearchEmployee.php?q='+q,
-				type: 'GET',
-				data: null,
-				datatype: 'json',
-				contentType: 'application/json; charset=utf-8',
-				
-				success: function (data) {
-					$("#divEmpList").replaceWith(data);
-				},	
-						
-				error: function (request, status, err) {
-					alert(status);
-					alert(err);
-				}
-			});	
-		}
-
-		$("#txtEmployeeName").click(function(){
-			$( "#divEmployeeList" ).dialog( "open" ); // CALL EMPLOYEE LIST
-		});
-
-		//POP MODAL FOR EMPLOYEE LIST
-		$( "#divEmployeeList" ).dialog({
-			autoOpen: false,
-			height: 600,
-			width: 900,
-			modal: true,
-			cache: false,
-			buttons: {
-				"Close": function() {
-					$( this ).dialog( "close" );
-				}
-			},
-			close: function() {
-				$( this ).dialog( "close" );
-			}		
 		});
 	});
 </script>
@@ -146,7 +88,7 @@
 				
 				<!-- start: Content -->
 				<div id="content" class="span10">
-					<? require_once("views/laborsreport.php");?>
+					<? require_once("views/customerslistreport.php");?>
 				</div>
 				<!-- end: Content -->
 

@@ -32,6 +32,10 @@
 			<th>#</th>
 			<th>Employee</th>
 		</tr>
+		<tr id="employeeList" style="cursor: pointer;" onclick="SelectEmployee('ALL');">
+			<td>ALL</td>
+			<td>ALL</td>
+		</tr>
 		<? 
 			$cnt = 1; 
 			if(count($row_employee) > 0){

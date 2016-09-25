@@ -197,7 +197,7 @@
 		}
 
 		public function Footer(){
-			$this->SetY(-28);
+			$this->SetY(-38);
 			
 			$this->SetFont('Courier','B',9);
 			$this->Cell(190,4,'I agree that the above specifications/descriptions are my request upon order.',0,0,'L');

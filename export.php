@@ -397,6 +397,12 @@
 					$to = dateFormat($_POST['To'],"Y-m-d") . ' 23:59:59';
 					$emp = $_POST['Employee'];
 
+					if($emp == ""){
+						$emplbl = "ALL";
+					}else{
+						$emplbl = $emp;
+					}
+
 					// OPEN DB
 					$csdb = new DBConfig();
 					$csdb->setClothesDB();
@@ -418,28 +424,120 @@
 					$ln .= "From: ," . dateFormat($frm,"m/d/Y") . "\r\n";
 					$ln .= "To: ," . dateFormat($to,"m/d/Y") . "\r\n";
 
-					$ln .=  "Employee: ," . $emp . "\r\n";
+					$ln .=  "Employee: ," . $emplbl . "\r\n";
 
-					$ln .= "\r\n#,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
+					if($emp != "ALL"){
+						$ln .= "\r\n#,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
+					}else{
+						$ln .= "\r\n#,Employee,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
+					}
+
+					$cnt = 1;
+					$total = 0;
+					if($emp != "ALL"){
+						for($i=0;$i<count($row);$i++){
+							$retention = (($row[$i]['totalAmount'] - $row[$i]['freightCost']) - $row[$i]['totalLabor']);
+							$per = (($retention / $row[$i]['totalAmount']) * 100);
+
+							$ln .= $cnt
+									. "," . $row[$i]['jobOrderReferenceNo']
+									. "," . $row[$i]['totalAmount']
+									. "," . $row[$i]['freightCost']
+									. "," . $row[$i]['totalLabor']
+									. "," . $retention
+									. "," . number_format($per,2) . "%"
+									. "," . "\r\n";
+							$cnt++;
+						}
+					}else{
+						for($i=0;$i<count($row);$i++){
+							$retention = (($row[$i]['totalAmount'] - $row[$i]['freightCost']) - $row[$i]['totalLabor']);
+							$per = (($retention / $row[$i]['totalAmount']) * 100);
+
+							$ln .= $cnt
+									. "," . $row[$i]['employeeName']
+									. "," . $row[$i]['jobOrderReferenceNo']
+									. "," . $row[$i]['totalAmount']
+									. "," . $row[$i]['freightCost']
+									. "," . $row[$i]['totalLabor']
+									. "," . $retention
+									. "," . number_format($per,2) . "%"
+									. "," . "\r\n";
+							$cnt++;
+						}
+					}
+
+					$data = trim($ln);
+					$filename = "labors_report_" . $dt . ".csv";
+				break;
+			case "customerslistreport":
+					$stat = $_POST['Status'];
+					$vat = $_POST['IsVat'];
+					$status = "";
+					$isvat = "";
+					$statlbl = "ACTIVE / INACTIVE";
+					$isvatlbl = "YES / NO";
+
+					if($stat != ""){
+						$status = " AND Status = '$stat'";
+						if($stat == 0){
+							$statlbl = "INACTIVE";
+						}else{
+							$statlbl = "ACTIVE";
+						}
+					}
+					if($vat != ""){
+						$isvat = " AND isVat = '$vat'";
+						if($vat == 0){
+							$isvatlbl = "NO";
+						}else{
+							$isvatlbl = "YES";
+						}
+					}
+
+					// OPEN DB
+					$csdb = new DBConfig();
+					$csdb->setClothesDB();
+
+					// SET CUSTOMER
+					$customermst = new Table();
+					$customermst->setSQLType($csdb->getSQLType());
+					$customermst->setInstance($csdb->getInstance());
+					$customermst->setView("customersmaster_v");
+					$customermst->setParam("WHERE 1 $status $isvat ORDER BY customerName");
+					$customermst->doQuery("query");
+					$row = $customermst->getLists();
+
+					// CLOSE DB
+					$csdb->DBClose();
+
+					$ln .= "CUSTOMERS LIST REPORT\r\n\r\n";
+
+					$ln .= "Is Vat: ," . $isvatlbl . "\r\n";
+					$ln .= "Status: ," . $statlbl . "\r\n";
+
+					$ln .= "\r\n#,Customer Code,Customer Name,Address,Mobile No,Telephone No,Fax No,Email Address,Birth Date,TIN,Is Vat,Status\r\n";
 
 					$cnt = 1;
 					$total = 0;
 					for($i=0;$i<count($row);$i++){
-						$retention = (($row[$i]['totalAmount'] - $row[$i]['freightCost']) - $row[$i]['totalLabor']);
-						$per = (($retention / $row[$i]['totalAmount']) * 100);
-
-						$ln .= $cnt . "," . $row[$i]['jobOrderReferenceNo']
-								. "," . $row[$i]['totalAmount']
-								. "," . $row[$i]['freightCost']
-								. "," . $row[$i]['totalLabor']
-								. "," . $retention
-								. "," . number_format($per,2) . "%"
+						$ln .= $cnt . "," . $row[$i]['customerCode']
+								. "," . $row[$i]['customerName']
+								. "," . $row[$i]['address']
+								. "," . $row[$i]['mobileNo']
+								. "," . $row[$i]['telephoneNo']
+								. "," . $row[$i]['faxNo']
+								. "," . $row[$i]['emailAddress']
+								. "," . dateFormat($row[$i]['birthDate'],"m/d/Y")
+								. "," . $row[$i]['TIN']
+								. "," . $row[$i]['isVat']
+								. "," . $row[$i]['statusDesc']
 								. "," . "\r\n";
 						$cnt++;
 					}
 
 					$data = trim($ln);
-					$filename = "labors_report_" . $dt . ".csv";
+					$filename = "customers_list_report_" . $dt . ".csv";
 				break;
 			default: break;
 		}
