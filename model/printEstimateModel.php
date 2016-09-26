@@ -89,7 +89,8 @@
 			$this->Cell(20,6,'SIZES','LTB',0,'C');
 			$this->Cell(20,6,'# PCS','LTB',0,'C');
 			$this->Cell(40,6,'COLOR','LTB',0,'C');
-			$this->Cell(105,6,'MATERIALS','LTRB',0,'C');
+			$this->Cell(50,6,'MATERIALS','LTRB',0,'C');
+			$this->Cell(55,6,'SPECIFICATION','LTRB',0,'C');
 			$this->Ln(6);
 
 			$this->Cell(5,2,'','L',0,'C');
@@ -106,7 +107,8 @@
 				$this->Cell(20,4,$this->estDtl[$i]['sizeDesc'],'L',0,'C');
 				$this->Cell(20,4,$this->estDtl[$i]['quantity'],'L',0,'C');
 				$this->Cell(40,4,$this->estDtl[$i]['color'],'L',0,'C');
-				$this->Cell(105,4,$this->estDtl[$i]['material'],'LR',0,'L');
+				$this->Cell(50,4,$this->estDtl[$i]['material'],'LR',0,'L');
+				$this->Cell(55,4,$this->estDtl[$i]['specification'],'LR',0,'L');
 				$this->Ln(4);
 				$cnt++;
 			}
@@ -192,7 +194,7 @@
 			$this->Cell(20,5,'Remarks',0,0,'L');
 			$this->Cell(2,5,'',0,0,'C');
 			$this->SetFont('helvetica','',9);
-			$this->Cell(168,5,'','B',0,'C');
+			$this->Cell(168,5,$this->estMst['remarks'],'B',0,'C');
 			$this->Ln(5);
 		}
 

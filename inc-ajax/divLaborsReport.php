@@ -13,7 +13,7 @@
 	$emplbl = "";
 
 	if($emp != "ALL"){
-		$emplbl = $emp;
+		$emplbl = " AND jolaborcostsmaster_v.employeeName LIKE '$emp%'";
 	}
 	
 	// OPEN DB
@@ -25,7 +25,7 @@
 	$labor->setSQLType($csdb->getSQLType());
 	$labor->setInstance($csdb->getInstance());
 	$labor->setView("jolaborcostsmaster_v");
-	$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' AND jolaborcostsmaster_v.employeeName LIKE '$emp%' ORDER BY jolaborcostsmaster_v.employeeName");
+	$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jolaborcostsmaster_v.employeeName");
 	$labor->doQuery("query");
 	$row_labor = $labor->getLists();
 	

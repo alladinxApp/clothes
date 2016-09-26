@@ -62,7 +62,10 @@
 
 			$("#txtChange").val(total.toFixed(2));
 		}
-
+		SIPrint = function(sino){
+			alert("under construction");
+			return false;
+		}
 		$("#btnARSave").on("click", function(){
 			if( $("#txtTender").val() == "" || $("#txtTender").val() == null || $("#txtTender").val() <= 0 ){
 				alert("Please enter amount received!");

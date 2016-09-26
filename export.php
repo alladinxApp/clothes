@@ -396,11 +396,10 @@
 					$frm = dateFormat($_POST['From'],"Y-m-d") . ' 00:00:00';
 					$to = dateFormat($_POST['To'],"Y-m-d") . ' 23:59:59';
 					$emp = $_POST['Employee'];
+					$emplbl = "";
 
-					if($emp == ""){
-						$emplbl = "ALL";
-					}else{
-						$emplbl = $emp;
+					if($emp != "ALL"){
+						$emplbl = " AND jolaborcostsmaster_v.employeeName LIKE '$emp%'";
 					}
 
 					// OPEN DB
@@ -412,7 +411,7 @@
 					$labor->setSQLType($csdb->getSQLType());
 					$labor->setInstance($csdb->getInstance());
 					$labor->setView("jolaborcostsmaster_v");
-					$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' AND jolaborcostsmaster_v.employeeName LIKE '$emp%' ORDER BY jolaborcostsmaster_v.employeeName");
+					$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jolaborcostsmaster_v.employeeName");
 					$labor->doQuery("query");
 					$row = $labor->getLists();
 
@@ -424,7 +423,7 @@
 					$ln .= "From: ," . dateFormat($frm,"m/d/Y") . "\r\n";
 					$ln .= "To: ," . dateFormat($to,"m/d/Y") . "\r\n";
 
-					$ln .=  "Employee: ," . $emplbl . "\r\n";
+					$ln .=  "Employee: ," . $emp . "\r\n";
 
 					if($emp != "ALL"){
 						$ln .= "\r\n#,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
