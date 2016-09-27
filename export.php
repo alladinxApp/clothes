@@ -406,14 +406,26 @@
 					$csdb = new DBConfig();
 					$csdb->setClothesDB();
 
-					// SET LABOR
-					$labor = new Table();
-					$labor->setSQLType($csdb->getSQLType());
-					$labor->setInstance($csdb->getInstance());
-					$labor->setView("jolaborcostsmaster_v");
-					$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jolaborcostsmaster_v.employeeName");
-					$labor->doQuery("query");
-					$row = $labor->getLists();
+					if($emp != "ALL"){
+						// SET LABOR
+						$labor = new Table();
+						$labor->setSQLType($csdb->getSQLType());
+						$labor->setInstance($csdb->getInstance());
+						$labor->setView("jolaborcostsmaster_v");
+						$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jolaborcostsmaster_v.createdDate");
+						$labor->doQuery("query");
+						$row = $labor->getLists();
+					}else{
+						// SET JO
+						$labor = new Table();
+						$labor->setSQLType($csdb->getSQLType());
+						$labor->setInstance($csdb->getInstance());
+						$labor->setCol("jobordermaster_v.*,(SELECT SUM(jolaborcostsmaster_v.totalLabor) FROM jolaborcostsmaster_v WHERE jobOrderReferenceNo = jobordermaster_v.jobOrderReferenceNo) AS totalLabor");
+						$labor->setView("jobordermaster_v");
+						$labor->setParam("WHERE jobordermaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jobordermaster_v.createdDate");
+						$labor->doQuery("query");
+						$row = $labor->getLists();
+					}
 
 					// CLOSE DB
 					$csdb->DBClose();
@@ -425,45 +437,23 @@
 
 					$ln .=  "Employee: ," . $emp . "\r\n";
 
-					if($emp != "ALL"){
-						$ln .= "\r\n#,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
-					}else{
-						$ln .= "\r\n#,Employee,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
-					}
+					$ln .= "\r\n#,Job Order No,Revenue,Freight Cost,Labor,Retention,%\r\n";
 
 					$cnt = 1;
 					$total = 0;
-					if($emp != "ALL"){
-						for($i=0;$i<count($row);$i++){
-							$retention = (($row[$i]['totalAmount'] - $row[$i]['freightCost']) - $row[$i]['totalLabor']);
-							$per = (($retention / $row[$i]['totalAmount']) * 100);
+					for($i=0;$i<count($row);$i++){
+						$retention = (($row[$i]['totalAmount'] - $row[$i]['freightCost']) - $row[$i]['totalLabor']);
+						$per = (($retention / $row[$i]['totalAmount']) * 100);
 
-							$ln .= $cnt
-									. "," . $row[$i]['jobOrderReferenceNo']
-									. "," . $row[$i]['totalAmount']
-									. "," . $row[$i]['freightCost']
-									. "," . $row[$i]['totalLabor']
-									. "," . $retention
-									. "," . number_format($per,2) . "%"
-									. "," . "\r\n";
-							$cnt++;
-						}
-					}else{
-						for($i=0;$i<count($row);$i++){
-							$retention = (($row[$i]['totalAmount'] - $row[$i]['freightCost']) - $row[$i]['totalLabor']);
-							$per = (($retention / $row[$i]['totalAmount']) * 100);
-
-							$ln .= $cnt
-									. "," . $row[$i]['employeeName']
-									. "," . $row[$i]['jobOrderReferenceNo']
-									. "," . $row[$i]['totalAmount']
-									. "," . $row[$i]['freightCost']
-									. "," . $row[$i]['totalLabor']
-									. "," . $retention
-									. "," . number_format($per,2) . "%"
-									. "," . "\r\n";
-							$cnt++;
-						}
+						$ln .= $cnt
+								. "," . $row[$i]['jobOrderReferenceNo']
+								. "," . $row[$i]['totalAmount']
+								. "," . $row[$i]['freightCost']
+								. "," . $row[$i]['totalLabor']
+								. "," . $retention
+								. "," . number_format($per,2) . "%"
+								. "," . "\r\n";
+						$cnt++;
 					}
 
 					$data = trim($ln);

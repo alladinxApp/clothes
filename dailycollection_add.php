@@ -63,7 +63,7 @@
 			$("#txtChange").val(total.toFixed(2));
 		}
 		SIPrint = function(sino){
-			alert("under construction");
+			window.open("SI_print.php?id="+sino);
 			return false;
 		}
 		$("#btnARSave").on("click", function(){

@@ -20,14 +20,26 @@
 	$csdb = new DBConfig();
 	$csdb->setClothesDB();
 
-	// SET LABOR
-	$labor = new Table();
-	$labor->setSQLType($csdb->getSQLType());
-	$labor->setInstance($csdb->getInstance());
-	$labor->setView("jolaborcostsmaster_v");
-	$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jolaborcostsmaster_v.employeeName");
-	$labor->doQuery("query");
-	$row_labor = $labor->getLists();
+	if($emp != "ALL"){
+		// SET LABOR
+		$labor = new Table();
+		$labor->setSQLType($csdb->getSQLType());
+		$labor->setInstance($csdb->getInstance());
+		$labor->setView("jolaborcostsmaster_v");
+		$labor->setParam("WHERE jolaborcostsmaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jolaborcostsmaster_v.createdDate");
+		$labor->doQuery("query");
+		$row_labor = $labor->getLists();
+	}else{
+		// SET JO
+		$labor = new Table();
+		$labor->setSQLType($csdb->getSQLType());
+		$labor->setInstance($csdb->getInstance());
+		$labor->setCol("jobordermaster_v.*,(SELECT SUM(jolaborcostsmaster_v.totalLabor) FROM jolaborcostsmaster_v WHERE jobOrderReferenceNo = jobordermaster_v.jobOrderReferenceNo) AS totalLabor");
+		$labor->setView("jobordermaster_v");
+		$labor->setParam("WHERE jobordermaster_v.createdDate between '$frm' AND '$to' $emplbl ORDER BY jobordermaster_v.createdDate");
+		$labor->doQuery("query");
+		$row_labor = $labor->getLists();
+	}
 	
 	// CLOSE DB
 	$csdb->DBClose();
@@ -35,9 +47,6 @@
 <table class="table table-bordered table-condensed">
 	<tr>
 		<th>#</th>
-		<? if($emp == "ALL"){ ?>
-		<th>Employee</th>
-		<? } ?>
 		<th>Job Order No</th>
 		<th>Revenue</th>
 		<th>Freight Cost</th>
@@ -54,9 +63,6 @@
 	?>
 	<tr>
 		<td><?=$cnt;?></td>
-		<? if($emp == "ALL"){ ?>
-		<td><?=$row_labor[$i]['employeeName'];?></td>
-		<? } ?>
 		<td><?=$row_labor[$i]['jobOrderReferenceNo'];?></td>
 		<td align="right"><?=number_format($row_labor[$i]['totalAmount'],2);?></td>
 		<td align="right"><?=number_format($row_labor[$i]['freightCost'],2);?></td>

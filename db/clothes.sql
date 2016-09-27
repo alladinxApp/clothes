@@ -334,7 +334,7 @@ CREATE TABLE `joborderdetail` (
 
 /*Data for the table `joborderdetail` */
 
-insert  into `joborderdetail`(`id`,`jobOrderMasterId`,`jobOrderReferenceNo`,`specification`,`size`,`quantity`,`color`,`uom`,`material`,`actual`,`qty_delivered`) values (1,1,'JO00000001','asf','SP00000005',10,'asdf','UOM001','asfd',10,10),(2,2,'JO00000002','sdf','SP00000005',10,'sdf','UOM001','sdf',0,0),(3,3,'JO00000003','asf','SP00000005',10,'asdf','UOM001','asf',NULL,0),(4,4,'JO00000004','asdf','SP00000005',10,'asf','UOM001','asf',10,0),(5,4,'JO00000004','asaf','SP00000005',10,'asdf','UOM001','asdf',10,0);
+insert  into `joborderdetail`(`id`,`jobOrderMasterId`,`jobOrderReferenceNo`,`specification`,`size`,`quantity`,`color`,`uom`,`material`,`actual`,`qty_delivered`) values (1,1,'JO00000001','asf','SP00000005',10,'asdf','UOM001','asfd',10,10),(2,2,'JO00000002','sdf','SP00000005',10,'sdf','UOM001','sdf',0,0),(3,3,'JO00000003','asf','SP00000005',10,'asdf','UOM001','asf',10,0),(4,4,'JO00000004','asdf','SP00000005',10,'asf','UOM001','asf',10,0),(5,4,'JO00000004','asaf','SP00000005',10,'asdf','UOM001','asdf',10,0);
 
 /*Table structure for table `jobordermaster` */
 
@@ -362,7 +362,7 @@ CREATE TABLE `jobordermaster` (
 
 /*Data for the table `jobordermaster` */
 
-insert  into `jobordermaster`(`id`,`jobOrderReferenceNo`,`quoteReferenceNo`,`amount`,`vat`,`discount`,`subTotal`,`totalAmount`,`acknowledgeBy`,`acknowledgeDate`,`freightCost`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'JO00000001','EST00000001','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'0.00','2016-09-18 06:22:25','ALLADINX','2016-09-18 06:22:50','ALLADINX',2),(2,'JO00000002','EST00000002','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'0.00','2016-09-18 02:31:57','ALLADINX','2016-09-18 02:48:26','ALLADINX',1),(3,'JO00000003','EST00000003',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2016-09-18 02:53:43','ALLADINX',NULL,NULL,0),(4,'JO00000004','EST00000004','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'0.00','2016-09-18 03:03:54','ALLADINX','2016-09-18 03:15:25','ALLADINX',1);
+insert  into `jobordermaster`(`id`,`jobOrderReferenceNo`,`quoteReferenceNo`,`amount`,`vat`,`discount`,`subTotal`,`totalAmount`,`acknowledgeBy`,`acknowledgeDate`,`freightCost`,`createdDate`,`createdBy`,`modifiedDate`,`modifiedBy`,`status`) values (1,'JO00000001','EST00000001','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'0.00','2016-09-18 06:22:25','ALLADINX','2016-09-18 06:22:50','ALLADINX',2),(2,'JO00000002','EST00000002','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'0.00','2016-09-18 02:31:57','ALLADINX','2016-09-18 02:48:26','ALLADINX',1),(3,'JO00000003','EST00000003','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'0.00','2016-09-18 02:53:43','ALLADINX','2016-09-26 05:37:49','ALLADINX',0),(4,'JO00000004','EST00000004','0.00','0.00','0.00','0.00','0.00',NULL,NULL,'0.00','2016-09-18 03:03:54','ALLADINX','2016-09-18 03:15:25','ALLADINX',1);
 
 /*Table structure for table `jobtypemaster` */
 
@@ -397,9 +397,11 @@ CREATE TABLE `jolaborcostsdetail` (
   `quantity` int(11) DEFAULT NULL,
   `amount` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `jolaborcostsdetail` */
+
+insert  into `jolaborcostsdetail`(`id`,`joLaborCostMasterId`,`laborCostsCode`,`quantity`,`amount`) values (1,2,'LC0008',10,'10.00'),(2,2,'LC0013',10,'20.00'),(3,1,'LC0008',0,'0.00'),(4,1,'LC0011',5,'15.00'),(5,1,'LC0014',5,'15.00');
 
 /*Table structure for table `jolaborcostsmaster` */
 
@@ -418,9 +420,11 @@ CREATE TABLE `jolaborcostsmaster` (
   `modifiedBy` varchar(20) DEFAULT NULL,
   `modifiedDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `jolaborcostsmaster` */
+
+insert  into `jolaborcostsmaster`(`id`,`jobOrderDepartmentId`,`jobOrderReferenceNo`,`departmentCode`,`employeeName`,`jobDescriptionCode`,`description`,`createdBy`,`createdDate`,`modifiedBy`,`modifiedDate`) values (1,3,'JO00000003','D00000002','emp1','JD0002',NULL,'ALLADINX','2016-09-26 05:37:59',NULL,NULL),(2,3,'JO00000003','D00000002','emp2','JD0003',NULL,'ALLADINX','2016-09-26 05:38:04',NULL,NULL);
 
 /*Table structure for table `laborcostsmaster` */
 

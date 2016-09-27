@@ -96,7 +96,7 @@
 						<td align="right"><?=number_format($row_armst[$i]['balance'],2);?></td>
 						<td align="center"><?=dateFormat($row_armst[$i]['createdDate'],"m/d/Y");?></td>
 						<td><?=$row_armst[$i]['remarks'];?></td>
-						<td><a class="btn btn-info" href="#" onClick="SIPrint('<?=$row_armst[$i]['ARNo'];?>');" title="Print <?=$row_armst[$i]['ARNo'];?>">
+						<td align="center"><a class="btn btn-info" href="#" onClick="SIPrint('<?=$row_armst[$i]['ARNo'];?>');" title="Print <?=$row_armst[$i]['ARNo'];?>">
 							<i class="halflings-icon white print"></i> 
 						</a></td>
 					</tr>
