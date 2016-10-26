@@ -18,8 +18,23 @@
 	$joborders = new Table();
 	$joborders->setSQLType($csdb->getSQLType());
 	$joborders->setInstance($csdb->getInstance());
-	$joborders->setView("jobordermaster_v");
-	$joborders->setParam("WHERE status = '0'");
+	$joborders->setCol("jobordermaster.jobOrderReferenceNo
+		,customersmaster.customerName
+		,jobtypemaster.description AS jobTypeDesc
+		,estimatemaster.dueDate
+		,(TO_DAYS(CURDATE()) - TO_DAYS(`jobordermaster`.`createdDate`)) AS `daysOld`
+		,(SELECT 
+			SUM(CASE 
+				WHEN (`joborderdetail`.`actual` > 0) 
+					THEN (`joborderdetail`.`actual`) 
+				ELSE `joborderdetail`.`quantity` 
+				END) FROM joborderdetail
+			WHERE joborderdetail.jobOrderReferenceNo = jobordermaster.jobOrderReferenceNo) AS total_qty");
+	$joborders->setView("jobordermaster
+		JOIN estimatemaster ON estimatemaster.quoteReferenceNo = jobordermaster.quoteReferenceNo
+		JOIN customersmaster ON customersmaster.customerCode = estimatemaster.customerCode
+		JOIN jobtypemaster ON jobtypemaster.jobTypeCode = estimatemaster.jobType");
+	$joborders->setParam("WHERE jobordermaster.status = 0");
 	$joborders->doQuery("query");
 	$num_joborders = $joborders->getNumRows();
 	$row_joborders = $joborders->getLists();
@@ -28,8 +43,20 @@
 	$armst = new Table();
 	$armst->setSQLType($csdb->getSQLType());
 	$armst->setInstance($csdb->getInstance());
-	$armst->setView("armaster_v");
-	$armst->setParam("WHERE status = '0'");
+	$armst->setCol("armaster.billingReferenceNo 
+				,billingmaster.jobOrderReferenceNo 
+				,customersmaster.customerName 
+				,armaster.balance 
+				,(TO_DAYS(CURDATE()) - TO_DAYS(armaster.createdDate)) AS daysOld 
+				,(SELECT SUM(`joborderdetail_v`.`qty_delivered`) AS `COUNT(joborderdetail_v.qty_delivered)` 
+					FROM `joborderdetail_v` 
+					WHERE (`joborderdetail_v`.`jobOrderReferenceNo` = `jobordermaster`.`jobOrderReferenceNo`)) AS totalDelivered ");
+	$armst->setView("armaster 
+				JOIN billingmaster ON billingmaster.billingReferenceNo = armaster.billingReferenceNo 
+				JOIN jobordermaster ON jobordermaster.jobOrderReferenceNo = billingmaster.jobOrderReferenceNo 
+				JOIN estimatemaster ON estimatemaster.quoteReferenceNo = jobordermaster.quoteReferenceNo 
+				JOIN customersmaster ON customersmaster.customerCode = estimatemaster.customerCode");
+	$armst->setParam("WHERE armaster.status = '0'");
 	$armst->doQuery("query");
 	$row_armst = $armst->getLists();
 
@@ -48,20 +75,24 @@
 	$row_remindermst = $remindermst->getLists();
 
 	// SET BILLING MST
-	$billingmst = new Table();
-	$billingmst->setSQLType($csdb->getSQLType());
-	$billingmst->setInstance($csdb->getInstance());
-	$billingmst->setView("billingmaster_v");
-	$billingmst->setParam("WHERE status IN(1)");
-	$billingmst->doQuery("query");
-	$row_billingmst = $billingmst->getLists();
+	// $billingmst = new Table();
+	// $billingmst->setSQLType($csdb->getSQLType());
+	// $billingmst->setInstance($csdb->getInstance());
+	// $billingmst->setView("billingmaster_v");
+	// $billingmst->setParam("WHERE status IN(1)");
+	// $billingmst->doQuery("query");
+	// $row_billingmst = $billingmst->getLists();
 
 	// SET DELIVERY MST
 	$dueJO = new Table();
 	$dueJO->setSQLType($csdb->getSQLType());
 	$dueJO->setInstance($csdb->getInstance());
-	$dueJO->setView("jobordermaster_v");
-	$dueJO->setParam("WHERE dueYear = '$curYear'");
+	$dueJO->setCol("MONTH(estimatemaster.dueDate) AS dueMonth,
+  				YEAR(estimatemaster.dueDate) AS dueYear");
+	$dueJO->setView("jobordermaster
+				JOIN estimatemaster
+     				ON estimatemaster.quoteReferenceNo = jobordermaster.quoteReferenceNo");
+	$dueJO->setParam("WHERE YEAR(estimatemaster.dueDate) = '$curYear'");
 	$dueJO->doQuery("query");
 	$row_dueJO = $dueJO->getLists();
 

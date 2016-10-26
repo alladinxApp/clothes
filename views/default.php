@@ -94,7 +94,7 @@
 			<? $cnt++; } ?>
 		 </table>
 		</div>
-	</div>	
+	</div>
 </div><br />
 <div class="row-fluid">	
 	<div class="span8" onTablet="span6" onDesktop="span6">
@@ -246,7 +246,8 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-	</div><!--/span-->
+	</div>
+	<!--/span-->
 </div>
 
 <!-- MODAL BOX FOR NEW REMINDER -->
@@ -278,4 +279,4 @@
 <div id="dataReminder">
 	<div id="divEditReminder"></div>
 </div>
-<!-- END MODAL BOX FOR EDIT REMINDER -->
+<!-- END MODAL BOX FOR EDIT REMINDER

@@ -1,7 +1,7 @@
 <?
 	require_once("inc/global.php");
 	require_once("inc/validateuser.php");
-	require_once(MODEL_PATH . DEFAULTMODEL);
+	// require_once(MODEL_PATH . DEFAULTMODEL);
 	require_once(CONTROLLER_PATH . DEFAULTCONTROLLER);
 ?>
 <!DOCTYPE html>
